@@ -9,9 +9,11 @@ description = "Explainable natural-language routing across SQL, graph, and const
 requires-python = ">=3.11"
 dependencies = []
 
+[project.optional-dependencies]
+taxi = ["pyarrow>=14"]
+
 [project.scripts]
 polyquery = "polyquery.cli:main"
 
 [tool.setuptools.packages.find]
 include = ["polyquery*"]
-

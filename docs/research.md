@@ -10,13 +10,14 @@ The v0.1 planner detects aggregate, traversal, and statistical intent, fills fix
 
 ## Dataset protocol for a research result
 
-The selectable LDBC source now validates and loads supplied person/knows CSVs
-into an undirected in-memory graph. This is an integration step, not an LDBC
-benchmark implementation or graph database adapter. Next, materialize the same
-person/knows projection in SQL and implement equivalent friend/path queries
-before comparing routing policies. Record dataset hashes, completeness, load
-time, and query timings separately; freeze question families before held-out
-evaluation. Chinook and taxi files are present locally but await adapters.
+Chinook, LDBC person/knows, and the full supplied Taxi file now have development
+suites comparing actual answers across equivalent execution strategies. LDBC
+uses graph BFS and SQL frontier joins; Chinook and Taxi use SQL and fixed Python
+templates. The suites are authored development data with computational reference
+answers, not independently reviewed held-out labels. See
+[real-data benchmarks](real-data-benchmarks.md) for commands and limitations.
+Record dataset hashes, completeness, initialization, and query timings separately;
+freeze question families before held-out evaluation.
 
 1. Build equivalent relational tables and graph projections across several domains, including schema distractors and missing values.
 2. Annotate gold answer, constraints, acceptable execution strategies, and an oracle strategy measured on the same data. Have a second reviewer adjudicate disputed labels.

@@ -1,0 +1,2762 @@
+{
+  "policies": {
+    "router": {
+      "report_version": 2,
+      "created_at": "2026-10-04T22:01:45.662263+00:00",
+      "dataset_label": "taxi full supplied data; authored development questions",
+      "dataset_metadata": {
+        "source": "taxi",
+        "split": "development",
+        "source_hashes": {
+          "parquet_file": "8b3933fe6f0d7b6d8826613c0dd724edc680ff7c49e2bd4c7635c05102728637"
+        },
+        "label": "taxi full supplied data; authored development questions",
+        "gold_note": "NumPy 1.26.4 reductions over all raw Parquet rows; nonfinite values excluded from numeric metrics; computational reference, not independently reviewed held-out annotations"
+      },
+      "dataset_sha256": "f7f0b34da49e19902bbf95f7a3d61d9d97b9dac1ccb8b6ade47feddcdf808409",
+      "source": {
+        "name": "taxi",
+        "parquet_file": "C:\\Users\\sushm\\Downloads\\PolyQuery\\polyquery\\benchmarks\\yellow_tripdata_2026-01.parquet",
+        "rows": 3724889,
+        "columns": [
+          "fare_amount",
+          "total_amount",
+          "trip_distance"
+        ],
+        "projection": "All rows; nonfinite numbers treated as null; negative and zero values retained",
+        "sql_indexes": [
+          "trips_fare_idx(fare_amount)"
+        ],
+        "nulls": {
+          "fare_amount": 0,
+          "total_amount": 0,
+          "trip_distance": 0
+        },
+        "pyarrow_version": "11.0.0"
+      },
+      "policy": "router",
+      "python": "3.11.4",
+      "source_hashes": {
+        "parquet_file": "8b3933fe6f0d7b6d8826613c0dd724edc680ff7c49e2bd4c7635c05102728637"
+      },
+      "initialization_ms": 25794.309799995972,
+      "platform": "Windows-10-10.0.26200-SP0",
+      "cases": 9,
+      "repeats": 3,
+      "warmup": 1,
+      "runs": 27,
+      "answer_accuracy": 1.0,
+      "answerable_accuracy": 1.0,
+      "route_accuracy": 1.0,
+      "joint_accuracy": 1.0,
+      "coverage": 0.7777777777777778,
+      "answered_accuracy": 1.0,
+      "answered_joint_accuracy": 1.0,
+      "error_rate": 0.0,
+      "abstention_precision": 1.0,
+      "abstention_recall": 1.0,
+      "latency": {
+        "latency_ms": {
+          "samples": 27,
+          "mean": 280.8236999974017,
+          "p50": 84.12779998616315,
+          "p95": 686.5338099974906
+        },
+        "planning_ms": {
+          "samples": 27,
+          "mean": 0.022388887979711097,
+          "p50": 0.021599989850074053,
+          "p95": 0.049269993905909346
+        },
+        "execution_ms": {
+          "samples": 27,
+          "mean": 280.801311109422,
+          "p50": 84.10629999707453,
+          "p95": 686.5065000049071
+        }
+      },
+      "by_family": {
+        "abstention": {
+          "runs": 6,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": null,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 0.0,
+          "answered_accuracy": null,
+          "answered_joint_accuracy": null,
+          "error_rate": 0.0,
+          "abstention_precision": 1.0,
+          "abstention_recall": 1.0,
+          "latency": {
+            "latency_ms": {
+              "samples": 6,
+              "mean": 0.04850000065440933,
+              "p50": 0.045899985707364976,
+              "p95": 0.0865250185597688
+            },
+            "planning_ms": {
+              "samples": 6,
+              "mean": 0.01200000406242907,
+              "p50": 0.011249998351559043,
+              "p95": 0.022675019863527268
+            },
+            "execution_ms": {
+              "samples": 6,
+              "mean": 0.036499996591980256,
+              "p50": 0.033599979360587895,
+              "p95": 0.06437500269385055
+            }
+          }
+        },
+        "aggregation": {
+          "runs": 6,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 6,
+              "mean": 596.4182833316348,
+              "p50": 596.8620999919949,
+              "p95": 670.0343999982579
+            },
+            "planning_ms": {
+              "samples": 6,
+              "mean": 0.028099995688535273,
+              "p50": 0.02169999061152339,
+              "p95": 0.05850000161444768
+            },
+            "execution_ms": {
+              "samples": 6,
+              "mean": 596.3901833359463,
+              "p50": 596.820349994232,
+              "p95": 670.0128000084078
+            }
+          }
+        },
+        "count": {
+          "runs": 3,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 3,
+              "mean": 4.945533340408777,
+              "p50": 4.343200009316206,
+              "p95": 6.012879993068054
+            },
+            "planning_ms": {
+              "samples": 3,
+              "mean": 0.012500007869675756,
+              "p50": 0.015199999324977398,
+              "p95": 0.016190006863325834
+            },
+            "execution_ms": {
+              "samples": 3,
+              "mean": 4.933033332539101,
+              "p50": 4.328000009991229,
+              "p95": 5.9966899862047285
+            }
+          }
+        },
+        "filter": {
+          "runs": 3,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 3,
+              "mean": 5.487633325780432,
+              "p50": 4.610399977536872,
+              "p95": 7.0652399939717725
+            },
+            "planning_ms": {
+              "samples": 3,
+              "mean": 0.030533332998553913,
+              "p50": 0.030000024707987905,
+              "p95": 0.03845998435281217
+            },
+            "execution_ms": {
+              "samples": 3,
+              "mean": 5.4570999927818775,
+              "p50": 4.570999997667968,
+              "p95": 7.041320001007989
+            }
+          }
+        },
+        "statistics": {
+          "runs": 9,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 9,
+              "mean": 441.34885554861586,
+              "p50": 555.854799982626,
+              "p95": 691.5575199993327
+            },
+            "planning_ms": {
+              "samples": 9,
+              "mean": 0.026088883815747168,
+              "p50": 0.02169999061152339,
+              "p95": 0.044019997585564845
+            },
+            "execution_ms": {
+              "samples": 9,
+              "mean": 441.32276666480016,
+              "p50": 555.8331999927759,
+              "p95": 691.5326400077902
+            }
+          }
+        }
+      },
+      "by_expected_backend": {
+        "sql": {
+          "runs": 21,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 21,
+              "mean": 361.04518571075806,
+              "p50": 536.2193000037223,
+              "p95": 691.1424999998417
+            },
+            "planning_ms": {
+              "samples": 21,
+              "mean": 0.02535714052750596,
+              "p50": 0.02169999061152339,
+              "p95": 0.053499999921768904
+            },
+            "execution_ms": {
+              "samples": 21,
+              "mean": 361.0198285702306,
+              "p50": 536.1904999881517,
+              "p95": 691.1127000057604
+            }
+          }
+        },
+        "code": {
+          "runs": 21,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 21,
+              "mean": 361.04518571075806,
+              "p50": 536.2193000037223,
+              "p95": 691.1424999998417
+            },
+            "planning_ms": {
+              "samples": 21,
+              "mean": 0.02535714052750596,
+              "p50": 0.02169999061152339,
+              "p95": 0.053499999921768904
+            },
+            "execution_ms": {
+              "samples": 21,
+              "mean": 361.0198285702306,
+              "p50": 536.1904999881517,
+              "p95": 691.1127000057604
+            }
+          }
+        },
+        "abstain": {
+          "runs": 6,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": null,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 0.0,
+          "answered_accuracy": null,
+          "answered_joint_accuracy": null,
+          "error_rate": 0.0,
+          "abstention_precision": 1.0,
+          "abstention_recall": 1.0,
+          "latency": {
+            "latency_ms": {
+              "samples": 6,
+              "mean": 0.04850000065440933,
+              "p50": 0.045899985707364976,
+              "p95": 0.0865250185597688
+            },
+            "planning_ms": {
+              "samples": 6,
+              "mean": 0.01200000406242907,
+              "p50": 0.011249998351559043,
+              "p95": 0.022675019863527268
+            },
+            "execution_ms": {
+              "samples": 6,
+              "mean": 0.036499996591980256,
+              "p50": 0.033599979360587895,
+              "p95": 0.06437500269385055
+            }
+          }
+        }
+      },
+      "confusion_matrix": {
+        "sql": {
+          "sql": 18,
+          "graph": 0,
+          "code": 3,
+          "abstain": 0,
+          "error": 0
+        },
+        "graph": {
+          "sql": 0,
+          "graph": 0,
+          "code": 0,
+          "abstain": 0,
+          "error": 0
+        },
+        "code": {
+          "sql": 0,
+          "graph": 0,
+          "code": 0,
+          "abstain": 0,
+          "error": 0
+        },
+        "abstain": {
+          "sql": 0,
+          "graph": 0,
+          "code": 0,
+          "abstain": 6,
+          "error": 0
+        }
+      },
+      "confusion_note": "Multiple acceptable routes use the first route as the matrix row; accuracy accepts any listed route.",
+      "sql_only_route_accuracy": 0.7777777777777778,
+      "baseline_note": "SQL-only route-label diagnostic, not a capable fixed-SQL execution comparison.",
+      "latency_note": "Dataset order; warmup excluded; initialization excluded. Total includes errors; error stage times unavailable. Percentiles use linear interpolation.",
+      "cost": {
+        "usd": null,
+        "tokens": null,
+        "note": "Unmeasured; no monetary cost instrumentation."
+      },
+      "results": [
+        {
+          "id": "trips",
+          "repeat": 0,
+          "family": "count",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 3724889,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 6.198399991262704,
+          "planning_ms": 0.016300007700920105,
+          "execution_ms": 6.182099983561784
+        },
+        {
+          "id": "fare-sum",
+          "repeat": 0,
+          "family": "aggregation",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 77493536.48019998,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 536.2193000037223,
+          "planning_ms": 0.02880001557059586,
+          "execution_ms": 536.1904999881517
+        },
+        {
+          "id": "total-sum",
+          "repeat": 0,
+          "family": "aggregation",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 108686768.73008928,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 675.7801999920048,
+          "planning_ms": 0.021499989088624716,
+          "execution_ms": 675.7587000029162
+        },
+        {
+          "id": "distance-mean",
+          "repeat": 0,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 6.455646860889232,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 691.1424999998417,
+          "planning_ms": 0.029799994081258774,
+          "execution_ms": 691.1127000057604
+        },
+        {
+          "id": "fare-mean",
+          "repeat": 0,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 20.80425389325695,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 589.2821000015829,
+          "planning_ms": 0.021700019715353847,
+          "execution_ms": 589.2603999818675
+        },
+        {
+          "id": "fare-median",
+          "repeat": 0,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 15.6,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 84.12779998616315,
+          "planning_ms": 0.021499989088624716,
+          "execution_ms": 84.10629999707453
+        },
+        {
+          "id": "negative-fares",
+          "repeat": 0,
+          "family": "filter",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 39463,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 7.3379999957978725,
+          "planning_ms": 0.022199994418770075,
+          "execution_ms": 7.3158000013791025
+        },
+        {
+          "id": "unsupported-date",
+          "repeat": 0,
+          "family": "abstention",
+          "expected_backend": "abstain",
+          "expected_backends": [
+            "abstain"
+          ],
+          "actual_backend": "abstain",
+          "status": "abstained",
+          "actual": null,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.09810001938603818,
+          "planning_ms": 0.02570002106949687,
+          "execution_ms": 0.07239999831654131
+        },
+        {
+          "id": "unsupported-field",
+          "repeat": 0,
+          "family": "abstention",
+          "expected_backend": "abstain",
+          "expected_backends": [
+            "abstain"
+          ],
+          "actual_backend": "abstain",
+          "status": "abstained",
+          "actual": null,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.05180001608096063,
+          "planning_ms": 0.011500000255182385,
+          "execution_ms": 0.040300015825778246
+        },
+        {
+          "id": "trips",
+          "repeat": 1,
+          "family": "count",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 3724889,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 4.343200009316206,
+          "planning_ms": 0.015199999324977398,
+          "execution_ms": 4.328000009991229
+        },
+        {
+          "id": "fare-sum",
+          "repeat": 1,
+          "family": "aggregation",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 77493536.48019998,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 597.1856999967713,
+          "planning_ms": 0.015099998563528061,
+          "execution_ms": 597.1705999982078
+        },
+        {
+          "id": "total-sum",
+          "repeat": 1,
+          "family": "aggregation",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 108686768.73008928,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 596.5384999872185,
+          "planning_ms": 0.06839999696239829,
+          "execution_ms": 596.4700999902561
+        },
+        {
+          "id": "distance-mean",
+          "repeat": 1,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 6.455646860889232,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 691.8341999989934,
+          "planning_ms": 0.021599989850074053,
+          "execution_ms": 691.8126000091434
+        },
+        {
+          "id": "fare-mean",
+          "repeat": 1,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 20.80425389325695,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 555.854799982626,
+          "planning_ms": 0.021599989850074053,
+          "execution_ms": 555.8331999927759
+        },
+        {
+          "id": "fare-median",
+          "repeat": 1,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 15.6,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 81.29699999699369,
+          "planning_ms": 0.053499999921768904,
+          "execution_ms": 81.24349999707192
+        },
+        {
+          "id": "negative-fares",
+          "repeat": 1,
+          "family": "filter",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 39463,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 4.51450000400655,
+          "planning_ms": 0.030000024707987905,
+          "execution_ms": 4.484499979298562
+        },
+        {
+          "id": "unsupported-date",
+          "repeat": 1,
+          "family": "abstention",
+          "expected_backend": "abstain",
+          "expected_backends": [
+            "abstain"
+          ],
+          "actual_backend": "abstain",
+          "status": "abstained",
+          "actual": null,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.048699992476031184,
+          "planning_ms": 0.013600016245618463,
+          "execution_ms": 0.03509997623041272
+        },
+        {
+          "id": "unsupported-field",
+          "repeat": 1,
+          "family": "abstention",
+          "expected_backend": "abstain",
+          "expected_backends": [
+            "abstain"
+          ],
+          "actual_backend": "abstain",
+          "status": "abstained",
+          "actual": null,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.023900007363408804,
+          "planning_ms": 0.0048000074457377195,
+          "execution_ms": 0.019099999917671084
+        },
+        {
+          "id": "trips",
+          "repeat": 2,
+          "family": "count",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 3724889,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 4.2950000206474215,
+          "planning_ms": 0.006000016583129764,
+          "execution_ms": 4.289000004064292
+        },
+        {
+          "id": "fare-sum",
+          "repeat": 2,
+          "family": "aggregation",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 77493536.48019998,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 519.9889999930747,
+          "planning_ms": 0.012899981811642647,
+          "execution_ms": 519.976100011263
+        },
+        {
+          "id": "total-sum",
+          "repeat": 2,
+          "family": "aggregation",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 108686768.73008928,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 652.7970000170171,
+          "planning_ms": 0.021899992134422064,
+          "execution_ms": 652.7751000248827
+        },
+        {
+          "id": "distance-mean",
+          "repeat": 2,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 6.455646860889232,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 648.7393999996129,
+          "planning_ms": 0.02169999061152339,
+          "execution_ms": 648.7177000090014
+        },
+        {
+          "id": "fare-mean",
+          "repeat": 2,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 20.80425389325695,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 544.8662999842782,
+          "planning_ms": 0.02139998832717538,
+          "execution_ms": 544.844899995951
+        },
+        {
+          "id": "fare-median",
+          "repeat": 2,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 15.6,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 84.99559998745099,
+          "planning_ms": 0.0219999928958714,
+          "execution_ms": 84.97359999455512
+        },
+        {
+          "id": "negative-fares",
+          "repeat": 2,
+          "family": "filter",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 39463,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 4.610399977536872,
+          "planning_ms": 0.039399979868903756,
+          "execution_ms": 4.570999997667968
+        },
+        {
+          "id": "unsupported-date",
+          "repeat": 2,
+          "family": "abstention",
+          "expected_backend": "abstain",
+          "expected_backends": [
+            "abstain"
+          ],
+          "actual_backend": "abstain",
+          "status": "abstained",
+          "actual": null,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.04309997893869877,
+          "planning_ms": 0.0109999964479357,
+          "execution_ms": 0.03209998249076307
+        },
+        {
+          "id": "unsupported-field",
+          "repeat": 2,
+          "family": "abstention",
+          "expected_backend": "abstain",
+          "expected_backends": [
+            "abstain"
+          ],
+          "actual_backend": "abstain",
+          "status": "abstained",
+          "actual": null,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.025399989681318402,
+          "planning_ms": 0.005399982910603285,
+          "execution_ms": 0.020000006770715117
+        }
+      ]
+    },
+    "fixed-sql": {
+      "report_version": 2,
+      "created_at": "2026-10-04T22:02:30.874701+00:00",
+      "dataset_label": "taxi full supplied data; authored development questions",
+      "dataset_metadata": {
+        "source": "taxi",
+        "split": "development",
+        "source_hashes": {
+          "parquet_file": "8b3933fe6f0d7b6d8826613c0dd724edc680ff7c49e2bd4c7635c05102728637"
+        },
+        "label": "taxi full supplied data; authored development questions",
+        "gold_note": "NumPy 1.26.4 reductions over all raw Parquet rows; nonfinite values excluded from numeric metrics; computational reference, not independently reviewed held-out annotations"
+      },
+      "dataset_sha256": "f7f0b34da49e19902bbf95f7a3d61d9d97b9dac1ccb8b6ade47feddcdf808409",
+      "source": {
+        "name": "taxi",
+        "parquet_file": "C:\\Users\\sushm\\Downloads\\PolyQuery\\polyquery\\benchmarks\\yellow_tripdata_2026-01.parquet",
+        "rows": 3724889,
+        "columns": [
+          "fare_amount",
+          "total_amount",
+          "trip_distance"
+        ],
+        "projection": "All rows; nonfinite numbers treated as null; negative and zero values retained",
+        "sql_indexes": [
+          "trips_fare_idx(fare_amount)"
+        ],
+        "nulls": {
+          "fare_amount": 0,
+          "total_amount": 0,
+          "trip_distance": 0
+        },
+        "pyarrow_version": "11.0.0"
+      },
+      "policy": "fixed-sql",
+      "python": "3.11.4",
+      "source_hashes": {
+        "parquet_file": "8b3933fe6f0d7b6d8826613c0dd724edc680ff7c49e2bd4c7635c05102728637"
+      },
+      "initialization_ms": 30318.536800012225,
+      "platform": "Windows-10-10.0.26200-SP0",
+      "cases": 9,
+      "repeats": 3,
+      "warmup": 1,
+      "runs": 27,
+      "answer_accuracy": 1.0,
+      "answerable_accuracy": 1.0,
+      "route_accuracy": 1.0,
+      "joint_accuracy": 1.0,
+      "coverage": 0.7777777777777778,
+      "answered_accuracy": 1.0,
+      "answered_joint_accuracy": 1.0,
+      "error_rate": 0.0,
+      "abstention_precision": 1.0,
+      "abstention_recall": 1.0,
+      "latency": {
+        "latency_ms": {
+          "samples": 27,
+          "mean": 403.834592590876,
+          "p50": 527.6402999879792,
+          "p95": 1150.2674899908016
+        },
+        "planning_ms": {
+          "samples": 27,
+          "mean": 0.018444443682070683,
+          "p50": 0.02239999594166875,
+          "p95": 0.027360004605725408
+        },
+        "execution_ms": {
+          "samples": 27,
+          "mean": 403.8161481471939,
+          "p50": 527.6172999874689,
+          "p95": 1150.24376999354
+        }
+      },
+      "by_family": {
+        "abstention": {
+          "runs": 6,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": null,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 0.0,
+          "answered_accuracy": null,
+          "answered_joint_accuracy": null,
+          "error_rate": 0.0,
+          "abstention_precision": 1.0,
+          "abstention_recall": 1.0,
+          "latency": {
+            "latency_ms": {
+              "samples": 6,
+              "mean": 0.03483332693576813,
+              "p50": 0.03514999116305262,
+              "p95": 0.04644998989533633
+            },
+            "planning_ms": {
+              "samples": 6,
+              "mean": 0.009149992062399784,
+              "p50": 0.009899988071992993,
+              "p95": 0.013149990991223603
+            },
+            "execution_ms": {
+              "samples": 6,
+              "mean": 0.02568333487336834,
+              "p50": 0.024600012693554163,
+              "p95": 0.03519999154377729
+            }
+          }
+        },
+        "aggregation": {
+          "runs": 6,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 6,
+              "mean": 625.3552999987733,
+              "p50": 623.1643999926746,
+              "p95": 700.4349249982624
+            },
+            "planning_ms": {
+              "samples": 6,
+              "mean": 0.021233334943341713,
+              "p50": 0.02230000973213464,
+              "p95": 0.023275002604350448
+            },
+            "execution_ms": {
+              "samples": 6,
+              "mean": 625.33406666383,
+              "p50": 623.1446000019787,
+              "p95": 700.4117999968003
+            }
+          }
+        },
+        "count": {
+          "runs": 3,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 3,
+              "mean": 4.377033328637481,
+              "p50": 4.288299998734146,
+              "p95": 4.708150000078604
+            },
+            "planning_ms": {
+              "samples": 3,
+              "mean": 0.006933327919493119,
+              "p50": 0.00689999433234334,
+              "p95": 0.007800001185387373
+            },
+            "execution_ms": {
+              "samples": 3,
+              "mean": 4.370100000717987,
+              "p50": 4.281400004401803,
+              "p95": 4.702060011914
+            }
+          }
+        },
+        "filter": {
+          "runs": 3,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 3,
+              "mean": 4.385600002327313,
+              "p50": 4.409000015584752,
+              "p95": 4.422409986727871
+            },
+            "planning_ms": {
+              "samples": 3,
+              "mean": 0.02443334475780527,
+              "p50": 0.02400000812485814,
+              "p95": 0.0256200204603374
+            },
+            "execution_ms": {
+              "samples": 3,
+              "mean": 4.361166657569508,
+              "p50": 4.383199993753806,
+              "p95": 4.398679980658926
+            }
+          }
+        },
+        "statistics": {
+          "runs": 9,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 9,
+              "mean": 791.656144445167,
+              "p50": 673.7267000135034,
+              "p95": 1180.696519993944
+            },
+            "planning_ms": {
+              "samples": 9,
+              "mean": 0.024622222149951592,
+              "p50": 0.02340000355616212,
+              "p95": 0.028979999478906393
+            },
+            "execution_ms": {
+              "samples": 9,
+              "mean": 791.6315222230171,
+              "p50": 673.7037000129931,
+              "p95": 1180.67435999983
+            }
+          }
+        }
+      },
+      "by_expected_backend": {
+        "sql": {
+          "runs": 21,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 21,
+              "mean": 519.2059523805732,
+              "p50": 584.7725000057835,
+              "p95": 1155.486799980281
+            },
+            "planning_ms": {
+              "samples": 21,
+              "mean": 0.02110000128769094,
+              "p50": 0.02300000051036477,
+              "p95": 0.027600006433203816
+            },
+            "execution_ms": {
+              "samples": 21,
+              "mean": 519.1848523792855,
+              "p50": 584.7507999860682,
+              "p95": 1155.4643999843393
+            }
+          }
+        },
+        "code": {
+          "runs": 21,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 21,
+              "mean": 519.2059523805732,
+              "p50": 584.7725000057835,
+              "p95": 1155.486799980281
+            },
+            "planning_ms": {
+              "samples": 21,
+              "mean": 0.02110000128769094,
+              "p50": 0.02300000051036477,
+              "p95": 0.027600006433203816
+            },
+            "execution_ms": {
+              "samples": 21,
+              "mean": 519.1848523792855,
+              "p50": 584.7507999860682,
+              "p95": 1155.4643999843393
+            }
+          }
+        },
+        "abstain": {
+          "runs": 6,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": null,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 0.0,
+          "answered_accuracy": null,
+          "answered_joint_accuracy": null,
+          "error_rate": 0.0,
+          "abstention_precision": 1.0,
+          "abstention_recall": 1.0,
+          "latency": {
+            "latency_ms": {
+              "samples": 6,
+              "mean": 0.03483332693576813,
+              "p50": 0.03514999116305262,
+              "p95": 0.04644998989533633
+            },
+            "planning_ms": {
+              "samples": 6,
+              "mean": 0.009149992062399784,
+              "p50": 0.009899988071992993,
+              "p95": 0.013149990991223603
+            },
+            "execution_ms": {
+              "samples": 6,
+              "mean": 0.02568333487336834,
+              "p50": 0.024600012693554163,
+              "p95": 0.03519999154377729
+            }
+          }
+        }
+      },
+      "confusion_matrix": {
+        "sql": {
+          "sql": 21,
+          "graph": 0,
+          "code": 0,
+          "abstain": 0,
+          "error": 0
+        },
+        "graph": {
+          "sql": 0,
+          "graph": 0,
+          "code": 0,
+          "abstain": 0,
+          "error": 0
+        },
+        "code": {
+          "sql": 0,
+          "graph": 0,
+          "code": 0,
+          "abstain": 0,
+          "error": 0
+        },
+        "abstain": {
+          "sql": 0,
+          "graph": 0,
+          "code": 0,
+          "abstain": 6,
+          "error": 0
+        }
+      },
+      "confusion_note": "Multiple acceptable routes use the first route as the matrix row; accuracy accepts any listed route.",
+      "sql_only_route_accuracy": 0.7777777777777778,
+      "baseline_note": "SQL-only route-label diagnostic, not a capable fixed-SQL execution comparison.",
+      "latency_note": "Dataset order; warmup excluded; initialization excluded. Total includes errors; error stage times unavailable. Percentiles use linear interpolation.",
+      "cost": {
+        "usd": null,
+        "tokens": null,
+        "note": "Unmeasured; no monetary cost instrumentation."
+      },
+      "results": [
+        {
+          "id": "trips",
+          "repeat": 0,
+          "family": "count",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 3724889,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 4.087999986950308,
+          "planning_ms": 0.00790000194683671,
+          "execution_ms": 4.080099985003471
+        },
+        {
+          "id": "fare-sum",
+          "repeat": 0,
+          "family": "aggregation",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 77493536.48019998,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 654.7571999835782,
+          "planning_ms": 0.016299978597089648,
+          "execution_ms": 654.7409000049811
+        },
+        {
+          "id": "total-sum",
+          "repeat": 0,
+          "family": "aggregation",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 108686768.73008928,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 591.571600001771,
+          "planning_ms": 0.023300002794712782,
+          "execution_ms": 591.5482999989763
+        },
+        {
+          "id": "distance-mean",
+          "repeat": 0,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 6.455646860889232,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 673.7267000135034,
+          "planning_ms": 0.02300000051036477,
+          "execution_ms": 673.7037000129931
+        },
+        {
+          "id": "fare-mean",
+          "repeat": 0,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 20.80425389325695,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 539.7348999977112,
+          "planning_ms": 0.023500004317611456,
+          "execution_ms": 539.7113999933936
+        },
+        {
+          "id": "fare-median",
+          "repeat": 0,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 15.6,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 1138.0891000153497,
+          "planning_ms": 0.02680000034160912,
+          "execution_ms": 1138.062300015008
+        },
+        {
+          "id": "negative-fares",
+          "repeat": 0,
+          "family": "filter",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 39463,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 4.423899983521551,
+          "planning_ms": 0.023500004317611456,
+          "execution_ms": 4.400399979203939
+        },
+        {
+          "id": "unsupported-date",
+          "repeat": 0,
+          "family": "abstention",
+          "expected_backend": "abstain",
+          "expected_backends": [
+            "abstain"
+          ],
+          "actual_backend": "abstain",
+          "status": "abstained",
+          "actual": null,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.047699984861537814,
+          "planning_ms": 0.011500000255182385,
+          "execution_ms": 0.03619998460635543
+        },
+        {
+          "id": "unsupported-field",
+          "repeat": 0,
+          "family": "abstention",
+          "expected_backend": "abstain",
+          "expected_backends": [
+            "abstain"
+          ],
+          "actual_backend": "abstain",
+          "status": "abstained",
+          "actual": null,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.02579999272711575,
+          "planning_ms": 0.005499983672052622,
+          "execution_ms": 0.02030000905506313
+        },
+        {
+          "id": "trips",
+          "repeat": 1,
+          "family": "count",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 3724889,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 4.288299998734146,
+          "planning_ms": 0.00689999433234334,
+          "execution_ms": 4.281400004401803
+        },
+        {
+          "id": "fare-sum",
+          "repeat": 1,
+          "family": "aggregation",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 77493536.48019998,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 522.2306000068784,
+          "planning_ms": 0.020000006770715117,
+          "execution_ms": 522.2106000001077
+        },
+        {
+          "id": "total-sum",
+          "repeat": 1,
+          "family": "aggregation",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 108686768.73008928,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 697.3299999954179,
+          "planning_ms": 0.022899999748915434,
+          "execution_ms": 697.307099995669
+        },
+        {
+          "id": "distance-mean",
+          "repeat": 1,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 6.455646860889232,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 697.7744000032544,
+          "planning_ms": 0.027600006433203816,
+          "execution_ms": 697.7467999968212
+        },
+        {
+          "id": "fare-mean",
+          "repeat": 1,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 20.80425389325695,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 537.23469999386,
+          "planning_ms": 0.02989999484270811,
+          "execution_ms": 537.2047999990173
+        },
+        {
+          "id": "fare-median",
+          "repeat": 1,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 15.6,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 1155.486799980281,
+          "planning_ms": 0.02239999594166875,
+          "execution_ms": 1155.4643999843393
+        },
+        {
+          "id": "negative-fares",
+          "repeat": 1,
+          "family": "filter",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 39463,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 4.323900007875636,
+          "planning_ms": 0.02400000812485814,
+          "execution_ms": 4.299899999750778
+        },
+        {
+          "id": "unsupported-date",
+          "repeat": 1,
+          "family": "abstention",
+          "expected_backend": "abstain",
+          "expected_backends": [
+            "abstain"
+          ],
+          "actual_backend": "abstain",
+          "status": "abstained",
+          "actual": null,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.03819999983534217,
+          "planning_ms": 0.009299983503296971,
+          "execution_ms": 0.028900016332045197
+        },
+        {
+          "id": "unsupported-field",
+          "repeat": 1,
+          "family": "abstention",
+          "expected_backend": "abstain",
+          "expected_backends": [
+            "abstain"
+          ],
+          "actual_backend": "abstain",
+          "status": "abstained",
+          "actual": null,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.03209998249076307,
+          "planning_ms": 0.013699987903237343,
+          "execution_ms": 0.018399994587525725
+        },
+        {
+          "id": "trips",
+          "repeat": 2,
+          "family": "count",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 3724889,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 4.754800000227988,
+          "planning_ms": 0.005999987479299307,
+          "execution_ms": 4.7488000127486885
+        },
+        {
+          "id": "fare-sum",
+          "repeat": 2,
+          "family": "aggregation",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 77493536.48019998,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 584.7725000057835,
+          "planning_ms": 0.021700019715353847,
+          "execution_ms": 584.7507999860682
+        },
+        {
+          "id": "total-sum",
+          "repeat": 2,
+          "family": "aggregation",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 108686768.73008928,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 701.4698999992106,
+          "planning_ms": 0.023200002033263445,
+          "execution_ms": 701.4466999971773
+        },
+        {
+          "id": "distance-mean",
+          "repeat": 2,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 6.455646860889232,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 657.7154000115115,
+          "planning_ms": 0.02340000355616212,
+          "execution_ms": 657.6920000079554
+        },
+        {
+          "id": "fare-mean",
+          "repeat": 2,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 20.80425389325695,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 527.6402999879792,
+          "planning_ms": 0.02300000051036477,
+          "execution_ms": 527.6172999874689
+        },
+        {
+          "id": "fare-median",
+          "repeat": 2,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 15.6,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 1197.5030000030529,
+          "planning_ms": 0.0219999928958714,
+          "execution_ms": 1197.481000010157
+        },
+        {
+          "id": "negative-fares",
+          "repeat": 2,
+          "family": "filter",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 39463,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 4.409000015584752,
+          "planning_ms": 0.025800021830946207,
+          "execution_ms": 4.383199993753806
+        },
+        {
+          "id": "unsupported-date",
+          "repeat": 2,
+          "family": "abstention",
+          "expected_backend": "abstain",
+          "expected_backends": [
+            "abstain"
+          ],
+          "actual_backend": "abstain",
+          "status": "abstained",
+          "actual": null,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.04270000499673188,
+          "planning_ms": 0.010499992640689015,
+          "execution_ms": 0.03220001235604286
+        },
+        {
+          "id": "unsupported-field",
+          "repeat": 2,
+          "family": "abstention",
+          "expected_backend": "abstain",
+          "expected_backends": [
+            "abstain"
+          ],
+          "actual_backend": "abstain",
+          "status": "abstained",
+          "actual": null,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.022499996703118086,
+          "planning_ms": 0.0044000043999403715,
+          "execution_ms": 0.018099992303177714
+        }
+      ]
+    },
+    "fixed-code": {
+      "report_version": 2,
+      "created_at": "2026-10-04T22:03:02.160721+00:00",
+      "dataset_label": "taxi full supplied data; authored development questions",
+      "dataset_metadata": {
+        "source": "taxi",
+        "split": "development",
+        "source_hashes": {
+          "parquet_file": "8b3933fe6f0d7b6d8826613c0dd724edc680ff7c49e2bd4c7635c05102728637"
+        },
+        "label": "taxi full supplied data; authored development questions",
+        "gold_note": "NumPy 1.26.4 reductions over all raw Parquet rows; nonfinite values excluded from numeric metrics; computational reference, not independently reviewed held-out annotations"
+      },
+      "dataset_sha256": "f7f0b34da49e19902bbf95f7a3d61d9d97b9dac1ccb8b6ade47feddcdf808409",
+      "source": {
+        "name": "taxi",
+        "parquet_file": "C:\\Users\\sushm\\Downloads\\PolyQuery\\polyquery\\benchmarks\\yellow_tripdata_2026-01.parquet",
+        "rows": 3724889,
+        "columns": [
+          "fare_amount",
+          "total_amount",
+          "trip_distance"
+        ],
+        "projection": "All rows; nonfinite numbers treated as null; negative and zero values retained",
+        "sql_indexes": [
+          "trips_fare_idx(fare_amount)"
+        ],
+        "nulls": {
+          "fare_amount": 0,
+          "total_amount": 0,
+          "trip_distance": 0
+        },
+        "pyarrow_version": "11.0.0"
+      },
+      "policy": "fixed-code",
+      "python": "3.11.4",
+      "source_hashes": {
+        "parquet_file": "8b3933fe6f0d7b6d8826613c0dd724edc680ff7c49e2bd4c7635c05102728637"
+      },
+      "initialization_ms": 30590.5805999937,
+      "platform": "Windows-10-10.0.26200-SP0",
+      "cases": 9,
+      "repeats": 3,
+      "warmup": 1,
+      "runs": 27,
+      "answer_accuracy": 1.0,
+      "answerable_accuracy": 1.0,
+      "route_accuracy": 1.0,
+      "joint_accuracy": 1.0,
+      "coverage": 0.7777777777777778,
+      "answered_accuracy": 1.0,
+      "answered_joint_accuracy": 1.0,
+      "error_rate": 0.0,
+      "abstention_precision": 1.0,
+      "abstention_recall": 1.0,
+      "latency": {
+        "latency_ms": {
+          "samples": 27,
+          "mean": 14.136877778650227,
+          "p50": 5.040899995947257,
+          "p95": 79.85798001172952
+        },
+        "planning_ms": {
+          "samples": 27,
+          "mean": 0.01819259099041422,
+          "p50": 0.020000006770715117,
+          "p95": 0.030489999335259196
+        },
+        "execution_ms": {
+          "samples": 27,
+          "mean": 14.118685187659812,
+          "p50": 5.018600000767037,
+          "p95": 79.83611001109239
+        }
+      },
+      "by_family": {
+        "abstention": {
+          "runs": 6,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": null,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 0.0,
+          "answered_accuracy": null,
+          "answered_joint_accuracy": null,
+          "error_rate": 0.0,
+          "abstention_precision": 1.0,
+          "abstention_recall": 1.0,
+          "latency": {
+            "latency_ms": {
+              "samples": 6,
+              "mean": 0.05394999849765251,
+              "p50": 0.051399998483248055,
+              "p95": 0.08544998854631558
+            },
+            "planning_ms": {
+              "samples": 6,
+              "mean": 0.015249999705702066,
+              "p50": 0.01475001045037061,
+              "p95": 0.025749992346391082
+            },
+            "execution_ms": {
+              "samples": 6,
+              "mean": 0.03869999879195044,
+              "p50": 0.036650002584792674,
+              "p95": 0.060200000007171184
+            }
+          }
+        },
+        "aggregation": {
+          "runs": 6,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 6,
+              "mean": 5.294016669116293,
+              "p50": 5.093500003567897,
+              "p95": 5.935574998147786
+            },
+            "planning_ms": {
+              "samples": 6,
+              "mean": 0.013899999127412835,
+              "p50": 0.013450000551529229,
+              "p95": 0.020399987988639623
+            },
+            "execution_ms": {
+              "samples": 6,
+              "mean": 5.280116669988881,
+              "p50": 5.085049997433089,
+              "p95": 5.92010000400478
+            }
+          }
+        },
+        "count": {
+          "runs": 3,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 3,
+              "mean": 0.1907666640666624,
+              "p50": 0.1883000077214092,
+              "p95": 0.20440999942366034
+            },
+            "planning_ms": {
+              "samples": 3,
+              "mean": 0.011199988269557556,
+              "p50": 0.009799987310543656,
+              "p95": 0.013939992641098797
+            },
+            "execution_ms": {
+              "samples": 3,
+              "mean": 0.17956667579710484,
+              "p50": 0.17850002041086555,
+              "p95": 0.19047000678256154
+            }
+          }
+        },
+        "filter": {
+          "runs": 3,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 3,
+              "mean": 26.11773334016713,
+              "p50": 26.155400002608076,
+              "p95": 26.91320001031272
+            },
+            "planning_ms": {
+              "samples": 3,
+              "mean": 0.02923334250226617,
+              "p50": 0.03160000778734684,
+              "p95": 0.031780009157955647
+            },
+            "execution_ms": {
+              "samples": 3,
+              "mean": 26.088499997664865,
+              "p50": 26.12379999482073,
+              "p95": 26.8881700001657
+            }
+          }
+        },
+        "statistics": {
+          "runs": 9,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 9,
+              "mean": 30.075822222796788,
+              "p50": 5.308100022375584,
+              "p95": 80.50574000226334
+            },
+            "planning_ms": {
+              "samples": 9,
+              "mean": 0.02166666349189149,
+              "p50": 0.022299995180219412,
+              "p95": 0.026219990104436874
+            },
+            "execution_ms": {
+              "samples": 9,
+              "mean": 30.054155559304895,
+              "p50": 5.285700026433915,
+              "p95": 80.48389999312349
+            }
+          }
+        }
+      },
+      "by_expected_backend": {
+        "sql": {
+          "runs": 21,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 21,
+              "mean": 18.160571430122392,
+              "p50": 5.300899996655062,
+              "p95": 80.38610001676716
+            },
+            "planning_ms": {
+              "samples": 21,
+              "mean": 0.01903333135747484,
+              "p50": 0.020000006770715117,
+              "p95": 0.03160000778734684
+            },
+            "execution_ms": {
+              "samples": 21,
+              "mean": 18.141538098764915,
+              "p50": 5.2730000170413405,
+              "p95": 80.36240001092665
+            }
+          }
+        },
+        "code": {
+          "runs": 21,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 21,
+              "mean": 18.160571430122392,
+              "p50": 5.300899996655062,
+              "p95": 80.38610001676716
+            },
+            "planning_ms": {
+              "samples": 21,
+              "mean": 0.01903333135747484,
+              "p50": 0.020000006770715117,
+              "p95": 0.03160000778734684
+            },
+            "execution_ms": {
+              "samples": 21,
+              "mean": 18.141538098764915,
+              "p50": 5.2730000170413405,
+              "p95": 80.36240001092665
+            }
+          }
+        },
+        "abstain": {
+          "runs": 6,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": null,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 0.0,
+          "answered_accuracy": null,
+          "answered_joint_accuracy": null,
+          "error_rate": 0.0,
+          "abstention_precision": 1.0,
+          "abstention_recall": 1.0,
+          "latency": {
+            "latency_ms": {
+              "samples": 6,
+              "mean": 0.05394999849765251,
+              "p50": 0.051399998483248055,
+              "p95": 0.08544998854631558
+            },
+            "planning_ms": {
+              "samples": 6,
+              "mean": 0.015249999705702066,
+              "p50": 0.01475001045037061,
+              "p95": 0.025749992346391082
+            },
+            "execution_ms": {
+              "samples": 6,
+              "mean": 0.03869999879195044,
+              "p50": 0.036650002584792674,
+              "p95": 0.060200000007171184
+            }
+          }
+        }
+      },
+      "confusion_matrix": {
+        "sql": {
+          "sql": 0,
+          "graph": 0,
+          "code": 21,
+          "abstain": 0,
+          "error": 0
+        },
+        "graph": {
+          "sql": 0,
+          "graph": 0,
+          "code": 0,
+          "abstain": 0,
+          "error": 0
+        },
+        "code": {
+          "sql": 0,
+          "graph": 0,
+          "code": 0,
+          "abstain": 0,
+          "error": 0
+        },
+        "abstain": {
+          "sql": 0,
+          "graph": 0,
+          "code": 0,
+          "abstain": 6,
+          "error": 0
+        }
+      },
+      "confusion_note": "Multiple acceptable routes use the first route as the matrix row; accuracy accepts any listed route.",
+      "sql_only_route_accuracy": 0.7777777777777778,
+      "baseline_note": "SQL-only route-label diagnostic, not a capable fixed-SQL execution comparison.",
+      "latency_note": "Dataset order; warmup excluded; initialization excluded. Total includes errors; error stage times unavailable. Percentiles use linear interpolation.",
+      "cost": {
+        "usd": null,
+        "tokens": null,
+        "note": "Unmeasured; no monetary cost instrumentation."
+      },
+      "results": [
+        {
+          "id": "trips",
+          "repeat": 0,
+          "family": "count",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 3724889,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.1883000077214092,
+          "planning_ms": 0.009799987310543656,
+          "execution_ms": 0.17850002041086555
+        },
+        {
+          "id": "fare-sum",
+          "repeat": 0,
+          "family": "aggregation",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 77493536.48,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 5.833500006701797,
+          "planning_ms": 0.009400013368576765,
+          "execution_ms": 5.8240999933332205
+        },
+        {
+          "id": "total-sum",
+          "repeat": 0,
+          "family": "aggregation",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 108686768.73000002,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 4.876999999396503,
+          "planning_ms": 0.02099998528137803,
+          "execution_ms": 4.856000014115125
+        },
+        {
+          "id": "distance-mean",
+          "repeat": 0,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 6.455646860886325,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 5.33819998963736,
+          "planning_ms": 0.01759998849593103,
+          "execution_ms": 5.320600001141429
+        },
+        {
+          "id": "fare-mean",
+          "repeat": 0,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 20.80425389320326,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 5.308100022375584,
+          "planning_ms": 0.02239999594166875,
+          "execution_ms": 5.285700026433915
+        },
+        {
+          "id": "fare-median",
+          "repeat": 0,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 15.6,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 80.38610001676716,
+          "planning_ms": 0.02370000584051013,
+          "execution_ms": 80.36240001092665
+        },
+        {
+          "id": "negative-fares",
+          "repeat": 0,
+          "family": "filter",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 39463,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 25.20040000672452,
+          "planning_ms": 0.031800009310245514,
+          "execution_ms": 25.168599997414276
+        },
+        {
+          "id": "unsupported-date",
+          "repeat": 0,
+          "family": "abstention",
+          "expected_backend": "abstain",
+          "expected_backends": [
+            "abstain"
+          ],
+          "actual_backend": "abstain",
+          "status": "abstained",
+          "actual": null,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.08410000009462237,
+          "planning_ms": 0.025999994250014424,
+          "execution_ms": 0.05810000584460795
+        },
+        {
+          "id": "unsupported-field",
+          "repeat": 0,
+          "family": "abstention",
+          "expected_backend": "abstain",
+          "expected_backends": [
+            "abstain"
+          ],
+          "actual_backend": "abstain",
+          "status": "abstained",
+          "actual": null,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.025300018023699522,
+          "planning_ms": 0.005600013537332416,
+          "execution_ms": 0.019700004486367106
+        },
+        {
+          "id": "trips",
+          "repeat": 1,
+          "family": "count",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 3724889,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.17779998597688973,
+          "planning_ms": 0.009399984264746308,
+          "execution_ms": 0.16840000171214342
+        },
+        {
+          "id": "fare-sum",
+          "repeat": 1,
+          "family": "aggregation",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 77493536.48,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 5.176200007554144,
+          "planning_ms": 0.008200004231184721,
+          "execution_ms": 5.168000003322959
+        },
+        {
+          "id": "total-sum",
+          "repeat": 1,
+          "family": "aggregation",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 108686768.73000002,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 5.9695999952964485,
+          "planning_ms": 0.017499987734481692,
+          "execution_ms": 5.952100007561967
+        },
+        {
+          "id": "distance-mean",
+          "repeat": 1,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 6.455646860886325,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 4.907700000330806,
+          "planning_ms": 0.022899999748915434,
+          "execution_ms": 4.88480000058189
+        },
+        {
+          "id": "fare-mean",
+          "repeat": 1,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 20.80425389320326,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 5.189299990888685,
+          "planning_ms": 0.020000006770715117,
+          "execution_ms": 5.16929998411797
+        },
+        {
+          "id": "fare-median",
+          "repeat": 1,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 15.6,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 80.58549999259412,
+          "planning_ms": 0.02060001133941114,
+          "execution_ms": 80.56489998125471
+        },
+        {
+          "id": "negative-fares",
+          "repeat": 1,
+          "family": "filter",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 39463,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 26.155400002608076,
+          "planning_ms": 0.03160000778734684,
+          "execution_ms": 26.12379999482073
+        },
+        {
+          "id": "unsupported-date",
+          "repeat": 1,
+          "family": "abstention",
+          "expected_backend": "abstain",
+          "expected_backends": [
+            "abstain"
+          ],
+          "actual_backend": "abstain",
+          "status": "abstained",
+          "actual": null,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.08589998469687998,
+          "planning_ms": 0.024999986635521054,
+          "execution_ms": 0.06089999806135893
+        },
+        {
+          "id": "unsupported-field",
+          "repeat": 1,
+          "family": "abstention",
+          "expected_backend": "abstain",
+          "expected_backends": [
+            "abstain"
+          ],
+          "actual_backend": "abstain",
+          "status": "abstained",
+          "actual": null,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.027399975806474686,
+          "planning_ms": 0.005599984433501959,
+          "execution_ms": 0.021799991372972727
+        },
+        {
+          "id": "trips",
+          "repeat": 2,
+          "family": "count",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 3724889,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.20619999850168824,
+          "planning_ms": 0.014399993233382702,
+          "execution_ms": 0.19180000526830554
+        },
+        {
+          "id": "fare-sum",
+          "repeat": 2,
+          "family": "aggregation",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 77493536.48,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 5.01079999958165,
+          "planning_ms": 0.008700008038431406,
+          "execution_ms": 5.0020999915432185
+        },
+        {
+          "id": "total-sum",
+          "repeat": 2,
+          "family": "aggregation",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 108686768.73000002,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 4.897000006167218,
+          "planning_ms": 0.0185999961104244,
+          "execution_ms": 4.878400010056794
+        },
+        {
+          "id": "distance-mean",
+          "repeat": 2,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 6.455646860886325,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 5.300899996655062,
+          "planning_ms": 0.02789997961372137,
+          "execution_ms": 5.2730000170413405
+        },
+        {
+          "id": "fare-mean",
+          "repeat": 2,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 20.80425389320326,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 5.040899995947257,
+          "planning_ms": 0.022299995180219412,
+          "execution_ms": 5.018600000767037
+        },
+        {
+          "id": "fare-median",
+          "repeat": 2,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 15.6,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 78.62569999997504,
+          "planning_ms": 0.01759998849593103,
+          "execution_ms": 78.60810001147911
+        },
+        {
+          "id": "negative-fares",
+          "repeat": 2,
+          "family": "filter",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 39463,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 26.997400011168793,
+          "planning_ms": 0.024300010409206152,
+          "execution_ms": 26.973100000759587
+        },
+        {
+          "id": "unsupported-date",
+          "repeat": 2,
+          "family": "abstention",
+          "expected_backend": "abstain",
+          "expected_backends": [
+            "abstain"
+          ],
+          "actual_backend": "abstain",
+          "status": "abstained",
+          "actual": null,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.07540002116002142,
+          "planning_ms": 0.023900007363408804,
+          "execution_ms": 0.05150001379661262
+        },
+        {
+          "id": "unsupported-field",
+          "repeat": 2,
+          "family": "abstention",
+          "expected_backend": "abstain",
+          "expected_backends": [
+            "abstain"
+          ],
+          "actual_backend": "abstain",
+          "status": "abstained",
+          "actual": null,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.025599991204217076,
+          "planning_ms": 0.005400012014433742,
+          "execution_ms": 0.020199979189783335
+        }
+      ]
+    }
+  },
+  "note": "Sequential policy runs in insertion order. Repeat with reversed order to check order effects; no causal routing claim follows from this report alone."
+}

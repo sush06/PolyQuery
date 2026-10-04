@@ -1,0 +1,4796 @@
+{
+  "policies": {
+    "router": {
+      "report_version": 2,
+      "created_at": "2026-10-04T21:55:55.136852+00:00",
+      "dataset_label": "chinook full supplied data; authored development questions",
+      "dataset_metadata": {
+        "source": "chinook",
+        "split": "development",
+        "source_hashes": {
+          "database_file": "7651ba378ac2fcd0dfc3c66fb101f7a7eed3ba39a612ec642b96e20702061f15"
+        },
+        "label": "chinook full supplied data; authored development questions",
+        "gold_note": "Direct raw SQLite reference queries and sorted middle invoice totals; computational reference, not independently reviewed held-out annotations"
+      },
+      "dataset_sha256": "a724f6adf3fc376f315b1416e741eaa89b4137d70ead92e1348e9428c315b4dc",
+      "source": {
+        "name": "chinook",
+        "database_file": "C:\\Users\\sushm\\Downloads\\PolyQuery\\polyquery\\benchmarks\\Chinook_Sqlite.sqlite",
+        "rows": {
+          "Track": 3503,
+          "Customer": 59,
+          "Invoice": 412,
+          "Genre": 25
+        },
+        "projection": "Track, Customer, Invoice, Genre; full tables"
+      },
+      "policy": "router",
+      "python": "3.11.4",
+      "source_hashes": {
+        "database_file": "7651ba378ac2fcd0dfc3c66fb101f7a7eed3ba39a612ec642b96e20702061f15"
+      },
+      "initialization_ms": 34.234699996886775,
+      "platform": "Windows-10-10.0.26200-SP0",
+      "cases": 10,
+      "repeats": 3,
+      "warmup": 1,
+      "runs": 30,
+      "answer_accuracy": 1.0,
+      "answerable_accuracy": 1.0,
+      "route_accuracy": 1.0,
+      "joint_accuracy": 1.0,
+      "coverage": 0.8,
+      "answered_accuracy": 1.0,
+      "answered_joint_accuracy": 1.0,
+      "error_rate": 0.0,
+      "abstention_precision": 1.0,
+      "abstention_recall": 1.0,
+      "latency": {
+        "latency_ms": {
+          "samples": 30,
+          "mean": 0.3754733334062621,
+          "p50": 0.2910499897552654,
+          "p95": 1.1581999977352098
+        },
+        "planning_ms": {
+          "samples": 30,
+          "mean": 0.009543331301150223,
+          "p50": 0.009199997293762863,
+          "p95": 0.016735005192458595
+        },
+        "execution_ms": {
+          "samples": 30,
+          "mean": 0.3659300021051119,
+          "p50": 0.2811500016832724,
+          "p95": 1.1490650154883042
+        }
+      },
+      "by_family": {
+        "abstention": {
+          "runs": 6,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": null,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 0.0,
+          "answered_accuracy": null,
+          "answered_joint_accuracy": null,
+          "error_rate": 0.0,
+          "abstention_precision": 1.0,
+          "abstention_recall": 1.0,
+          "latency": {
+            "latency_ms": {
+              "samples": 6,
+              "mean": 0.03091667410141478,
+              "p50": 0.033850010368041694,
+              "p95": 0.03622501390054822
+            },
+            "planning_ms": {
+              "samples": 6,
+              "mean": 0.007216673111543059,
+              "p50": 0.008000002708286047,
+              "p95": 0.00925001222640276
+            },
+            "execution_ms": {
+              "samples": 6,
+              "mean": 0.02370000098987172,
+              "p50": 0.025850007659755647,
+              "p95": 0.02697500167414546
+            }
+          }
+        },
+        "aggregation": {
+          "runs": 3,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 3,
+              "mean": 0.39120000049782294,
+              "p50": 0.3677999775391072,
+              "p95": 0.4510500089963898
+            },
+            "planning_ms": {
+              "samples": 3,
+              "mean": 0.013933332714562615,
+              "p50": 0.010099989594891667,
+              "p95": 0.020809992565773427
+            },
+            "execution_ms": {
+              "samples": 3,
+              "mean": 0.37726666778326035,
+              "p50": 0.35769998794421554,
+              "p95": 0.4302400164306164
+            }
+          }
+        },
+        "count": {
+          "runs": 9,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 9,
+              "mean": 0.29078888474032283,
+              "p50": 0.2862000255845487,
+              "p95": 0.32251999364234507
+            },
+            "planning_ms": {
+              "samples": 9,
+              "mean": 0.008722217494828833,
+              "p50": 0.00999998883344233,
+              "p95": 0.01026000827550888
+            },
+            "execution_ms": {
+              "samples": 9,
+              "mean": 0.282066667245494,
+              "p50": 0.2772999869193882,
+              "p95": 0.31492000562138855
+            }
+          }
+        },
+        "grouping": {
+          "runs": 3,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 3,
+              "mean": 0.6938666629139334,
+              "p50": 0.6885000038892031,
+              "p95": 0.705690003815107
+            },
+            "planning_ms": {
+              "samples": 3,
+              "mean": 0.006900004033620159,
+              "p50": 0.006999995093792677,
+              "p95": 0.007000021287240088
+            },
+            "execution_ms": {
+              "samples": 3,
+              "mean": 0.6869666588803133,
+              "p50": 0.6818000110797584,
+              "p95": 0.6987199827563018
+            }
+          }
+        },
+        "join": {
+          "runs": 3,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 3,
+              "mean": 1.1745333322323859,
+              "p50": 1.1608999921008945,
+              "p95": 1.2031099991872907
+            },
+            "planning_ms": {
+              "samples": 3,
+              "mean": 0.009099991681675116,
+              "p50": 0.009000010322779417,
+              "p95": 0.009269986185245216
+            },
+            "execution_ms": {
+              "samples": 3,
+              "mean": 1.1654333405507107,
+              "p50": 1.1519000108819455,
+              "p95": 1.1941099917748943
+            }
+          }
+        },
+        "statistics": {
+          "runs": 6,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 6,
+              "mean": 0.2804666679973404,
+              "p50": 0.272599994787015,
+              "p95": 0.41517498902976513
+            },
+            "planning_ms": {
+              "samples": 6,
+              "mean": 0.012449992937035859,
+              "p50": 0.009249997674487531,
+              "p95": 0.02372498420299962
+            },
+            "execution_ms": {
+              "samples": 6,
+              "mean": 0.2680166750603045,
+              "p50": 0.25379999715369195,
+              "p95": 0.4058250051457435
+            }
+          }
+        }
+      },
+      "by_expected_backend": {
+        "sql": {
+          "runs": 24,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 24,
+              "mean": 0.4616124982324739,
+              "p50": 0.337949997629039,
+              "p95": 1.1599999939789996
+            },
+            "planning_ms": {
+              "samples": 24,
+              "mean": 0.010124995848552013,
+              "p50": 0.009299983503296971,
+              "p95": 0.020244996994733786
+            },
+            "execution_ms": {
+              "samples": 24,
+              "mean": 0.45148750238392193,
+              "p50": 0.33039999834727496,
+              "p95": 1.1509550124173984
+            }
+          }
+        },
+        "code": {
+          "runs": 24,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 24,
+              "mean": 0.4616124982324739,
+              "p50": 0.337949997629039,
+              "p95": 1.1599999939789996
+            },
+            "planning_ms": {
+              "samples": 24,
+              "mean": 0.010124995848552013,
+              "p50": 0.009299983503296971,
+              "p95": 0.020244996994733786
+            },
+            "execution_ms": {
+              "samples": 24,
+              "mean": 0.45148750238392193,
+              "p50": 0.33039999834727496,
+              "p95": 1.1509550124173984
+            }
+          }
+        },
+        "abstain": {
+          "runs": 6,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": null,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 0.0,
+          "answered_accuracy": null,
+          "answered_joint_accuracy": null,
+          "error_rate": 0.0,
+          "abstention_precision": 1.0,
+          "abstention_recall": 1.0,
+          "latency": {
+            "latency_ms": {
+              "samples": 6,
+              "mean": 0.03091667410141478,
+              "p50": 0.033850010368041694,
+              "p95": 0.03622501390054822
+            },
+            "planning_ms": {
+              "samples": 6,
+              "mean": 0.007216673111543059,
+              "p50": 0.008000002708286047,
+              "p95": 0.00925001222640276
+            },
+            "execution_ms": {
+              "samples": 6,
+              "mean": 0.02370000098987172,
+              "p50": 0.025850007659755647,
+              "p95": 0.02697500167414546
+            }
+          }
+        }
+      },
+      "confusion_matrix": {
+        "sql": {
+          "sql": 21,
+          "graph": 0,
+          "code": 3,
+          "abstain": 0,
+          "error": 0
+        },
+        "graph": {
+          "sql": 0,
+          "graph": 0,
+          "code": 0,
+          "abstain": 0,
+          "error": 0
+        },
+        "code": {
+          "sql": 0,
+          "graph": 0,
+          "code": 0,
+          "abstain": 0,
+          "error": 0
+        },
+        "abstain": {
+          "sql": 0,
+          "graph": 0,
+          "code": 0,
+          "abstain": 6,
+          "error": 0
+        }
+      },
+      "confusion_note": "Multiple acceptable routes use the first route as the matrix row; accuracy accepts any listed route.",
+      "sql_only_route_accuracy": 0.8,
+      "baseline_note": "SQL-only route-label diagnostic, not a capable fixed-SQL execution comparison.",
+      "latency_note": "Dataset order; warmup excluded; initialization excluded. Total includes errors; error stage times unavailable. Percentiles use linear interpolation.",
+      "cost": {
+        "usd": null,
+        "tokens": null,
+        "note": "Unmeasured; no monetary cost instrumentation."
+      },
+      "results": [
+        {
+          "id": "tracks",
+          "repeat": 0,
+          "family": "count",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 3503,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.2835000050254166,
+          "planning_ms": 0.006200018106028438,
+          "execution_ms": 0.2772999869193882
+        },
+        {
+          "id": "customers",
+          "repeat": 0,
+          "family": "count",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 59,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.2862000255845487,
+          "planning_ms": 0.010300020221620798,
+          "execution_ms": 0.2759000053629279
+        },
+        {
+          "id": "invoices",
+          "repeat": 0,
+          "family": "count",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 412,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.29429999995045364,
+          "planning_ms": 0.00999998883344233,
+          "execution_ms": 0.2843000111170113
+        },
+        {
+          "id": "revenue",
+          "repeat": 0,
+          "family": "aggregation",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 2328.600000000004,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.46030001249164343,
+          "planning_ms": 0.0219999928958714,
+          "execution_ms": 0.43830001959577203
+        },
+        {
+          "id": "mean",
+          "repeat": 0,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 5.651941747572825,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.4372999828774482,
+          "planning_ms": 0.009399984264746308,
+          "execution_ms": 0.4278999986127019
+        },
+        {
+          "id": "median",
+          "repeat": 0,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 3.96,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.20889998995698988,
+          "planning_ms": 0.028499984182417393,
+          "execution_ms": 0.1804000057745725
+        },
+        {
+          "id": "countries",
+          "repeat": 0,
+          "family": "grouping",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": [
+            {
+              "country": "Argentina",
+              "revenue": 37.620000000000005
+            },
+            {
+              "country": "Australia",
+              "revenue": 37.620000000000005
+            },
+            {
+              "country": "Austria",
+              "revenue": 42.62
+            },
+            {
+              "country": "Belgium",
+              "revenue": 37.62
+            },
+            {
+              "country": "Brazil",
+              "revenue": 190.09999999999997
+            },
+            {
+              "country": "Canada",
+              "revenue": 303.9599999999999
+            },
+            {
+              "country": "Chile",
+              "revenue": 46.62
+            },
+            {
+              "country": "Czech Republic",
+              "revenue": 90.24000000000001
+            },
+            {
+              "country": "Denmark",
+              "revenue": 37.620000000000005
+            },
+            {
+              "country": "Finland",
+              "revenue": 41.620000000000005
+            },
+            {
+              "country": "France",
+              "revenue": 195.09999999999994
+            },
+            {
+              "country": "Germany",
+              "revenue": 156.48
+            },
+            {
+              "country": "Hungary",
+              "revenue": 45.62
+            },
+            {
+              "country": "India",
+              "revenue": 75.25999999999999
+            },
+            {
+              "country": "Ireland",
+              "revenue": 45.62
+            },
+            {
+              "country": "Italy",
+              "revenue": 37.620000000000005
+            },
+            {
+              "country": "Netherlands",
+              "revenue": 40.62
+            },
+            {
+              "country": "Norway",
+              "revenue": 39.62
+            },
+            {
+              "country": "Poland",
+              "revenue": 37.620000000000005
+            },
+            {
+              "country": "Portugal",
+              "revenue": 77.23999999999998
+            },
+            {
+              "country": "Spain",
+              "revenue": 37.62
+            },
+            {
+              "country": "Sweden",
+              "revenue": 38.620000000000005
+            },
+            {
+              "country": "USA",
+              "revenue": 523.0600000000003
+            },
+            {
+              "country": "United Kingdom",
+              "revenue": 112.85999999999999
+            }
+          ],
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.7076000038068742,
+          "planning_ms": 0.007000024197623134,
+          "execution_ms": 0.700599979609251
+        },
+        {
+          "id": "genres",
+          "repeat": 0,
+          "family": "join",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": [
+            {
+              "genre": "Alternative",
+              "tracks": 40
+            },
+            {
+              "genre": "Alternative & Punk",
+              "tracks": 332
+            },
+            {
+              "genre": "Blues",
+              "tracks": 81
+            },
+            {
+              "genre": "Bossa Nova",
+              "tracks": 15
+            },
+            {
+              "genre": "Classical",
+              "tracks": 74
+            },
+            {
+              "genre": "Comedy",
+              "tracks": 17
+            },
+            {
+              "genre": "Drama",
+              "tracks": 64
+            },
+            {
+              "genre": "Easy Listening",
+              "tracks": 24
+            },
+            {
+              "genre": "Electronica/Dance",
+              "tracks": 30
+            },
+            {
+              "genre": "Heavy Metal",
+              "tracks": 28
+            },
+            {
+              "genre": "Hip Hop/Rap",
+              "tracks": 35
+            },
+            {
+              "genre": "Jazz",
+              "tracks": 130
+            },
+            {
+              "genre": "Latin",
+              "tracks": 579
+            },
+            {
+              "genre": "Metal",
+              "tracks": 374
+            },
+            {
+              "genre": "Opera",
+              "tracks": 1
+            },
+            {
+              "genre": "Pop",
+              "tracks": 48
+            },
+            {
+              "genre": "R&B/Soul",
+              "tracks": 61
+            },
+            {
+              "genre": "Reggae",
+              "tracks": 58
+            },
+            {
+              "genre": "Rock",
+              "tracks": 1297
+            },
+            {
+              "genre": "Rock And Roll",
+              "tracks": 12
+            },
+            {
+              "genre": "Sci Fi & Fantasy",
+              "tracks": 26
+            },
+            {
+              "genre": "Science Fiction",
+              "tracks": 13
+            },
+            {
+              "genre": "Soundtrack",
+              "tracks": 43
+            },
+            {
+              "genre": "TV Shows",
+              "tracks": 93
+            },
+            {
+              "genre": "World",
+              "tracks": 28
+            }
+          ],
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 1.1549000046215951,
+          "planning_ms": 0.009299983503296971,
+          "execution_ms": 1.1456000211182982
+        },
+        {
+          "id": "unsupported-filter",
+          "repeat": 0,
+          "family": "abstention",
+          "expected_backend": "abstain",
+          "expected_backends": [
+            "abstain"
+          ],
+          "actual_backend": "abstain",
+          "status": "abstained",
+          "actual": null,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.03670001751743257,
+          "planning_ms": 0.009500014130026102,
+          "execution_ms": 0.02720000338740647
+        },
+        {
+          "id": "write",
+          "repeat": 0,
+          "family": "abstention",
+          "expected_backend": "abstain",
+          "expected_backends": [
+            "abstain"
+          ],
+          "actual_backend": "abstain",
+          "status": "abstained",
+          "actual": null,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.034100026823580265,
+          "planning_ms": 0.008000002708286047,
+          "execution_ms": 0.026100024115294218
+        },
+        {
+          "id": "tracks",
+          "repeat": 1,
+          "family": "count",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 3503,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.2678999735508114,
+          "planning_ms": 0.005999987479299307,
+          "execution_ms": 0.2618999860715121
+        },
+        {
+          "id": "customers",
+          "repeat": 1,
+          "family": "count",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 59,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.29689999064430594,
+          "planning_ms": 0.00999998883344233,
+          "execution_ms": 0.2869000018108636
+        },
+        {
+          "id": "invoices",
+          "repeat": 1,
+          "family": "count",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 412,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.2860999957192689,
+          "planning_ms": 0.010199990356341004,
+          "execution_ms": 0.2759000053629279
+        },
+        {
+          "id": "revenue",
+          "repeat": 1,
+          "family": "aggregation",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 2328.600000000004,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.34550001146271825,
+          "planning_ms": 0.009700015652924776,
+          "execution_ms": 0.3357999958097935
+        },
+        {
+          "id": "mean",
+          "repeat": 1,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 5.651941747572825,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.33629999961704016,
+          "planning_ms": 0.009100011084228754,
+          "execution_ms": 0.3271999885328114
+        },
+        {
+          "id": "median",
+          "repeat": 1,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 3.96,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.1770000089891255,
+          "planning_ms": 0.009299983503296971,
+          "execution_ms": 0.16770002548582852
+        },
+        {
+          "id": "countries",
+          "repeat": 1,
+          "family": "grouping",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": [
+            {
+              "country": "Argentina",
+              "revenue": 37.620000000000005
+            },
+            {
+              "country": "Australia",
+              "revenue": 37.620000000000005
+            },
+            {
+              "country": "Austria",
+              "revenue": 42.62
+            },
+            {
+              "country": "Belgium",
+              "revenue": 37.62
+            },
+            {
+              "country": "Brazil",
+              "revenue": 190.09999999999997
+            },
+            {
+              "country": "Canada",
+              "revenue": 303.9599999999999
+            },
+            {
+              "country": "Chile",
+              "revenue": 46.62
+            },
+            {
+              "country": "Czech Republic",
+              "revenue": 90.24000000000001
+            },
+            {
+              "country": "Denmark",
+              "revenue": 37.620000000000005
+            },
+            {
+              "country": "Finland",
+              "revenue": 41.620000000000005
+            },
+            {
+              "country": "France",
+              "revenue": 195.09999999999994
+            },
+            {
+              "country": "Germany",
+              "revenue": 156.48
+            },
+            {
+              "country": "Hungary",
+              "revenue": 45.62
+            },
+            {
+              "country": "India",
+              "revenue": 75.25999999999999
+            },
+            {
+              "country": "Ireland",
+              "revenue": 45.62
+            },
+            {
+              "country": "Italy",
+              "revenue": 37.620000000000005
+            },
+            {
+              "country": "Netherlands",
+              "revenue": 40.62
+            },
+            {
+              "country": "Norway",
+              "revenue": 39.62
+            },
+            {
+              "country": "Poland",
+              "revenue": 37.620000000000005
+            },
+            {
+              "country": "Portugal",
+              "revenue": 77.23999999999998
+            },
+            {
+              "country": "Spain",
+              "revenue": 37.62
+            },
+            {
+              "country": "Sweden",
+              "revenue": 38.620000000000005
+            },
+            {
+              "country": "USA",
+              "revenue": 523.0600000000003
+            },
+            {
+              "country": "United Kingdom",
+              "revenue": 112.85999999999999
+            }
+          ],
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.685499981045723,
+          "planning_ms": 0.006999995093792677,
+          "execution_ms": 0.6784999859519303
+        },
+        {
+          "id": "genres",
+          "repeat": 1,
+          "family": "join",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": [
+            {
+              "genre": "Alternative",
+              "tracks": 40
+            },
+            {
+              "genre": "Alternative & Punk",
+              "tracks": 332
+            },
+            {
+              "genre": "Blues",
+              "tracks": 81
+            },
+            {
+              "genre": "Bossa Nova",
+              "tracks": 15
+            },
+            {
+              "genre": "Classical",
+              "tracks": 74
+            },
+            {
+              "genre": "Comedy",
+              "tracks": 17
+            },
+            {
+              "genre": "Drama",
+              "tracks": 64
+            },
+            {
+              "genre": "Easy Listening",
+              "tracks": 24
+            },
+            {
+              "genre": "Electronica/Dance",
+              "tracks": 30
+            },
+            {
+              "genre": "Heavy Metal",
+              "tracks": 28
+            },
+            {
+              "genre": "Hip Hop/Rap",
+              "tracks": 35
+            },
+            {
+              "genre": "Jazz",
+              "tracks": 130
+            },
+            {
+              "genre": "Latin",
+              "tracks": 579
+            },
+            {
+              "genre": "Metal",
+              "tracks": 374
+            },
+            {
+              "genre": "Opera",
+              "tracks": 1
+            },
+            {
+              "genre": "Pop",
+              "tracks": 48
+            },
+            {
+              "genre": "R&B/Soul",
+              "tracks": 61
+            },
+            {
+              "genre": "Reggae",
+              "tracks": 58
+            },
+            {
+              "genre": "Rock",
+              "tracks": 1297
+            },
+            {
+              "genre": "Rock And Roll",
+              "tracks": 12
+            },
+            {
+              "genre": "Sci Fi & Fantasy",
+              "tracks": 26
+            },
+            {
+              "genre": "Science Fiction",
+              "tracks": 13
+            },
+            {
+              "genre": "Soundtrack",
+              "tracks": 43
+            },
+            {
+              "genre": "TV Shows",
+              "tracks": 93
+            },
+            {
+              "genre": "World",
+              "tracks": 28
+            }
+          ],
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 1.207799999974668,
+          "planning_ms": 0.009000010322779417,
+          "execution_ms": 1.1987999896518886
+        },
+        {
+          "id": "unsupported-filter",
+          "repeat": 1,
+          "family": "abstention",
+          "expected_backend": "abstain",
+          "expected_backends": [
+            "abstain"
+          ],
+          "actual_backend": "abstain",
+          "status": "abstained",
+          "actual": null,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.03480000304989517,
+          "planning_ms": 0.008500006515532732,
+          "execution_ms": 0.026299996534362435
+        },
+        {
+          "id": "write",
+          "repeat": 1,
+          "family": "abstention",
+          "expected_backend": "abstain",
+          "expected_backends": [
+            "abstain"
+          ],
+          "actual_backend": "abstain",
+          "status": "abstained",
+          "actual": null,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.023300002794712782,
+          "planning_ms": 0.0046000059228390455,
+          "execution_ms": 0.018699996871873736
+        },
+        {
+          "id": "tracks",
+          "repeat": 2,
+          "family": "count",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 3503,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.3395999956410378,
+          "planning_ms": 0.005999987479299307,
+          "execution_ms": 0.3336000081617385
+        },
+        {
+          "id": "customers",
+          "repeat": 2,
+          "family": "count",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 59,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.2747999969869852,
+          "planning_ms": 0.00999998883344233,
+          "execution_ms": 0.2648000081535429
+        },
+        {
+          "id": "invoices",
+          "repeat": 2,
+          "family": "count",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 412,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.2877999795600772,
+          "planning_ms": 0.009799987310543656,
+          "execution_ms": 0.27799999224953353
+        },
+        {
+          "id": "revenue",
+          "repeat": 2,
+          "family": "aggregation",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 2328.600000000004,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.3677999775391072,
+          "planning_ms": 0.010099989594891667,
+          "execution_ms": 0.35769998794421554
+        },
+        {
+          "id": "mean",
+          "repeat": 2,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 5.651941747572825,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.3488000074867159,
+          "planning_ms": 0.009199982741847634,
+          "execution_ms": 0.3396000247448683
+        },
+        {
+          "id": "median",
+          "repeat": 2,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 3.96,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.17450001905672252,
+          "planning_ms": 0.009200011845678091,
+          "execution_ms": 0.16530000721104443
+        },
+        {
+          "id": "countries",
+          "repeat": 2,
+          "family": "grouping",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": [
+            {
+              "country": "Argentina",
+              "revenue": 37.620000000000005
+            },
+            {
+              "country": "Australia",
+              "revenue": 37.620000000000005
+            },
+            {
+              "country": "Austria",
+              "revenue": 42.62
+            },
+            {
+              "country": "Belgium",
+              "revenue": 37.62
+            },
+            {
+              "country": "Brazil",
+              "revenue": 190.09999999999997
+            },
+            {
+              "country": "Canada",
+              "revenue": 303.9599999999999
+            },
+            {
+              "country": "Chile",
+              "revenue": 46.62
+            },
+            {
+              "country": "Czech Republic",
+              "revenue": 90.24000000000001
+            },
+            {
+              "country": "Denmark",
+              "revenue": 37.620000000000005
+            },
+            {
+              "country": "Finland",
+              "revenue": 41.620000000000005
+            },
+            {
+              "country": "France",
+              "revenue": 195.09999999999994
+            },
+            {
+              "country": "Germany",
+              "revenue": 156.48
+            },
+            {
+              "country": "Hungary",
+              "revenue": 45.62
+            },
+            {
+              "country": "India",
+              "revenue": 75.25999999999999
+            },
+            {
+              "country": "Ireland",
+              "revenue": 45.62
+            },
+            {
+              "country": "Italy",
+              "revenue": 37.620000000000005
+            },
+            {
+              "country": "Netherlands",
+              "revenue": 40.62
+            },
+            {
+              "country": "Norway",
+              "revenue": 39.62
+            },
+            {
+              "country": "Poland",
+              "revenue": 37.620000000000005
+            },
+            {
+              "country": "Portugal",
+              "revenue": 77.23999999999998
+            },
+            {
+              "country": "Spain",
+              "revenue": 37.62
+            },
+            {
+              "country": "Sweden",
+              "revenue": 38.620000000000005
+            },
+            {
+              "country": "USA",
+              "revenue": 523.0600000000003
+            },
+            {
+              "country": "United Kingdom",
+              "revenue": 112.85999999999999
+            }
+          ],
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.6885000038892031,
+          "planning_ms": 0.006699992809444666,
+          "execution_ms": 0.6818000110797584
+        },
+        {
+          "id": "genres",
+          "repeat": 2,
+          "family": "join",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": [
+            {
+              "genre": "Alternative",
+              "tracks": 40
+            },
+            {
+              "genre": "Alternative & Punk",
+              "tracks": 332
+            },
+            {
+              "genre": "Blues",
+              "tracks": 81
+            },
+            {
+              "genre": "Bossa Nova",
+              "tracks": 15
+            },
+            {
+              "genre": "Classical",
+              "tracks": 74
+            },
+            {
+              "genre": "Comedy",
+              "tracks": 17
+            },
+            {
+              "genre": "Drama",
+              "tracks": 64
+            },
+            {
+              "genre": "Easy Listening",
+              "tracks": 24
+            },
+            {
+              "genre": "Electronica/Dance",
+              "tracks": 30
+            },
+            {
+              "genre": "Heavy Metal",
+              "tracks": 28
+            },
+            {
+              "genre": "Hip Hop/Rap",
+              "tracks": 35
+            },
+            {
+              "genre": "Jazz",
+              "tracks": 130
+            },
+            {
+              "genre": "Latin",
+              "tracks": 579
+            },
+            {
+              "genre": "Metal",
+              "tracks": 374
+            },
+            {
+              "genre": "Opera",
+              "tracks": 1
+            },
+            {
+              "genre": "Pop",
+              "tracks": 48
+            },
+            {
+              "genre": "R&B/Soul",
+              "tracks": 61
+            },
+            {
+              "genre": "Reggae",
+              "tracks": 58
+            },
+            {
+              "genre": "Rock",
+              "tracks": 1297
+            },
+            {
+              "genre": "Rock And Roll",
+              "tracks": 12
+            },
+            {
+              "genre": "Sci Fi & Fantasy",
+              "tracks": 26
+            },
+            {
+              "genre": "Science Fiction",
+              "tracks": 13
+            },
+            {
+              "genre": "Soundtrack",
+              "tracks": 43
+            },
+            {
+              "genre": "TV Shows",
+              "tracks": 93
+            },
+            {
+              "genre": "World",
+              "tracks": 28
+            }
+          ],
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 1.1608999921008945,
+          "planning_ms": 0.00899998121894896,
+          "execution_ms": 1.1519000108819455
+        },
+        {
+          "id": "unsupported-filter",
+          "repeat": 2,
+          "family": "abstention",
+          "expected_backend": "abstain",
+          "expected_backends": [
+            "abstain"
+          ],
+          "actual_backend": "abstain",
+          "status": "abstained",
+          "actual": null,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.03359999391250312,
+          "planning_ms": 0.008000002708286047,
+          "execution_ms": 0.025599991204217076
+        },
+        {
+          "id": "write",
+          "repeat": 2,
+          "family": "abstention",
+          "expected_backend": "abstain",
+          "expected_backends": [
+            "abstain"
+          ],
+          "actual_backend": "abstain",
+          "status": "abstained",
+          "actual": null,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.02300000051036477,
+          "planning_ms": 0.0047000066842883825,
+          "execution_ms": 0.01829999382607639
+        }
+      ]
+    },
+    "fixed-sql": {
+      "report_version": 2,
+      "created_at": "2026-10-04T21:55:55.338853+00:00",
+      "dataset_label": "chinook full supplied data; authored development questions",
+      "dataset_metadata": {
+        "source": "chinook",
+        "split": "development",
+        "source_hashes": {
+          "database_file": "7651ba378ac2fcd0dfc3c66fb101f7a7eed3ba39a612ec642b96e20702061f15"
+        },
+        "label": "chinook full supplied data; authored development questions",
+        "gold_note": "Direct raw SQLite reference queries and sorted middle invoice totals; computational reference, not independently reviewed held-out annotations"
+      },
+      "dataset_sha256": "a724f6adf3fc376f315b1416e741eaa89b4137d70ead92e1348e9428c315b4dc",
+      "source": {
+        "name": "chinook",
+        "database_file": "C:\\Users\\sushm\\Downloads\\PolyQuery\\polyquery\\benchmarks\\Chinook_Sqlite.sqlite",
+        "rows": {
+          "Track": 3503,
+          "Customer": 59,
+          "Invoice": 412,
+          "Genre": 25
+        },
+        "projection": "Track, Customer, Invoice, Genre; full tables"
+      },
+      "policy": "fixed-sql",
+      "python": "3.11.4",
+      "source_hashes": {
+        "database_file": "7651ba378ac2fcd0dfc3c66fb101f7a7eed3ba39a612ec642b96e20702061f15"
+      },
+      "initialization_ms": 29.410199989797547,
+      "platform": "Windows-10-10.0.26200-SP0",
+      "cases": 10,
+      "repeats": 3,
+      "warmup": 1,
+      "runs": 30,
+      "answer_accuracy": 1.0,
+      "answerable_accuracy": 1.0,
+      "route_accuracy": 1.0,
+      "joint_accuracy": 1.0,
+      "coverage": 0.8,
+      "answered_accuracy": 1.0,
+      "answered_joint_accuracy": 1.0,
+      "error_rate": 0.0,
+      "abstention_precision": 1.0,
+      "abstention_recall": 1.0,
+      "latency": {
+        "latency_ms": {
+          "samples": 30,
+          "mean": 0.43874333108154434,
+          "p50": 0.33710000570863485,
+          "p95": 1.1538850027136502
+        },
+        "planning_ms": {
+          "samples": 30,
+          "mean": 0.00929666372636954,
+          "p50": 0.00999998883344233,
+          "p95": 0.011199997970834374
+        },
+        "execution_ms": {
+          "samples": 30,
+          "mean": 0.42944666735517484,
+          "p50": 0.32890000147745013,
+          "p95": 1.1445749900303779
+        }
+      },
+      "by_family": {
+        "abstention": {
+          "runs": 6,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": null,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 0.0,
+          "answered_accuracy": null,
+          "answered_joint_accuracy": null,
+          "error_rate": 0.0,
+          "abstention_precision": 1.0,
+          "abstention_recall": 1.0,
+          "latency": {
+            "latency_ms": {
+              "samples": 6,
+              "mean": 0.033833329022551574,
+              "p50": 0.02890000178012997,
+              "p95": 0.058149984397459775
+            },
+            "planning_ms": {
+              "samples": 6,
+              "mean": 0.006866660745193561,
+              "p50": 0.0068500085035339,
+              "p95": 0.009249983122572303
+            },
+            "execution_ms": {
+              "samples": 6,
+              "mean": 0.026966668277358014,
+              "p50": 0.02195000706706196,
+              "p95": 0.04894999437965453
+            }
+          }
+        },
+        "aggregation": {
+          "runs": 3,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 3,
+              "mean": 0.3743333218153566,
+              "p50": 0.3465999907348305,
+              "p95": 0.4250799858709797
+            },
+            "planning_ms": {
+              "samples": 3,
+              "mean": 0.009833320897693435,
+              "p50": 0.00999998883344233,
+              "p95": 0.00999998883344233
+            },
+            "execution_ms": {
+              "samples": 3,
+              "mean": 0.36450000091766316,
+              "p50": 0.33660000190138817,
+              "p95": 0.4150799970375374
+            }
+          }
+        },
+        "count": {
+          "runs": 9,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 9,
+              "mean": 0.2915777828699599,
+              "p50": 0.2835000050254166,
+              "p95": 0.3272400121204555
+            },
+            "planning_ms": {
+              "samples": 9,
+              "mean": 0.00918888771492574,
+              "p50": 0.010300020221620798,
+              "p95": 0.010859995381906629
+            },
+            "execution_ms": {
+              "samples": 9,
+              "mean": 0.2823888951550341,
+              "p50": 0.2728000108618289,
+              "p95": 0.32092000474222004
+            }
+          }
+        },
+        "grouping": {
+          "runs": 3,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 3,
+              "mean": 0.7359666536406925,
+              "p50": 0.7167999865487218,
+              "p95": 0.7900599943241104
+            },
+            "planning_ms": {
+              "samples": 3,
+              "mean": 0.011666668190931281,
+              "p50": 0.011199997970834374,
+              "p95": 0.012550008250400424
+            },
+            "execution_ms": {
+              "samples": 3,
+              "mean": 0.7242999854497612,
+              "p50": 0.7056999893393368,
+              "p95": 0.777519986149855
+            }
+          }
+        },
+        "join": {
+          "runs": 3,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 3,
+              "mean": 1.1645666672848165,
+              "p50": 1.1821000080090016,
+              "p95": 1.1911899986444041
+            },
+            "planning_ms": {
+              "samples": 3,
+              "mean": 0.00993334106169641,
+              "p50": 0.009400013368576765,
+              "p95": 0.011019999510608613
+            },
+            "execution_ms": {
+              "samples": 3,
+              "mean": 1.15463332622312,
+              "p50": 1.1726999946404248,
+              "p95": 1.1801699991337955
+            }
+          }
+        },
+        "statistics": {
+          "runs": 6,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 6,
+              "mean": 0.5850833307097977,
+              "p50": 0.5775500030722469,
+              "p95": 0.8504249999532476
+            },
+            "planning_ms": {
+              "samples": 6,
+              "mean": 0.010116661239104966,
+              "p50": 0.010149989975616336,
+              "p95": 0.010474999726284295
+            },
+            "execution_ms": {
+              "samples": 6,
+              "mean": 0.5749666694706926,
+              "p50": 0.5673999985447153,
+              "p95": 0.8402500097872689
+            }
+          }
+        }
+      },
+      "by_expected_backend": {
+        "sql": {
+          "runs": 24,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 24,
+              "mean": 0.5399708315962926,
+              "p50": 0.34729999606497586,
+              "p95": 1.1726950062438843
+            },
+            "planning_ms": {
+              "samples": 24,
+              "mean": 0.009904164471663535,
+              "p50": 0.010199990356341004,
+              "p95": 0.011199997970834374
+            },
+            "execution_ms": {
+              "samples": 24,
+              "mean": 0.530066667124629,
+              "p50": 0.3375000087544322,
+              "p95": 1.1633249931037424
+            }
+          }
+        },
+        "code": {
+          "runs": 24,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 24,
+              "mean": 0.5399708315962926,
+              "p50": 0.34729999606497586,
+              "p95": 1.1726950062438843
+            },
+            "planning_ms": {
+              "samples": 24,
+              "mean": 0.009904164471663535,
+              "p50": 0.010199990356341004,
+              "p95": 0.011199997970834374
+            },
+            "execution_ms": {
+              "samples": 24,
+              "mean": 0.530066667124629,
+              "p50": 0.3375000087544322,
+              "p95": 1.1633249931037424
+            }
+          }
+        },
+        "abstain": {
+          "runs": 6,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": null,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 0.0,
+          "answered_accuracy": null,
+          "answered_joint_accuracy": null,
+          "error_rate": 0.0,
+          "abstention_precision": 1.0,
+          "abstention_recall": 1.0,
+          "latency": {
+            "latency_ms": {
+              "samples": 6,
+              "mean": 0.033833329022551574,
+              "p50": 0.02890000178012997,
+              "p95": 0.058149984397459775
+            },
+            "planning_ms": {
+              "samples": 6,
+              "mean": 0.006866660745193561,
+              "p50": 0.0068500085035339,
+              "p95": 0.009249983122572303
+            },
+            "execution_ms": {
+              "samples": 6,
+              "mean": 0.026966668277358014,
+              "p50": 0.02195000706706196,
+              "p95": 0.04894999437965453
+            }
+          }
+        }
+      },
+      "confusion_matrix": {
+        "sql": {
+          "sql": 24,
+          "graph": 0,
+          "code": 0,
+          "abstain": 0,
+          "error": 0
+        },
+        "graph": {
+          "sql": 0,
+          "graph": 0,
+          "code": 0,
+          "abstain": 0,
+          "error": 0
+        },
+        "code": {
+          "sql": 0,
+          "graph": 0,
+          "code": 0,
+          "abstain": 0,
+          "error": 0
+        },
+        "abstain": {
+          "sql": 0,
+          "graph": 0,
+          "code": 0,
+          "abstain": 6,
+          "error": 0
+        }
+      },
+      "confusion_note": "Multiple acceptable routes use the first route as the matrix row; accuracy accepts any listed route.",
+      "sql_only_route_accuracy": 0.8,
+      "baseline_note": "SQL-only route-label diagnostic, not a capable fixed-SQL execution comparison.",
+      "latency_note": "Dataset order; warmup excluded; initialization excluded. Total includes errors; error stage times unavailable. Percentiles use linear interpolation.",
+      "cost": {
+        "usd": null,
+        "tokens": null,
+        "note": "Unmeasured; no monetary cost instrumentation."
+      },
+      "results": [
+        {
+          "id": "tracks",
+          "repeat": 0,
+          "family": "count",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 3503,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.2865999995265156,
+          "planning_ms": 0.006599992047995329,
+          "execution_ms": 0.2800000074785203
+        },
+        {
+          "id": "customers",
+          "repeat": 0,
+          "family": "count",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 59,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.2835000050254166,
+          "planning_ms": 0.01069999416358769,
+          "execution_ms": 0.2728000108618289
+        },
+        {
+          "id": "invoices",
+          "repeat": 0,
+          "family": "count",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 412,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.2796000044327229,
+          "planning_ms": 0.010300020221620798,
+          "execution_ms": 0.26929998421110213
+        },
+        {
+          "id": "revenue",
+          "repeat": 0,
+          "family": "aggregation",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 2328.600000000004,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.43379998533055186,
+          "planning_ms": 0.00999998883344233,
+          "execution_ms": 0.42379999649710953
+        },
+        {
+          "id": "mean",
+          "repeat": 0,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 5.651941747572825,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.37640001391991973,
+          "planning_ms": 0.010400020983070135,
+          "execution_ms": 0.3659999929368496
+        },
+        {
+          "id": "median",
+          "repeat": 0,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 3.96,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.8687000081408769,
+          "planning_ms": 0.010199990356341004,
+          "execution_ms": 0.8585000177845359
+        },
+        {
+          "id": "countries",
+          "repeat": 0,
+          "family": "grouping",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": [
+            {
+              "country": "Argentina",
+              "revenue": 37.620000000000005
+            },
+            {
+              "country": "Australia",
+              "revenue": 37.620000000000005
+            },
+            {
+              "country": "Austria",
+              "revenue": 42.62
+            },
+            {
+              "country": "Belgium",
+              "revenue": 37.62
+            },
+            {
+              "country": "Brazil",
+              "revenue": 190.09999999999997
+            },
+            {
+              "country": "Canada",
+              "revenue": 303.9599999999999
+            },
+            {
+              "country": "Chile",
+              "revenue": 46.62
+            },
+            {
+              "country": "Czech Republic",
+              "revenue": 90.24000000000001
+            },
+            {
+              "country": "Denmark",
+              "revenue": 37.620000000000005
+            },
+            {
+              "country": "Finland",
+              "revenue": 41.620000000000005
+            },
+            {
+              "country": "France",
+              "revenue": 195.09999999999994
+            },
+            {
+              "country": "Germany",
+              "revenue": 156.48
+            },
+            {
+              "country": "Hungary",
+              "revenue": 45.62
+            },
+            {
+              "country": "India",
+              "revenue": 75.25999999999999
+            },
+            {
+              "country": "Ireland",
+              "revenue": 45.62
+            },
+            {
+              "country": "Italy",
+              "revenue": 37.620000000000005
+            },
+            {
+              "country": "Netherlands",
+              "revenue": 40.62
+            },
+            {
+              "country": "Norway",
+              "revenue": 39.62
+            },
+            {
+              "country": "Poland",
+              "revenue": 37.620000000000005
+            },
+            {
+              "country": "Portugal",
+              "revenue": 77.23999999999998
+            },
+            {
+              "country": "Spain",
+              "revenue": 37.62
+            },
+            {
+              "country": "Sweden",
+              "revenue": 38.620000000000005
+            },
+            {
+              "country": "USA",
+              "revenue": 523.0600000000003
+            },
+            {
+              "country": "United Kingdom",
+              "revenue": 112.85999999999999
+            }
+          ],
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.7981999951880425,
+          "planning_ms": 0.01270000939257443,
+          "execution_ms": 0.7854999857954681
+        },
+        {
+          "id": "genres",
+          "repeat": 0,
+          "family": "join",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": [
+            {
+              "genre": "Alternative",
+              "tracks": 40
+            },
+            {
+              "genre": "Alternative & Punk",
+              "tracks": 332
+            },
+            {
+              "genre": "Blues",
+              "tracks": 81
+            },
+            {
+              "genre": "Bossa Nova",
+              "tracks": 15
+            },
+            {
+              "genre": "Classical",
+              "tracks": 74
+            },
+            {
+              "genre": "Comedy",
+              "tracks": 17
+            },
+            {
+              "genre": "Drama",
+              "tracks": 64
+            },
+            {
+              "genre": "Easy Listening",
+              "tracks": 24
+            },
+            {
+              "genre": "Electronica/Dance",
+              "tracks": 30
+            },
+            {
+              "genre": "Heavy Metal",
+              "tracks": 28
+            },
+            {
+              "genre": "Hip Hop/Rap",
+              "tracks": 35
+            },
+            {
+              "genre": "Jazz",
+              "tracks": 130
+            },
+            {
+              "genre": "Latin",
+              "tracks": 579
+            },
+            {
+              "genre": "Metal",
+              "tracks": 374
+            },
+            {
+              "genre": "Opera",
+              "tracks": 1
+            },
+            {
+              "genre": "Pop",
+              "tracks": 48
+            },
+            {
+              "genre": "R&B/Soul",
+              "tracks": 61
+            },
+            {
+              "genre": "Reggae",
+              "tracks": 58
+            },
+            {
+              "genre": "Rock",
+              "tracks": 1297
+            },
+            {
+              "genre": "Rock And Roll",
+              "tracks": 12
+            },
+            {
+              "genre": "Sci Fi & Fantasy",
+              "tracks": 26
+            },
+            {
+              "genre": "Science Fiction",
+              "tracks": 13
+            },
+            {
+              "genre": "Soundtrack",
+              "tracks": 43
+            },
+            {
+              "genre": "TV Shows",
+              "tracks": 93
+            },
+            {
+              "genre": "World",
+              "tracks": 28
+            }
+          ],
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 1.1921999976038933,
+          "planning_ms": 0.011199997970834374,
+          "execution_ms": 1.180999999633059
+        },
+        {
+          "id": "unsupported-filter",
+          "repeat": 0,
+          "family": "abstention",
+          "expected_backend": "abstain",
+          "expected_backends": [
+            "abstain"
+          ],
+          "actual_backend": "abstain",
+          "status": "abstained",
+          "actual": null,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.034500000765547156,
+          "planning_ms": 0.009099981980398297,
+          "execution_ms": 0.02540001878514886
+        },
+        {
+          "id": "write",
+          "repeat": 0,
+          "family": "abstention",
+          "expected_backend": "abstain",
+          "expected_backends": [
+            "abstain"
+          ],
+          "actual_backend": "abstain",
+          "status": "abstained",
+          "actual": null,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.023300002794712782,
+          "planning_ms": 0.0048000074457377195,
+          "execution_ms": 0.018499995348975062
+        },
+        {
+          "id": "tracks",
+          "repeat": 1,
+          "family": "count",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 3503,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.33160002203658223,
+          "planning_ms": 0.006400019628927112,
+          "execution_ms": 0.3252000024076551
+        },
+        {
+          "id": "customers",
+          "repeat": 1,
+          "family": "count",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 59,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.2767000114545226,
+          "planning_ms": 0.010899995686486363,
+          "execution_ms": 0.26580001576803625
+        },
+        {
+          "id": "invoices",
+          "repeat": 1,
+          "family": "count",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 412,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.2935999946203083,
+          "planning_ms": 0.010599993402138352,
+          "execution_ms": 0.2830000012181699
+        },
+        {
+          "id": "revenue",
+          "repeat": 1,
+          "family": "aggregation",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 2328.600000000004,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.3465999907348305,
+          "planning_ms": 0.00999998883344233,
+          "execution_ms": 0.33660000190138817
+        },
+        {
+          "id": "mean",
+          "repeat": 1,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 5.651941747572825,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.34309999318793416,
+          "planning_ms": 0.010499992640689015,
+          "execution_ms": 0.33260000054724514
+        },
+        {
+          "id": "median",
+          "repeat": 1,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 3.96,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.7786999922245741,
+          "planning_ms": 0.009899988071992993,
+          "execution_ms": 0.7688000041525811
+        },
+        {
+          "id": "countries",
+          "repeat": 1,
+          "family": "grouping",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": [
+            {
+              "country": "Argentina",
+              "revenue": 37.620000000000005
+            },
+            {
+              "country": "Australia",
+              "revenue": 37.620000000000005
+            },
+            {
+              "country": "Austria",
+              "revenue": 42.62
+            },
+            {
+              "country": "Belgium",
+              "revenue": 37.62
+            },
+            {
+              "country": "Brazil",
+              "revenue": 190.09999999999997
+            },
+            {
+              "country": "Canada",
+              "revenue": 303.9599999999999
+            },
+            {
+              "country": "Chile",
+              "revenue": 46.62
+            },
+            {
+              "country": "Czech Republic",
+              "revenue": 90.24000000000001
+            },
+            {
+              "country": "Denmark",
+              "revenue": 37.620000000000005
+            },
+            {
+              "country": "Finland",
+              "revenue": 41.620000000000005
+            },
+            {
+              "country": "France",
+              "revenue": 195.09999999999994
+            },
+            {
+              "country": "Germany",
+              "revenue": 156.48
+            },
+            {
+              "country": "Hungary",
+              "revenue": 45.62
+            },
+            {
+              "country": "India",
+              "revenue": 75.25999999999999
+            },
+            {
+              "country": "Ireland",
+              "revenue": 45.62
+            },
+            {
+              "country": "Italy",
+              "revenue": 37.620000000000005
+            },
+            {
+              "country": "Netherlands",
+              "revenue": 40.62
+            },
+            {
+              "country": "Norway",
+              "revenue": 39.62
+            },
+            {
+              "country": "Poland",
+              "revenue": 37.620000000000005
+            },
+            {
+              "country": "Portugal",
+              "revenue": 77.23999999999998
+            },
+            {
+              "country": "Spain",
+              "revenue": 37.62
+            },
+            {
+              "country": "Sweden",
+              "revenue": 38.620000000000005
+            },
+            {
+              "country": "USA",
+              "revenue": 523.0600000000003
+            },
+            {
+              "country": "United Kingdom",
+              "revenue": 112.85999999999999
+            }
+          ],
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.7167999865487218,
+          "planning_ms": 0.011099997209385037,
+          "execution_ms": 0.7056999893393368
+        },
+        {
+          "id": "genres",
+          "repeat": 1,
+          "family": "join",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": [
+            {
+              "genre": "Alternative",
+              "tracks": 40
+            },
+            {
+              "genre": "Alternative & Punk",
+              "tracks": 332
+            },
+            {
+              "genre": "Blues",
+              "tracks": 81
+            },
+            {
+              "genre": "Bossa Nova",
+              "tracks": 15
+            },
+            {
+              "genre": "Classical",
+              "tracks": 74
+            },
+            {
+              "genre": "Comedy",
+              "tracks": 17
+            },
+            {
+              "genre": "Drama",
+              "tracks": 64
+            },
+            {
+              "genre": "Easy Listening",
+              "tracks": 24
+            },
+            {
+              "genre": "Electronica/Dance",
+              "tracks": 30
+            },
+            {
+              "genre": "Heavy Metal",
+              "tracks": 28
+            },
+            {
+              "genre": "Hip Hop/Rap",
+              "tracks": 35
+            },
+            {
+              "genre": "Jazz",
+              "tracks": 130
+            },
+            {
+              "genre": "Latin",
+              "tracks": 579
+            },
+            {
+              "genre": "Metal",
+              "tracks": 374
+            },
+            {
+              "genre": "Opera",
+              "tracks": 1
+            },
+            {
+              "genre": "Pop",
+              "tracks": 48
+            },
+            {
+              "genre": "R&B/Soul",
+              "tracks": 61
+            },
+            {
+              "genre": "Reggae",
+              "tracks": 58
+            },
+            {
+              "genre": "Rock",
+              "tracks": 1297
+            },
+            {
+              "genre": "Rock And Roll",
+              "tracks": 12
+            },
+            {
+              "genre": "Sci Fi & Fantasy",
+              "tracks": 26
+            },
+            {
+              "genre": "Science Fiction",
+              "tracks": 13
+            },
+            {
+              "genre": "Soundtrack",
+              "tracks": 43
+            },
+            {
+              "genre": "TV Shows",
+              "tracks": 93
+            },
+            {
+              "genre": "World",
+              "tracks": 28
+            }
+          ],
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 1.1821000080090016,
+          "planning_ms": 0.009400013368576765,
+          "execution_ms": 1.1726999946404248
+        },
+        {
+          "id": "unsupported-filter",
+          "repeat": 1,
+          "family": "abstention",
+          "expected_backend": "abstain",
+          "expected_backends": [
+            "abstain"
+          ],
+          "actual_backend": "abstain",
+          "status": "abstained",
+          "actual": null,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.03460000152699649,
+          "planning_ms": 0.00890000956133008,
+          "execution_ms": 0.025699991965666413
+        },
+        {
+          "id": "write",
+          "repeat": 1,
+          "family": "abstention",
+          "expected_backend": "abstain",
+          "expected_backends": [
+            "abstain"
+          ],
+          "actual_backend": "abstain",
+          "status": "abstained",
+          "actual": null,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.022499996703118086,
+          "planning_ms": 0.0045000051613897085,
+          "execution_ms": 0.017999991541728377
+        },
+        {
+          "id": "tracks",
+          "repeat": 2,
+          "family": "count",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 3503,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.3206999972462654,
+          "planning_ms": 0.006199989002197981,
+          "execution_ms": 0.31450000824406743
+        },
+        {
+          "id": "customers",
+          "repeat": 2,
+          "family": "count",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 59,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.28020000900141895,
+          "planning_ms": 0.010799994925037026,
+          "execution_ms": 0.2694000140763819
+        },
+        {
+          "id": "invoices",
+          "repeat": 2,
+          "family": "count",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 412,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.2717000024858862,
+          "planning_ms": 0.010199990356341004,
+          "execution_ms": 0.2615000121295452
+        },
+        {
+          "id": "revenue",
+          "repeat": 2,
+          "family": "aggregation",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 2328.600000000004,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.3425999893806875,
+          "planning_ms": 0.009499985026195645,
+          "execution_ms": 0.33310000435449183
+        },
+        {
+          "id": "mean",
+          "repeat": 2,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 5.651941747572825,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.3480000013951212,
+          "planning_ms": 0.009599985787644982,
+          "execution_ms": 0.33840001560747623
+        },
+        {
+          "id": "median",
+          "repeat": 2,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": 3.96,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.7955999753903598,
+          "planning_ms": 0.010099989594891667,
+          "execution_ms": 0.7854999857954681
+        },
+        {
+          "id": "countries",
+          "repeat": 2,
+          "family": "grouping",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": [
+            {
+              "country": "Argentina",
+              "revenue": 37.620000000000005
+            },
+            {
+              "country": "Australia",
+              "revenue": 37.620000000000005
+            },
+            {
+              "country": "Austria",
+              "revenue": 42.62
+            },
+            {
+              "country": "Belgium",
+              "revenue": 37.62
+            },
+            {
+              "country": "Brazil",
+              "revenue": 190.09999999999997
+            },
+            {
+              "country": "Canada",
+              "revenue": 303.9599999999999
+            },
+            {
+              "country": "Chile",
+              "revenue": 46.62
+            },
+            {
+              "country": "Czech Republic",
+              "revenue": 90.24000000000001
+            },
+            {
+              "country": "Denmark",
+              "revenue": 37.620000000000005
+            },
+            {
+              "country": "Finland",
+              "revenue": 41.620000000000005
+            },
+            {
+              "country": "France",
+              "revenue": 195.09999999999994
+            },
+            {
+              "country": "Germany",
+              "revenue": 156.48
+            },
+            {
+              "country": "Hungary",
+              "revenue": 45.62
+            },
+            {
+              "country": "India",
+              "revenue": 75.25999999999999
+            },
+            {
+              "country": "Ireland",
+              "revenue": 45.62
+            },
+            {
+              "country": "Italy",
+              "revenue": 37.620000000000005
+            },
+            {
+              "country": "Netherlands",
+              "revenue": 40.62
+            },
+            {
+              "country": "Norway",
+              "revenue": 39.62
+            },
+            {
+              "country": "Poland",
+              "revenue": 37.620000000000005
+            },
+            {
+              "country": "Portugal",
+              "revenue": 77.23999999999998
+            },
+            {
+              "country": "Spain",
+              "revenue": 37.62
+            },
+            {
+              "country": "Sweden",
+              "revenue": 38.620000000000005
+            },
+            {
+              "country": "USA",
+              "revenue": 523.0600000000003
+            },
+            {
+              "country": "United Kingdom",
+              "revenue": 112.85999999999999
+            }
+          ],
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.692899979185313,
+          "planning_ms": 0.011199997970834374,
+          "execution_ms": 0.6816999812144786
+        },
+        {
+          "id": "genres",
+          "repeat": 2,
+          "family": "join",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "sql",
+          "status": "ok",
+          "actual": [
+            {
+              "genre": "Alternative",
+              "tracks": 40
+            },
+            {
+              "genre": "Alternative & Punk",
+              "tracks": 332
+            },
+            {
+              "genre": "Blues",
+              "tracks": 81
+            },
+            {
+              "genre": "Bossa Nova",
+              "tracks": 15
+            },
+            {
+              "genre": "Classical",
+              "tracks": 74
+            },
+            {
+              "genre": "Comedy",
+              "tracks": 17
+            },
+            {
+              "genre": "Drama",
+              "tracks": 64
+            },
+            {
+              "genre": "Easy Listening",
+              "tracks": 24
+            },
+            {
+              "genre": "Electronica/Dance",
+              "tracks": 30
+            },
+            {
+              "genre": "Heavy Metal",
+              "tracks": 28
+            },
+            {
+              "genre": "Hip Hop/Rap",
+              "tracks": 35
+            },
+            {
+              "genre": "Jazz",
+              "tracks": 130
+            },
+            {
+              "genre": "Latin",
+              "tracks": 579
+            },
+            {
+              "genre": "Metal",
+              "tracks": 374
+            },
+            {
+              "genre": "Opera",
+              "tracks": 1
+            },
+            {
+              "genre": "Pop",
+              "tracks": 48
+            },
+            {
+              "genre": "R&B/Soul",
+              "tracks": 61
+            },
+            {
+              "genre": "Reggae",
+              "tracks": 58
+            },
+            {
+              "genre": "Rock",
+              "tracks": 1297
+            },
+            {
+              "genre": "Rock And Roll",
+              "tracks": 12
+            },
+            {
+              "genre": "Sci Fi & Fantasy",
+              "tracks": 26
+            },
+            {
+              "genre": "Science Fiction",
+              "tracks": 13
+            },
+            {
+              "genre": "Soundtrack",
+              "tracks": 43
+            },
+            {
+              "genre": "TV Shows",
+              "tracks": 93
+            },
+            {
+              "genre": "World",
+              "tracks": 28
+            }
+          ],
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 1.1193999962415546,
+          "planning_ms": 0.009200011845678091,
+          "execution_ms": 1.1101999843958765
+        },
+        {
+          "id": "unsupported-filter",
+          "repeat": 2,
+          "family": "abstention",
+          "expected_backend": "abstain",
+          "expected_backends": [
+            "abstain"
+          ],
+          "actual_backend": "abstain",
+          "status": "abstained",
+          "actual": null,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.0659999786876142,
+          "planning_ms": 0.009299983503296971,
+          "execution_ms": 0.05669999518431723
+        },
+        {
+          "id": "write",
+          "repeat": 2,
+          "family": "abstention",
+          "expected_backend": "abstain",
+          "expected_backends": [
+            "abstain"
+          ],
+          "actual_backend": "abstain",
+          "status": "abstained",
+          "actual": null,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.022099993657320738,
+          "planning_ms": 0.004599976819008589,
+          "execution_ms": 0.01750001683831215
+        }
+      ]
+    },
+    "fixed-code": {
+      "report_version": 2,
+      "created_at": "2026-10-04T21:55:55.382859+00:00",
+      "dataset_label": "chinook full supplied data; authored development questions",
+      "dataset_metadata": {
+        "source": "chinook",
+        "split": "development",
+        "source_hashes": {
+          "database_file": "7651ba378ac2fcd0dfc3c66fb101f7a7eed3ba39a612ec642b96e20702061f15"
+        },
+        "label": "chinook full supplied data; authored development questions",
+        "gold_note": "Direct raw SQLite reference queries and sorted middle invoice totals; computational reference, not independently reviewed held-out annotations"
+      },
+      "dataset_sha256": "a724f6adf3fc376f315b1416e741eaa89b4137d70ead92e1348e9428c315b4dc",
+      "source": {
+        "name": "chinook",
+        "database_file": "C:\\Users\\sushm\\Downloads\\PolyQuery\\polyquery\\benchmarks\\Chinook_Sqlite.sqlite",
+        "rows": {
+          "Track": 3503,
+          "Customer": 59,
+          "Invoice": 412,
+          "Genre": 25
+        },
+        "projection": "Track, Customer, Invoice, Genre; full tables"
+      },
+      "policy": "fixed-code",
+      "python": "3.11.4",
+      "source_hashes": {
+        "database_file": "7651ba378ac2fcd0dfc3c66fb101f7a7eed3ba39a612ec642b96e20702061f15"
+      },
+      "initialization_ms": 29.094900004565716,
+      "platform": "Windows-10-10.0.26200-SP0",
+      "cases": 10,
+      "repeats": 3,
+      "warmup": 1,
+      "runs": 30,
+      "answer_accuracy": 1.0,
+      "answerable_accuracy": 1.0,
+      "route_accuracy": 1.0,
+      "joint_accuracy": 1.0,
+      "coverage": 0.8,
+      "answered_accuracy": 1.0,
+      "answered_joint_accuracy": 1.0,
+      "error_rate": 0.0,
+      "abstention_precision": 1.0,
+      "abstention_recall": 1.0,
+      "latency": {
+        "latency_ms": {
+          "samples": 30,
+          "mean": 0.23912333223658302,
+          "p50": 0.09440000576432794,
+          "p95": 1.023045003239531
+        },
+        "planning_ms": {
+          "samples": 30,
+          "mean": 0.005133331675703327,
+          "p50": 0.005199981387704611,
+          "p95": 0.005900002724956721
+        },
+        "execution_ms": {
+          "samples": 30,
+          "mean": 0.2339900005608797,
+          "p50": 0.08949999755714089,
+          "p95": 1.0176800045883283
+        }
+      },
+      "by_family": {
+        "abstention": {
+          "runs": 6,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": null,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 0.0,
+          "answered_accuracy": null,
+          "answered_joint_accuracy": null,
+          "error_rate": 0.0,
+          "abstention_precision": 1.0,
+          "abstention_recall": 1.0,
+          "latency": {
+            "latency_ms": {
+              "samples": 6,
+              "mean": 0.023116672916027408,
+              "p50": 0.022950000129640102,
+              "p95": 0.026350004191044718
+            },
+            "planning_ms": {
+              "samples": 6,
+              "mean": 0.004516676805603008,
+              "p50": 0.004350004019215703,
+              "p95": 0.005675014108419418
+            },
+            "execution_ms": {
+              "samples": 6,
+              "mean": 0.0185999961104244,
+              "p50": 0.01854999572969973,
+              "p95": 0.020724983187392354
+            }
+          }
+        },
+        "aggregation": {
+          "runs": 3,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 3,
+              "mean": 0.10023333985979359,
+              "p50": 0.09590000263415277,
+              "p95": 0.11030000750906765
+            },
+            "planning_ms": {
+              "samples": 3,
+              "mean": 0.00476667385858794,
+              "p50": 0.0048000074457377195,
+              "p95": 0.004980008816346526
+            },
+            "execution_ms": {
+              "samples": 3,
+              "mean": 0.09546666600120564,
+              "p50": 0.09089999366551638,
+              "p95": 0.10575000196695328
+            }
+          }
+        },
+        "count": {
+          "runs": 9,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 9,
+              "mean": 0.08274443098343909,
+              "p50": 0.08069997420534492,
+              "p95": 0.09669999708421528
+            },
+            "planning_ms": {
+              "samples": 9,
+              "mean": 0.005133327148440812,
+              "p50": 0.0051000097300857306,
+              "p95": 0.0056200020480901
+            },
+            "execution_ms": {
+              "samples": 9,
+              "mean": 0.07761110383499828,
+              "p50": 0.07559999357908964,
+              "p95": 0.09107999503612518
+            }
+          }
+        },
+        "grouping": {
+          "runs": 3,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 3,
+              "mean": 0.2858333270220707,
+              "p50": 0.2817999920807779,
+              "p95": 0.2967400010675192
+            },
+            "planning_ms": {
+              "samples": 3,
+              "mean": 0.005566660547628999,
+              "p50": 0.005499983672052622,
+              "p95": 0.005860012606717646
+            },
+            "execution_ms": {
+              "samples": 3,
+              "mean": 0.2802666664744417,
+              "p50": 0.27630000840872526,
+              "p95": 0.29087998846080154
+            }
+          }
+        },
+        "join": {
+          "runs": 3,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 3,
+              "mean": 1.0268666762082528,
+              "p50": 1.0248000035062432,
+              "p95": 1.0338900203350931
+            },
+            "planning_ms": {
+              "samples": 3,
+              "mean": 0.005433335900306702,
+              "p50": 0.005500012775883079,
+              "p95": 0.005590013461187482
+            },
+            "execution_ms": {
+              "samples": 3,
+              "mean": 1.021433340307946,
+              "p50": 1.0192999907303602,
+              "p95": 1.0283000068739057
+            }
+          }
+        },
+        "statistics": {
+          "runs": 6,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 6,
+              "mean": 0.34191667024667066,
+              "p50": 0.3535000141710043,
+              "p95": 0.5526749955606647
+            },
+            "planning_ms": {
+              "samples": 6,
+              "mean": 0.00556665569699059,
+              "p50": 0.005399982910603285,
+              "p95": 0.0072499969974160194
+            },
+            "execution_ms": {
+              "samples": 6,
+              "mean": 0.33635001454968005,
+              "p50": 0.3474500117590651,
+              "p95": 0.5479250175994821
+            }
+          }
+        }
+      },
+      "by_expected_backend": {
+        "sql": {
+          "runs": 24,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 24,
+              "mean": 0.29312499706672196,
+              "p50": 0.11730000551324338,
+              "p95": 1.0242150034173392
+            },
+            "planning_ms": {
+              "samples": 24,
+              "mean": 0.005287495393228407,
+              "p50": 0.005199981387704611,
+              "p95": 0.005900011456105858
+            },
+            "execution_ms": {
+              "samples": 24,
+              "mean": 0.28783750167349353,
+              "p50": 0.11225001071579754,
+              "p95": 1.0187599953496829
+            }
+          }
+        },
+        "code": {
+          "runs": 24,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": 1.0,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_accuracy": 1.0,
+          "answered_joint_accuracy": 1.0,
+          "error_rate": 0.0,
+          "abstention_precision": null,
+          "abstention_recall": null,
+          "latency": {
+            "latency_ms": {
+              "samples": 24,
+              "mean": 0.29312499706672196,
+              "p50": 0.11730000551324338,
+              "p95": 1.0242150034173392
+            },
+            "planning_ms": {
+              "samples": 24,
+              "mean": 0.005287495393228407,
+              "p50": 0.005199981387704611,
+              "p95": 0.005900011456105858
+            },
+            "execution_ms": {
+              "samples": 24,
+              "mean": 0.28783750167349353,
+              "p50": 0.11225001071579754,
+              "p95": 1.0187599953496829
+            }
+          }
+        },
+        "abstain": {
+          "runs": 6,
+          "answer_accuracy": 1.0,
+          "answerable_accuracy": null,
+          "route_accuracy": 1.0,
+          "joint_accuracy": 1.0,
+          "coverage": 0.0,
+          "answered_accuracy": null,
+          "answered_joint_accuracy": null,
+          "error_rate": 0.0,
+          "abstention_precision": 1.0,
+          "abstention_recall": 1.0,
+          "latency": {
+            "latency_ms": {
+              "samples": 6,
+              "mean": 0.023116672916027408,
+              "p50": 0.022950000129640102,
+              "p95": 0.026350004191044718
+            },
+            "planning_ms": {
+              "samples": 6,
+              "mean": 0.004516676805603008,
+              "p50": 0.004350004019215703,
+              "p95": 0.005675014108419418
+            },
+            "execution_ms": {
+              "samples": 6,
+              "mean": 0.0185999961104244,
+              "p50": 0.01854999572969973,
+              "p95": 0.020724983187392354
+            }
+          }
+        }
+      },
+      "confusion_matrix": {
+        "sql": {
+          "sql": 0,
+          "graph": 0,
+          "code": 24,
+          "abstain": 0,
+          "error": 0
+        },
+        "graph": {
+          "sql": 0,
+          "graph": 0,
+          "code": 0,
+          "abstain": 0,
+          "error": 0
+        },
+        "code": {
+          "sql": 0,
+          "graph": 0,
+          "code": 0,
+          "abstain": 0,
+          "error": 0
+        },
+        "abstain": {
+          "sql": 0,
+          "graph": 0,
+          "code": 0,
+          "abstain": 6,
+          "error": 0
+        }
+      },
+      "confusion_note": "Multiple acceptable routes use the first route as the matrix row; accuracy accepts any listed route.",
+      "sql_only_route_accuracy": 0.8,
+      "baseline_note": "SQL-only route-label diagnostic, not a capable fixed-SQL execution comparison.",
+      "latency_note": "Dataset order; warmup excluded; initialization excluded. Total includes errors; error stage times unavailable. Percentiles use linear interpolation.",
+      "cost": {
+        "usd": null,
+        "tokens": null,
+        "note": "Unmeasured; no monetary cost instrumentation."
+      },
+      "results": [
+        {
+          "id": "tracks",
+          "repeat": 0,
+          "family": "count",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 3503,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.08499997784383595,
+          "planning_ms": 0.005499983672052622,
+          "execution_ms": 0.07949999417178333
+        },
+        {
+          "id": "customers",
+          "repeat": 0,
+          "family": "count",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 59,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.10450000991113484,
+          "planning_ms": 0.005700014298781753,
+          "execution_ms": 0.09879999561235309
+        },
+        {
+          "id": "invoices",
+          "repeat": 0,
+          "family": "count",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 412,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.07879998884163797,
+          "planning_ms": 0.0051000097300857306,
+          "execution_ms": 0.07369997911155224
+        },
+        {
+          "id": "revenue",
+          "repeat": 0,
+          "family": "aggregation",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 2328.6,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.09590000263415277,
+          "planning_ms": 0.0050000089686363935,
+          "execution_ms": 0.09089999366551638
+        },
+        {
+          "id": "mean",
+          "repeat": 0,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 5.651941747572815,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.5574999959208071,
+          "planning_ms": 0.004599976819008589,
+          "execution_ms": 0.5529000191017985
+        },
+        {
+          "id": "median",
+          "repeat": 0,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 3.96,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.19760002032853663,
+          "planning_ms": 0.007700000423938036,
+          "execution_ms": 0.1899000199045986
+        },
+        {
+          "id": "countries",
+          "repeat": 0,
+          "family": "grouping",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": [
+            {
+              "country": "Argentina",
+              "revenue": 37.62
+            },
+            {
+              "country": "Australia",
+              "revenue": 37.62
+            },
+            {
+              "country": "Austria",
+              "revenue": 42.62
+            },
+            {
+              "country": "Belgium",
+              "revenue": 37.62
+            },
+            {
+              "country": "Brazil",
+              "revenue": 190.1
+            },
+            {
+              "country": "Canada",
+              "revenue": 303.96
+            },
+            {
+              "country": "Chile",
+              "revenue": 46.62
+            },
+            {
+              "country": "Czech Republic",
+              "revenue": 90.24
+            },
+            {
+              "country": "Denmark",
+              "revenue": 37.62
+            },
+            {
+              "country": "Finland",
+              "revenue": 41.62
+            },
+            {
+              "country": "France",
+              "revenue": 195.1
+            },
+            {
+              "country": "Germany",
+              "revenue": 156.48
+            },
+            {
+              "country": "Hungary",
+              "revenue": 45.62
+            },
+            {
+              "country": "India",
+              "revenue": 75.26
+            },
+            {
+              "country": "Ireland",
+              "revenue": 45.62
+            },
+            {
+              "country": "Italy",
+              "revenue": 37.62
+            },
+            {
+              "country": "Netherlands",
+              "revenue": 40.62
+            },
+            {
+              "country": "Norway",
+              "revenue": 39.62
+            },
+            {
+              "country": "Poland",
+              "revenue": 37.62
+            },
+            {
+              "country": "Portugal",
+              "revenue": 77.24
+            },
+            {
+              "country": "Spain",
+              "revenue": 37.62
+            },
+            {
+              "country": "Sweden",
+              "revenue": 38.62
+            },
+            {
+              "country": "USA",
+              "revenue": 523.06
+            },
+            {
+              "country": "United Kingdom",
+              "revenue": 112.86
+            }
+          ],
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.298400002066046,
+          "planning_ms": 0.005900015821680427,
+          "execution_ms": 0.2924999862443656
+        },
+        {
+          "id": "genres",
+          "repeat": 0,
+          "family": "join",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": [
+            {
+              "genre": "Alternative",
+              "tracks": 40
+            },
+            {
+              "genre": "Alternative & Punk",
+              "tracks": 332
+            },
+            {
+              "genre": "Blues",
+              "tracks": 81
+            },
+            {
+              "genre": "Bossa Nova",
+              "tracks": 15
+            },
+            {
+              "genre": "Classical",
+              "tracks": 74
+            },
+            {
+              "genre": "Comedy",
+              "tracks": 17
+            },
+            {
+              "genre": "Drama",
+              "tracks": 64
+            },
+            {
+              "genre": "Easy Listening",
+              "tracks": 24
+            },
+            {
+              "genre": "Electronica/Dance",
+              "tracks": 30
+            },
+            {
+              "genre": "Heavy Metal",
+              "tracks": 28
+            },
+            {
+              "genre": "Hip Hop/Rap",
+              "tracks": 35
+            },
+            {
+              "genre": "Jazz",
+              "tracks": 130
+            },
+            {
+              "genre": "Latin",
+              "tracks": 579
+            },
+            {
+              "genre": "Metal",
+              "tracks": 374
+            },
+            {
+              "genre": "Opera",
+              "tracks": 1
+            },
+            {
+              "genre": "Pop",
+              "tracks": 48
+            },
+            {
+              "genre": "R&B/Soul",
+              "tracks": 61
+            },
+            {
+              "genre": "Reggae",
+              "tracks": 58
+            },
+            {
+              "genre": "Rock",
+              "tracks": 1297
+            },
+            {
+              "genre": "Rock And Roll",
+              "tracks": 12
+            },
+            {
+              "genre": "Sci Fi & Fantasy",
+              "tracks": 26
+            },
+            {
+              "genre": "Science Fiction",
+              "tracks": 13
+            },
+            {
+              "genre": "Soundtrack",
+              "tracks": 43
+            },
+            {
+              "genre": "TV Shows",
+              "tracks": 93
+            },
+            {
+              "genre": "World",
+              "tracks": 28
+            }
+          ],
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 1.0349000222049654,
+          "planning_ms": 0.005600013537332416,
+          "execution_ms": 1.029300008667633
+        },
+        {
+          "id": "unsupported-filter",
+          "repeat": 0,
+          "family": "abstention",
+          "expected_backend": "abstain",
+          "expected_backends": [
+            "abstain"
+          ],
+          "actual_backend": "abstain",
+          "status": "abstained",
+          "actual": null,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.025300018023699522,
+          "planning_ms": 0.0053000112529844046,
+          "execution_ms": 0.020000006770715117
+        },
+        {
+          "id": "write",
+          "repeat": 0,
+          "family": "abstention",
+          "expected_backend": "abstain",
+          "expected_backends": [
+            "abstain"
+          ],
+          "actual_backend": "abstain",
+          "status": "abstained",
+          "actual": null,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.02060001133941114,
+          "planning_ms": 0.0037999998312443495,
+          "execution_ms": 0.01680001150816679
+        },
+        {
+          "id": "tracks",
+          "repeat": 1,
+          "family": "count",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 3503,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.08239998714998364,
+          "planning_ms": 0.0052000104915350676,
+          "execution_ms": 0.07719997665844858
+        },
+        {
+          "id": "customers",
+          "repeat": 1,
+          "family": "count",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 59,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.08069997420534492,
+          "planning_ms": 0.005099980626255274,
+          "execution_ms": 0.07559999357908964
+        },
+        {
+          "id": "invoices",
+          "repeat": 1,
+          "family": "count",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 412,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.07729997741989791,
+          "planning_ms": 0.004699977580457926,
+          "execution_ms": 0.07259999983943999
+        },
+        {
+          "id": "revenue",
+          "repeat": 1,
+          "family": "aggregation",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 2328.6,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.11190000805072486,
+          "planning_ms": 0.0045000051613897085,
+          "execution_ms": 0.10740000288933516
+        },
+        {
+          "id": "mean",
+          "repeat": 1,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 5.651941747572815,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.5381999944802374,
+          "planning_ms": 0.005199981387704611,
+          "execution_ms": 0.5330000130925328
+        },
+        {
+          "id": "median",
+          "repeat": 1,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 3.96,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.1260999997612089,
+          "planning_ms": 0.00589998671784997,
+          "execution_ms": 0.12020001304335892
+        },
+        {
+          "id": "countries",
+          "repeat": 1,
+          "family": "grouping",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": [
+            {
+              "country": "Argentina",
+              "revenue": 37.62
+            },
+            {
+              "country": "Australia",
+              "revenue": 37.62
+            },
+            {
+              "country": "Austria",
+              "revenue": 42.62
+            },
+            {
+              "country": "Belgium",
+              "revenue": 37.62
+            },
+            {
+              "country": "Brazil",
+              "revenue": 190.1
+            },
+            {
+              "country": "Canada",
+              "revenue": 303.96
+            },
+            {
+              "country": "Chile",
+              "revenue": 46.62
+            },
+            {
+              "country": "Czech Republic",
+              "revenue": 90.24
+            },
+            {
+              "country": "Denmark",
+              "revenue": 37.62
+            },
+            {
+              "country": "Finland",
+              "revenue": 41.62
+            },
+            {
+              "country": "France",
+              "revenue": 195.1
+            },
+            {
+              "country": "Germany",
+              "revenue": 156.48
+            },
+            {
+              "country": "Hungary",
+              "revenue": 45.62
+            },
+            {
+              "country": "India",
+              "revenue": 75.26
+            },
+            {
+              "country": "Ireland",
+              "revenue": 45.62
+            },
+            {
+              "country": "Italy",
+              "revenue": 37.62
+            },
+            {
+              "country": "Netherlands",
+              "revenue": 40.62
+            },
+            {
+              "country": "Norway",
+              "revenue": 39.62
+            },
+            {
+              "country": "Poland",
+              "revenue": 37.62
+            },
+            {
+              "country": "Portugal",
+              "revenue": 77.24
+            },
+            {
+              "country": "Spain",
+              "revenue": 37.62
+            },
+            {
+              "country": "Sweden",
+              "revenue": 38.62
+            },
+            {
+              "country": "USA",
+              "revenue": 523.06
+            },
+            {
+              "country": "United Kingdom",
+              "revenue": 112.86
+            }
+          ],
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.2817999920807779,
+          "planning_ms": 0.005499983672052622,
+          "execution_ms": 0.27630000840872526
+        },
+        {
+          "id": "genres",
+          "repeat": 1,
+          "family": "join",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": [
+            {
+              "genre": "Alternative",
+              "tracks": 40
+            },
+            {
+              "genre": "Alternative & Punk",
+              "tracks": 332
+            },
+            {
+              "genre": "Blues",
+              "tracks": 81
+            },
+            {
+              "genre": "Bossa Nova",
+              "tracks": 15
+            },
+            {
+              "genre": "Classical",
+              "tracks": 74
+            },
+            {
+              "genre": "Comedy",
+              "tracks": 17
+            },
+            {
+              "genre": "Drama",
+              "tracks": 64
+            },
+            {
+              "genre": "Easy Listening",
+              "tracks": 24
+            },
+            {
+              "genre": "Electronica/Dance",
+              "tracks": 30
+            },
+            {
+              "genre": "Heavy Metal",
+              "tracks": 28
+            },
+            {
+              "genre": "Hip Hop/Rap",
+              "tracks": 35
+            },
+            {
+              "genre": "Jazz",
+              "tracks": 130
+            },
+            {
+              "genre": "Latin",
+              "tracks": 579
+            },
+            {
+              "genre": "Metal",
+              "tracks": 374
+            },
+            {
+              "genre": "Opera",
+              "tracks": 1
+            },
+            {
+              "genre": "Pop",
+              "tracks": 48
+            },
+            {
+              "genre": "R&B/Soul",
+              "tracks": 61
+            },
+            {
+              "genre": "Reggae",
+              "tracks": 58
+            },
+            {
+              "genre": "Rock",
+              "tracks": 1297
+            },
+            {
+              "genre": "Rock And Roll",
+              "tracks": 12
+            },
+            {
+              "genre": "Sci Fi & Fantasy",
+              "tracks": 26
+            },
+            {
+              "genre": "Science Fiction",
+              "tracks": 13
+            },
+            {
+              "genre": "Soundtrack",
+              "tracks": 43
+            },
+            {
+              "genre": "TV Shows",
+              "tracks": 93
+            },
+            {
+              "genre": "World",
+              "tracks": 28
+            }
+          ],
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 1.0248000035062432,
+          "planning_ms": 0.005500012775883079,
+          "execution_ms": 1.0192999907303602
+        },
+        {
+          "id": "unsupported-filter",
+          "repeat": 1,
+          "family": "abstention",
+          "expected_backend": "abstain",
+          "expected_backends": [
+            "abstain"
+          ],
+          "actual_backend": "abstain",
+          "status": "abstained",
+          "actual": null,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.026699999580159783,
+          "planning_ms": 0.00580001506023109,
+          "execution_ms": 0.020899984519928694
+        },
+        {
+          "id": "write",
+          "repeat": 1,
+          "family": "abstention",
+          "expected_backend": "abstain",
+          "expected_backends": [
+            "abstain"
+          ],
+          "actual_backend": "abstain",
+          "status": "abstained",
+          "actual": null,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.020800012862309813,
+          "planning_ms": 0.003700028173625469,
+          "execution_ms": 0.017099984688684344
+        },
+        {
+          "id": "tracks",
+          "repeat": 2,
+          "family": "count",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 3503,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.08099997648969293,
+          "planning_ms": 0.004999979864805937,
+          "execution_ms": 0.07599999662488699
+        },
+        {
+          "id": "customers",
+          "repeat": 2,
+          "family": "count",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 59,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.0785999873187393,
+          "planning_ms": 0.005199981387704611,
+          "execution_ms": 0.07340000593103468
+        },
+        {
+          "id": "invoices",
+          "repeat": 2,
+          "family": "count",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 412,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.07639999967068434,
+          "planning_ms": 0.0047000066842883825,
+          "execution_ms": 0.07169999298639596
+        },
+        {
+          "id": "revenue",
+          "repeat": 2,
+          "family": "aggregation",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 2328.6,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.09290000889450312,
+          "planning_ms": 0.0048000074457377195,
+          "execution_ms": 0.0881000014487654
+        },
+        {
+          "id": "mean",
+          "repeat": 2,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 5.651941747572815,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.509400008013472,
+          "planning_ms": 0.0044000043999403715,
+          "execution_ms": 0.5050000036135316
+        },
+        {
+          "id": "median",
+          "repeat": 2,
+          "family": "statistics",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": 3.96,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.12270000297576189,
+          "planning_ms": 0.005599984433501959,
+          "execution_ms": 0.11710001854225993
+        },
+        {
+          "id": "countries",
+          "repeat": 2,
+          "family": "grouping",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": [
+            {
+              "country": "Argentina",
+              "revenue": 37.62
+            },
+            {
+              "country": "Australia",
+              "revenue": 37.62
+            },
+            {
+              "country": "Austria",
+              "revenue": 42.62
+            },
+            {
+              "country": "Belgium",
+              "revenue": 37.62
+            },
+            {
+              "country": "Brazil",
+              "revenue": 190.1
+            },
+            {
+              "country": "Canada",
+              "revenue": 303.96
+            },
+            {
+              "country": "Chile",
+              "revenue": 46.62
+            },
+            {
+              "country": "Czech Republic",
+              "revenue": 90.24
+            },
+            {
+              "country": "Denmark",
+              "revenue": 37.62
+            },
+            {
+              "country": "Finland",
+              "revenue": 41.62
+            },
+            {
+              "country": "France",
+              "revenue": 195.1
+            },
+            {
+              "country": "Germany",
+              "revenue": 156.48
+            },
+            {
+              "country": "Hungary",
+              "revenue": 45.62
+            },
+            {
+              "country": "India",
+              "revenue": 75.26
+            },
+            {
+              "country": "Ireland",
+              "revenue": 45.62
+            },
+            {
+              "country": "Italy",
+              "revenue": 37.62
+            },
+            {
+              "country": "Netherlands",
+              "revenue": 40.62
+            },
+            {
+              "country": "Norway",
+              "revenue": 39.62
+            },
+            {
+              "country": "Poland",
+              "revenue": 37.62
+            },
+            {
+              "country": "Portugal",
+              "revenue": 77.24
+            },
+            {
+              "country": "Spain",
+              "revenue": 37.62
+            },
+            {
+              "country": "Sweden",
+              "revenue": 38.62
+            },
+            {
+              "country": "USA",
+              "revenue": 523.06
+            },
+            {
+              "country": "United Kingdom",
+              "revenue": 112.86
+            }
+          ],
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.2772999869193882,
+          "planning_ms": 0.005299982149153948,
+          "execution_ms": 0.2720000047702342
+        },
+        {
+          "id": "genres",
+          "repeat": 2,
+          "family": "join",
+          "expected_backend": "sql",
+          "expected_backends": [
+            "sql",
+            "code"
+          ],
+          "actual_backend": "code",
+          "status": "ok",
+          "actual": [
+            {
+              "genre": "Alternative",
+              "tracks": 40
+            },
+            {
+              "genre": "Alternative & Punk",
+              "tracks": 332
+            },
+            {
+              "genre": "Blues",
+              "tracks": 81
+            },
+            {
+              "genre": "Bossa Nova",
+              "tracks": 15
+            },
+            {
+              "genre": "Classical",
+              "tracks": 74
+            },
+            {
+              "genre": "Comedy",
+              "tracks": 17
+            },
+            {
+              "genre": "Drama",
+              "tracks": 64
+            },
+            {
+              "genre": "Easy Listening",
+              "tracks": 24
+            },
+            {
+              "genre": "Electronica/Dance",
+              "tracks": 30
+            },
+            {
+              "genre": "Heavy Metal",
+              "tracks": 28
+            },
+            {
+              "genre": "Hip Hop/Rap",
+              "tracks": 35
+            },
+            {
+              "genre": "Jazz",
+              "tracks": 130
+            },
+            {
+              "genre": "Latin",
+              "tracks": 579
+            },
+            {
+              "genre": "Metal",
+              "tracks": 374
+            },
+            {
+              "genre": "Opera",
+              "tracks": 1
+            },
+            {
+              "genre": "Pop",
+              "tracks": 48
+            },
+            {
+              "genre": "R&B/Soul",
+              "tracks": 61
+            },
+            {
+              "genre": "Reggae",
+              "tracks": 58
+            },
+            {
+              "genre": "Rock",
+              "tracks": 1297
+            },
+            {
+              "genre": "Rock And Roll",
+              "tracks": 12
+            },
+            {
+              "genre": "Sci Fi & Fantasy",
+              "tracks": 26
+            },
+            {
+              "genre": "Science Fiction",
+              "tracks": 13
+            },
+            {
+              "genre": "Soundtrack",
+              "tracks": 43
+            },
+            {
+              "genre": "TV Shows",
+              "tracks": 93
+            },
+            {
+              "genre": "World",
+              "tracks": 28
+            }
+          ],
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 1.0209000029135495,
+          "planning_ms": 0.005199981387704611,
+          "execution_ms": 1.015700021525845
+        },
+        {
+          "id": "unsupported-filter",
+          "repeat": 2,
+          "family": "abstention",
+          "expected_backend": "abstain",
+          "expected_backends": [
+            "abstain"
+          ],
+          "actual_backend": "abstain",
+          "status": "abstained",
+          "actual": null,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.02509998739697039,
+          "planning_ms": 0.0049000082071870565,
+          "execution_ms": 0.020199979189783335
+        },
+        {
+          "id": "write",
+          "repeat": 2,
+          "family": "abstention",
+          "expected_backend": "abstain",
+          "expected_backends": [
+            "abstain"
+          ],
+          "actual_backend": "abstain",
+          "status": "abstained",
+          "actual": null,
+          "error": null,
+          "route_correct": true,
+          "answer_correct": true,
+          "joint_correct": true,
+          "latency_ms": 0.02020000829361379,
+          "planning_ms": 0.0035999983083456755,
+          "execution_ms": 0.016600009985268116
+        }
+      ]
+    }
+  },
+  "note": "Sequential policy runs in insertion order. Repeat with reversed order to check order effects; no causal routing claim follows from this report alone."
+}

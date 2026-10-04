@@ -11,7 +11,12 @@ polyquery evaluate --output benchmarks/latest.json
 python -m unittest discover -s tests -v
 ```
 
-Python 3.11+, no runtime dependencies, accounts, API keys, or network required. Run commands from the repository root. Without installing, use `python -m polyquery.cli` instead of `polyquery`.
+Python 3.11+. The default synthetic source has no runtime dependencies and runs offline. Run commands from the repository root. Without installing, use `python -m polyquery.cli` instead of `polyquery`.
+
+Real-data benchmarks support Chinook, LDBC person/knows, and the full supplied
+Taxi Parquet file, including fixed-backend execution comparisons. Taxi requires
+the optional `.[taxi]` dependency. See [real-data benchmark commands](docs/real-data-benchmarks.md)
+and [evaluation metrics](docs/evaluation.md).
 
 ## What works today
 
@@ -60,11 +65,11 @@ Paths are explicit: `people_0_0.csv` is the local filename; the usual
 establish completeness of the SF0.1 distribution. Counts, friend lists, and
 shortest paths use an exact supported grammar; other questions abstain.
 Disconnected paths return `null`. Load time is excluded from query latency.
-This source currently offers only the graph adapter, so it cannot yet measure
-routing improvements against capable fixed-backend baselines. `evaluate` remains
-the synthetic development evaluation.
+This source supports graph BFS and SQLite frontier traversal over the same
+projection. `evaluate` defaults to the synthetic suite; `compare` runs the
+selected real-data suite across execution policies.
 
-Chinook SQLite and taxi Parquet were found locally but are not integrated yet.
+Chinook SQLite and Taxi Parquet are separate selectable sources.
 Keep downloaded raw datasets local; the tests use small temporary fixtures and
 do not require downloads. No held-out research results are claimed.
 

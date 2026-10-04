@@ -16,7 +16,9 @@ def source_fingerprint(engine):
         payload = json.dumps([EMPLOYEES, REPORTS, SALES], sort_keys=True).encode()
         return {"fixture_sha256": hashlib.sha256(payload).hexdigest()}
     hashes = {}
-    for field in ("people_file", "edges_file"):
+    for field in ("people_file", "edges_file", "database_file", "parquet_file"):
+        if field not in engine.source_metadata:
+            continue
         digest = hashlib.sha256()
         with Path(engine.source_metadata[field]).open("rb") as stream:
             for chunk in iter(lambda: stream.read(1024 * 1024), b""):
@@ -37,8 +39,16 @@ def equivalent(actual, expected):
     return actual == expected
 
 
-def answer_matches(actual, case):
+def answer_matches(actual, case, graph=None):
     def match(expected):
+        if case.get("comparison") == "shortest_path":
+            if expected is None:
+                return actual is None
+            if graph is None or not isinstance(actual, list) or len(actual) != len(expected) or not actual:
+                return False
+            if actual[0] != expected[0] or actual[-1] != expected[-1] or any(type(node) is not str or node not in graph.adjacency for node in actual):
+                return False
+            return all(b in graph.adjacency[a] for a, b in zip(actual, actual[1:]))
         if case.get("comparison", "ordered") == "unordered":
             if not isinstance(actual, list) or not isinstance(expected, list) or len(actual) != len(expected):
                 return False
@@ -114,13 +124,15 @@ def validate_cases(cases):
             raise ValueError("Use backend or backends, not both")
         if "abstain" in routes and (routes != ["abstain"] or case["expected"] is not None):
             raise ValueError("Abstention cases require only abstain and expected null")
-        if case.get("comparison", "ordered") not in ("ordered", "unordered"):
-            raise ValueError("Comparison must be ordered or unordered")
+        if case.get("comparison", "ordered") not in ("ordered", "unordered", "shortest_path"):
+            raise ValueError("Comparison must be ordered, unordered, or shortest_path")
         alternatives = case.get("expected_alternatives", [case["expected"]])
         if not isinstance(alternatives, list) or not alternatives:
             raise ValueError("Expected alternatives must be a nonempty list")
         if case.get("comparison") == "unordered" and any(not isinstance(v, list) for v in alternatives):
             raise ValueError("Unordered comparison requires list answers")
+        if case.get("comparison") == "shortest_path" and any(v is not None and (not isinstance(v, list) or not v or any(type(node) is not str for node in v)) for v in alternatives):
+            raise ValueError("Shortest-path answers must be nonempty string lists or null")
         if not isinstance(case.get("family", "unspecified"), str):
             raise ValueError("Family must be a string")
 
@@ -135,6 +147,12 @@ def evaluate(engine, dataset, *, repeats=1, warmup=0, policy_label="rule-router"
         raise ValueError("Dataset metadata must be an object")
     if metadata.get("source", engine.source) != engine.source:
         raise ValueError("Dataset source does not match engine source")
+    graph = engine.backends.get("graph") if engine.source == "ldbc" else None
+    if any(case.get("comparison") == "shortest_path" for case in cases) and graph is None:
+        raise ValueError("Shortest-path scoring requires the LDBC graph projection")
+    fingerprint = source_fingerprint(engine)
+    if metadata.get("source_hashes", fingerprint) != fingerprint:
+        raise ValueError("Dataset gold answers do not match the supplied source hashes")
     results = []
     for repetition in range(warmup + repeats):
         for case in cases:
@@ -153,7 +171,7 @@ def evaluate(engine, dataset, *, repeats=1, warmup=0, policy_label="rule-router"
             routes = routes_for(case)
             route_correct = backend in routes
             # Null answers cannot make an unintended abstention or error correct.
-            answer_correct = (status == "abstained" if routes == ["abstain"] else status == "ok" and answer_matches(actual, case))
+            answer_correct = (status == "abstained" if routes == ["abstain"] else status == "ok" and answer_matches(actual, case, graph))
             results.append({"id": case["id"], "repeat": repetition - warmup,
                             "family": case.get("family", "unspecified"),
                             "expected_backend": routes[0], "expected_backends": routes,
@@ -167,7 +185,7 @@ def evaluate(engine, dataset, *, repeats=1, warmup=0, policy_label="rule-router"
         "dataset_metadata": metadata,
         "dataset_sha256": hashlib.sha256(json.dumps(dataset, sort_keys=True).encode()).hexdigest(),
         "source": engine.source_metadata, "policy": policy_label, "python": platform.python_version(),
-        "source_hashes": source_fingerprint(engine),
+        "source_hashes": fingerprint,
         "initialization_ms": getattr(engine, "initialization_ms", None),
         "platform": platform.platform(), "cases": len(cases), "repeats": repeats, "warmup": warmup,
         **summarize(results),

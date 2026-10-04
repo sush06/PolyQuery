@@ -1,0 +1,309 @@
+{
+  "metadata": {
+    "source": "chinook",
+    "split": "development",
+    "source_hashes": {
+      "database_file": "7651ba378ac2fcd0dfc3c66fb101f7a7eed3ba39a612ec642b96e20702061f15"
+    },
+    "label": "chinook full supplied data; authored development questions",
+    "gold_note": "Direct raw SQLite reference queries and sorted middle invoice totals; computational reference, not independently reviewed held-out annotations"
+  },
+  "cases": [
+    {
+      "id": "tracks",
+      "question": "How many tracks?",
+      "expected": 3503,
+      "family": "count",
+      "backends": [
+        "sql",
+        "code"
+      ]
+    },
+    {
+      "id": "customers",
+      "question": "How many customers?",
+      "expected": 59,
+      "family": "count",
+      "backends": [
+        "sql",
+        "code"
+      ]
+    },
+    {
+      "id": "invoices",
+      "question": "How many invoices?",
+      "expected": 412,
+      "family": "count",
+      "backends": [
+        "sql",
+        "code"
+      ]
+    },
+    {
+      "id": "revenue",
+      "question": "Total invoice revenue",
+      "expected": 2328.600000000004,
+      "family": "aggregation",
+      "backends": [
+        "sql",
+        "code"
+      ]
+    },
+    {
+      "id": "mean",
+      "question": "Average invoice total",
+      "expected": 5.651941747572825,
+      "family": "statistics",
+      "backends": [
+        "sql",
+        "code"
+      ]
+    },
+    {
+      "id": "median",
+      "question": "Median invoice total",
+      "expected": 3.96,
+      "family": "statistics",
+      "backends": [
+        "sql",
+        "code"
+      ]
+    },
+    {
+      "id": "countries",
+      "question": "Revenue by billing country",
+      "expected": [
+        {
+          "country": "Argentina",
+          "revenue": 37.620000000000005
+        },
+        {
+          "country": "Australia",
+          "revenue": 37.620000000000005
+        },
+        {
+          "country": "Austria",
+          "revenue": 42.62
+        },
+        {
+          "country": "Belgium",
+          "revenue": 37.62
+        },
+        {
+          "country": "Brazil",
+          "revenue": 190.09999999999997
+        },
+        {
+          "country": "Canada",
+          "revenue": 303.9599999999999
+        },
+        {
+          "country": "Chile",
+          "revenue": 46.62
+        },
+        {
+          "country": "Czech Republic",
+          "revenue": 90.24000000000001
+        },
+        {
+          "country": "Denmark",
+          "revenue": 37.620000000000005
+        },
+        {
+          "country": "Finland",
+          "revenue": 41.620000000000005
+        },
+        {
+          "country": "France",
+          "revenue": 195.09999999999994
+        },
+        {
+          "country": "Germany",
+          "revenue": 156.48
+        },
+        {
+          "country": "Hungary",
+          "revenue": 45.62
+        },
+        {
+          "country": "India",
+          "revenue": 75.25999999999999
+        },
+        {
+          "country": "Ireland",
+          "revenue": 45.62
+        },
+        {
+          "country": "Italy",
+          "revenue": 37.620000000000005
+        },
+        {
+          "country": "Netherlands",
+          "revenue": 40.62
+        },
+        {
+          "country": "Norway",
+          "revenue": 39.62
+        },
+        {
+          "country": "Poland",
+          "revenue": 37.620000000000005
+        },
+        {
+          "country": "Portugal",
+          "revenue": 77.23999999999998
+        },
+        {
+          "country": "Spain",
+          "revenue": 37.62
+        },
+        {
+          "country": "Sweden",
+          "revenue": 38.620000000000005
+        },
+        {
+          "country": "USA",
+          "revenue": 523.0600000000003
+        },
+        {
+          "country": "United Kingdom",
+          "revenue": 112.85999999999999
+        }
+      ],
+      "family": "grouping",
+      "backends": [
+        "sql",
+        "code"
+      ]
+    },
+    {
+      "id": "genres",
+      "question": "Track count by genre",
+      "expected": [
+        {
+          "genre": "Alternative",
+          "tracks": 40
+        },
+        {
+          "genre": "Alternative & Punk",
+          "tracks": 332
+        },
+        {
+          "genre": "Blues",
+          "tracks": 81
+        },
+        {
+          "genre": "Bossa Nova",
+          "tracks": 15
+        },
+        {
+          "genre": "Classical",
+          "tracks": 74
+        },
+        {
+          "genre": "Comedy",
+          "tracks": 17
+        },
+        {
+          "genre": "Drama",
+          "tracks": 64
+        },
+        {
+          "genre": "Easy Listening",
+          "tracks": 24
+        },
+        {
+          "genre": "Electronica/Dance",
+          "tracks": 30
+        },
+        {
+          "genre": "Heavy Metal",
+          "tracks": 28
+        },
+        {
+          "genre": "Hip Hop/Rap",
+          "tracks": 35
+        },
+        {
+          "genre": "Jazz",
+          "tracks": 130
+        },
+        {
+          "genre": "Latin",
+          "tracks": 579
+        },
+        {
+          "genre": "Metal",
+          "tracks": 374
+        },
+        {
+          "genre": "Opera",
+          "tracks": 1
+        },
+        {
+          "genre": "Pop",
+          "tracks": 48
+        },
+        {
+          "genre": "R&B/Soul",
+          "tracks": 61
+        },
+        {
+          "genre": "Reggae",
+          "tracks": 58
+        },
+        {
+          "genre": "Rock",
+          "tracks": 1297
+        },
+        {
+          "genre": "Rock And Roll",
+          "tracks": 12
+        },
+        {
+          "genre": "Sci Fi & Fantasy",
+          "tracks": 26
+        },
+        {
+          "genre": "Science Fiction",
+          "tracks": 13
+        },
+        {
+          "genre": "Soundtrack",
+          "tracks": 43
+        },
+        {
+          "genre": "TV Shows",
+          "tracks": 93
+        },
+        {
+          "genre": "World",
+          "tracks": 28
+        }
+      ],
+      "family": "join",
+      "backends": [
+        "sql",
+        "code"
+      ]
+    },
+    {
+      "id": "unsupported-filter",
+      "question": "Total invoice revenue after 2020",
+      "expected": null,
+      "family": "abstention",
+      "backends": [
+        "abstain"
+      ]
+    },
+    {
+      "id": "write",
+      "question": "Delete all tracks",
+      "expected": null,
+      "family": "abstention",
+      "backends": [
+        "abstain"
+      ]
+    }
+  ]
+}

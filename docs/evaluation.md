@@ -76,9 +76,10 @@ IDs must be unique. Abstention cases use `backend: "abstain"` and `expected: nul
 Numbers use relative and absolute tolerance of 1e-8, including inside lists and
 objects. Booleans are distinct from numbers. Lists compare in order unless
 `comparison: "unordered"` is supplied; unordered matching preserves duplicates.
-Use `expected_alternatives` for several valid answers, for example two equally
-short graph paths. Include every accepted answer in that list. A general path
-validity or constraint scorer is not implemented yet.
+Use `expected_alternatives` for several valid answers. Include every accepted
+answer in that list. For LDBC, `comparison: "shortest_path"` accepts valid paths
+at the reference length, including ties; it checks endpoints and graph edges.
+Other general constraint scorers are not implemented.
 
 Reports include a canonical JSON dataset hash, hashes of source data, source
 metadata, Python version, platform, UTC timestamp, and run settings. Paths do not
@@ -103,13 +104,12 @@ report = evaluate_policies(
 
 This evaluates actual answers and checks source hashes across policies. Policies
 run sequentially in insertion order; repeat with reversed order to check cache
-and order effects. The current project has no capable fixed-SQL implementation
-for every graph and statistics operation. Build those equivalent adapters before
-making a routing comparison; forcing unsupported operations into the existing
-SQL adapter would produce a misleading baseline.
+and order effects. Real-data sources now support SQL and alternate strategies
+for their documented operations; see [real-data benchmarks](real-data-benchmarks.md).
+The synthetic SQL adapter still lacks graph and statistics operations.
 
 For research evaluation, freeze question families before router tuning, keep
 paraphrases within a split, and have gold answers independently reviewed. Report
 uncertainty across unique cases rather than treating timing repetitions as
 independent accuracy samples. Confidence intervals, timeout isolation, cost
-instrumentation, and automated constraint scoring remain future additions.
+instrumentation, and additional constraint scorers remain future additions.
