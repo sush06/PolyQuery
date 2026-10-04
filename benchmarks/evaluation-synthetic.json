@@ -1,0 +1,3311 @@
+{
+  "report_version": 2,
+  "created_at": "2026-10-04T21:39:12.987721+00:00",
+  "dataset_label": "Development regression set; not held-out research evidence",
+  "dataset_metadata": {},
+  "dataset_sha256": "1b070edd729fe8cdb08baa3baa4252cdab4d881dcb56ddddc2a9cd56678ce38c",
+  "source": {
+    "name": "synthetic"
+  },
+  "policy": "rule-router",
+  "python": "3.11.4",
+  "source_hashes": {
+    "fixture_sha256": "f8037f80101396b312906230b4136586c13824b83abfd9265d3322f3f4919dde"
+  },
+  "initialization_ms": 1.1867999855894595,
+  "platform": "Windows-10-10.0.26200-SP0",
+  "cases": 31,
+  "repeats": 5,
+  "warmup": 1,
+  "runs": 155,
+  "answer_accuracy": 1.0,
+  "answerable_accuracy": 1.0,
+  "route_accuracy": 1.0,
+  "joint_accuracy": 1.0,
+  "coverage": 0.5806451612903226,
+  "answered_accuracy": 1.0,
+  "answered_joint_accuracy": 1.0,
+  "error_rate": 0.0,
+  "abstention_precision": 1.0,
+  "abstention_recall": 1.0,
+  "latency": {
+    "latency_ms": {
+      "samples": 155,
+      "mean": 0.1257219346195099,
+      "p50": 0.12270000297576189,
+      "p95": 0.23759001633152357
+    },
+    "planning_ms": {
+      "samples": 155,
+      "mean": 0.06781096810535077,
+      "p50": 0.06829999620094895,
+      "p95": 0.10802999895531679
+    },
+    "execution_ms": {
+      "samples": 155,
+      "mean": 0.05791096651415911,
+      "p50": 0.0549999822396785,
+      "p95": 0.12542998592834917
+    }
+  },
+  "by_family": {
+    "unspecified": {
+      "runs": 155,
+      "answer_accuracy": 1.0,
+      "answerable_accuracy": 1.0,
+      "route_accuracy": 1.0,
+      "joint_accuracy": 1.0,
+      "coverage": 0.5806451612903226,
+      "answered_accuracy": 1.0,
+      "answered_joint_accuracy": 1.0,
+      "error_rate": 0.0,
+      "abstention_precision": 1.0,
+      "abstention_recall": 1.0,
+      "latency": {
+        "latency_ms": {
+          "samples": 155,
+          "mean": 0.1257219346195099,
+          "p50": 0.12270000297576189,
+          "p95": 0.23759001633152357
+        },
+        "planning_ms": {
+          "samples": 155,
+          "mean": 0.06781096810535077,
+          "p50": 0.06829999620094895,
+          "p95": 0.10802999895531679
+        },
+        "execution_ms": {
+          "samples": 155,
+          "mean": 0.05791096651415911,
+          "p50": 0.0549999822396785,
+          "p95": 0.12542998592834917
+        }
+      }
+    }
+  },
+  "by_expected_backend": {
+    "sql": {
+      "runs": 40,
+      "answer_accuracy": 1.0,
+      "answerable_accuracy": 1.0,
+      "route_accuracy": 1.0,
+      "joint_accuracy": 1.0,
+      "coverage": 1.0,
+      "answered_accuracy": 1.0,
+      "answered_joint_accuracy": 1.0,
+      "error_rate": 0.0,
+      "abstention_precision": null,
+      "abstention_recall": null,
+      "latency": {
+        "latency_ms": {
+          "samples": 40,
+          "mean": 0.14832750021014363,
+          "p50": 0.12959999730810523,
+          "p95": 0.22660499816993243
+        },
+        "planning_ms": {
+          "samples": 40,
+          "mean": 0.07984250187291764,
+          "p50": 0.07134999032132328,
+          "p95": 0.1392050107824616
+        },
+        "execution_ms": {
+          "samples": 40,
+          "mean": 0.06848499833722599,
+          "p50": 0.06130000110715628,
+          "p95": 0.1142399967648089
+        }
+      }
+    },
+    "graph": {
+      "runs": 25,
+      "answer_accuracy": 1.0,
+      "answerable_accuracy": 1.0,
+      "route_accuracy": 1.0,
+      "joint_accuracy": 1.0,
+      "coverage": 1.0,
+      "answered_accuracy": 1.0,
+      "answered_joint_accuracy": 1.0,
+      "error_rate": 0.0,
+      "abstention_precision": null,
+      "abstention_recall": null,
+      "latency": {
+        "latency_ms": {
+          "samples": 25,
+          "mean": 0.14521599980071187,
+          "p50": 0.13660002150572836,
+          "p95": 0.18868001061491663
+        },
+        "planning_ms": {
+          "samples": 25,
+          "mean": 0.08275200030766428,
+          "p50": 0.07949999417178333,
+          "p95": 0.10621999972499906
+        },
+        "execution_ms": {
+          "samples": 25,
+          "mean": 0.062463999493047595,
+          "p50": 0.056199991377070546,
+          "p95": 0.07352000684477387
+        }
+      }
+    },
+    "code": {
+      "runs": 25,
+      "answer_accuracy": 1.0,
+      "answerable_accuracy": 1.0,
+      "route_accuracy": 1.0,
+      "joint_accuracy": 1.0,
+      "coverage": 1.0,
+      "answered_accuracy": 1.0,
+      "answered_joint_accuracy": 1.0,
+      "error_rate": 0.0,
+      "abstention_precision": null,
+      "abstention_recall": null,
+      "latency": {
+        "latency_ms": {
+          "samples": 25,
+          "mean": 0.18049999722279608,
+          "p50": 0.16759999562054873,
+          "p95": 0.2591399825178086
+        },
+        "planning_ms": {
+          "samples": 25,
+          "mean": 0.07248800131492317,
+          "p50": 0.07239999831654131,
+          "p95": 0.08412000024691224
+        },
+        "execution_ms": {
+          "samples": 25,
+          "mean": 0.10801199590787292,
+          "p50": 0.09339998359791934,
+          "p95": 0.1797199889551848
+        }
+      }
+    },
+    "abstain": {
+      "runs": 65,
+      "answer_accuracy": 1.0,
+      "answerable_accuracy": null,
+      "route_accuracy": 1.0,
+      "joint_accuracy": 1.0,
+      "coverage": 0.0,
+      "answered_accuracy": null,
+      "answered_joint_accuracy": null,
+      "error_rate": 0.0,
+      "abstention_precision": 1.0,
+      "abstention_recall": 1.0,
+      "latency": {
+        "latency_ms": {
+          "samples": 65,
+          "mean": 0.08324461433893213,
+          "p50": 0.08480000542476773,
+          "p95": 0.12272000312805176
+        },
+        "planning_ms": {
+          "samples": 65,
+          "mean": 0.052861537551507354,
+          "p50": 0.05390000296756625,
+          "p95": 0.09017999400384724
+        },
+        "execution_ms": {
+          "samples": 65,
+          "mean": 0.030383076787424777,
+          "p50": 0.02989999484270811,
+          "p95": 0.03433999954722822
+        }
+      }
+    }
+  },
+  "confusion_matrix": {
+    "sql": {
+      "sql": 40,
+      "graph": 0,
+      "code": 0,
+      "abstain": 0,
+      "error": 0
+    },
+    "graph": {
+      "sql": 0,
+      "graph": 25,
+      "code": 0,
+      "abstain": 0,
+      "error": 0
+    },
+    "code": {
+      "sql": 0,
+      "graph": 0,
+      "code": 25,
+      "abstain": 0,
+      "error": 0
+    },
+    "abstain": {
+      "sql": 0,
+      "graph": 0,
+      "code": 0,
+      "abstain": 65,
+      "error": 0
+    }
+  },
+  "confusion_note": "Multiple acceptable routes use the first route as the matrix row; accuracy accepts any listed route.",
+  "sql_only_route_accuracy": 0.25806451612903225,
+  "baseline_note": "SQL-only route-label diagnostic, not a capable fixed-SQL execution comparison.",
+  "latency_note": "Dataset order; warmup excluded; initialization excluded. Total includes errors; error stage times unavailable. Percentiles use linear interpolation.",
+  "cost": {
+    "usd": null,
+    "tokens": null,
+    "note": "Unmeasured; no monetary cost instrumentation."
+  },
+  "results": [
+    {
+      "id": "sql-count",
+      "repeat": 0,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 6,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.15929999062791467,
+      "planning_ms": 0.06829999620094895,
+      "execution_ms": 0.09099999442696571
+    },
+    {
+      "id": "sql-filter",
+      "repeat": 0,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 2,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.15959999291226268,
+      "planning_ms": 0.08520000847056508,
+      "execution_ms": 0.0743999844416976
+    },
+    {
+      "id": "sql-average",
+      "repeat": 0,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 115000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.14999997802078724,
+      "planning_ms": 0.08839997462928295,
+      "execution_ms": 0.06160000339150429
+    },
+    {
+      "id": "sql-average-sales",
+      "repeat": 0,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 100000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.1336999994236976,
+      "planning_ms": 0.07259999983943999,
+      "execution_ms": 0.0610999995842576
+    },
+    {
+      "id": "sql-average-research",
+      "repeat": 0,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 135000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.12989999959245324,
+      "planning_ms": 0.07360000745393336,
+      "execution_ms": 0.05629999213851988
+    },
+    {
+      "id": "sql-revenue",
+      "repeat": 0,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 55000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.13530001160688698,
+      "planning_ms": 0.07239999831654131,
+      "execution_ms": 0.06290001329034567
+    },
+    {
+      "id": "sql-revenue-sales",
+      "repeat": 0,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 40000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.12929999502375722,
+      "planning_ms": 0.07139999070204794,
+      "execution_ms": 0.057900004321709275
+    },
+    {
+      "id": "sql-total-sales",
+      "repeat": 0,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 55000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.11110000195913017,
+      "planning_ms": 0.058699981309473515,
+      "execution_ms": 0.05240002064965665
+    },
+    {
+      "id": "graph-path",
+      "repeat": 0,
+      "family": "unspecified",
+      "expected_backend": "graph",
+      "expected_backends": [
+        "graph"
+      ],
+      "actual_backend": "graph",
+      "status": "ok",
+      "actual": [
+        "Bob",
+        "Alice",
+        "Eve",
+        "Frank"
+      ],
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.24130000383593142,
+      "planning_ms": 0.10710000060498714,
+      "execution_ms": 0.13420000323094428
+    },
+    {
+      "id": "graph-reverse",
+      "repeat": 0,
+      "family": "unspecified",
+      "expected_backend": "graph",
+      "expected_backends": [
+        "graph"
+      ],
+      "actual_backend": "graph",
+      "status": "ok",
+      "actual": [
+        "Frank",
+        "Eve",
+        "Alice",
+        "Carol",
+        "Dan"
+      ],
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.1621000119484961,
+      "planning_ms": 0.09280000813305378,
+      "execution_ms": 0.06930000381544232
+    },
+    {
+      "id": "graph-reports",
+      "repeat": 0,
+      "family": "unspecified",
+      "expected_backend": "graph",
+      "expected_backends": [
+        "graph"
+      ],
+      "actual_backend": "graph",
+      "status": "ok",
+      "actual": [
+        "Bob",
+        "Carol",
+        "Dan"
+      ],
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.13690002379007638,
+      "planning_ms": 0.08080000407062471,
+      "execution_ms": 0.056100019719451666
+    },
+    {
+      "id": "graph-root",
+      "repeat": 0,
+      "family": "unspecified",
+      "expected_backend": "graph",
+      "expected_backends": [
+        "graph"
+      ],
+      "actual_backend": "graph",
+      "status": "ok",
+      "actual": [
+        "Alice",
+        "Bob",
+        "Carol",
+        "Dan",
+        "Frank"
+      ],
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.13660002150572836,
+      "planning_ms": 0.08019999950192869,
+      "execution_ms": 0.05640002200379968
+    },
+    {
+      "id": "graph-leaf",
+      "repeat": 0,
+      "family": "unspecified",
+      "expected_backend": "graph",
+      "expected_backends": [
+        "graph"
+      ],
+      "actual_backend": "graph",
+      "status": "ok",
+      "actual": [],
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.1221999991685152,
+      "planning_ms": 0.0737000082153827,
+      "execution_ms": 0.04849999095313251
+    },
+    {
+      "id": "code-median",
+      "repeat": 0,
+      "family": "unspecified",
+      "expected_backend": "code",
+      "expected_backends": [
+        "code"
+      ],
+      "actual_backend": "code",
+      "status": "ok",
+      "actual": 115000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.18619999173097312,
+      "planning_ms": 0.06880000000819564,
+      "execution_ms": 0.11739999172277749
+    },
+    {
+      "id": "code-filter",
+      "repeat": 0,
+      "family": "unspecified",
+      "expected_backend": "code",
+      "expected_backends": [
+        "code"
+      ],
+      "actual_backend": "code",
+      "status": "ok",
+      "actual": 135000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.172699976246804,
+      "planning_ms": 0.07239999831654131,
+      "execution_ms": 0.10029997793026268
+    },
+    {
+      "id": "code-sales",
+      "repeat": 0,
+      "family": "unspecified",
+      "expected_backend": "code",
+      "expected_backends": [
+        "code"
+      ],
+      "actual_backend": "code",
+      "status": "ok",
+      "actual": 100000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.15860001440159976,
+      "planning_ms": 0.06990000838413835,
+      "execution_ms": 0.08870000601746142
+    },
+    {
+      "id": "code-stdev",
+      "repeat": 0,
+      "family": "unspecified",
+      "expected_backend": "code",
+      "expected_backends": [
+        "code"
+      ],
+      "actual_backend": "code",
+      "status": "ok",
+      "actual": 18708.286933869706,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.26980001712217927,
+      "planning_ms": 0.08640001760795712,
+      "execution_ms": 0.18339999951422215
+    },
+    {
+      "id": "code-correlation",
+      "repeat": 0,
+      "family": "unspecified",
+      "expected_backend": "code",
+      "expected_backends": [
+        "code"
+      ],
+      "actual_backend": "code",
+      "status": "ok",
+      "actual": 1.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.18409997574053705,
+      "planning_ms": 0.08299999171867967,
+      "execution_ms": 0.10109998402185738
+    },
+    {
+      "id": "reject-mixed",
+      "repeat": 0,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.07619999814778566,
+      "planning_ms": 0.04320000880397856,
+      "execution_ms": 0.0329999893438071
+    },
+    {
+      "id": "reject-write",
+      "repeat": 0,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.05729999975301325,
+      "planning_ms": 0.027400004910305142,
+      "execution_ms": 0.02989999484270811
+    },
+    {
+      "id": "reject-injection",
+      "repeat": 0,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.06009999196976423,
+      "planning_ms": 0.031200004741549492,
+      "execution_ms": 0.02889998722821474
+    },
+    {
+      "id": "reject-unknown",
+      "repeat": 0,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.12159999459981918,
+      "planning_ms": 0.09059999138116837,
+      "execution_ms": 0.031000003218650818
+    },
+    {
+      "id": "reject-field",
+      "repeat": 0,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.09159999899566174,
+      "planning_ms": 0.06150000263005495,
+      "execution_ms": 0.030099996365606785
+    },
+    {
+      "id": "reject-empty",
+      "repeat": 0,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.020000006770715117,
+      "planning_ms": 0.0039000005926936865,
+      "execution_ms": 0.01610000617802143
+    },
+    {
+      "id": "reject-modifier",
+      "repeat": 0,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.09620000491850078,
+      "planning_ms": 0.06709998706355691,
+      "execution_ms": 0.02910001785494387
+    },
+    {
+      "id": "reject-group",
+      "repeat": 0,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.06690001464448869,
+      "planning_ms": 0.03789999755099416,
+      "execution_ms": 0.029000017093494534
+    },
+    {
+      "id": "reject-department",
+      "repeat": 0,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.0923000043258071,
+      "planning_ms": 0.06310001481324434,
+      "execution_ms": 0.029199989512562752
+    },
+    {
+      "id": "reject-multiple",
+      "repeat": 0,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.0701999815646559,
+      "planning_ms": 0.04119999357499182,
+      "execution_ms": 0.028999987989664078
+    },
+    {
+      "id": "reject-filtered-correlation",
+      "repeat": 0,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.11470000026747584,
+      "planning_ms": 0.08540000999346375,
+      "execution_ms": 0.02929999027401209
+    },
+    {
+      "id": "reject-unrelated",
+      "repeat": 0,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.10679999832063913,
+      "planning_ms": 0.07529999129474163,
+      "execution_ms": 0.0315000070258975
+    },
+    {
+      "id": "reject-bare-department",
+      "repeat": 0,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.08480000542476773,
+      "planning_ms": 0.05390000296756625,
+      "execution_ms": 0.03090000245720148
+    },
+    {
+      "id": "sql-count",
+      "repeat": 1,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 6,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.135600013891235,
+      "planning_ms": 0.06320001557469368,
+      "execution_ms": 0.07239999831654131
+    },
+    {
+      "id": "sql-filter",
+      "repeat": 1,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 2,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.14390001888386905,
+      "planning_ms": 0.08020002860575914,
+      "execution_ms": 0.06369999027810991
+    },
+    {
+      "id": "sql-average",
+      "repeat": 1,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 115000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.12860001879744232,
+      "planning_ms": 0.07350000669248402,
+      "execution_ms": 0.055100012104958296
+    },
+    {
+      "id": "sql-average-sales",
+      "repeat": 1,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 100000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.1275999820791185,
+      "planning_ms": 0.07109998841769993,
+      "execution_ms": 0.05649999366141856
+    },
+    {
+      "id": "sql-average-research",
+      "repeat": 1,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 135000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.12620000052265823,
+      "planning_ms": 0.07129998994059861,
+      "execution_ms": 0.05490001058205962
+    },
+    {
+      "id": "sql-revenue",
+      "repeat": 1,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 55000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.12169999536126852,
+      "planning_ms": 0.07020001066848636,
+      "execution_ms": 0.051499984692782164
+    },
+    {
+      "id": "sql-revenue-sales",
+      "repeat": 1,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 40000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.12209999840706587,
+      "planning_ms": 0.06770002073608339,
+      "execution_ms": 0.05439997767098248
+    },
+    {
+      "id": "sql-total-sales",
+      "repeat": 1,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 55000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.11800002539530396,
+      "planning_ms": 0.05640002200379968,
+      "execution_ms": 0.06160000339150429
+    },
+    {
+      "id": "graph-path",
+      "repeat": 1,
+      "family": "unspecified",
+      "expected_backend": "graph",
+      "expected_backends": [
+        "graph"
+      ],
+      "actual_backend": "graph",
+      "status": "ok",
+      "actual": [
+        "Bob",
+        "Alice",
+        "Eve",
+        "Frank"
+      ],
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.17179999849759042,
+      "planning_ms": 0.10250002378597856,
+      "execution_ms": 0.06929997471161187
+    },
+    {
+      "id": "graph-reverse",
+      "repeat": 1,
+      "family": "unspecified",
+      "expected_backend": "graph",
+      "expected_backends": [
+        "graph"
+      ],
+      "actual_backend": "graph",
+      "status": "ok",
+      "actual": [
+        "Frank",
+        "Eve",
+        "Alice",
+        "Carol",
+        "Dan"
+      ],
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.14799999189563096,
+      "planning_ms": 0.08510000770911574,
+      "execution_ms": 0.06289998418651521
+    },
+    {
+      "id": "graph-reports",
+      "repeat": 1,
+      "family": "unspecified",
+      "expected_backend": "graph",
+      "expected_backends": [
+        "graph"
+      ],
+      "actual_backend": "graph",
+      "status": "ok",
+      "actual": [
+        "Bob",
+        "Carol",
+        "Dan"
+      ],
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.1323999895248562,
+      "planning_ms": 0.07740000728517771,
+      "execution_ms": 0.0549999822396785
+    },
+    {
+      "id": "graph-root",
+      "repeat": 1,
+      "family": "unspecified",
+      "expected_backend": "graph",
+      "expected_backends": [
+        "graph"
+      ],
+      "actual_backend": "graph",
+      "status": "ok",
+      "actual": [
+        "Alice",
+        "Bob",
+        "Carol",
+        "Dan",
+        "Frank"
+      ],
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.13499998021870852,
+      "planning_ms": 0.07949999417178333,
+      "execution_ms": 0.05549998604692519
+    },
+    {
+      "id": "graph-leaf",
+      "repeat": 1,
+      "family": "unspecified",
+      "expected_backend": "graph",
+      "expected_backends": [
+        "graph"
+      ],
+      "actual_backend": "graph",
+      "status": "ok",
+      "actual": [],
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.13800000306218863,
+      "planning_ms": 0.08100000559352338,
+      "execution_ms": 0.05699999746866524
+    },
+    {
+      "id": "code-median",
+      "repeat": 1,
+      "family": "unspecified",
+      "expected_backend": "code",
+      "expected_backends": [
+        "code"
+      ],
+      "actual_backend": "code",
+      "status": "ok",
+      "actual": 115000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.1542000100016594,
+      "planning_ms": 0.06600000779144466,
+      "execution_ms": 0.08820000221021473
+    },
+    {
+      "id": "code-filter",
+      "repeat": 1,
+      "family": "unspecified",
+      "expected_backend": "code",
+      "expected_backends": [
+        "code"
+      ],
+      "actual_backend": "code",
+      "status": "ok",
+      "actual": 135000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.15499998698942363,
+      "planning_ms": 0.07329997606575489,
+      "execution_ms": 0.08170001092366874
+    },
+    {
+      "id": "code-sales",
+      "repeat": 1,
+      "family": "unspecified",
+      "expected_backend": "code",
+      "expected_backends": [
+        "code"
+      ],
+      "actual_backend": "code",
+      "status": "ok",
+      "actual": 100000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.13959998614154756,
+      "planning_ms": 0.06749999010935426,
+      "execution_ms": 0.0720999960321933
+    },
+    {
+      "id": "code-stdev",
+      "repeat": 1,
+      "family": "unspecified",
+      "expected_backend": "code",
+      "expected_backends": [
+        "code"
+      ],
+      "actual_backend": "code",
+      "status": "ok",
+      "actual": 18708.286933869706,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.24539997684769332,
+      "planning_ms": 0.08420000085607171,
+      "execution_ms": 0.1611999759916216
+    },
+    {
+      "id": "code-correlation",
+      "repeat": 1,
+      "family": "unspecified",
+      "expected_backend": "code",
+      "expected_backends": [
+        "code"
+      ],
+      "actual_backend": "code",
+      "status": "ok",
+      "actual": 1.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.17250000382773578,
+      "planning_ms": 0.08040000102482736,
+      "execution_ms": 0.09210000280290842
+    },
+    {
+      "id": "reject-mixed",
+      "repeat": 1,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.07369997911155224,
+      "planning_ms": 0.041799998143687844,
+      "execution_ms": 0.031899980967864394
+    },
+    {
+      "id": "reject-write",
+      "repeat": 1,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.05649999366141856,
+      "planning_ms": 0.027300004148855805,
+      "execution_ms": 0.029199989512562752
+    },
+    {
+      "id": "reject-injection",
+      "repeat": 1,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.0591999851167202,
+      "planning_ms": 0.030700000934302807,
+      "execution_ms": 0.028499984182417393
+    },
+    {
+      "id": "reject-unknown",
+      "repeat": 1,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.11920000542886555,
+      "planning_ms": 0.08850000449456275,
+      "execution_ms": 0.030700000934302807
+    },
+    {
+      "id": "reject-field",
+      "repeat": 1,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.09070002124644816,
+      "planning_ms": 0.06079999729990959,
+      "execution_ms": 0.029900023946538568
+    },
+    {
+      "id": "reject-empty",
+      "repeat": 1,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.02030000905506313,
+      "planning_ms": 0.0036999990697950125,
+      "execution_ms": 0.016600009985268116
+    },
+    {
+      "id": "reject-modifier",
+      "repeat": 1,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.09479999425821006,
+      "planning_ms": 0.06570000550709665,
+      "execution_ms": 0.029099988751113415
+    },
+    {
+      "id": "reject-group",
+      "repeat": 1,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.06239998037926853,
+      "planning_ms": 0.0337999954354018,
+      "execution_ms": 0.02859998494386673
+    },
+    {
+      "id": "reject-department",
+      "repeat": 1,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.09270000737160444,
+      "planning_ms": 0.06280001252889633,
+      "execution_ms": 0.02989999484270811
+    },
+    {
+      "id": "reject-multiple",
+      "repeat": 1,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.06960000609979033,
+      "planning_ms": 0.04080001963302493,
+      "execution_ms": 0.028799986466765404
+    },
+    {
+      "id": "reject-filtered-correlation",
+      "repeat": 1,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.1230000052601099,
+      "planning_ms": 0.0923000043258071,
+      "execution_ms": 0.030700000934302807
+    },
+    {
+      "id": "reject-unrelated",
+      "repeat": 1,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.11179997818544507,
+      "planning_ms": 0.07739997818134725,
+      "execution_ms": 0.03440000000409782
+    },
+    {
+      "id": "reject-bare-department",
+      "repeat": 1,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.08299999171867967,
+      "planning_ms": 0.05289999535307288,
+      "execution_ms": 0.030099996365606785
+    },
+    {
+      "id": "sql-count",
+      "repeat": 2,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 6,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.13760000001639128,
+      "planning_ms": 0.06299998494796455,
+      "execution_ms": 0.07460001506842673
+    },
+    {
+      "id": "sql-filter",
+      "repeat": 2,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 2,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.14250000822357833,
+      "planning_ms": 0.08100000559352338,
+      "execution_ms": 0.06150000263005495
+    },
+    {
+      "id": "sql-average",
+      "repeat": 2,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 115000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.12680000509135425,
+      "planning_ms": 0.07259999983943999,
+      "execution_ms": 0.05420000525191426
+    },
+    {
+      "id": "sql-average-sales",
+      "repeat": 2,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 100000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.13279999257065356,
+      "planning_ms": 0.07050001295283437,
+      "execution_ms": 0.06229997961781919
+    },
+    {
+      "id": "sql-average-research",
+      "repeat": 2,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 135000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.12909999350085855,
+      "planning_ms": 0.07169999298639596,
+      "execution_ms": 0.05740000051446259
+    },
+    {
+      "id": "sql-revenue",
+      "repeat": 2,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 55000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.12229999992996454,
+      "planning_ms": 0.0706000137142837,
+      "execution_ms": 0.05169998621568084
+    },
+    {
+      "id": "sql-revenue-sales",
+      "repeat": 2,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 40000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.12270000297576189,
+      "planning_ms": 0.06770002073608339,
+      "execution_ms": 0.0549999822396785
+    },
+    {
+      "id": "sql-total-sales",
+      "repeat": 2,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 55000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.12170002446509898,
+      "planning_ms": 0.05690002581104636,
+      "execution_ms": 0.06479999865405262
+    },
+    {
+      "id": "graph-path",
+      "repeat": 2,
+      "family": "unspecified",
+      "expected_backend": "graph",
+      "expected_backends": [
+        "graph"
+      ],
+      "actual_backend": "graph",
+      "status": "ok",
+      "actual": [
+        "Bob",
+        "Alice",
+        "Eve",
+        "Frank"
+      ],
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.17179999849759042,
+      "planning_ms": 0.10269999620504677,
+      "execution_ms": 0.06910000229254365
+    },
+    {
+      "id": "graph-reverse",
+      "repeat": 2,
+      "family": "unspecified",
+      "expected_backend": "graph",
+      "expected_backends": [
+        "graph"
+      ],
+      "actual_backend": "graph",
+      "status": "ok",
+      "actual": [
+        "Frank",
+        "Eve",
+        "Alice",
+        "Carol",
+        "Dan"
+      ],
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.14709998504258692,
+      "planning_ms": 0.08479997632093728,
+      "execution_ms": 0.06230000872164965
+    },
+    {
+      "id": "graph-reports",
+      "repeat": 2,
+      "family": "unspecified",
+      "expected_backend": "graph",
+      "expected_backends": [
+        "graph"
+      ],
+      "actual_backend": "graph",
+      "status": "ok",
+      "actual": [
+        "Bob",
+        "Carol",
+        "Dan"
+      ],
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.1309999788645655,
+      "planning_ms": 0.07709997589699924,
+      "execution_ms": 0.05390000296756625
+    },
+    {
+      "id": "graph-root",
+      "repeat": 2,
+      "family": "unspecified",
+      "expected_backend": "graph",
+      "expected_backends": [
+        "graph"
+      ],
+      "actual_backend": "graph",
+      "status": "ok",
+      "actual": [
+        "Alice",
+        "Bob",
+        "Carol",
+        "Dan",
+        "Frank"
+      ],
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.13440000475384295,
+      "planning_ms": 0.07890001870691776,
+      "execution_ms": 0.05549998604692519
+    },
+    {
+      "id": "graph-leaf",
+      "repeat": 2,
+      "family": "unspecified",
+      "expected_backend": "graph",
+      "expected_backends": [
+        "graph"
+      ],
+      "actual_backend": "graph",
+      "status": "ok",
+      "actual": [],
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.12139999307692051,
+      "planning_ms": 0.072900002123788,
+      "execution_ms": 0.04849999095313251
+    },
+    {
+      "id": "code-median",
+      "repeat": 2,
+      "family": "unspecified",
+      "expected_backend": "code",
+      "expected_backends": [
+        "code"
+      ],
+      "actual_backend": "code",
+      "status": "ok",
+      "actual": 115000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.15170002006925642,
+      "planning_ms": 0.06640001083724201,
+      "execution_ms": 0.08530000923201442
+    },
+    {
+      "id": "code-filter",
+      "repeat": 2,
+      "family": "unspecified",
+      "expected_backend": "code",
+      "expected_backends": [
+        "code"
+      ],
+      "actual_backend": "code",
+      "status": "ok",
+      "actual": 135000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.16270001651719213,
+      "planning_ms": 0.08379999781027436,
+      "execution_ms": 0.07890001870691776
+    },
+    {
+      "id": "code-sales",
+      "repeat": 2,
+      "family": "unspecified",
+      "expected_backend": "code",
+      "expected_backends": [
+        "code"
+      ],
+      "actual_backend": "code",
+      "status": "ok",
+      "actual": 100000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.13600001693703234,
+      "planning_ms": 0.06280001252889633,
+      "execution_ms": 0.07320000440813601
+    },
+    {
+      "id": "code-stdev",
+      "repeat": 2,
+      "family": "unspecified",
+      "expected_backend": "code",
+      "expected_backends": [
+        "code"
+      ],
+      "actual_backend": "code",
+      "status": "ok",
+      "actual": 18708.286933869706,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.23600002168677747,
+      "planning_ms": 0.07810001261532307,
+      "execution_ms": 0.1579000090714544
+    },
+    {
+      "id": "code-correlation",
+      "repeat": 2,
+      "family": "unspecified",
+      "expected_backend": "code",
+      "expected_backends": [
+        "code"
+      ],
+      "actual_backend": "code",
+      "status": "ok",
+      "actual": 1.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.16759999562054873,
+      "planning_ms": 0.07420001202262938,
+      "execution_ms": 0.09339998359791934
+    },
+    {
+      "id": "reject-mixed",
+      "repeat": 2,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.07280000136233866,
+      "planning_ms": 0.03960001049563289,
+      "execution_ms": 0.033199990866705775
+    },
+    {
+      "id": "reject-write",
+      "repeat": 2,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.053800002206116915,
+      "planning_ms": 0.024300010409206152,
+      "execution_ms": 0.029499991796910763
+    },
+    {
+      "id": "reject-injection",
+      "repeat": 2,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.05709999823011458,
+      "planning_ms": 0.02819998189806938,
+      "execution_ms": 0.028900016332045197
+    },
+    {
+      "id": "reject-unknown",
+      "repeat": 2,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.31370000215247273,
+      "planning_ms": 0.23060000967234373,
+      "execution_ms": 0.083099992480129
+    },
+    {
+      "id": "reject-field",
+      "repeat": 2,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.10239999392069876,
+      "planning_ms": 0.06829999620094895,
+      "execution_ms": 0.03409999771974981
+    },
+    {
+      "id": "reject-empty",
+      "repeat": 2,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.02950002090074122,
+      "planning_ms": 0.0042000028770416975,
+      "execution_ms": 0.025300018023699522
+    },
+    {
+      "id": "reject-modifier",
+      "repeat": 2,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.09620000491850078,
+      "planning_ms": 0.06550000398419797,
+      "execution_ms": 0.030700000934302807
+    },
+    {
+      "id": "reject-group",
+      "repeat": 2,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.06079999729990959,
+      "planning_ms": 0.03129997639916837,
+      "execution_ms": 0.02950002090074122
+    },
+    {
+      "id": "reject-department",
+      "repeat": 2,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.09200000204145908,
+      "planning_ms": 0.06120000034570694,
+      "execution_ms": 0.030800001695752144
+    },
+    {
+      "id": "reject-multiple",
+      "repeat": 2,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.06779999239370227,
+      "planning_ms": 0.03890000516548753,
+      "execution_ms": 0.02889998722821474
+    },
+    {
+      "id": "reject-filtered-correlation",
+      "repeat": 2,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.11039999662898481,
+      "planning_ms": 0.0805000017862767,
+      "execution_ms": 0.02989999484270811
+    },
+    {
+      "id": "reject-unrelated",
+      "repeat": 2,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.09590000263415277,
+      "planning_ms": 0.06620000931434333,
+      "execution_ms": 0.029699993319809437
+    },
+    {
+      "id": "reject-bare-department",
+      "repeat": 2,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.09449999197386205,
+      "planning_ms": 0.06399999256245792,
+      "execution_ms": 0.030499999411404133
+    },
+    {
+      "id": "sql-count",
+      "repeat": 3,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 6,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.36619999445974827,
+      "planning_ms": 0.18790000467561185,
+      "execution_ms": 0.17829998978413641
+    },
+    {
+      "id": "sql-filter",
+      "repeat": 3,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 2,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.2533000078983605,
+      "planning_ms": 0.13910001143813133,
+      "execution_ms": 0.11419999646022916
+    },
+    {
+      "id": "sql-average",
+      "repeat": 3,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 115000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.22040001931600273,
+      "planning_ms": 0.12500002048909664,
+      "execution_ms": 0.09539999882690609
+    },
+    {
+      "id": "sql-average-sales",
+      "repeat": 3,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 100000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.20979999681003392,
+      "planning_ms": 0.11049999739043415,
+      "execution_ms": 0.09929999941959977
+    },
+    {
+      "id": "sql-average-research",
+      "repeat": 3,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 135000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.22519999765791,
+      "planning_ms": 0.11019999510608613,
+      "execution_ms": 0.11500000255182385
+    },
+    {
+      "id": "sql-revenue",
+      "repeat": 3,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 55000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.21210001432336867,
+      "planning_ms": 0.14119999832473695,
+      "execution_ms": 0.07090001599863172
+    },
+    {
+      "id": "sql-revenue-sales",
+      "repeat": 3,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 40000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.1640999980736524,
+      "planning_ms": 0.08719999459572136,
+      "execution_ms": 0.07690000347793102
+    },
+    {
+      "id": "sql-total-sales",
+      "repeat": 3,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 55000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.1058999914675951,
+      "planning_ms": 0.05289999535307288,
+      "execution_ms": 0.05299999611452222
+    },
+    {
+      "id": "graph-path",
+      "repeat": 3,
+      "family": "unspecified",
+      "expected_backend": "graph",
+      "expected_backends": [
+        "graph"
+      ],
+      "actual_backend": "graph",
+      "status": "ok",
+      "actual": [
+        "Bob",
+        "Alice",
+        "Eve",
+        "Frank"
+      ],
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.19290001364424825,
+      "planning_ms": 0.11870000162161887,
+      "execution_ms": 0.07420001202262938
+    },
+    {
+      "id": "graph-reverse",
+      "repeat": 3,
+      "family": "unspecified",
+      "expected_backend": "graph",
+      "expected_backends": [
+        "graph"
+      ],
+      "actual_backend": "graph",
+      "status": "ok",
+      "actual": [
+        "Frank",
+        "Eve",
+        "Alice",
+        "Carol",
+        "Dan"
+      ],
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.15239999629557133,
+      "planning_ms": 0.08570001227781177,
+      "execution_ms": 0.06669998401775956
+    },
+    {
+      "id": "graph-reports",
+      "repeat": 3,
+      "family": "unspecified",
+      "expected_backend": "graph",
+      "expected_backends": [
+        "graph"
+      ],
+      "actual_backend": "graph",
+      "status": "ok",
+      "actual": [
+        "Bob",
+        "Carol",
+        "Dan"
+      ],
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.13189998571760952,
+      "planning_ms": 0.07619999814778566,
+      "execution_ms": 0.05569998756982386
+    },
+    {
+      "id": "graph-root",
+      "repeat": 3,
+      "family": "unspecified",
+      "expected_backend": "graph",
+      "expected_backends": [
+        "graph"
+      ],
+      "actual_backend": "graph",
+      "status": "ok",
+      "actual": [
+        "Alice",
+        "Bob",
+        "Carol",
+        "Dan",
+        "Frank"
+      ],
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.12840001727454364,
+      "planning_ms": 0.07229999755509198,
+      "execution_ms": 0.056100019719451666
+    },
+    {
+      "id": "graph-leaf",
+      "repeat": 3,
+      "family": "unspecified",
+      "expected_backend": "graph",
+      "expected_backends": [
+        "graph"
+      ],
+      "actual_backend": "graph",
+      "status": "ok",
+      "actual": [],
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.12119999155402184,
+      "planning_ms": 0.0651999725960195,
+      "execution_ms": 0.05600001895800233
+    },
+    {
+      "id": "code-median",
+      "repeat": 3,
+      "family": "unspecified",
+      "expected_backend": "code",
+      "expected_backends": [
+        "code"
+      ],
+      "actual_backend": "code",
+      "status": "ok",
+      "actual": 115000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.18799997633323073,
+      "planning_ms": 0.0610999995842576,
+      "execution_ms": 0.12689997674897313
+    },
+    {
+      "id": "code-filter",
+      "repeat": 3,
+      "family": "unspecified",
+      "expected_backend": "code",
+      "expected_backends": [
+        "code"
+      ],
+      "actual_backend": "code",
+      "status": "ok",
+      "actual": 135000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.15089998487383127,
+      "planning_ms": 0.0675999908708036,
+      "execution_ms": 0.08329999400302768
+    },
+    {
+      "id": "code-sales",
+      "repeat": 3,
+      "family": "unspecified",
+      "expected_backend": "code",
+      "expected_backends": [
+        "code"
+      ],
+      "actual_backend": "code",
+      "status": "ok",
+      "actual": 100000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.13960001524537802,
+      "planning_ms": 0.06350001785904169,
+      "execution_ms": 0.07609999738633633
+    },
+    {
+      "id": "code-stdev",
+      "repeat": 3,
+      "family": "unspecified",
+      "expected_backend": "code",
+      "expected_backends": [
+        "code"
+      ],
+      "actual_backend": "code",
+      "status": "ok",
+      "actual": 18708.286933869706,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.26149998302571476,
+      "planning_ms": 0.07909999112598598,
+      "execution_ms": 0.18239999189972878
+    },
+    {
+      "id": "code-correlation",
+      "repeat": 3,
+      "family": "unspecified",
+      "expected_backend": "code",
+      "expected_backends": [
+        "code"
+      ],
+      "actual_backend": "code",
+      "status": "ok",
+      "actual": 1.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.20199999562464654,
+      "planning_ms": 0.07720000576227903,
+      "execution_ms": 0.12479998986236751
+    },
+    {
+      "id": "reject-mixed",
+      "repeat": 3,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.07459998596459627,
+      "planning_ms": 0.0405999890062958,
+      "execution_ms": 0.03399999695830047
+    },
+    {
+      "id": "reject-write",
+      "repeat": 3,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.0543000060133636,
+      "planning_ms": 0.02500001573935151,
+      "execution_ms": 0.02929999027401209
+    },
+    {
+      "id": "reject-injection",
+      "repeat": 3,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.05699999746866524,
+      "planning_ms": 0.02829998265951872,
+      "execution_ms": 0.028700014809146523
+    },
+    {
+      "id": "reject-unknown",
+      "repeat": 3,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.09889999637380242,
+      "planning_ms": 0.0686999992467463,
+      "execution_ms": 0.030199997127056122
+    },
+    {
+      "id": "reject-field",
+      "repeat": 3,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.0853999808896333,
+      "planning_ms": 0.05539998528547585,
+      "execution_ms": 0.029999995604157448
+    },
+    {
+      "id": "reject-empty",
+      "repeat": 3,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.020100007532164454,
+      "planning_ms": 0.0037999998312443495,
+      "execution_ms": 0.016300007700920105
+    },
+    {
+      "id": "reject-modifier",
+      "repeat": 3,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.09109999518841505,
+      "planning_ms": 0.062000006437301636,
+      "execution_ms": 0.029099988751113415
+    },
+    {
+      "id": "reject-group",
+      "repeat": 3,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.059600017266348004,
+      "planning_ms": 0.030800001695752144,
+      "execution_ms": 0.02880001557059586
+    },
+    {
+      "id": "reject-department",
+      "repeat": 3,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.08759999764151871,
+      "planning_ms": 0.05780000356025994,
+      "execution_ms": 0.029799994081258774
+    },
+    {
+      "id": "reject-multiple",
+      "repeat": 3,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.1255999959539622,
+      "planning_ms": 0.08229998638853431,
+      "execution_ms": 0.0433000095654279
+    },
+    {
+      "id": "reject-filtered-correlation",
+      "repeat": 3,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.12739998055621982,
+      "planning_ms": 0.09339998359791934,
+      "execution_ms": 0.03399999695830047
+    },
+    {
+      "id": "reject-unrelated",
+      "repeat": 3,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.09269997826777399,
+      "planning_ms": 0.06150000263005495,
+      "execution_ms": 0.031199975637719035
+    },
+    {
+      "id": "reject-bare-department",
+      "repeat": 3,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.08159998105838895,
+      "planning_ms": 0.050799979362636805,
+      "execution_ms": 0.030800001695752144
+    },
+    {
+      "id": "sql-count",
+      "repeat": 4,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 6,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.12389998300932348,
+      "planning_ms": 0.057199998991563916,
+      "execution_ms": 0.06669998401775956
+    },
+    {
+      "id": "sql-filter",
+      "repeat": 4,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 2,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.15919998986646533,
+      "planning_ms": 0.09300000965595245,
+      "execution_ms": 0.06619998021051288
+    },
+    {
+      "id": "sql-average",
+      "repeat": 4,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 115000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.12129999231547117,
+      "planning_ms": 0.06560000474564731,
+      "execution_ms": 0.05569998756982386
+    },
+    {
+      "id": "sql-average-sales",
+      "repeat": 4,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 100000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.1221999991685152,
+      "planning_ms": 0.06439999560825527,
+      "execution_ms": 0.05780000356025994
+    },
+    {
+      "id": "sql-average-research",
+      "repeat": 4,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 135000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.11999998241662979,
+      "planning_ms": 0.06429999484680593,
+      "execution_ms": 0.05569998756982386
+    },
+    {
+      "id": "sql-revenue",
+      "repeat": 4,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 55000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.139000010676682,
+      "planning_ms": 0.08229998638853431,
+      "execution_ms": 0.05670002428814769
+    },
+    {
+      "id": "sql-revenue-sales",
+      "repeat": 4,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 40000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.12079998850822449,
+      "planning_ms": 0.06389999180100858,
+      "execution_ms": 0.056899996707215905
+    },
+    {
+      "id": "sql-total-sales",
+      "repeat": 4,
+      "family": "unspecified",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql"
+      ],
+      "actual_backend": "sql",
+      "status": "ok",
+      "actual": 55000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.10229999315924942,
+      "planning_ms": 0.050799979362636805,
+      "execution_ms": 0.05150001379661262
+    },
+    {
+      "id": "graph-path",
+      "repeat": 4,
+      "family": "unspecified",
+      "expected_backend": "graph",
+      "expected_backends": [
+        "graph"
+      ],
+      "actual_backend": "graph",
+      "status": "ok",
+      "actual": [
+        "Bob",
+        "Alice",
+        "Eve",
+        "Frank"
+      ],
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.16399999731220305,
+      "planning_ms": 0.09320001117885113,
+      "execution_ms": 0.07079998613335192
+    },
+    {
+      "id": "graph-reverse",
+      "repeat": 4,
+      "family": "unspecified",
+      "expected_backend": "graph",
+      "expected_backends": [
+        "graph"
+      ],
+      "actual_backend": "graph",
+      "status": "ok",
+      "actual": [
+        "Frank",
+        "Eve",
+        "Alice",
+        "Carol",
+        "Dan"
+      ],
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.1449999981559813,
+      "planning_ms": 0.076299998909235,
+      "execution_ms": 0.0686999992467463
+    },
+    {
+      "id": "graph-reports",
+      "repeat": 4,
+      "family": "unspecified",
+      "expected_backend": "graph",
+      "expected_backends": [
+        "graph"
+      ],
+      "actual_backend": "graph",
+      "status": "ok",
+      "actual": [
+        "Bob",
+        "Carol",
+        "Dan"
+      ],
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.1238000113517046,
+      "planning_ms": 0.06849999772384763,
+      "execution_ms": 0.05530001362785697
+    },
+    {
+      "id": "graph-root",
+      "repeat": 4,
+      "family": "unspecified",
+      "expected_backend": "graph",
+      "expected_backends": [
+        "graph"
+      ],
+      "actual_backend": "graph",
+      "status": "ok",
+      "actual": [
+        "Alice",
+        "Bob",
+        "Carol",
+        "Dan",
+        "Frank"
+      ],
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.1278999843634665,
+      "planning_ms": 0.07169999298639596,
+      "execution_ms": 0.056199991377070546
+    },
+    {
+      "id": "graph-leaf",
+      "repeat": 4,
+      "family": "unspecified",
+      "expected_backend": "graph",
+      "expected_backends": [
+        "graph"
+      ],
+      "actual_backend": "graph",
+      "status": "ok",
+      "actual": [],
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.11290001566521823,
+      "planning_ms": 0.0644999963697046,
+      "execution_ms": 0.04840001929551363
+    },
+    {
+      "id": "code-median",
+      "repeat": 4,
+      "family": "unspecified",
+      "expected_backend": "code",
+      "expected_backends": [
+        "code"
+      ],
+      "actual_backend": "code",
+      "status": "ok",
+      "actual": 115000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.15479998546652496,
+      "planning_ms": 0.06089999806135893,
+      "execution_ms": 0.09389998740516603
+    },
+    {
+      "id": "code-filter",
+      "repeat": 4,
+      "family": "unspecified",
+      "expected_backend": "code",
+      "expected_backends": [
+        "code"
+      ],
+      "actual_backend": "code",
+      "status": "ok",
+      "actual": 135000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.14600000577047467,
+      "planning_ms": 0.06709998706355691,
+      "execution_ms": 0.07890001870691776
+    },
+    {
+      "id": "code-sales",
+      "repeat": 4,
+      "family": "unspecified",
+      "expected_backend": "code",
+      "expected_backends": [
+        "code"
+      ],
+      "actual_backend": "code",
+      "status": "ok",
+      "actual": 100000.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.13749999925494194,
+      "planning_ms": 0.06260001100599766,
+      "execution_ms": 0.07489998824894428
+    },
+    {
+      "id": "code-stdev",
+      "repeat": 4,
+      "family": "unspecified",
+      "expected_backend": "code",
+      "expected_backends": [
+        "code"
+      ],
+      "actual_backend": "code",
+      "status": "ok",
+      "actual": 18708.286933869706,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.24969998048618436,
+      "planning_ms": 0.08070000330917537,
+      "execution_ms": 0.168999977177009
+    },
+    {
+      "id": "code-correlation",
+      "repeat": 4,
+      "family": "unspecified",
+      "expected_backend": "code",
+      "expected_backends": [
+        "code"
+      ],
+      "actual_backend": "code",
+      "status": "ok",
+      "actual": 1.0,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.19039999460801482,
+      "planning_ms": 0.0751999905332923,
+      "execution_ms": 0.11520000407472253
+    },
+    {
+      "id": "reject-mixed",
+      "repeat": 4,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.07589999586343765,
+      "planning_ms": 0.0405999890062958,
+      "execution_ms": 0.03530000685714185
+    },
+    {
+      "id": "reject-write",
+      "repeat": 4,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.055100012104958296,
+      "planning_ms": 0.024800014216452837,
+      "execution_ms": 0.03029999788850546
+    },
+    {
+      "id": "reject-injection",
+      "repeat": 4,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.05699999746866524,
+      "planning_ms": 0.028099981136620045,
+      "execution_ms": 0.028900016332045197
+    },
+    {
+      "id": "reject-unknown",
+      "repeat": 4,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.0987000239547342,
+      "planning_ms": 0.06910000229254365,
+      "execution_ms": 0.029600021662190557
+    },
+    {
+      "id": "reject-field",
+      "repeat": 4,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.09519999730400741,
+      "planning_ms": 0.06510000093840063,
+      "execution_ms": 0.030099996365606785
+    },
+    {
+      "id": "reject-empty",
+      "repeat": 4,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.02020000829361379,
+      "planning_ms": 0.0037999998312443495,
+      "execution_ms": 0.016400008462369442
+    },
+    {
+      "id": "reject-modifier",
+      "repeat": 4,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.09040001896210015,
+      "planning_ms": 0.061400001868605614,
+      "execution_ms": 0.029000017093494534
+    },
+    {
+      "id": "reject-group",
+      "repeat": 4,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.059699988923966885,
+      "planning_ms": 0.031000003218650818,
+      "execution_ms": 0.028699985705316067
+    },
+    {
+      "id": "reject-department",
+      "repeat": 4,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.09200000204145908,
+      "planning_ms": 0.06019999273121357,
+      "execution_ms": 0.031800009310245514
+    },
+    {
+      "id": "reject-multiple",
+      "repeat": 4,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.06880000000819564,
+      "planning_ms": 0.03920000744983554,
+      "execution_ms": 0.0295999925583601
+    },
+    {
+      "id": "reject-filtered-correlation",
+      "repeat": 4,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.11029999586753547,
+      "planning_ms": 0.08019999950192869,
+      "execution_ms": 0.030099996365606785
+    },
+    {
+      "id": "reject-unrelated",
+      "repeat": 4,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.08870000601746142,
+      "planning_ms": 0.05849997978657484,
+      "execution_ms": 0.03020002623088658
+    },
+    {
+      "id": "reject-bare-department",
+      "repeat": 4,
+      "family": "unspecified",
+      "expected_backend": "abstain",
+      "expected_backends": [
+        "abstain"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.0805000017862767,
+      "planning_ms": 0.05060000694356859,
+      "execution_ms": 0.02989999484270811
+    }
+  ]
+}
