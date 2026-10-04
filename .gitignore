@@ -7,3 +7,8 @@ dist/
 build/
 .DS_Store
 
+# Downloaded research data; keep code and small authored fixtures in Git.
+benchmarks/*.csv
+benchmarks/*.sqlite
+benchmarks/*.parquet
+benchmarks/*.tar.zst
