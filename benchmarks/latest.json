@@ -1,0 +1,319 @@
+{
+  "dataset_label": "Synthetic development regression set; not held-out research evidence",
+  "cases": 31,
+  "route_accuracy": 1.0,
+  "joint_accuracy": 1.0,
+  "coverage": 0.5806451612903226,
+  "answered_joint_accuracy": 1.0,
+  "abstention_precision": 1.0,
+  "sql_only_route_accuracy": 0.25806451612903225,
+  "baseline_note": "SQL-only route label baseline, not SQL execution/expressivity comparison.",
+  "latency_note": "Per-query planning plus execution; excludes fixture initialization.",
+  "confusion_matrix": {
+    "sql": {
+      "sql": 8,
+      "graph": 0,
+      "code": 0,
+      "abstain": 0
+    },
+    "graph": {
+      "sql": 0,
+      "graph": 5,
+      "code": 0,
+      "abstain": 0
+    },
+    "code": {
+      "sql": 0,
+      "graph": 0,
+      "code": 5,
+      "abstain": 0
+    },
+    "abstain": {
+      "sql": 0,
+      "graph": 0,
+      "code": 0,
+      "abstain": 13
+    }
+  },
+  "results": [
+    {
+      "id": "sql-count",
+      "expected_backend": "sql",
+      "actual_backend": "sql",
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.86
+    },
+    {
+      "id": "sql-filter",
+      "expected_backend": "sql",
+      "actual_backend": "sql",
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.087
+    },
+    {
+      "id": "sql-average",
+      "expected_backend": "sql",
+      "actual_backend": "sql",
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.051
+    },
+    {
+      "id": "sql-average-sales",
+      "expected_backend": "sql",
+      "actual_backend": "sql",
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.072
+    },
+    {
+      "id": "sql-average-research",
+      "expected_backend": "sql",
+      "actual_backend": "sql",
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.03
+    },
+    {
+      "id": "sql-revenue",
+      "expected_backend": "sql",
+      "actual_backend": "sql",
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.029
+    },
+    {
+      "id": "sql-revenue-sales",
+      "expected_backend": "sql",
+      "actual_backend": "sql",
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.029
+    },
+    {
+      "id": "sql-total-sales",
+      "expected_backend": "sql",
+      "actual_backend": "sql",
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.02
+    },
+    {
+      "id": "graph-path",
+      "expected_backend": "graph",
+      "actual_backend": "graph",
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.127
+    },
+    {
+      "id": "graph-reverse",
+      "expected_backend": "graph",
+      "actual_backend": "graph",
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.037
+    },
+    {
+      "id": "graph-reports",
+      "expected_backend": "graph",
+      "actual_backend": "graph",
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.075
+    },
+    {
+      "id": "graph-root",
+      "expected_backend": "graph",
+      "actual_backend": "graph",
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.029
+    },
+    {
+      "id": "graph-leaf",
+      "expected_backend": "graph",
+      "actual_backend": "graph",
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.024
+    },
+    {
+      "id": "code-median",
+      "expected_backend": "code",
+      "actual_backend": "code",
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.125
+    },
+    {
+      "id": "code-filter",
+      "expected_backend": "code",
+      "actual_backend": "code",
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.04
+    },
+    {
+      "id": "code-sales",
+      "expected_backend": "code",
+      "actual_backend": "code",
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.03
+    },
+    {
+      "id": "code-stdev",
+      "expected_backend": "code",
+      "actual_backend": "code",
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.092
+    },
+    {
+      "id": "code-correlation",
+      "expected_backend": "code",
+      "actual_backend": "code",
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.079
+    },
+    {
+      "id": "reject-mixed",
+      "expected_backend": "abstain",
+      "actual_backend": "abstain",
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.015
+    },
+    {
+      "id": "reject-write",
+      "expected_backend": "abstain",
+      "actual_backend": "abstain",
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.009
+    },
+    {
+      "id": "reject-injection",
+      "expected_backend": "abstain",
+      "actual_backend": "abstain",
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.011
+    },
+    {
+      "id": "reject-unknown",
+      "expected_backend": "abstain",
+      "actual_backend": "abstain",
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.02
+    },
+    {
+      "id": "reject-field",
+      "expected_backend": "abstain",
+      "actual_backend": "abstain",
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.017
+    },
+    {
+      "id": "reject-empty",
+      "expected_backend": "abstain",
+      "actual_backend": "abstain",
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.004
+    },
+    {
+      "id": "reject-modifier",
+      "expected_backend": "abstain",
+      "actual_backend": "abstain",
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.02
+    },
+    {
+      "id": "reject-group",
+      "expected_backend": "abstain",
+      "actual_backend": "abstain",
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.011
+    },
+    {
+      "id": "reject-department",
+      "expected_backend": "abstain",
+      "actual_backend": "abstain",
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.02
+    },
+    {
+      "id": "reject-multiple",
+      "expected_backend": "abstain",
+      "actual_backend": "abstain",
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.013
+    },
+    {
+      "id": "reject-filtered-correlation",
+      "expected_backend": "abstain",
+      "actual_backend": "abstain",
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.025
+    },
+    {
+      "id": "reject-unrelated",
+      "expected_backend": "abstain",
+      "actual_backend": "abstain",
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.018
+    },
+    {
+      "id": "reject-bare-department",
+      "expected_backend": "abstain",
+      "actual_backend": "abstain",
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.016
+    }
+  ]
+}
