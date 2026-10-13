@@ -34,6 +34,8 @@ class Engine:
         if source == "synthetic" and policy != "router":
             self.close()
             raise ValueError(f"Fixed policies are not implemented for {source}")
+        from .catalog import build_catalog
+        self.catalog = build_catalog(self)
         if policy == "cost-aware":
             try:
                 from .costs import CostPlanner, load_profile
@@ -41,7 +43,13 @@ class Engine:
                 if cost_profile is None:
                     raise ValueError("Cost-aware policy requires cost_profile")
                 self.cost_profile = load_profile(cost_profile)
-                self.planner = CostPlanner(self.planner, self.cost_profile, source, source_fingerprint(self), self.backends)
+                self.catalog.costs = {'status':'measured_training', 'units':'execution_ms',
+                                      'operation_costs':self.cost_profile['operation_costs_ms'],
+                                      'unseen_operation_fallback':self.cost_profile['fallback_costs_ms'],
+                                      'training_dataset_sha256':self.cost_profile['train_dataset_sha256'],
+                                      'source_hashes':self.cost_profile['source_hashes'],
+                                      'calibrated_at':self.cost_profile['created_at'], 'monetary_cost':None}
+                self.planner = CostPlanner(self.planner, self.cost_profile, source, source_fingerprint(self), self.backends, catalog=self.catalog)
             except Exception:
                 self.close()
                 raise
@@ -50,12 +58,14 @@ class Engine:
     def query(self, question):
         started = time.perf_counter()
         plan = self.planner.plan(question)
+        self.catalog.validate_plan(plan)
         planned = time.perf_counter()
         response = {"question": question, "source": self.source, "plan": plan.to_dict(), "status": "abstained", "result": None}
         if plan.backend != "abstain":
             if plan.backend not in self.backends:
                 raise ValueError("Unknown backend")
             response["result"] = self.backends[plan.backend].execute(plan)
+            self.catalog.validate_result(plan, response['result'])
             response["status"] = "ok"
         finished = time.perf_counter()
         response["planning_ms"] = (planned - started) * 1000

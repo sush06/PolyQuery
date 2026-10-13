@@ -63,7 +63,7 @@ def calibrate(engine, dataset, *, repeats=5, warmup=1):
 
 
 class CostPlanner:
-    def __init__(self, planner, profile, source, fingerprint, backends):
+    def __init__(self, planner, profile, source, fingerprint, backends, catalog=None):
         if profile.get('profile_version') != 1 or profile.get('source') != source or profile.get('source_hashes') != fingerprint:
             raise ValueError('Cost profile/source mismatch')
         defaults = profile.get('fallback_costs_ms', {})
@@ -76,6 +76,7 @@ class CostPlanner:
             raise ValueError('Cost profile requires fallback estimates')
         self.planner, self.profile = planner, profile
         self.backends = backends
+        self.catalog = catalog
 
     def plan(self, question):
         plan = self.planner.plan(question)
@@ -84,6 +85,8 @@ class CostPlanner:
         known = plan.operation in self.profile['operation_costs_ms']
         costs = self.profile['operation_costs_ms'].get(plan.operation, self.profile['fallback_costs_ms'])
         costs = {b: c for b, c in costs.items() if plan.operation in getattr(self.backends[b], 'operations', {plan.operation})}
+        if self.catalog is not None:
+            costs = {b:c for b,c in costs.items() if b in self.catalog.capable_backends(plan.operation)}
         if not costs:
             return Plan(plan.backend, plan.operation, plan.parameters, 'No measured cost for a capable strategy; retaining the original route.')
         backend = min(costs, key=lambda b: (costs[b], b))

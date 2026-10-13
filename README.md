@@ -22,6 +22,10 @@ The [challenge evaluation](docs/challenge-evaluation.md) adds disjoint operation
 families, paraphrases, compound requests, and a cost policy calibrated only on
 training data. It reports coverage and execution regret alongside accuracy.
 
+[Planner contracts](docs/planner-contracts.md) define typed operation parameters,
+result shapes, entity identity, schemas, and capability/cost catalogs. Inspect
+them with `python -m polyquery.cli describe-source`.
+
 ## What works today
 
 | Question | Selected backend | Execution artifact |

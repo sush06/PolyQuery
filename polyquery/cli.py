@@ -24,6 +24,9 @@ def main():
     query.add_argument("--cost-profile", type=Path)
     inspect = sub.add_parser("inspect-source")
     source_options(inspect, "ldbc")
+    describe = sub.add_parser('describe-source')
+    source_options(describe)
+    describe.add_argument('--cost-profile', type=Path)
     for name in ("evaluate", "compare", "calibrate"):
         command = sub.add_parser(name)
         source_options(command)
@@ -62,11 +65,14 @@ def main():
             result = evaluate_policies({policy: partial(Engine, **kwargs, policy=policy, cost_profile=args.cost_profile) for policy in policies}, dataset,
                                        repeats=args.repeats, warmup=args.warmup, oracle_repeats=args.oracle_repeats)
         else:
-            with Engine(**kwargs, policy=getattr(args, "policy", "router"), cost_profile=getattr(args, "cost_profile", None)) as engine:
+            selected_policy = 'cost-aware' if args.command == 'describe-source' and args.cost_profile else getattr(args, "policy", "router")
+            with Engine(**kwargs, policy=selected_policy, cost_profile=getattr(args, "cost_profile", None)) as engine:
                 if args.command == "query":
                     result = engine.query(args.question)
                 elif args.command == "inspect-source":
                     result = engine.source_metadata
+                elif args.command == 'describe-source':
+                    result = engine.catalog.to_dict()
                 elif args.command == "calibrate":
                     from .costs import calibrate
                     result = calibrate(engine, json.loads(args.dataset.read_text(encoding="utf-8-sig")), repeats=args.repeats, warmup=args.warmup)

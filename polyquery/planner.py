@@ -6,6 +6,7 @@ External planners can implement Planner and return the same validated Plan.
 import re
 from dataclasses import asdict, dataclass, field
 from typing import Protocol
+import math
 
 from .data import EMPLOYEES
 
@@ -20,6 +21,17 @@ class Plan:
 
     def to_dict(self):
         return asdict(self)
+
+    @classmethod
+    def from_dict(cls, value):
+        if not isinstance(value, dict) or not {'backend', 'operation'} <= value.keys() or value.keys() - {'backend','operation','parameters','reason','scores'}:
+            raise ValueError('Plan requires backend/operation and only documented fields')
+        if type(value['backend']) is not str or type(value['operation']) is not str or not isinstance(value.get('parameters', {}), dict) or type(value.get('reason', '')) is not str:
+            raise ValueError('Invalid plan field types')
+        scores = value.get('scores', {})
+        if not isinstance(scores, dict) or any(type(k) is not str or type(v) not in (int,float) or not math.isfinite(v) for k,v in scores.items()):
+            raise ValueError('Plan scores must be finite numeric values')
+        return cls(value['backend'],value['operation'],dict(value.get('parameters',{})),value.get('reason',''),dict(scores))
 
 
 class Planner(Protocol):

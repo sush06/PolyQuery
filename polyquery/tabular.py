@@ -173,9 +173,16 @@ def chinook_backends(path):
             if not columns <= present:
                 raise ValueError(f"Chinook missing required table/columns: {table}")
         code = ChinookCode(db)
+        schema = {}
+        for name, in db.execute("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'"):
+            quoted = name.replace('"', '""')
+            schema[name] = {'fields': [dict(row) for row in db.execute(f'PRAGMA table_info("{quoted}")')],
+                            'foreign_keys': [dict(row) for row in db.execute(f'PRAGMA foreign_key_list("{quoted}")')],
+                            'in_execution_projection': name in code.tables}
         metadata = {"name": "chinook", "database_file": str(path),
                     "rows": {name: len(rows) for name, rows in code.tables.items()},
                     "projection": "Track, Customer, Invoice, Genre; full tables"}
+        metadata['schema'] = schema
         lock_reads(db)
         return {"sql": TabularSQL(db, CHINOOK_SQL), "code": code}, metadata
     except Exception:
@@ -193,6 +200,7 @@ def taxi_backends(path):
     path = Path(path).resolve()
     columns = ["fare_amount", "total_amount", "trip_distance"]
     with pq.ParquetFile(path) as parquet:
+        file_schema = [{'name':field.name,'type':str(field.type),'nullable':field.nullable} for field in parquet.schema_arrow]
         if not set(columns) <= set(parquet.schema_arrow.names):
             raise ValueError("Taxi Parquet is missing required numeric columns")
         table = parquet.read(columns=columns).cast(pa.schema([(c, pa.float64()) for c in columns]))
@@ -212,6 +220,7 @@ def taxi_backends(path):
                     "columns": columns, "projection": "All rows; nonfinite numbers treated as null; negative and zero values retained",
                     "sql_indexes": ["trips_fare_idx(fare_amount)"],
                     "nulls": {c: table[c].null_count for c in columns}, "pyarrow_version": pa.__version__}
+        metadata['file_schema'] = file_schema
         lock_reads(db)
         return {"sql": TabularSQL(db, TAXI_SQL), "code": TaxiCode(table)}, metadata
     except Exception:
