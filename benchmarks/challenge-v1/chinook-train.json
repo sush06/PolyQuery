@@ -1,0 +1,59 @@
+{
+  "metadata": {
+    "source": "chinook",
+    "split": "train",
+    "source_hashes": {
+      "database_file": "7651ba378ac2fcd0dfc3c66fb101f7a7eed3ba39a612ec642b96e20702061f15"
+    },
+    "label": "chinook train: frozen authored challenge; computational gold, not independently reviewed",
+    "family_rule": "All variants of an operation family stay in one split; compound tasks are separate families.",
+    "annotation_status": "requires_independent_review"
+  },
+  "cases": [
+    {
+      "question": "How many tracks?",
+      "expected": 3503,
+      "backends": [
+        "sql",
+        "code"
+      ],
+      "id": "count_tracks-canonical",
+      "family": "chinook/count_tracks",
+      "category": "canonical",
+      "reference_plan": {
+        "operation": "count_tracks",
+        "parameters": {}
+      }
+    },
+    {
+      "question": "Total invoice revenue",
+      "expected": 2328.600000000004,
+      "backends": [
+        "sql",
+        "code"
+      ],
+      "id": "revenue-canonical",
+      "family": "chinook/revenue",
+      "category": "canonical",
+      "reference_plan": {
+        "operation": "revenue",
+        "parameters": {}
+      }
+    },
+    {
+      "question": "Average invoice total",
+      "expected": 5.651941747572825,
+      "backends": [
+        "sql",
+        "code"
+      ],
+      "id": "mean-canonical",
+      "family": "chinook/mean",
+      "category": "canonical",
+      "reference_plan": {
+        "operation": "mean",
+        "parameters": {}
+      }
+    }
+  ]
+}

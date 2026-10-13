@@ -26,6 +26,22 @@ training data. It reports coverage and execution regret alongside accuracy.
 result shapes, entity identity, schemas, and capability/cost catalogs. Inspect
 them with `python -m polyquery.cli describe-source`.
 
+An [optional LLM planner](docs/llm-planner.md) maps natural-language questions to
+catalog-validated plans. Enable it with `--planner llm --model MODEL_ID`; the
+keyword baseline stays the default. Live runs require the `.[llm]` extra and an
+`OPENAI_API_KEY` environment variable.
+
+## LLM routing
+
+An optional catalog-aware LLM planner supports paraphrases with validated structured
+plans. Install `.[llm]`, set `OPENAI_API_KEY`, and use `--planner llm --model YOUR_MODEL_ID`.
+Add `--llm-fallback keyword` for explicit fallback on provider or output failures.
+See [setup, boundaries, and comparison commands](docs/llm-planner.md). Keyword routing
+remains the offline default; multi-stage planning is a future milestone. Local
+OpenAI-compatible models use `--llm-api chat --llm-base-url http://localhost:11434/v1`
+and need no OpenAI SDK or API key. Add `--policy cost-aware --cost-profile PATH`
+to select an execution backend from measured costs after LLM intent planning.
+
 ## What works today
 
 | Question | Selected backend | Execution artifact |
@@ -43,7 +59,7 @@ The CLI returns the selected route, matching features, explanation, execution ar
 
 ## Scope and interpretation
 
-The router uses keyword rules and extracts parameters for a fixed set of operations. The default dataset contains six synthetic employees and four sales entries. Graph queries run in memory; there is no Neo4j connection. The Python backend constructs statistical expressions and interprets them through an AST allowlist. It does not run arbitrary programs.
+The default router uses keyword rules and extracts parameters for a fixed set of operations. The default dataset contains six synthetic employees and four sales entries. Graph queries run in memory; there is no Neo4j connection. The Python backend constructs statistical expressions and interprets them through an AST allowlist. It does not run arbitrary programs.
 
 Supported operations: employee count/list, mean salary, total revenue, relationship paths, downstream reports, salary median/sample standard deviation, and Pearson salary/experience correlation. SQL and univariate statistics accept one known department filter. Correlation and graph traversal do not support department filters. Unsupported and mixed intents abstain. Some unknown modifiers can still evade the heuristic detector; use the supported examples rather than treating this as a semantic correctness guarantee.
 
@@ -94,7 +110,7 @@ flowchart TD
     C --> R
 ```
 
-Alternative planners implement the `Planner` protocol and return a `Plan`. Backends validate operations and parameters before execution. The current planner runs locally without model calls.
+Alternative planners implement the `Planner` protocol and return a `Plan`. Backends validate operations and parameters before execution. The default keyword planner runs locally; the optional LLM planner calls OpenAI for plan selection.
 
 ## Evaluation
 
@@ -110,10 +126,10 @@ References: [Python SQLite API](https://docs.python.org/3/library/sqlite3.html),
 
 ## Next milestones
 
-- Schema-aware typed plans and explicit backend capability/cost catalogs.
+- Expand the existing typed plans and backend capability/cost catalogs.
 - Real PostgreSQL and Neo4j adapters over equivalent datasets.
 - Held-out paraphrases, unseen schemas, and adversarial queries labeled independently.
-- Trained/LLM router compared with keyword, SQL-only, random, and oracle baselines.
+- Evaluate the optional LLM router against keyword, fixed-backend, and oracle baselines on held-out questions.
 - Multi-stage plans such as graph traversal → relational lookup → statistical analysis.
 - Container isolation and resource limits before expanding to arbitrary generated code.
 

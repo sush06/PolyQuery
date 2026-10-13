@@ -1,0 +1,87 @@
+{
+  "profile_version": 1,
+  "source": "ldbc",
+  "source_hashes": {
+    "people_file": "3ce1587334c86f6ca741de8cdeacfd79c4edd2aa62817cccb1b329fa5b066346",
+    "edges_file": "2c5d7c023d637bf87f5fb809acc9f468dda38a99f030837c20a21e851604d24c"
+  },
+  "train_dataset_sha256": "d43cb51b0949a8aecf42094a8283764fe19c8c76e96559273ee00182abdc3b83",
+  "created_at": "2026-10-04T23:19:06.417981+00:00",
+  "python": "3.11.4",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "repeats": 5,
+  "warmup": 1,
+  "operation_costs_ms": {
+    "count_people": {
+      "graph": 0.011399999493733048,
+      "sql": 0.012500007869675756
+    },
+    "friends": {
+      "graph": 0.00790000194683671,
+      "sql": 0.012400007108226418
+    }
+  },
+  "fallback_costs_ms": {
+    "graph": 0.00965000072028488,
+    "sql": 0.012450007488951087
+  },
+  "measurements": [
+    {
+      "id": "people",
+      "operation": "count_people",
+      "backend": "graph",
+      "correct": true,
+      "samples_ms": [
+        0.011399999493733048,
+        0.014899997040629387,
+        0.015700003132224083,
+        0.006399990525096655,
+        0.006100017344579101
+      ],
+      "errors": []
+    },
+    {
+      "id": "people",
+      "operation": "count_people",
+      "backend": "sql",
+      "correct": true,
+      "samples_ms": [
+        0.020299979951232672,
+        0.013800017768517137,
+        0.012500007869675756,
+        0.01200000406242907,
+        0.011600001016631722
+      ],
+      "errors": []
+    },
+    {
+      "id": "friends",
+      "operation": "friends",
+      "backend": "graph",
+      "correct": true,
+      "samples_ms": [
+        0.017300015315413475,
+        0.00969998654909432,
+        0.00790000194683671,
+        0.007099995855242014,
+        0.007700000423938036
+      ],
+      "errors": []
+    },
+    {
+      "id": "friends",
+      "operation": "friends",
+      "backend": "sql",
+      "correct": true,
+      "samples_ms": [
+        0.02789997961372137,
+        0.014400022337213159,
+        0.012400007108226418,
+        0.011999974958598614,
+        0.01200000406242907
+      ],
+      "errors": []
+    }
+  ],
+  "note": "Execution-only medians from training reference plans; no validation/test answers or timings used. Unseen operations use backend-wide training medians; this can be inaccurate."
+}

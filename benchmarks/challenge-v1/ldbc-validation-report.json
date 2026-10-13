@@ -1,0 +1,365 @@
+{
+  "report_version": 2,
+  "created_at": "2026-10-04T23:23:16.811853+00:00",
+  "dataset_label": "ldbc validation: frozen authored challenge; computational gold, not independently reviewed",
+  "dataset_metadata": {
+    "source": "ldbc",
+    "split": "validation",
+    "source_hashes": {
+      "people_file": "3ce1587334c86f6ca741de8cdeacfd79c4edd2aa62817cccb1b329fa5b066346",
+      "edges_file": "2c5d7c023d637bf87f5fb809acc9f468dda38a99f030837c20a21e851604d24c"
+    },
+    "label": "ldbc validation: frozen authored challenge; computational gold, not independently reviewed",
+    "family_rule": "All variants of an operation family stay in one split; compound tasks are separate families.",
+    "annotation_status": "requires_independent_review"
+  },
+  "dataset_sha256": "8122c3bfc7c7cc8326d191813eac17454167277888455b50f76647c9e8f5f9d5",
+  "source": {
+    "name": "ldbc",
+    "people_file": "C:\\Users\\sushm\\Downloads\\PolyQuery\\polyquery\\benchmarks\\people_0_0.csv",
+    "edges_file": "C:\\Users\\sushm\\Downloads\\PolyQuery\\polyquery\\benchmarks\\person_knows_person_0_0.csv",
+    "people": 1528,
+    "edge_rows": 14073,
+    "undirected_edges": 14073,
+    "projection": "Undirected knows; duplicate edges collapsed; supplied files only"
+  },
+  "policy": "cost-aware",
+  "python": "3.11.4",
+  "source_hashes": {
+    "people_file": "3ce1587334c86f6ca741de8cdeacfd79c4edd2aa62817cccb1b329fa5b066346",
+    "edges_file": "2c5d7c023d637bf87f5fb809acc9f468dda38a99f030837c20a21e851604d24c"
+  },
+  "initialization_ms": 607.3449999967124,
+  "cost_profile": {
+    "profile_version": 1,
+    "source": "ldbc",
+    "source_hashes": {
+      "people_file": "3ce1587334c86f6ca741de8cdeacfd79c4edd2aa62817cccb1b329fa5b066346",
+      "edges_file": "2c5d7c023d637bf87f5fb809acc9f468dda38a99f030837c20a21e851604d24c"
+    },
+    "train_dataset_sha256": "d43cb51b0949a8aecf42094a8283764fe19c8c76e96559273ee00182abdc3b83",
+    "created_at": "2026-10-04T23:19:06.417981+00:00",
+    "python": "3.11.4",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "repeats": 5,
+    "warmup": 1,
+    "operation_costs_ms": {
+      "count_people": {
+        "graph": 0.011399999493733048,
+        "sql": 0.012500007869675756
+      },
+      "friends": {
+        "graph": 0.00790000194683671,
+        "sql": 0.012400007108226418
+      }
+    },
+    "fallback_costs_ms": {
+      "graph": 0.00965000072028488,
+      "sql": 0.012450007488951087
+    },
+    "measurements": [
+      {
+        "id": "people",
+        "operation": "count_people",
+        "backend": "graph",
+        "correct": true,
+        "samples_ms": [
+          0.011399999493733048,
+          0.014899997040629387,
+          0.015700003132224083,
+          0.006399990525096655,
+          0.006100017344579101
+        ],
+        "errors": []
+      },
+      {
+        "id": "people",
+        "operation": "count_people",
+        "backend": "sql",
+        "correct": true,
+        "samples_ms": [
+          0.020299979951232672,
+          0.013800017768517137,
+          0.012500007869675756,
+          0.01200000406242907,
+          0.011600001016631722
+        ],
+        "errors": []
+      },
+      {
+        "id": "friends",
+        "operation": "friends",
+        "backend": "graph",
+        "correct": true,
+        "samples_ms": [
+          0.017300015315413475,
+          0.00969998654909432,
+          0.00790000194683671,
+          0.007099995855242014,
+          0.007700000423938036
+        ],
+        "errors": []
+      },
+      {
+        "id": "friends",
+        "operation": "friends",
+        "backend": "sql",
+        "correct": true,
+        "samples_ms": [
+          0.02789997961372137,
+          0.014400022337213159,
+          0.012400007108226418,
+          0.011999974958598614,
+          0.01200000406242907
+        ],
+        "errors": []
+      }
+    ],
+    "note": "Execution-only medians from training reference plans; no validation/test answers or timings used. Unseen operations use backend-wide training medians; this can be inaccurate."
+  },
+  "platform": "Windows-10-10.0.26200-SP0",
+  "cases": 1,
+  "repeats": 1,
+  "warmup": 0,
+  "runs": 1,
+  "answer_accuracy": 0.0,
+  "answerable_accuracy": 0.0,
+  "route_accuracy": 0.0,
+  "joint_accuracy": 0.0,
+  "coverage": 0.0,
+  "answered_accuracy": null,
+  "answered_joint_accuracy": null,
+  "error_rate": 0.0,
+  "abstention_precision": 0.0,
+  "abstention_recall": null,
+  "latency": {
+    "latency_ms": {
+      "samples": 1,
+      "mean": 4.95890001184307,
+      "p50": 4.95890001184307,
+      "p95": 4.95890001184307
+    },
+    "planning_ms": {
+      "samples": 1,
+      "mean": 4.798300011316314,
+      "p50": 4.798300011316314,
+      "p95": 4.798300011316314
+    },
+    "execution_ms": {
+      "samples": 1,
+      "mean": 0.16060000052675605,
+      "p50": 0.16060000052675605,
+      "p95": 0.16060000052675605
+    }
+  },
+  "by_family": {
+    "ldbc/two_hop": {
+      "runs": 1,
+      "answer_accuracy": 0.0,
+      "answerable_accuracy": 0.0,
+      "route_accuracy": 0.0,
+      "joint_accuracy": 0.0,
+      "coverage": 0.0,
+      "answered_accuracy": null,
+      "answered_joint_accuracy": null,
+      "error_rate": 0.0,
+      "abstention_precision": 0.0,
+      "abstention_recall": null,
+      "latency": {
+        "latency_ms": {
+          "samples": 1,
+          "mean": 4.95890001184307,
+          "p50": 4.95890001184307,
+          "p95": 4.95890001184307
+        },
+        "planning_ms": {
+          "samples": 1,
+          "mean": 4.798300011316314,
+          "p50": 4.798300011316314,
+          "p95": 4.798300011316314
+        },
+        "execution_ms": {
+          "samples": 1,
+          "mean": 0.16060000052675605,
+          "p50": 0.16060000052675605,
+          "p95": 0.16060000052675605
+        }
+      }
+    }
+  },
+  "by_category": {
+    "capability_gap": {
+      "runs": 1,
+      "answer_accuracy": 0.0,
+      "answerable_accuracy": 0.0,
+      "route_accuracy": 0.0,
+      "joint_accuracy": 0.0,
+      "coverage": 0.0,
+      "answered_accuracy": null,
+      "answered_joint_accuracy": null,
+      "error_rate": 0.0,
+      "abstention_precision": 0.0,
+      "abstention_recall": null,
+      "latency": {
+        "latency_ms": {
+          "samples": 1,
+          "mean": 4.95890001184307,
+          "p50": 4.95890001184307,
+          "p95": 4.95890001184307
+        },
+        "planning_ms": {
+          "samples": 1,
+          "mean": 4.798300011316314,
+          "p50": 4.798300011316314,
+          "p95": 4.798300011316314
+        },
+        "execution_ms": {
+          "samples": 1,
+          "mean": 0.16060000052675605,
+          "p50": 0.16060000052675605,
+          "p95": 0.16060000052675605
+        }
+      }
+    }
+  },
+  "regret": {
+    "samples": 0,
+    "mean": null,
+    "p50": null,
+    "p95": null,
+    "oracle_repeats": 0,
+    "note": "Correct answered runs with reference plans only. Execution-stage time minus fastest correct post-run reference strategy median; negative noise clipped, signed deltas retained. Unanswered/capability-gap cases are excluded, not zero-cost successes."
+  },
+  "by_expected_backend": {
+    "sql": {
+      "runs": 1,
+      "answer_accuracy": 0.0,
+      "answerable_accuracy": 0.0,
+      "route_accuracy": 0.0,
+      "joint_accuracy": 0.0,
+      "coverage": 0.0,
+      "answered_accuracy": null,
+      "answered_joint_accuracy": null,
+      "error_rate": 0.0,
+      "abstention_precision": 0.0,
+      "abstention_recall": null,
+      "latency": {
+        "latency_ms": {
+          "samples": 1,
+          "mean": 4.95890001184307,
+          "p50": 4.95890001184307,
+          "p95": 4.95890001184307
+        },
+        "planning_ms": {
+          "samples": 1,
+          "mean": 4.798300011316314,
+          "p50": 4.798300011316314,
+          "p95": 4.798300011316314
+        },
+        "execution_ms": {
+          "samples": 1,
+          "mean": 0.16060000052675605,
+          "p50": 0.16060000052675605,
+          "p95": 0.16060000052675605
+        }
+      }
+    },
+    "graph": {
+      "runs": 1,
+      "answer_accuracy": 0.0,
+      "answerable_accuracy": 0.0,
+      "route_accuracy": 0.0,
+      "joint_accuracy": 0.0,
+      "coverage": 0.0,
+      "answered_accuracy": null,
+      "answered_joint_accuracy": null,
+      "error_rate": 0.0,
+      "abstention_precision": 0.0,
+      "abstention_recall": null,
+      "latency": {
+        "latency_ms": {
+          "samples": 1,
+          "mean": 4.95890001184307,
+          "p50": 4.95890001184307,
+          "p95": 4.95890001184307
+        },
+        "planning_ms": {
+          "samples": 1,
+          "mean": 4.798300011316314,
+          "p50": 4.798300011316314,
+          "p95": 4.798300011316314
+        },
+        "execution_ms": {
+          "samples": 1,
+          "mean": 0.16060000052675605,
+          "p50": 0.16060000052675605,
+          "p95": 0.16060000052675605
+        }
+      }
+    }
+  },
+  "confusion_matrix": {
+    "sql": {
+      "sql": 0,
+      "graph": 0,
+      "code": 0,
+      "abstain": 0,
+      "error": 0
+    },
+    "graph": {
+      "sql": 0,
+      "graph": 0,
+      "code": 0,
+      "abstain": 1,
+      "error": 0
+    },
+    "code": {
+      "sql": 0,
+      "graph": 0,
+      "code": 0,
+      "abstain": 0,
+      "error": 0
+    },
+    "abstain": {
+      "sql": 0,
+      "graph": 0,
+      "code": 0,
+      "abstain": 0,
+      "error": 0
+    }
+  },
+  "confusion_note": "Multiple acceptable routes use the first route as the matrix row; accuracy accepts any listed route.",
+  "sql_only_route_accuracy": 1.0,
+  "baseline_note": "SQL-only route-label diagnostic, not a capable fixed-SQL execution comparison.",
+  "latency_note": "Dataset order; warmup excluded; initialization excluded. Total includes errors; error stage times unavailable. Percentiles use linear interpolation.",
+  "cost": {
+    "usd": null,
+    "tokens": null,
+    "note": "Unmeasured; no monetary cost instrumentation."
+  },
+  "results": [
+    {
+      "id": "two_hop",
+      "repeat": 0,
+      "family": "ldbc/two_hop",
+      "category": "capability_gap",
+      "expected_backend": "graph",
+      "expected_backends": [
+        "graph",
+        "sql"
+      ],
+      "actual_backend": "abstain",
+      "status": "abstained",
+      "actual": null,
+      "error": null,
+      "route_correct": false,
+      "answer_correct": false,
+      "joint_correct": false,
+      "latency_ms": 4.95890001184307,
+      "planning_ms": 4.798300011316314,
+      "execution_ms": 0.16060000052675605,
+      "oracle_costs_ms": {},
+      "regret_ms": null
+    }
+  ]
+}

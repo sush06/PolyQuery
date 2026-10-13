@@ -1,0 +1,600 @@
+{
+  "metadata": {
+    "source": "ldbc",
+    "split": "test",
+    "source_hashes": {
+      "people_file": "3ce1587334c86f6ca741de8cdeacfd79c4edd2aa62817cccb1b329fa5b066346",
+      "edges_file": "2c5d7c023d637bf87f5fb809acc9f468dda38a99f030837c20a21e851604d24c"
+    },
+    "label": "ldbc test: frozen authored challenge; computational gold, not independently reviewed",
+    "family_rule": "All variants of an operation family stay in one split; compound tasks are separate families.",
+    "annotation_status": "requires_independent_review"
+  },
+  "cases": [
+    {
+      "id": "path-0-0",
+      "family": "ldbc/shortest_path",
+      "category": "canonical",
+      "question": "Shortest path from 65 to 35184372090192",
+      "backends": [
+        "graph",
+        "sql"
+      ],
+      "expected": null,
+      "comparison": "shortest_path",
+      "reference_plan": {
+        "operation": "shortest_path",
+        "parameters": {
+          "source": "65",
+          "target": "35184372090192"
+        }
+      }
+    },
+    {
+      "id": "path-0-1",
+      "family": "ldbc/shortest_path",
+      "category": "paraphrase",
+      "question": "What is the shortest friendship chain connecting person 65 and person 35184372090192?",
+      "backends": [
+        "graph",
+        "sql"
+      ],
+      "expected": null,
+      "comparison": "shortest_path",
+      "reference_plan": {
+        "operation": "shortest_path",
+        "parameters": {
+          "source": "65",
+          "target": "35184372090192"
+        }
+      }
+    },
+    {
+      "id": "path-0-2",
+      "family": "ldbc/shortest_path",
+      "category": "paraphrase",
+      "question": "How can person 65 reach person 35184372090192 with the fewest friendship links?",
+      "backends": [
+        "graph",
+        "sql"
+      ],
+      "expected": null,
+      "comparison": "shortest_path",
+      "reference_plan": {
+        "operation": "shortest_path",
+        "parameters": {
+          "source": "65",
+          "target": "35184372090192"
+        }
+      }
+    },
+    {
+      "id": "path-1-0",
+      "family": "ldbc/shortest_path",
+      "category": "canonical",
+      "question": "Shortest path from 4398046511154 to 30786325578914",
+      "backends": [
+        "graph",
+        "sql"
+      ],
+      "expected": [
+        "4398046511154",
+        "21990232555834",
+        "32985348834483",
+        "30786325578914"
+      ],
+      "comparison": "shortest_path",
+      "reference_plan": {
+        "operation": "shortest_path",
+        "parameters": {
+          "source": "4398046511154",
+          "target": "30786325578914"
+        }
+      }
+    },
+    {
+      "id": "path-1-1",
+      "family": "ldbc/shortest_path",
+      "category": "paraphrase",
+      "question": "What is the shortest friendship chain connecting person 4398046511154 and person 30786325578914?",
+      "backends": [
+        "graph",
+        "sql"
+      ],
+      "expected": [
+        "4398046511154",
+        "21990232555834",
+        "32985348834483",
+        "30786325578914"
+      ],
+      "comparison": "shortest_path",
+      "reference_plan": {
+        "operation": "shortest_path",
+        "parameters": {
+          "source": "4398046511154",
+          "target": "30786325578914"
+        }
+      }
+    },
+    {
+      "id": "path-1-2",
+      "family": "ldbc/shortest_path",
+      "category": "paraphrase",
+      "question": "How can person 4398046511154 reach person 30786325578914 with the fewest friendship links?",
+      "backends": [
+        "graph",
+        "sql"
+      ],
+      "expected": [
+        "4398046511154",
+        "21990232555834",
+        "32985348834483",
+        "30786325578914"
+      ],
+      "comparison": "shortest_path",
+      "reference_plan": {
+        "operation": "shortest_path",
+        "parameters": {
+          "source": "4398046511154",
+          "target": "30786325578914"
+        }
+      }
+    },
+    {
+      "id": "path-2-0",
+      "family": "ldbc/shortest_path",
+      "category": "canonical",
+      "question": "Shortest path from 6597069768275 to 28587302322565",
+      "backends": [
+        "graph",
+        "sql"
+      ],
+      "expected": [
+        "6597069768275",
+        "987",
+        "32985348834375",
+        "28587302322565"
+      ],
+      "comparison": "shortest_path",
+      "reference_plan": {
+        "operation": "shortest_path",
+        "parameters": {
+          "source": "6597069768275",
+          "target": "28587302322565"
+        }
+      }
+    },
+    {
+      "id": "path-2-1",
+      "family": "ldbc/shortest_path",
+      "category": "paraphrase",
+      "question": "What is the shortest friendship chain connecting person 6597069768275 and person 28587302322565?",
+      "backends": [
+        "graph",
+        "sql"
+      ],
+      "expected": [
+        "6597069768275",
+        "987",
+        "32985348834375",
+        "28587302322565"
+      ],
+      "comparison": "shortest_path",
+      "reference_plan": {
+        "operation": "shortest_path",
+        "parameters": {
+          "source": "6597069768275",
+          "target": "28587302322565"
+        }
+      }
+    },
+    {
+      "id": "path-2-2",
+      "family": "ldbc/shortest_path",
+      "category": "paraphrase",
+      "question": "How can person 6597069768275 reach person 28587302322565 with the fewest friendship links?",
+      "backends": [
+        "graph",
+        "sql"
+      ],
+      "expected": [
+        "6597069768275",
+        "987",
+        "32985348834375",
+        "28587302322565"
+      ],
+      "comparison": "shortest_path",
+      "reference_plan": {
+        "operation": "shortest_path",
+        "parameters": {
+          "source": "6597069768275",
+          "target": "28587302322565"
+        }
+      }
+    },
+    {
+      "id": "path-3-0",
+      "family": "ldbc/shortest_path",
+      "category": "canonical",
+      "question": "Shortest path from 10995116279287 to 24189255812607",
+      "backends": [
+        "graph",
+        "sql"
+      ],
+      "expected": [
+        "10995116279287",
+        "19791209300852",
+        "24189255812607"
+      ],
+      "comparison": "shortest_path",
+      "reference_plan": {
+        "operation": "shortest_path",
+        "parameters": {
+          "source": "10995116279287",
+          "target": "24189255812607"
+        }
+      }
+    },
+    {
+      "id": "path-3-1",
+      "family": "ldbc/shortest_path",
+      "category": "paraphrase",
+      "question": "What is the shortest friendship chain connecting person 10995116279287 and person 24189255812607?",
+      "backends": [
+        "graph",
+        "sql"
+      ],
+      "expected": [
+        "10995116279287",
+        "19791209300852",
+        "24189255812607"
+      ],
+      "comparison": "shortest_path",
+      "reference_plan": {
+        "operation": "shortest_path",
+        "parameters": {
+          "source": "10995116279287",
+          "target": "24189255812607"
+        }
+      }
+    },
+    {
+      "id": "path-3-2",
+      "family": "ldbc/shortest_path",
+      "category": "paraphrase",
+      "question": "How can person 10995116279287 reach person 24189255812607 with the fewest friendship links?",
+      "backends": [
+        "graph",
+        "sql"
+      ],
+      "expected": [
+        "10995116279287",
+        "19791209300852",
+        "24189255812607"
+      ],
+      "comparison": "shortest_path",
+      "reference_plan": {
+        "operation": "shortest_path",
+        "parameters": {
+          "source": "10995116279287",
+          "target": "24189255812607"
+        }
+      }
+    },
+    {
+      "id": "path-4-0",
+      "family": "ldbc/shortest_path",
+      "category": "canonical",
+      "question": "Shortest path from 15393162790221 to 21990232556252",
+      "backends": [
+        "graph",
+        "sql"
+      ],
+      "expected": [
+        "15393162790221",
+        "2199023256893",
+        "21990232556585",
+        "21990232556252"
+      ],
+      "comparison": "shortest_path",
+      "reference_plan": {
+        "operation": "shortest_path",
+        "parameters": {
+          "source": "15393162790221",
+          "target": "21990232556252"
+        }
+      }
+    },
+    {
+      "id": "path-4-1",
+      "family": "ldbc/shortest_path",
+      "category": "paraphrase",
+      "question": "What is the shortest friendship chain connecting person 15393162790221 and person 21990232556252?",
+      "backends": [
+        "graph",
+        "sql"
+      ],
+      "expected": [
+        "15393162790221",
+        "2199023256893",
+        "21990232556585",
+        "21990232556252"
+      ],
+      "comparison": "shortest_path",
+      "reference_plan": {
+        "operation": "shortest_path",
+        "parameters": {
+          "source": "15393162790221",
+          "target": "21990232556252"
+        }
+      }
+    },
+    {
+      "id": "path-4-2",
+      "family": "ldbc/shortest_path",
+      "category": "paraphrase",
+      "question": "How can person 15393162790221 reach person 21990232556252 with the fewest friendship links?",
+      "backends": [
+        "graph",
+        "sql"
+      ],
+      "expected": [
+        "15393162790221",
+        "2199023256893",
+        "21990232556585",
+        "21990232556252"
+      ],
+      "comparison": "shortest_path",
+      "reference_plan": {
+        "operation": "shortest_path",
+        "parameters": {
+          "source": "15393162790221",
+          "target": "21990232556252"
+        }
+      }
+    },
+    {
+      "id": "path-5-0",
+      "family": "ldbc/shortest_path",
+      "category": "canonical",
+      "question": "Shortest path from 19791209300973 to 19791209300151",
+      "backends": [
+        "graph",
+        "sql"
+      ],
+      "expected": null,
+      "comparison": "shortest_path",
+      "reference_plan": {
+        "operation": "shortest_path",
+        "parameters": {
+          "source": "19791209300973",
+          "target": "19791209300151"
+        }
+      }
+    },
+    {
+      "id": "path-5-1",
+      "family": "ldbc/shortest_path",
+      "category": "paraphrase",
+      "question": "What is the shortest friendship chain connecting person 19791209300973 and person 19791209300151?",
+      "backends": [
+        "graph",
+        "sql"
+      ],
+      "expected": null,
+      "comparison": "shortest_path",
+      "reference_plan": {
+        "operation": "shortest_path",
+        "parameters": {
+          "source": "19791209300973",
+          "target": "19791209300151"
+        }
+      }
+    },
+    {
+      "id": "path-5-2",
+      "family": "ldbc/shortest_path",
+      "category": "paraphrase",
+      "question": "How can person 19791209300973 reach person 19791209300151 with the fewest friendship links?",
+      "backends": [
+        "graph",
+        "sql"
+      ],
+      "expected": null,
+      "comparison": "shortest_path",
+      "reference_plan": {
+        "operation": "shortest_path",
+        "parameters": {
+          "source": "19791209300973",
+          "target": "19791209300151"
+        }
+      }
+    },
+    {
+      "id": "path-6-0",
+      "family": "ldbc/shortest_path",
+      "category": "canonical",
+      "question": "Shortest path from 24189255811677 to 15393162790022",
+      "backends": [
+        "graph",
+        "sql"
+      ],
+      "expected": [
+        "24189255811677",
+        "32985348834375",
+        "10995116278570",
+        "15393162790022"
+      ],
+      "comparison": "shortest_path",
+      "reference_plan": {
+        "operation": "shortest_path",
+        "parameters": {
+          "source": "24189255811677",
+          "target": "15393162790022"
+        }
+      }
+    },
+    {
+      "id": "path-6-1",
+      "family": "ldbc/shortest_path",
+      "category": "paraphrase",
+      "question": "What is the shortest friendship chain connecting person 24189255811677 and person 15393162790022?",
+      "backends": [
+        "graph",
+        "sql"
+      ],
+      "expected": [
+        "24189255811677",
+        "32985348834375",
+        "10995116278570",
+        "15393162790022"
+      ],
+      "comparison": "shortest_path",
+      "reference_plan": {
+        "operation": "shortest_path",
+        "parameters": {
+          "source": "24189255811677",
+          "target": "15393162790022"
+        }
+      }
+    },
+    {
+      "id": "path-6-2",
+      "family": "ldbc/shortest_path",
+      "category": "paraphrase",
+      "question": "How can person 24189255811677 reach person 15393162790022 with the fewest friendship links?",
+      "backends": [
+        "graph",
+        "sql"
+      ],
+      "expected": [
+        "24189255811677",
+        "32985348834375",
+        "10995116278570",
+        "15393162790022"
+      ],
+      "comparison": "shortest_path",
+      "reference_plan": {
+        "operation": "shortest_path",
+        "parameters": {
+          "source": "24189255811677",
+          "target": "15393162790022"
+        }
+      }
+    },
+    {
+      "id": "path-7-0",
+      "family": "ldbc/shortest_path",
+      "category": "canonical",
+      "question": "Shortest path from 28587302322565 to 13194139533589",
+      "backends": [
+        "graph",
+        "sql"
+      ],
+      "expected": [
+        "28587302322565",
+        "2199023256816",
+        "6597069767884",
+        "13194139533589"
+      ],
+      "comparison": "shortest_path",
+      "reference_plan": {
+        "operation": "shortest_path",
+        "parameters": {
+          "source": "28587302322565",
+          "target": "13194139533589"
+        }
+      }
+    },
+    {
+      "id": "path-7-1",
+      "family": "ldbc/shortest_path",
+      "category": "paraphrase",
+      "question": "What is the shortest friendship chain connecting person 28587302322565 and person 13194139533589?",
+      "backends": [
+        "graph",
+        "sql"
+      ],
+      "expected": [
+        "28587302322565",
+        "2199023256816",
+        "6597069767884",
+        "13194139533589"
+      ],
+      "comparison": "shortest_path",
+      "reference_plan": {
+        "operation": "shortest_path",
+        "parameters": {
+          "source": "28587302322565",
+          "target": "13194139533589"
+        }
+      }
+    },
+    {
+      "id": "path-7-2",
+      "family": "ldbc/shortest_path",
+      "category": "paraphrase",
+      "question": "How can person 28587302322565 reach person 13194139533589 with the fewest friendship links?",
+      "backends": [
+        "graph",
+        "sql"
+      ],
+      "expected": [
+        "28587302322565",
+        "2199023256816",
+        "6597069767884",
+        "13194139533589"
+      ],
+      "comparison": "shortest_path",
+      "reference_plan": {
+        "operation": "shortest_path",
+        "parameters": {
+          "source": "28587302322565",
+          "target": "13194139533589"
+        }
+      }
+    },
+    {
+      "id": "mutual",
+      "family": "ldbc/mutual",
+      "category": "capability_gap",
+      "question": "List mutual friend IDs of 65 and 35184372090192",
+      "expected": [],
+      "backends": [
+        "graph",
+        "sql"
+      ],
+      "comparison": "ordered"
+    },
+    {
+      "id": "friend_rank",
+      "family": "ldbc/friend_rank",
+      "category": "capability_gap",
+      "question": "Which person IDs have the largest number of friends?",
+      "expected": [
+        "26388279067534"
+      ],
+      "backends": [
+        "graph",
+        "sql"
+      ],
+      "comparison": "ordered"
+    },
+    {
+      "id": "reject-0",
+      "family": "ldbc/ambiguity",
+      "category": "required_abstention",
+      "question": "Find a connection between them",
+      "backend": "abstain",
+      "expected": null
+    },
+    {
+      "id": "reject-2",
+      "family": "ldbc/ambiguity",
+      "category": "required_abstention",
+      "question": "Delete all friendships",
+      "backend": "abstain",
+      "expected": null
+    }
+  ]
+}

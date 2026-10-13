@@ -5,10 +5,16 @@ from .planner import RulePlanner
 
 
 class Engine:
-    def __init__(self, planner=None, *, source="synthetic", people_path=None, edges_path=None, data_path=None, policy="router", cost_profile=None):
+    def __init__(self, planner=None, *, source="synthetic", people_path=None, edges_path=None, data_path=None, policy="router", cost_profile=None, planner_kind="keyword", model=None, llm_client=None, llm_fallback="none", llm_base_url=None, llm_api="responses", llm_timeout=30):
         started = time.perf_counter()
         self.source = source
         self.policy = policy
+        if planner_kind not in ('keyword','llm') or (planner is not None and planner_kind != 'keyword'):
+            raise ValueError('Invalid or conflicting planner configuration')
+        if planner_kind == 'llm' and policy not in ('router', 'cost-aware'):
+            raise ValueError('LLM planning requires policy=router or cost-aware')
+        if llm_fallback not in ("none", "keyword") or (llm_fallback != "none" and planner_kind != "llm"):
+            raise ValueError("LLM fallback requires planner_kind=llm and none or keyword")
         execution_policy = "router" if policy == "cost-aware" else policy
         if source == "synthetic":
             self.planner = planner or RulePlanner()
@@ -36,6 +42,15 @@ class Engine:
             raise ValueError(f"Fixed policies are not implemented for {source}")
         from .catalog import build_catalog
         self.catalog = build_catalog(self)
+        if planner_kind == 'llm':
+            try:
+                from .llm import LLMPlanner
+                self.planner = LLMPlanner(self.catalog,model,client=llm_client,
+                                          fallback=self.planner if llm_fallback == "keyword" else None,
+                                          base_url=llm_base_url, api_mode=llm_api, timeout=llm_timeout)
+            except Exception:
+                self.close()
+                raise
         if policy == "cost-aware":
             try:
                 from .costs import CostPlanner, load_profile
@@ -61,6 +76,8 @@ class Engine:
         self.catalog.validate_plan(plan)
         planned = time.perf_counter()
         response = {"question": question, "source": self.source, "plan": plan.to_dict(), "status": "abstained", "result": None}
+        if hasattr(self.planner,'last_metadata'):
+            response['planner_metadata'] = dict(self.planner.last_metadata)
         if plan.backend != "abstain":
             if plan.backend not in self.backends:
                 raise ValueError("Unknown backend")
@@ -74,6 +91,8 @@ class Engine:
         return response
 
     def close(self):
+        if hasattr(self.planner,'close'):
+            self.planner.close()
         for backend in self.backends.values():
             if hasattr(backend, "close"):
                 backend.close()

@@ -1,0 +1,74 @@
+{
+  "created_at": "2026-10-13T04:33:15.894Z",
+  "model": "qwen3:4b-instruct",
+  "runtime": "0.35.0",
+  "runtime_models": [
+    {
+      "name": "qwen3:4b-instruct",
+      "model": "qwen3:4b-instruct",
+      "size": 3873366343,
+      "digest": "0edcdef34593eac1aa2be9c7d06c432dcf81945adca5eca2f27662c18f168ba0",
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "qwen3",
+        "families": [
+          "qwen3"
+        ],
+        "parameter_size": "4.0B",
+        "quantization_level": "Q4_K_M"
+      },
+      "expires_at": "2026-10-13T00:38:10.3485297-04:00",
+      "size_vram": 3873366343,
+      "context_length": 8192
+    }
+  ],
+  "api_mode": "chat",
+  "endpoint": "http://localhost:11435/v1",
+  "fallback": "none",
+  "repeats": 1,
+  "warmup": 0,
+  "request_timeout_seconds": 120,
+  "command": [
+    "python",
+    "-m",
+    "polyquery.cli",
+    "compare",
+    "--source",
+    "chinook",
+    "--data",
+    "benchmarks/Chinook_Sqlite.sqlite",
+    "--dataset",
+    "benchmarks/challenge-v1/chinook-test.json",
+    "--cost-profile",
+    "benchmarks/challenge-v1/chinook-cost-profile.json",
+    "--planner",
+    "llm",
+    "--model",
+    "qwen3:4b-instruct",
+    "--llm-base-url",
+    "http://localhost:11435/v1",
+    "--llm-api",
+    "chat",
+    "--llm-timeout",
+    "120",
+    "--repeats",
+    "1",
+    "--warmup",
+    "0",
+    "--output",
+    "benchmarks/experiments/qwen3-4b/gpu-chinook-test-report.json"
+  ],
+  "gpu_server_pid": 38896,
+  "server_environment": {
+    "OLLAMA_HOST": "127.0.0.1:11435",
+    "OLLAMA_VULKAN": "1",
+    "OLLAMA_IGPU_ENABLE": "1",
+    "OLLAMA_CONTEXT_LENGTH": "8192"
+  },
+  "note": "Single-pass exploratory measurement on authored challenge gold requiring independent review. CPU setup report exceeded context and is not a model-quality measurement. GPU smoke includes early-run overhead; comparison starts after smoke.",
+  "completed_at": "2026-10-13T04:36:04.993Z",
+  "implementation_sha256": "48b6adf899a5878664ca2aae41a9b203b6519b6dde0c8e4d4534e69b8d0a6914",
+  "dataset_sha256": "890881a8ee32c4846c9bdf496477f401677fe408289936644e121332572e1671",
+  "status": "completed"
+}

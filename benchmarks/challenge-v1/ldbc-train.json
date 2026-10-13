@@ -1,0 +1,46 @@
+{
+  "metadata": {
+    "source": "ldbc",
+    "split": "train",
+    "source_hashes": {
+      "people_file": "3ce1587334c86f6ca741de8cdeacfd79c4edd2aa62817cccb1b329fa5b066346",
+      "edges_file": "2c5d7c023d637bf87f5fb809acc9f468dda38a99f030837c20a21e851604d24c"
+    },
+    "label": "ldbc train: frozen authored challenge; computational gold, not independently reviewed",
+    "family_rule": "All variants of an operation family stay in one split; compound tasks are separate families.",
+    "annotation_status": "requires_independent_review"
+  },
+  "cases": [
+    {
+      "id": "people",
+      "family": "ldbc/count_people",
+      "category": "canonical",
+      "question": "How many people?",
+      "backends": [
+        "graph",
+        "sql"
+      ],
+      "expected": 1528,
+      "reference_plan": {
+        "operation": "count_people"
+      }
+    },
+    {
+      "id": "friends",
+      "family": "ldbc/friends",
+      "category": "canonical",
+      "question": "Friends of 65",
+      "backends": [
+        "graph",
+        "sql"
+      ],
+      "expected": [],
+      "reference_plan": {
+        "operation": "friends",
+        "parameters": {
+          "source": "65"
+        }
+      }
+    }
+  ]
+}

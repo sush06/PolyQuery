@@ -58,4 +58,5 @@ silently replaced. New timing experiments should record the implementation hash.
 This milestone remains single-step and local. A future multi-stage plan needs
 typed intermediate tables, key/identity checks, null and cardinality semantics,
 and validation of dependencies between steps. PostgreSQL/Neo4j adapters and
-trained/LLM planners can implement these contracts later; none is enabled here.
+trained planners can implement these contracts later. The optional [LLM planner](llm-planner.md)
+implements the current single-step contracts.

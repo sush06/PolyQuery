@@ -166,4 +166,28 @@ def build_catalog(engine):
         backends = ['graph'] if source == 'synthetic' else ['graph','sql']
         add(['shortest_path'], backends, ResultSpec('path',True,entity=entity,semantics='Undirected shortest path; null if disconnected; ties may differ'),
             {'source':ParameterSpec(domain=entity),'target':ParameterSpec(domain=entity)})
+    descriptions = {
+        'synthetic': {
+            'count': 'Count employees.', 'list': 'List employees with name, department, salary and experience.',
+            'average_salary': 'Mean employee salary.', 'revenue': 'Sum sales.amount.',
+            'median': 'Median employee salary.', 'stdev': 'Sample standard deviation of employee salary.',
+        },
+        'chinook': {
+            'count_tracks': 'Count Track rows.', 'count_customers': 'Count Customer rows.',
+            'count_invoices': 'Count Invoice rows.', 'revenue': 'Sum Invoice.Total.',
+            'mean': 'Mean Invoice.Total.', 'median': 'Median Invoice.Total.',
+            'revenue_by_country': 'Sum Invoice.Total grouped by Invoice.BillingCountry; country order.',
+            'tracks_by_genre': 'Count tracks joined to Genre by GenreId, grouped by genre; genre-name order.',
+        },
+        'taxi': {
+            'count_trips': 'Count all trip rows.', 'negative_fares': 'Count trips where fare_amount < 0.',
+            'sum_fare': 'Sum fare_amount.', 'sum_total': 'Sum total_amount.',
+            'mean_distance': 'Mean trip_distance.', 'mean_fare': 'Mean fare_amount.',
+            'median_fare': 'Median fare_amount.',
+        },
+        'ldbc': {'count_people': 'Count all loaded people.', 'friends': 'List unique direct undirected friends of source.'},
+    }
+    for name, description in descriptions[source].items():
+        spec = operations[name]
+        operations[name] = OperationSpec(spec.backends, spec.result, spec.parameters, description)
     return Catalog(source, schema, operations, domains, adjacency=adjacency)

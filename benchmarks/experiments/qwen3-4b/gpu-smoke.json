@@ -1,0 +1,33 @@
+{
+  "question": "How many invoices?",
+  "source": "chinook",
+  "plan": {
+    "backend": "sql",
+    "operation": "count_invoices",
+    "parameters": {},
+    "reason": "The query asks for the number of invoices, which is directly addressed by the count_invoices operation.",
+    "scores": {}
+  },
+  "status": "ok",
+  "result": {
+    "artifact": "SELECT COUNT(*) FROM Invoice",
+    "bindings": [],
+    "value": 412
+  },
+  "planner_metadata": {
+    "provider": "openai-compatible",
+    "api_mode": "chat",
+    "requested_model": "qwen3:4b-instruct",
+    "prompt_sha256": "08348eb5501b0f032b36b985f49f57596acefbf202259dc2d6b62c8ab0c9dc15",
+    "api_calls": 1,
+    "input_tokens": 533,
+    "output_tokens": 39,
+    "total_tokens": 572,
+    "usd": null,
+    "response_id": "chatcmpl-276",
+    "model": "qwen3:4b-instruct"
+  },
+  "planning_ms": 18268.803699989803,
+  "execution_ms": 1.0600000387057662,
+  "latency_ms": 18269.86370002851
+}

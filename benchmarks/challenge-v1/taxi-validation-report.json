@@ -1,0 +1,461 @@
+{
+  "report_version": 2,
+  "created_at": "2026-10-04T23:24:09.299544+00:00",
+  "dataset_label": "taxi validation: frozen authored challenge; computational gold, not independently reviewed",
+  "dataset_metadata": {
+    "source": "taxi",
+    "split": "validation",
+    "source_hashes": {
+      "parquet_file": "8b3933fe6f0d7b6d8826613c0dd724edc680ff7c49e2bd4c7635c05102728637"
+    },
+    "label": "taxi validation: frozen authored challenge; computational gold, not independently reviewed",
+    "family_rule": "All variants of an operation family stay in one split; compound tasks are separate families.",
+    "annotation_status": "requires_independent_review"
+  },
+  "dataset_sha256": "18e40444a94453a83a1eb3f555338d493b9400b16146a83be337f3b865ead7ae",
+  "source": {
+    "name": "taxi",
+    "parquet_file": "C:\\Users\\sushm\\Downloads\\PolyQuery\\polyquery\\benchmarks\\yellow_tripdata_2026-01.parquet",
+    "rows": 3724889,
+    "columns": [
+      "fare_amount",
+      "total_amount",
+      "trip_distance"
+    ],
+    "projection": "All rows; nonfinite numbers treated as null; negative and zero values retained",
+    "sql_indexes": [
+      "trips_fare_idx(fare_amount)"
+    ],
+    "nulls": {
+      "fare_amount": 0,
+      "total_amount": 0,
+      "trip_distance": 0
+    },
+    "pyarrow_version": "11.0.0"
+  },
+  "policy": "cost-aware",
+  "python": "3.11.4",
+  "source_hashes": {
+    "parquet_file": "8b3933fe6f0d7b6d8826613c0dd724edc680ff7c49e2bd4c7635c05102728637"
+  },
+  "initialization_ms": 38055.62090000603,
+  "cost_profile": {
+    "profile_version": 1,
+    "source": "taxi",
+    "source_hashes": {
+      "parquet_file": "8b3933fe6f0d7b6d8826613c0dd724edc680ff7c49e2bd4c7635c05102728637"
+    },
+    "train_dataset_sha256": "6c956fe515bf3f9f923560439a823297b65b7bb70c8d174b77bac0f84c0dbf0b",
+    "created_at": "2026-10-04T23:19:46.413418+00:00",
+    "python": "3.11.4",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "repeats": 5,
+    "warmup": 1,
+    "operation_costs_ms": {
+      "count_trips": {
+        "sql": 3.787900001043454,
+        "code": 0.03600001218728721
+      },
+      "sum_fare": {
+        "sql": 534.638899989659,
+        "code": 4.703700018581003
+      },
+      "mean_distance": {
+        "sql": 683.6280999996234,
+        "code": 4.953299998305738
+      }
+    },
+    "fallback_costs_ms": {
+      "sql": 534.638899989659,
+      "code": 4.703700018581003
+    },
+    "measurements": [
+      {
+        "id": "count_trips-canonical",
+        "operation": "count_trips",
+        "backend": "sql",
+        "correct": true,
+        "samples_ms": [
+          4.140399978496134,
+          3.710799996042624,
+          3.719400003319606,
+          3.787900001043454,
+          4.282000008970499
+        ],
+        "errors": []
+      },
+      {
+        "id": "count_trips-canonical",
+        "operation": "count_trips",
+        "backend": "code",
+        "correct": true,
+        "samples_ms": [
+          0.056899996707215905,
+          0.042100000428035855,
+          0.03600001218728721,
+          0.03440000000409782,
+          0.032899988582357764
+        ],
+        "errors": []
+      },
+      {
+        "id": "sum_fare-canonical",
+        "operation": "sum_fare",
+        "backend": "sql",
+        "correct": true,
+        "samples_ms": [
+          528.1746999826282,
+          550.6286000018008,
+          534.638899989659,
+          531.4721000031568,
+          554.935199994361
+        ],
+        "errors": []
+      },
+      {
+        "id": "sum_fare-canonical",
+        "operation": "sum_fare",
+        "backend": "code",
+        "correct": true,
+        "samples_ms": [
+          4.703700018581003,
+          5.15739998081699,
+          4.446200007805601,
+          4.399299999931827,
+          5.584900005487725
+        ],
+        "errors": []
+      },
+      {
+        "id": "mean_distance-canonical",
+        "operation": "mean_distance",
+        "backend": "sql",
+        "correct": true,
+        "samples_ms": [
+          683.6280999996234,
+          723.1596999918111,
+          707.2967999847606,
+          652.5876999949105,
+          652.8242000204045
+        ],
+        "errors": []
+      },
+      {
+        "id": "mean_distance-canonical",
+        "operation": "mean_distance",
+        "backend": "code",
+        "correct": true,
+        "samples_ms": [
+          4.953299998305738,
+          5.119499983265996,
+          5.749900010414422,
+          4.717200004961342,
+          4.63600002694875
+        ],
+        "errors": []
+      }
+    ],
+    "note": "Execution-only medians from training reference plans; no validation/test answers or timings used. Unseen operations use backend-wide training medians; this can be inaccurate."
+  },
+  "platform": "Windows-10-10.0.26200-SP0",
+  "cases": 2,
+  "repeats": 1,
+  "warmup": 0,
+  "runs": 2,
+  "answer_accuracy": 1.0,
+  "answerable_accuracy": 1.0,
+  "route_accuracy": 1.0,
+  "joint_accuracy": 1.0,
+  "coverage": 1.0,
+  "answered_accuracy": 1.0,
+  "answered_joint_accuracy": 1.0,
+  "error_rate": 0.0,
+  "abstention_precision": null,
+  "abstention_recall": null,
+  "latency": {
+    "latency_ms": {
+      "samples": 2,
+      "mean": 25.984100007917732,
+      "p50": 25.984100007917732,
+      "p95": 43.259330006549135
+    },
+    "planning_ms": {
+      "samples": 2,
+      "mean": 0.08379999781027436,
+      "p50": 0.08379999781027436,
+      "p95": 0.09469000215176493
+    },
+    "execution_ms": {
+      "samples": 2,
+      "mean": 25.900300010107458,
+      "p50": 25.900300010107458,
+      "p95": 43.16464000439737
+    }
+  },
+  "by_family": {
+    "taxi/mean_fare": {
+      "runs": 1,
+      "answer_accuracy": 1.0,
+      "answerable_accuracy": 1.0,
+      "route_accuracy": 1.0,
+      "joint_accuracy": 1.0,
+      "coverage": 1.0,
+      "answered_accuracy": 1.0,
+      "answered_joint_accuracy": 1.0,
+      "error_rate": 0.0,
+      "abstention_precision": null,
+      "abstention_recall": null,
+      "latency": {
+        "latency_ms": {
+          "samples": 1,
+          "mean": 6.7894000094383955,
+          "p50": 6.7894000094383955,
+          "p95": 6.7894000094383955
+        },
+        "planning_ms": {
+          "samples": 1,
+          "mean": 0.07169999298639596,
+          "p50": 0.07169999298639596,
+          "p95": 0.07169999298639596
+        },
+        "execution_ms": {
+          "samples": 1,
+          "mean": 6.7177000164519995,
+          "p50": 6.7177000164519995,
+          "p95": 6.7177000164519995
+        }
+      }
+    },
+    "taxi/negative_fares": {
+      "runs": 1,
+      "answer_accuracy": 1.0,
+      "answerable_accuracy": 1.0,
+      "route_accuracy": 1.0,
+      "joint_accuracy": 1.0,
+      "coverage": 1.0,
+      "answered_accuracy": 1.0,
+      "answered_joint_accuracy": 1.0,
+      "error_rate": 0.0,
+      "abstention_precision": null,
+      "abstention_recall": null,
+      "latency": {
+        "latency_ms": {
+          "samples": 1,
+          "mean": 45.17880000639707,
+          "p50": 45.17880000639707,
+          "p95": 45.17880000639707
+        },
+        "planning_ms": {
+          "samples": 1,
+          "mean": 0.09590000263415277,
+          "p50": 0.09590000263415277,
+          "p95": 0.09590000263415277
+        },
+        "execution_ms": {
+          "samples": 1,
+          "mean": 45.082900003762916,
+          "p50": 45.082900003762916,
+          "p95": 45.082900003762916
+        }
+      }
+    }
+  },
+  "by_category": {
+    "canonical": {
+      "runs": 2,
+      "answer_accuracy": 1.0,
+      "answerable_accuracy": 1.0,
+      "route_accuracy": 1.0,
+      "joint_accuracy": 1.0,
+      "coverage": 1.0,
+      "answered_accuracy": 1.0,
+      "answered_joint_accuracy": 1.0,
+      "error_rate": 0.0,
+      "abstention_precision": null,
+      "abstention_recall": null,
+      "latency": {
+        "latency_ms": {
+          "samples": 2,
+          "mean": 25.984100007917732,
+          "p50": 25.984100007917732,
+          "p95": 43.259330006549135
+        },
+        "planning_ms": {
+          "samples": 2,
+          "mean": 0.08379999781027436,
+          "p50": 0.08379999781027436,
+          "p95": 0.09469000215176493
+        },
+        "execution_ms": {
+          "samples": 2,
+          "mean": 25.900300010107458,
+          "p50": 25.900300010107458,
+          "p95": 43.16464000439737
+        }
+      }
+    }
+  },
+  "regret": {
+    "samples": 0,
+    "mean": null,
+    "p50": null,
+    "p95": null,
+    "oracle_repeats": 0,
+    "note": "Correct answered runs with reference plans only. Execution-stage time minus fastest correct post-run reference strategy median; negative noise clipped, signed deltas retained. Unanswered/capability-gap cases are excluded, not zero-cost successes."
+  },
+  "by_expected_backend": {
+    "sql": {
+      "runs": 2,
+      "answer_accuracy": 1.0,
+      "answerable_accuracy": 1.0,
+      "route_accuracy": 1.0,
+      "joint_accuracy": 1.0,
+      "coverage": 1.0,
+      "answered_accuracy": 1.0,
+      "answered_joint_accuracy": 1.0,
+      "error_rate": 0.0,
+      "abstention_precision": null,
+      "abstention_recall": null,
+      "latency": {
+        "latency_ms": {
+          "samples": 2,
+          "mean": 25.984100007917732,
+          "p50": 25.984100007917732,
+          "p95": 43.259330006549135
+        },
+        "planning_ms": {
+          "samples": 2,
+          "mean": 0.08379999781027436,
+          "p50": 0.08379999781027436,
+          "p95": 0.09469000215176493
+        },
+        "execution_ms": {
+          "samples": 2,
+          "mean": 25.900300010107458,
+          "p50": 25.900300010107458,
+          "p95": 43.16464000439737
+        }
+      }
+    },
+    "code": {
+      "runs": 2,
+      "answer_accuracy": 1.0,
+      "answerable_accuracy": 1.0,
+      "route_accuracy": 1.0,
+      "joint_accuracy": 1.0,
+      "coverage": 1.0,
+      "answered_accuracy": 1.0,
+      "answered_joint_accuracy": 1.0,
+      "error_rate": 0.0,
+      "abstention_precision": null,
+      "abstention_recall": null,
+      "latency": {
+        "latency_ms": {
+          "samples": 2,
+          "mean": 25.984100007917732,
+          "p50": 25.984100007917732,
+          "p95": 43.259330006549135
+        },
+        "planning_ms": {
+          "samples": 2,
+          "mean": 0.08379999781027436,
+          "p50": 0.08379999781027436,
+          "p95": 0.09469000215176493
+        },
+        "execution_ms": {
+          "samples": 2,
+          "mean": 25.900300010107458,
+          "p50": 25.900300010107458,
+          "p95": 43.16464000439737
+        }
+      }
+    }
+  },
+  "confusion_matrix": {
+    "sql": {
+      "sql": 0,
+      "graph": 0,
+      "code": 2,
+      "abstain": 0,
+      "error": 0
+    },
+    "graph": {
+      "sql": 0,
+      "graph": 0,
+      "code": 0,
+      "abstain": 0,
+      "error": 0
+    },
+    "code": {
+      "sql": 0,
+      "graph": 0,
+      "code": 0,
+      "abstain": 0,
+      "error": 0
+    },
+    "abstain": {
+      "sql": 0,
+      "graph": 0,
+      "code": 0,
+      "abstain": 0,
+      "error": 0
+    }
+  },
+  "confusion_note": "Multiple acceptable routes use the first route as the matrix row; accuracy accepts any listed route.",
+  "sql_only_route_accuracy": 1.0,
+  "baseline_note": "SQL-only route-label diagnostic, not a capable fixed-SQL execution comparison.",
+  "latency_note": "Dataset order; warmup excluded; initialization excluded. Total includes errors; error stage times unavailable. Percentiles use linear interpolation.",
+  "cost": {
+    "usd": null,
+    "tokens": null,
+    "note": "Unmeasured; no monetary cost instrumentation."
+  },
+  "results": [
+    {
+      "id": "mean_fare-canonical",
+      "repeat": 0,
+      "family": "taxi/mean_fare",
+      "category": "canonical",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql",
+        "code"
+      ],
+      "actual_backend": "code",
+      "status": "ok",
+      "actual": 20.80425389320326,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 6.7894000094383955,
+      "planning_ms": 0.07169999298639596,
+      "execution_ms": 6.7177000164519995,
+      "oracle_costs_ms": {},
+      "regret_ms": null
+    },
+    {
+      "id": "negative_fares-canonical",
+      "repeat": 0,
+      "family": "taxi/negative_fares",
+      "category": "canonical",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql",
+        "code"
+      ],
+      "actual_backend": "code",
+      "status": "ok",
+      "actual": 39463,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 45.17880000639707,
+      "planning_ms": 0.09590000263415277,
+      "execution_ms": 45.082900003762916,
+      "oracle_costs_ms": {},
+      "regret_ms": null
+    }
+  ]
+}

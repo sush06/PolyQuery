@@ -78,8 +78,18 @@ class CostPlanner:
         self.backends = backends
         self.catalog = catalog
 
+    @property
+    def last_metadata(self):
+        return getattr(self.planner, 'last_metadata', {})
+
+    def close(self):
+        if hasattr(self.planner, 'close'):
+            self.planner.close()
+
     def plan(self, question):
         plan = self.planner.plan(question)
+        if self.catalog is not None:
+            self.catalog.validate_plan(plan)
         if plan.backend == 'abstain':
             return plan
         known = plan.operation in self.profile['operation_costs_ms']
@@ -91,7 +101,7 @@ class CostPlanner:
             return Plan(plan.backend, plan.operation, plan.parameters, 'No measured cost for a capable strategy; retaining the original route.')
         backend = min(costs, key=lambda b: (costs[b], b))
         return Plan(backend, plan.operation, plan.parameters,
-                    f"Measured training cost: {'operation lookup' if known else 'unseen-operation fallback'}; estimated execution {costs[backend]:.6f} ms.",
+                    f"{plan.reason} Measured training cost: {'operation lookup' if known else 'unseen-operation fallback'}; estimated execution {costs[backend]:.6f} ms.".strip(),
                     {f'estimated_{b}_ms': value for b, value in costs.items()})
 
 

@@ -1,0 +1,118 @@
+{
+  "profile_version": 1,
+  "source": "chinook",
+  "source_hashes": {
+    "database_file": "7651ba378ac2fcd0dfc3c66fb101f7a7eed3ba39a612ec642b96e20702061f15"
+  },
+  "train_dataset_sha256": "f25f0e07c04e74beb247ab418bc34797539e3e60375a0a290b94891c82ac87ec",
+  "created_at": "2026-10-04T23:19:05.482344+00:00",
+  "python": "3.11.4",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "repeats": 5,
+  "warmup": 1,
+  "operation_costs_ms": {
+    "count_tracks": {
+      "sql": 0.24500000290572643,
+      "code": 0.06500000017695129
+    },
+    "revenue": {
+      "sql": 0.3414000093471259,
+      "code": 0.07380000897683203
+    },
+    "mean": {
+      "sql": 0.31839997973293066,
+      "code": 0.5850000015925616
+    }
+  },
+  "fallback_costs_ms": {
+    "sql": 0.31839997973293066,
+    "code": 0.07380000897683203
+  },
+  "measurements": [
+    {
+      "id": "count_tracks-canonical",
+      "operation": "count_tracks",
+      "backend": "sql",
+      "correct": true,
+      "samples_ms": [
+        0.27489999774843454,
+        0.2835000050254166,
+        0.24500000290572643,
+        0.24029999622143805,
+        0.24110000231303275
+      ],
+      "errors": []
+    },
+    {
+      "id": "count_tracks-canonical",
+      "operation": "count_tracks",
+      "backend": "code",
+      "correct": true,
+      "samples_ms": [
+        0.07339997682720423,
+        0.06550000398419797,
+        0.06290001329034567,
+        0.060699996538460255,
+        0.06500000017695129
+      ],
+      "errors": []
+    },
+    {
+      "id": "revenue-canonical",
+      "operation": "revenue",
+      "backend": "sql",
+      "correct": true,
+      "samples_ms": [
+        0.3445000038482249,
+        0.3414000093471259,
+        0.3468999930191785,
+        0.31689999741502106,
+        0.3355999942868948
+      ],
+      "errors": []
+    },
+    {
+      "id": "revenue-canonical",
+      "operation": "revenue",
+      "backend": "code",
+      "correct": true,
+      "samples_ms": [
+        0.0881000014487654,
+        0.07600002572871745,
+        0.07380000897683203,
+        0.07300000288523734,
+        0.07350000669248402
+      ],
+      "errors": []
+    },
+    {
+      "id": "mean-canonical",
+      "operation": "mean",
+      "backend": "sql",
+      "correct": true,
+      "samples_ms": [
+        0.31839997973293066,
+        0.3102000046055764,
+        0.3268000145908445,
+        0.3137999738100916,
+        0.43410001671873033
+      ],
+      "errors": []
+    },
+    {
+      "id": "mean-canonical",
+      "operation": "mean",
+      "backend": "code",
+      "correct": true,
+      "samples_ms": [
+        0.9543999913148582,
+        0.9760000102687627,
+        0.5850000015925616,
+        0.5564000166486949,
+        0.4928999987896532
+      ],
+      "errors": []
+    }
+  ],
+  "note": "Execution-only medians from training reference plans; no validation/test answers or timings used. Unseen operations use backend-wide training medians; this can be inaccurate."
+}

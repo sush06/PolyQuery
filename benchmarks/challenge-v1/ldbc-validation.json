@@ -1,0 +1,27 @@
+{
+  "metadata": {
+    "source": "ldbc",
+    "split": "validation",
+    "source_hashes": {
+      "people_file": "3ce1587334c86f6ca741de8cdeacfd79c4edd2aa62817cccb1b329fa5b066346",
+      "edges_file": "2c5d7c023d637bf87f5fb809acc9f468dda38a99f030837c20a21e851604d24c"
+    },
+    "label": "ldbc validation: frozen authored challenge; computational gold, not independently reviewed",
+    "family_rule": "All variants of an operation family stay in one split; compound tasks are separate families.",
+    "annotation_status": "requires_independent_review"
+  },
+  "cases": [
+    {
+      "id": "two_hop",
+      "family": "ldbc/two_hop",
+      "category": "capability_gap",
+      "question": "List IDs of people exactly two friendship hops from 65 who are not direct friends",
+      "expected": [],
+      "backends": [
+        "graph",
+        "sql"
+      ],
+      "comparison": "ordered"
+    }
+  ]
+}

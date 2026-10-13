@@ -11,6 +11,7 @@ dependencies = []
 
 [project.optional-dependencies]
 taxi = ["pyarrow>=14"]
+llm = ["openai>=1.68"]
 
 [project.scripts]
 polyquery = "polyquery.cli:main"

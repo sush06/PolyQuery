@@ -1,0 +1,452 @@
+{
+  "report_version": 2,
+  "created_at": "2026-10-04T23:20:38.240564+00:00",
+  "dataset_label": "chinook validation: frozen authored challenge; computational gold, not independently reviewed",
+  "dataset_metadata": {
+    "source": "chinook",
+    "split": "validation",
+    "source_hashes": {
+      "database_file": "7651ba378ac2fcd0dfc3c66fb101f7a7eed3ba39a612ec642b96e20702061f15"
+    },
+    "label": "chinook validation: frozen authored challenge; computational gold, not independently reviewed",
+    "family_rule": "All variants of an operation family stay in one split; compound tasks are separate families.",
+    "annotation_status": "requires_independent_review"
+  },
+  "dataset_sha256": "cf792d5a4bcbf375a80ec905bede40c1f8506c801aef6ed73429f8093db084cf",
+  "source": {
+    "name": "chinook",
+    "database_file": "C:\\Users\\sushm\\Downloads\\PolyQuery\\polyquery\\benchmarks\\Chinook_Sqlite.sqlite",
+    "rows": {
+      "Track": 3503,
+      "Customer": 59,
+      "Invoice": 412,
+      "Genre": 25
+    },
+    "projection": "Track, Customer, Invoice, Genre; full tables"
+  },
+  "policy": "cost-aware",
+  "python": "3.11.4",
+  "source_hashes": {
+    "database_file": "7651ba378ac2fcd0dfc3c66fb101f7a7eed3ba39a612ec642b96e20702061f15"
+  },
+  "initialization_ms": 101.34870000183582,
+  "cost_profile": {
+    "profile_version": 1,
+    "source": "chinook",
+    "source_hashes": {
+      "database_file": "7651ba378ac2fcd0dfc3c66fb101f7a7eed3ba39a612ec642b96e20702061f15"
+    },
+    "train_dataset_sha256": "f25f0e07c04e74beb247ab418bc34797539e3e60375a0a290b94891c82ac87ec",
+    "created_at": "2026-10-04T23:19:05.482344+00:00",
+    "python": "3.11.4",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "repeats": 5,
+    "warmup": 1,
+    "operation_costs_ms": {
+      "count_tracks": {
+        "sql": 0.24500000290572643,
+        "code": 0.06500000017695129
+      },
+      "revenue": {
+        "sql": 0.3414000093471259,
+        "code": 0.07380000897683203
+      },
+      "mean": {
+        "sql": 0.31839997973293066,
+        "code": 0.5850000015925616
+      }
+    },
+    "fallback_costs_ms": {
+      "sql": 0.31839997973293066,
+      "code": 0.07380000897683203
+    },
+    "measurements": [
+      {
+        "id": "count_tracks-canonical",
+        "operation": "count_tracks",
+        "backend": "sql",
+        "correct": true,
+        "samples_ms": [
+          0.27489999774843454,
+          0.2835000050254166,
+          0.24500000290572643,
+          0.24029999622143805,
+          0.24110000231303275
+        ],
+        "errors": []
+      },
+      {
+        "id": "count_tracks-canonical",
+        "operation": "count_tracks",
+        "backend": "code",
+        "correct": true,
+        "samples_ms": [
+          0.07339997682720423,
+          0.06550000398419797,
+          0.06290001329034567,
+          0.060699996538460255,
+          0.06500000017695129
+        ],
+        "errors": []
+      },
+      {
+        "id": "revenue-canonical",
+        "operation": "revenue",
+        "backend": "sql",
+        "correct": true,
+        "samples_ms": [
+          0.3445000038482249,
+          0.3414000093471259,
+          0.3468999930191785,
+          0.31689999741502106,
+          0.3355999942868948
+        ],
+        "errors": []
+      },
+      {
+        "id": "revenue-canonical",
+        "operation": "revenue",
+        "backend": "code",
+        "correct": true,
+        "samples_ms": [
+          0.0881000014487654,
+          0.07600002572871745,
+          0.07380000897683203,
+          0.07300000288523734,
+          0.07350000669248402
+        ],
+        "errors": []
+      },
+      {
+        "id": "mean-canonical",
+        "operation": "mean",
+        "backend": "sql",
+        "correct": true,
+        "samples_ms": [
+          0.31839997973293066,
+          0.3102000046055764,
+          0.3268000145908445,
+          0.3137999738100916,
+          0.43410001671873033
+        ],
+        "errors": []
+      },
+      {
+        "id": "mean-canonical",
+        "operation": "mean",
+        "backend": "code",
+        "correct": true,
+        "samples_ms": [
+          0.9543999913148582,
+          0.9760000102687627,
+          0.5850000015925616,
+          0.5564000166486949,
+          0.4928999987896532
+        ],
+        "errors": []
+      }
+    ],
+    "note": "Execution-only medians from training reference plans; no validation/test answers or timings used. Unseen operations use backend-wide training medians; this can be inaccurate."
+  },
+  "platform": "Windows-10-10.0.26200-SP0",
+  "cases": 2,
+  "repeats": 1,
+  "warmup": 0,
+  "runs": 2,
+  "answer_accuracy": 1.0,
+  "answerable_accuracy": 1.0,
+  "route_accuracy": 1.0,
+  "joint_accuracy": 1.0,
+  "coverage": 1.0,
+  "answered_accuracy": 1.0,
+  "answered_joint_accuracy": 1.0,
+  "error_rate": 0.0,
+  "abstention_precision": null,
+  "abstention_recall": null,
+  "latency": {
+    "latency_ms": {
+      "samples": 2,
+      "mean": 0.3576500166673213,
+      "p50": 0.3576500166673213,
+      "p95": 0.38820501358713955
+    },
+    "planning_ms": {
+      "samples": 2,
+      "mean": 0.06760000542271882,
+      "p50": 0.06760000542271882,
+      "p95": 0.09028000786202028
+    },
+    "execution_ms": {
+      "samples": 2,
+      "mean": 0.2900500112446025,
+      "p50": 0.2900500112446025,
+      "p95": 0.29792500572511926
+    }
+  },
+  "by_family": {
+    "chinook/count_customers": {
+      "runs": 1,
+      "answer_accuracy": 1.0,
+      "answerable_accuracy": 1.0,
+      "route_accuracy": 1.0,
+      "joint_accuracy": 1.0,
+      "coverage": 1.0,
+      "answered_accuracy": 1.0,
+      "answered_joint_accuracy": 1.0,
+      "error_rate": 0.0,
+      "abstention_precision": null,
+      "abstention_recall": null,
+      "latency": {
+        "latency_ms": {
+          "samples": 1,
+          "mean": 0.3916000132448971,
+          "p50": 0.3916000132448971,
+          "p95": 0.3916000132448971
+        },
+        "planning_ms": {
+          "samples": 1,
+          "mean": 0.09280000813305378,
+          "p50": 0.09280000813305378,
+          "p95": 0.09280000813305378
+        },
+        "execution_ms": {
+          "samples": 1,
+          "mean": 0.29880000511184335,
+          "p50": 0.29880000511184335,
+          "p95": 0.29880000511184335
+        }
+      }
+    },
+    "chinook/median": {
+      "runs": 1,
+      "answer_accuracy": 1.0,
+      "answerable_accuracy": 1.0,
+      "route_accuracy": 1.0,
+      "joint_accuracy": 1.0,
+      "coverage": 1.0,
+      "answered_accuracy": 1.0,
+      "answered_joint_accuracy": 1.0,
+      "error_rate": 0.0,
+      "abstention_precision": null,
+      "abstention_recall": null,
+      "latency": {
+        "latency_ms": {
+          "samples": 1,
+          "mean": 0.3237000200897455,
+          "p50": 0.3237000200897455,
+          "p95": 0.3237000200897455
+        },
+        "planning_ms": {
+          "samples": 1,
+          "mean": 0.042400002712383866,
+          "p50": 0.042400002712383866,
+          "p95": 0.042400002712383866
+        },
+        "execution_ms": {
+          "samples": 1,
+          "mean": 0.28130001737736166,
+          "p50": 0.28130001737736166,
+          "p95": 0.28130001737736166
+        }
+      }
+    }
+  },
+  "by_category": {
+    "canonical": {
+      "runs": 2,
+      "answer_accuracy": 1.0,
+      "answerable_accuracy": 1.0,
+      "route_accuracy": 1.0,
+      "joint_accuracy": 1.0,
+      "coverage": 1.0,
+      "answered_accuracy": 1.0,
+      "answered_joint_accuracy": 1.0,
+      "error_rate": 0.0,
+      "abstention_precision": null,
+      "abstention_recall": null,
+      "latency": {
+        "latency_ms": {
+          "samples": 2,
+          "mean": 0.3576500166673213,
+          "p50": 0.3576500166673213,
+          "p95": 0.38820501358713955
+        },
+        "planning_ms": {
+          "samples": 2,
+          "mean": 0.06760000542271882,
+          "p50": 0.06760000542271882,
+          "p95": 0.09028000786202028
+        },
+        "execution_ms": {
+          "samples": 2,
+          "mean": 0.2900500112446025,
+          "p50": 0.2900500112446025,
+          "p95": 0.29792500572511926
+        }
+      }
+    }
+  },
+  "regret": {
+    "samples": 0,
+    "mean": null,
+    "p50": null,
+    "p95": null,
+    "oracle_repeats": 0,
+    "note": "Correct answered runs with reference plans only. Execution-stage time minus fastest correct post-run reference strategy median; negative noise clipped, signed deltas retained. Unanswered/capability-gap cases are excluded, not zero-cost successes."
+  },
+  "by_expected_backend": {
+    "sql": {
+      "runs": 2,
+      "answer_accuracy": 1.0,
+      "answerable_accuracy": 1.0,
+      "route_accuracy": 1.0,
+      "joint_accuracy": 1.0,
+      "coverage": 1.0,
+      "answered_accuracy": 1.0,
+      "answered_joint_accuracy": 1.0,
+      "error_rate": 0.0,
+      "abstention_precision": null,
+      "abstention_recall": null,
+      "latency": {
+        "latency_ms": {
+          "samples": 2,
+          "mean": 0.3576500166673213,
+          "p50": 0.3576500166673213,
+          "p95": 0.38820501358713955
+        },
+        "planning_ms": {
+          "samples": 2,
+          "mean": 0.06760000542271882,
+          "p50": 0.06760000542271882,
+          "p95": 0.09028000786202028
+        },
+        "execution_ms": {
+          "samples": 2,
+          "mean": 0.2900500112446025,
+          "p50": 0.2900500112446025,
+          "p95": 0.29792500572511926
+        }
+      }
+    },
+    "code": {
+      "runs": 2,
+      "answer_accuracy": 1.0,
+      "answerable_accuracy": 1.0,
+      "route_accuracy": 1.0,
+      "joint_accuracy": 1.0,
+      "coverage": 1.0,
+      "answered_accuracy": 1.0,
+      "answered_joint_accuracy": 1.0,
+      "error_rate": 0.0,
+      "abstention_precision": null,
+      "abstention_recall": null,
+      "latency": {
+        "latency_ms": {
+          "samples": 2,
+          "mean": 0.3576500166673213,
+          "p50": 0.3576500166673213,
+          "p95": 0.38820501358713955
+        },
+        "planning_ms": {
+          "samples": 2,
+          "mean": 0.06760000542271882,
+          "p50": 0.06760000542271882,
+          "p95": 0.09028000786202028
+        },
+        "execution_ms": {
+          "samples": 2,
+          "mean": 0.2900500112446025,
+          "p50": 0.2900500112446025,
+          "p95": 0.29792500572511926
+        }
+      }
+    }
+  },
+  "confusion_matrix": {
+    "sql": {
+      "sql": 0,
+      "graph": 0,
+      "code": 2,
+      "abstain": 0,
+      "error": 0
+    },
+    "graph": {
+      "sql": 0,
+      "graph": 0,
+      "code": 0,
+      "abstain": 0,
+      "error": 0
+    },
+    "code": {
+      "sql": 0,
+      "graph": 0,
+      "code": 0,
+      "abstain": 0,
+      "error": 0
+    },
+    "abstain": {
+      "sql": 0,
+      "graph": 0,
+      "code": 0,
+      "abstain": 0,
+      "error": 0
+    }
+  },
+  "confusion_note": "Multiple acceptable routes use the first route as the matrix row; accuracy accepts any listed route.",
+  "sql_only_route_accuracy": 1.0,
+  "baseline_note": "SQL-only route-label diagnostic, not a capable fixed-SQL execution comparison.",
+  "latency_note": "Dataset order; warmup excluded; initialization excluded. Total includes errors; error stage times unavailable. Percentiles use linear interpolation.",
+  "cost": {
+    "usd": null,
+    "tokens": null,
+    "note": "Unmeasured; no monetary cost instrumentation."
+  },
+  "results": [
+    {
+      "id": "count_customers-canonical",
+      "repeat": 0,
+      "family": "chinook/count_customers",
+      "category": "canonical",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql",
+        "code"
+      ],
+      "actual_backend": "code",
+      "status": "ok",
+      "actual": 59,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.3916000132448971,
+      "planning_ms": 0.09280000813305378,
+      "execution_ms": 0.29880000511184335,
+      "oracle_costs_ms": {},
+      "regret_ms": null
+    },
+    {
+      "id": "median-canonical",
+      "repeat": 0,
+      "family": "chinook/median",
+      "category": "canonical",
+      "expected_backend": "sql",
+      "expected_backends": [
+        "sql",
+        "code"
+      ],
+      "actual_backend": "code",
+      "status": "ok",
+      "actual": 3.96,
+      "error": null,
+      "route_correct": true,
+      "answer_correct": true,
+      "joint_correct": true,
+      "latency_ms": 0.3237000200897455,
+      "planning_ms": 0.042400002712383866,
+      "execution_ms": 0.28130001737736166,
+      "oracle_costs_ms": {},
+      "regret_ms": null
+    }
+  ]
+}

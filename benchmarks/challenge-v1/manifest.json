@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "sources": {
+    "chinook": [
+      {
+        "file": "chinook-train.json",
+        "sha256": "f9d8459e2fee52fa0e00155d13dec8173a34983808823c3c7d5082b6c9d0dc9c",
+        "cases": 3,
+        "families": [
+          "chinook/count_tracks",
+          "chinook/mean",
+          "chinook/revenue"
+        ]
+      },
+      {
+        "file": "chinook-validation.json",
+        "sha256": "37cbea1930a0ded4d8d067dd3a6ef4e788678289cef3ed1296d650dd55978e6f",
+        "cases": 2,
+        "families": [
+          "chinook/count_customers",
+          "chinook/median"
+        ]
+      },
+      {
+        "file": "chinook-test.json",
+        "sha256": "b8d00abef2e47b1d4701ca34867e4d258701dd941a56d14947021dd353228d81",
+        "cases": 20,
+        "families": [
+          "chinook/ambiguous_or_write",
+          "chinook/count_invoices",
+          "chinook/country_filter",
+          "chinook/empty_aggregate",
+          "chinook/join_filter",
+          "chinook/join_rank",
+          "chinook/revenue_by_country",
+          "chinook/tracks_by_genre"
+        ]
+      }
+    ],
+    "taxi": [
+      {
+        "file": "taxi-train.json",
+        "sha256": "faab7bf7e9af2a92dc89d7b3a3169428efcfff75a1171315c780622643c5d9f9",
+        "cases": 3,
+        "families": [
+          "taxi/count_trips",
+          "taxi/mean_distance",
+          "taxi/sum_fare"
+        ]
+      },
+      {
+        "file": "taxi-validation.json",
+        "sha256": "944e6db33370d4dd06ebfecb71b59c5f4a1027d3af6f2524882072f2b77615fd",
+        "cases": 2,
+        "families": [
+          "taxi/mean_fare",
+          "taxi/negative_fares"
+        ]
+      },
+      {
+        "file": "taxi-test.json",
+        "sha256": "ba9b3e9e45afd469cc59bca8c7c740fa08f7b9c061fc3d3179adb12727305888",
+        "cases": 15,
+        "families": [
+          "taxi/ambiguous_or_write",
+          "taxi/fare_percentile",
+          "taxi/median_fare",
+          "taxi/passenger_distance",
+          "taxi/positive_fare_mean",
+          "taxi/sum_total"
+        ]
+      }
+    ],
+    "ldbc": [
+      {
+        "file": "ldbc-train.json",
+        "sha256": "ac66af3f95db52f2d477b80e79e867356c0f3f0d49cdcb262f06524c56566e55",
+        "cases": 2,
+        "families": [
+          "ldbc/count_people",
+          "ldbc/friends"
+        ]
+      },
+      {
+        "file": "ldbc-validation.json",
+        "sha256": "46cca0c9e96a3163f450d7dafeba5334239b3ef762260cb07ddd75162a272fd0",
+        "cases": 1,
+        "families": [
+          "ldbc/two_hop"
+        ]
+      },
+      {
+        "file": "ldbc-test.json",
+        "sha256": "3788f3aa4730bb737371cba05fdb049224d838759d6ed36062becbc49ce3d7f4",
+        "cases": 28,
+        "families": [
+          "ldbc/ambiguity",
+          "ldbc/friend_rank",
+          "ldbc/mutual",
+          "ldbc/shortest_path"
+        ]
+      }
+    ]
+  },
+  "note": "Freeze before calibration/test. Test families are not used for calibration. Authored computational gold requires independent review. Once test results are inspected, do not tune against this version and call it untouched."
+}

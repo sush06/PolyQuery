@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "chinook-cost-profile.json": "4b0a1499794846a5977986713d7ffbcd00b095bbba6e75bbe3dcd5d9093f1feb",
+    "ldbc-cost-profile.json": "6b6e9d9287d5f3fae543b28ce77dc5cf471e5870ecb6d31ae1b56c07971bb430",
+    "taxi-cost-profile.json": "72a9da63df66badb6e4cb2a301422c239a6bed8dbd84efa70be6c81376dca44b"
+  },
+  "frozen_before": "validation/test evaluation",
+  "note": "Calibrated only on train. Do not overwrite profiles after test inspection; create a new experiment version."
+}

@@ -1,0 +1,118 @@
+{
+  "profile_version": 1,
+  "source": "taxi",
+  "source_hashes": {
+    "parquet_file": "8b3933fe6f0d7b6d8826613c0dd724edc680ff7c49e2bd4c7635c05102728637"
+  },
+  "train_dataset_sha256": "6c956fe515bf3f9f923560439a823297b65b7bb70c8d174b77bac0f84c0dbf0b",
+  "created_at": "2026-10-04T23:19:46.413418+00:00",
+  "python": "3.11.4",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "repeats": 5,
+  "warmup": 1,
+  "operation_costs_ms": {
+    "count_trips": {
+      "sql": 3.787900001043454,
+      "code": 0.03600001218728721
+    },
+    "sum_fare": {
+      "sql": 534.638899989659,
+      "code": 4.703700018581003
+    },
+    "mean_distance": {
+      "sql": 683.6280999996234,
+      "code": 4.953299998305738
+    }
+  },
+  "fallback_costs_ms": {
+    "sql": 534.638899989659,
+    "code": 4.703700018581003
+  },
+  "measurements": [
+    {
+      "id": "count_trips-canonical",
+      "operation": "count_trips",
+      "backend": "sql",
+      "correct": true,
+      "samples_ms": [
+        4.140399978496134,
+        3.710799996042624,
+        3.719400003319606,
+        3.787900001043454,
+        4.282000008970499
+      ],
+      "errors": []
+    },
+    {
+      "id": "count_trips-canonical",
+      "operation": "count_trips",
+      "backend": "code",
+      "correct": true,
+      "samples_ms": [
+        0.056899996707215905,
+        0.042100000428035855,
+        0.03600001218728721,
+        0.03440000000409782,
+        0.032899988582357764
+      ],
+      "errors": []
+    },
+    {
+      "id": "sum_fare-canonical",
+      "operation": "sum_fare",
+      "backend": "sql",
+      "correct": true,
+      "samples_ms": [
+        528.1746999826282,
+        550.6286000018008,
+        534.638899989659,
+        531.4721000031568,
+        554.935199994361
+      ],
+      "errors": []
+    },
+    {
+      "id": "sum_fare-canonical",
+      "operation": "sum_fare",
+      "backend": "code",
+      "correct": true,
+      "samples_ms": [
+        4.703700018581003,
+        5.15739998081699,
+        4.446200007805601,
+        4.399299999931827,
+        5.584900005487725
+      ],
+      "errors": []
+    },
+    {
+      "id": "mean_distance-canonical",
+      "operation": "mean_distance",
+      "backend": "sql",
+      "correct": true,
+      "samples_ms": [
+        683.6280999996234,
+        723.1596999918111,
+        707.2967999847606,
+        652.5876999949105,
+        652.8242000204045
+      ],
+      "errors": []
+    },
+    {
+      "id": "mean_distance-canonical",
+      "operation": "mean_distance",
+      "backend": "code",
+      "correct": true,
+      "samples_ms": [
+        4.953299998305738,
+        5.119499983265996,
+        5.749900010414422,
+        4.717200004961342,
+        4.63600002694875
+      ],
+      "errors": []
+    }
+  ],
+  "note": "Execution-only medians from training reference plans; no validation/test answers or timings used. Unseen operations use backend-wide training medians; this can be inaccurate."
+}

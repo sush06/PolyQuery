@@ -1,0 +1,44 @@
+{
+  "metadata": {
+    "source": "chinook",
+    "split": "validation",
+    "source_hashes": {
+      "database_file": "7651ba378ac2fcd0dfc3c66fb101f7a7eed3ba39a612ec642b96e20702061f15"
+    },
+    "label": "chinook validation: frozen authored challenge; computational gold, not independently reviewed",
+    "family_rule": "All variants of an operation family stay in one split; compound tasks are separate families.",
+    "annotation_status": "requires_independent_review"
+  },
+  "cases": [
+    {
+      "question": "How many customers?",
+      "expected": 59,
+      "backends": [
+        "sql",
+        "code"
+      ],
+      "id": "count_customers-canonical",
+      "family": "chinook/count_customers",
+      "category": "canonical",
+      "reference_plan": {
+        "operation": "count_customers",
+        "parameters": {}
+      }
+    },
+    {
+      "question": "Median invoice total",
+      "expected": 3.96,
+      "backends": [
+        "sql",
+        "code"
+      ],
+      "id": "median-canonical",
+      "family": "chinook/median",
+      "category": "canonical",
+      "reference_plan": {
+        "operation": "median",
+        "parameters": {}
+      }
+    }
+  ]
+}

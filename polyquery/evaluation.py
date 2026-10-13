@@ -207,6 +207,7 @@ def evaluate(engine, dataset, *, repeats=1, warmup=0, policy_label="rule-router"
     if metadata.get("source_hashes", fingerprint) != fingerprint:
         raise ValueError("Dataset gold answers do not match the supplied source hashes")
     results = []
+    planner_usage = []
     for repetition in range(warmup + repeats):
         for case in cases:
             started = time.perf_counter()
@@ -219,6 +220,9 @@ def evaluate(engine, dataset, *, repeats=1, warmup=0, policy_label="rule-router"
                 response = {"latency_ms": (time.perf_counter() - started) * 1000}
                 status, backend, actual = "error", "error", None
                 error = {"type": type(exception).__name__, "message": str(exception)}
+            planner_metadata = response.get('planner_metadata',getattr(engine.planner,'last_metadata',{})) if hasattr(engine,'planner') else response.get('planner_metadata',{})
+            if planner_metadata:
+                planner_usage.append({**planner_metadata,'warmup':repetition<warmup})
             if repetition < warmup:
                 continue
             routes = routes_for(case)
@@ -231,6 +235,7 @@ def evaluate(engine, dataset, *, repeats=1, warmup=0, policy_label="rule-router"
                             "expected_backend": routes[0], "expected_backends": routes,
                             "actual_backend": backend, "status": status, "actual": actual,
                             "plan": response.get("plan"),
+                            "planner_metadata": dict(planner_metadata),
                             "error": error, "route_correct": route_correct,
                             "answer_correct": answer_correct, "joint_correct": route_correct and answer_correct,
                             **{field: response.get(field) for field in ("latency_ms", "planning_ms", "execution_ms")}})
@@ -269,7 +274,12 @@ def evaluate(engine, dataset, *, repeats=1, warmup=0, policy_label="rule-router"
         "sql_only_route_accuracy": sum("sql" in routes_for(c) for c in cases) / len(cases),
         "baseline_note": "SQL-only route-label diagnostic, not a capable fixed-SQL execution comparison.",
         "latency_note": "Dataset order; warmup excluded; initialization excluded. Total includes errors; error stage times unavailable. Percentiles use linear interpolation.",
-        "cost": {"usd": None, "tokens": None, "note": "Unmeasured; no monetary cost instrumentation."},
+        "cost": {"usd": None,
+                 "tokens": sum(u.get('total_tokens') or 0 for u in planner_usage) if planner_usage and all(u.get('total_tokens') is not None or not u.get('api_calls') for u in planner_usage) else None,
+                 "api_calls_including_warmup":sum(u.get('api_calls',0) for u in planner_usage),
+                 "measured_api_calls":sum(u.get('api_calls',0) for u in planner_usage if not u['warmup']),
+                 "usage_including_warmup":planner_usage,
+                 "note": "Provider token counts include warmup and invalid/refused responses where available; failed requests can have unknown usage. USD is unmeasured, not zero."},
         "results": results,
     }
 
