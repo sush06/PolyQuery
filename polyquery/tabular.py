@@ -82,6 +82,7 @@ class TabularPlanner:
 class TabularSQL:
     def __init__(self, db, statements):
         self.db, self.statements = db, statements
+        self.operations = set(statements)
 
     def execute(self, plan):
         validate_operation(plan, self.statements)
@@ -95,6 +96,7 @@ class TabularSQL:
 
 
 class ChinookCode:
+    operations = set(CHINOOK_SQL)
     def __init__(self, db):
         # Materialize only the tables used by these documented operations.
         self.tables = {name: [dict(row) for row in db.execute(f'SELECT * FROM "{name}"')]
@@ -128,6 +130,7 @@ class ChinookCode:
 
 
 class TaxiCode:
+    operations = set(TAXI_SQL)
     expressions = {
         "count_trips": "count_rows(fare_amount)", "sum_fare": "sum(fare_amount)",
         "sum_total": "sum(total_amount)", "mean_distance": "mean(trip_distance)",

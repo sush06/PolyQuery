@@ -18,6 +18,10 @@ Taxi Parquet file, including fixed-backend execution comparisons. Taxi requires
 the optional `.[taxi]` dependency. See [real-data benchmark commands](docs/real-data-benchmarks.md)
 and [evaluation metrics](docs/evaluation.md).
 
+The [challenge evaluation](docs/challenge-evaluation.md) adds disjoint operation
+families, paraphrases, compound requests, and a cost policy calibrated only on
+training data. It reports coverage and execution regret alongside accuracy.
+
 ## What works today
 
 | Question | Selected backend | Execution artifact |

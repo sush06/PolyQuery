@@ -6,6 +6,7 @@ from .planner import Plan
 
 
 class LDBCSQL:
+    operations = {"count_people", "friends", "shortest_path"}
     def __init__(self, graph):
         self.graph = graph
         self.db = sqlite3.connect(":memory:")

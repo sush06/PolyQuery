@@ -5,9 +5,20 @@ import math
 import platform
 import time
 from pathlib import Path
+import statistics
+from .planner import Plan
 from datetime import datetime, timezone
 
 BACKENDS = ("sql", "graph", "code", "abstain")
+
+
+def implementation_fingerprint():
+    root = Path(__file__).parent
+    digest = hashlib.sha256()
+    for path in sorted(root.glob('*.py')):
+        digest.update(path.name.encode())
+        digest.update(path.read_bytes())
+    return digest.hexdigest()
 
 
 def source_fingerprint(engine):
@@ -90,6 +101,7 @@ def summarize(results):
     abstained = [r for r in results if r["status"] == "abstained"]
     gold_abstain = [r for r in results if r["expected_backends"] == ["abstain"]]
     answerable = [r for r in results if r["expected_backends"] != ["abstain"]]
+    correct_answers = [r for r in answered if r["answer_correct"] and r["expected_backends"] != ["abstain"]]
     return {
         "runs": n,
         "answer_accuracy": sum(r["answer_correct"] for r in results) / n,
@@ -100,6 +112,8 @@ def summarize(results):
         "answered_accuracy": sum(r["answer_correct"] for r in answered) / len(answered) if answered else None,
         "answered_joint_accuracy": sum(r["joint_correct"] for r in answered) / len(answered) if answered else None,
         "error_rate": sum(r["status"] == "error" for r in results) / n,
+        "correct_answer_latency_ms": timing_summary([r["latency_ms"] for r in correct_answers]),
+        "total_query_ms_per_correct_answer": sum(r["latency_ms"] for r in results) / len(correct_answers) if correct_answers else None,
         "abstention_precision": sum(r["expected_backends"] == ["abstain"] for r in abstained) / len(abstained) if abstained else None,
         "abstention_recall": sum(r["status"] == "abstained" for r in gold_abstain) / len(gold_abstain) if gold_abstain else None,
         "latency": {field: timing_summary([r[field] for r in results if r[field] is not None])
@@ -135,11 +149,50 @@ def validate_cases(cases):
             raise ValueError("Shortest-path answers must be nonempty string lists or null")
         if not isinstance(case.get("family", "unspecified"), str):
             raise ValueError("Family must be a string")
+        if not isinstance(case.get("category", "unspecified"), str):
+            raise ValueError("Category must be a string")
+        if "reference_plan" in case and (not isinstance(case["reference_plan"], dict) or not isinstance(case["reference_plan"].get("operation"), str) or not isinstance(case["reference_plan"].get("parameters", {}), dict)):
+            raise ValueError("Reference plan requires an operation and optional parameter object")
 
 
-def evaluate(engine, dataset, *, repeats=1, warmup=0, policy_label="rule-router"):
+def estimate_oracles(engine, cases, repeats):
+    """Post-run diagnostic probes, never used to fit or update the cost policy."""
+    estimates, cache = {}, {}
+    graph = engine.backends.get("graph")
+    for case in cases:
+        reference = case.get("reference_plan")
+        if not reference:
+            continue
+        key = json.dumps([reference, case["expected"], case.get("comparison")], sort_keys=True)
+        if key not in cache:
+            costs = {}
+            for backend in routes_for(case):
+                if backend not in engine.backends:
+                    continue
+                samples, correct = [], True
+                for trial in range(repeats + 1):
+                    started = time.perf_counter()
+                    try:
+                        actual = engine.backends[backend].execute(Plan(backend, reference["operation"], reference.get("parameters", {})))["value"]
+                        elapsed = (time.perf_counter() - started) * 1000
+                        correct = correct and answer_matches(actual, case, graph)
+                    except Exception:
+                        correct = False
+                        break
+                    if trial:
+                        samples.append(elapsed)
+                if correct:
+                    costs[backend] = statistics.median(samples)
+            cache[key] = costs
+        estimates[case["id"]] = cache[key]
+    return estimates
+
+
+def evaluate(engine, dataset, *, repeats=1, warmup=0, policy_label="rule-router", oracle_repeats=0):
     if type(repeats) is not int or repeats < 1 or type(warmup) is not int or warmup < 0:
         raise ValueError("Repeats must be positive and warmup nonnegative integers")
+    if type(oracle_repeats) is not int or oracle_repeats < 0:
+        raise ValueError("oracle_repeats must be a nonnegative integer")
     metadata = dataset.get("metadata", {}) if isinstance(dataset, dict) else {}
     cases = dataset.get("cases") if isinstance(dataset, dict) else dataset
     validate_cases(cases)
@@ -174,22 +227,41 @@ def evaluate(engine, dataset, *, repeats=1, warmup=0, policy_label="rule-router"
             answer_correct = (status == "abstained" if routes == ["abstain"] else status == "ok" and answer_matches(actual, case, graph))
             results.append({"id": case["id"], "repeat": repetition - warmup,
                             "family": case.get("family", "unspecified"),
+                            "category": case.get("category", "unspecified"),
                             "expected_backend": routes[0], "expected_backends": routes,
                             "actual_backend": backend, "status": status, "actual": actual,
+                            "plan": response.get("plan"),
                             "error": error, "route_correct": route_correct,
                             "answer_correct": answer_correct, "joint_correct": route_correct and answer_correct,
                             **{field: response.get(field) for field in ("latency_ms", "planning_ms", "execution_ms")}})
+    oracles = estimate_oracles(engine, cases, oracle_repeats) if oracle_repeats else {}
+    regrets = []
+    for result in results:
+        costs = oracles.get(result["id"], {})
+        result["oracle_costs_ms"] = costs
+        result["regret_ms"] = None
+        if costs and result["answer_correct"] and result["status"] == "ok" and result["execution_ms"] is not None:
+            result["oracle_backend"] = min(costs, key=lambda b: (costs[b], b))
+            result["oracle_execution_ms"] = min(costs.values())
+            result["execution_delta_ms"] = result["execution_ms"] - min(costs.values())
+            result["regret_ms"] = max(0, result["execution_delta_ms"])
+            regrets.append(result["regret_ms"])
     return {
         "report_version": 2, "created_at": datetime.now(timezone.utc).isoformat(),
+        "implementation_sha256": implementation_fingerprint(),
         "dataset_label": metadata.get("label", "Development regression set; not held-out research evidence"),
         "dataset_metadata": metadata,
         "dataset_sha256": hashlib.sha256(json.dumps(dataset, sort_keys=True).encode()).hexdigest(),
         "source": engine.source_metadata, "policy": policy_label, "python": platform.python_version(),
         "source_hashes": fingerprint,
         "initialization_ms": getattr(engine, "initialization_ms", None),
+        "cost_profile": getattr(engine, "cost_profile", None),
         "platform": platform.platform(), "cases": len(cases), "repeats": repeats, "warmup": warmup,
         **summarize(results),
         "by_family": {family: summarize([r for r in results if r["family"] == family]) for family in sorted({r["family"] for r in results})},
+        "by_category": {category: summarize([r for r in results if r["category"] == category]) for category in sorted({r["category"] for r in results})},
+        "regret": {**timing_summary(regrets), "oracle_repeats": oracle_repeats,
+                   "note": "Correct answered runs with reference plans only. Execution-stage time minus fastest correct post-run reference strategy median; negative noise clipped, signed deltas retained. Unanswered/capability-gap cases are excluded, not zero-cost successes."},
         "by_expected_backend": {backend: summarize([r for r in results if backend in r["expected_backends"]])
                                 for backend in BACKENDS if any(backend in r["expected_backends"] for r in results)},
         "confusion_matrix": {expected: {actual: sum(r["expected_backend"] == expected and r["actual_backend"] == actual for r in results) for actual in (*BACKENDS, "error")} for expected in BACKENDS},
@@ -202,7 +274,7 @@ def evaluate(engine, dataset, *, repeats=1, warmup=0, policy_label="rule-router"
     }
 
 
-def evaluate_policies(factories, dataset, *, repeats=1, warmup=0):
+def evaluate_policies(factories, dataset, *, repeats=1, warmup=0, oracle_repeats=0):
     """Evaluate named engine factories on identical cases; each owns its resources.
 
     A factory returns an Engine-compatible context manager. Implement fixed
@@ -213,7 +285,7 @@ def evaluate_policies(factories, dataset, *, repeats=1, warmup=0):
     reports = {}
     for label, factory in factories.items():
         with factory() as engine:
-            reports[label] = evaluate(engine, dataset, repeats=repeats, warmup=warmup, policy_label=label)
+            reports[label] = evaluate(engine, dataset, repeats=repeats, warmup=warmup, policy_label=label, oracle_repeats=oracle_repeats)
         if len(reports) > 1:
             reference = next(iter(reports.values()))
             if reports[label]["source_hashes"] != reference["source_hashes"]:

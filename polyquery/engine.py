@@ -5,10 +5,11 @@ from .planner import RulePlanner
 
 
 class Engine:
-    def __init__(self, planner=None, *, source="synthetic", people_path=None, edges_path=None, data_path=None, policy="router"):
+    def __init__(self, planner=None, *, source="synthetic", people_path=None, edges_path=None, data_path=None, policy="router", cost_profile=None):
         started = time.perf_counter()
         self.source = source
         self.policy = policy
+        execution_policy = "router" if policy == "cost-aware" else policy
         if source == "synthetic":
             self.planner = planner or RulePlanner()
             self.backends = {"sql": SQLBackend(), "graph": GraphBackend(), "code": CodeBackend()}
@@ -19,20 +20,31 @@ class Engine:
             if people_path is None or edges_path is None:
                 raise ValueError("LDBC requires people_path and edges_path")
             graph = LDBCGraph(people_path, edges_path)
-            self.planner = planner or LDBCPolicyPlanner(LDBCPlanner(graph), policy)
+            self.planner = planner or LDBCPolicyPlanner(LDBCPlanner(graph), execution_policy)
             self.backends = {"graph": graph, "sql": LDBCSQL(graph)}
             self.source_metadata = graph.metadata
         elif source in ("chinook", "taxi"):
             from .tabular import TabularPlanner, chinook_backends, taxi_backends
             if data_path is None:
                 raise ValueError(f"{source} requires data_path")
-            self.planner = planner or TabularPlanner(source, policy)
+            self.planner = planner or TabularPlanner(source, execution_policy)
             self.backends, self.source_metadata = (chinook_backends if source == "chinook" else taxi_backends)(data_path)
         else:
             raise ValueError(f"Unknown data source: {source}")
         if source == "synthetic" and policy != "router":
             self.close()
             raise ValueError(f"Fixed policies are not implemented for {source}")
+        if policy == "cost-aware":
+            try:
+                from .costs import CostPlanner, load_profile
+                from .evaluation import source_fingerprint
+                if cost_profile is None:
+                    raise ValueError("Cost-aware policy requires cost_profile")
+                self.cost_profile = load_profile(cost_profile)
+                self.planner = CostPlanner(self.planner, self.cost_profile, source, source_fingerprint(self), self.backends)
+            except Exception:
+                self.close()
+                raise
         self.initialization_ms = (time.perf_counter() - started) * 1000
 
     def query(self, question):

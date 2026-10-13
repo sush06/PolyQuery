@@ -9,6 +9,7 @@ from .planner import Plan
 
 
 class LDBCGraph:
+    operations = {"count_people", "friends", "shortest_path"}
     def __init__(self, people_path, edges_path):
         self.people = {}
         with Path(people_path).open(encoding="utf-8-sig", newline="") as stream:
