@@ -28,6 +28,25 @@ def planner_options(parser):
 def main():
     parser = argparse.ArgumentParser(description="PolyQuery query routing and evaluation")
     sub = parser.add_subparsers(dest="command", required=True)
+    paired=sub.add_parser('compare-routers',help='Paired keyword/LLM evaluation on draft canonical labels')
+    paired.add_argument('--pool',type=Path,default=Path('benchmarks/constraint-labels-v2'))
+    paired.add_argument('--sources',type=Path,default=Path('benchmarks/router-sources.json'))
+    paired.add_argument('--output',type=Path,required=True,help='New local report, preferably under ignored logs/')
+    paired.add_argument('--repeats',type=int,default=1)
+    paired.add_argument('--keyword-only',action='store_true',help='Explicit partial run when no LLM is available')
+    paired.add_argument('--input-usd-per-million',type=float)
+    paired.add_argument('--output-usd-per-million',type=float)
+    planner_options(paired)
+    constraint_eval=sub.add_parser('evaluate-constraints')
+    constraint_eval.add_argument('--dataset',type=Path,default=Path('benchmarks/constraints-dev.json'))
+    constraint_eval.add_argument('--output',type=Path)
+    audit_parser=sub.add_parser('audit-constraint-labels')
+    audit_parser.add_argument('--pool',type=Path,default=Path('benchmarks/constraint-labels-v2'))
+    classify=sub.add_parser('classify-constraints')
+    classify.add_argument('question')
+    classify.add_argument('--source',choices=('synthetic','chinook','taxi','ldbc'),required=True)
+    classify.add_argument('--model',required=True)
+    classify.add_argument('--threshold',type=float,default=.5)
     query = sub.add_parser("query")
     query.add_argument("question")
     source_options(query)
@@ -55,6 +74,54 @@ def main():
         elif name == "compare":
             command.add_argument("--reverse-order", action="store_true")
     args = parser.parse_args()
+    if args.command=='compare-routers':
+        from .router_comparison import compare_routers,load_sources
+        if args.llm_fallback!='none':
+            parser.error('Paired comparisons disable keyword fallback')
+        if args.output.exists():
+            parser.error('Report exists; choose a new output path')
+        try:
+            result=compare_routers(
+                json.loads((args.pool/'labels.json').read_text(encoding='utf-8-sig')),
+                json.loads((args.pool/'splits.json').read_text(encoding='utf-8-sig')),
+                load_sources(args.sources),model=args.model,repeats=args.repeats,keyword_only=args.keyword_only,
+                input_rate=args.input_usd_per_million,output_rate=args.output_usd_per_million,
+                llm_kwargs={'llm_base_url':args.llm_base_url,'llm_api':args.llm_api,'llm_timeout':args.llm_timeout})
+            args.output.parent.mkdir(parents=True,exist_ok=True)
+            with args.output.open('x',encoding='utf-8') as stream:
+                stream.write(json.dumps(result,indent=2)+'\n')
+        except (OSError,ValueError,KeyError,LLMPlanningError) as error:
+            parser.error(str(error))
+        print(json.dumps({'complete_comparison':result['complete_comparison'],'summaries':result['summaries'],
+                          'output':str(args.output.resolve())},indent=2))
+        return
+    if args.command=='audit-constraint-labels':
+        from .label_review import write_review_artifacts
+        try:
+            report=write_review_artifacts(args.pool)
+        except (OSError,ValueError,KeyError) as error:
+            parser.error(str(error))
+        print(json.dumps(report,indent=2))
+        if not report['consistency_passed']: parser.exit(1)
+        return
+    if args.command=='classify-constraints':
+        from .jev import JevClassifier,JevClassificationError
+        try:
+            print(json.dumps(JevClassifier(args.model,threshold=args.threshold).classify(args.question,args.source),indent=2))
+        except (ValueError,JevClassificationError) as error:
+            parser.error(str(error))
+        return
+    if args.command=='evaluate-constraints':
+        from .constraint_evaluation import evaluate_constraint_cases
+        try:
+            result=evaluate_constraint_cases(json.loads(args.dataset.read_text(encoding='utf-8-sig')))
+            if args.output:
+                args.output.parent.mkdir(parents=True,exist_ok=True)
+                args.output.write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')
+        except (OSError,ValueError) as error:
+            parser.error(str(error))
+        print(json.dumps(result,indent=2))
+        return
     if getattr(args,'planner','keyword') == 'llm' and not args.model:
         parser.error('--planner llm requires --model')
     if args.source == "ldbc" and (args.people is None or args.knows is None):

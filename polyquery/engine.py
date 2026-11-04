@@ -70,12 +70,37 @@ class Engine:
                 raise
         self.initialization_ms = (time.perf_counter() - started) * 1000
 
-    def query(self, question):
+    def query(self, question, *, task_context=None):
         started = time.perf_counter()
-        plan = self.planner.plan(question)
+        # Keep policy metadata out of keyword matching and lexical guards. The
+        # keyword planner has no policy-context parser; independent gold scoring
+        # exposes that limitation instead of mutating its natural-language input.
+        if task_context and hasattr(self.planner, 'plan_with_context'):
+            plan = self.planner.plan_with_context(question, task_context)
+        else:
+            plan = self.planner.plan(question)
         self.catalog.validate_plan(plan)
+        from .constraints import check_constraints
+        constraint_check = check_constraints(question, plan, self.catalog)
+        from .constraint_planning import extract_constraints, implemented_constraints, validate_extracted
+        extracted = extract_constraints(question,self.catalog)
+        canonical_validation = {'extracted':extracted.to_dict(),'implemented':None,'preserved':None,'status':'not_executed'}
+        if plan.backend != 'abstain':
+            implemented = implemented_constraints(plan,self.source)
+            canonical_validation = {'extracted':extracted.to_dict(),'implemented':implemented.to_dict(),
+                                    **validate_extracted(extracted,implemented)}
+        blocked = not constraint_check.allowed or canonical_validation['preserved'] is False
+        if blocked:
+            from .planner import Plan
+            proposed_plan = plan.to_dict()
+            details = ', '.join(constraint_check.findings) if not constraint_check.allowed else 'canonical constraint mismatch or unresolved extraction'
+            plan = Plan('abstain','unsupported',reason='Constraint preservation blocked execution: '+details)
         planned = time.perf_counter()
         response = {"question": question, "source": self.source, "plan": plan.to_dict(), "status": "abstained", "result": None}
+        response['constraint_check'] = constraint_check.to_dict()
+        response['canonical_validation'] = canonical_validation
+        if blocked:
+            response['proposed_plan'] = proposed_plan
         if hasattr(self.planner,'last_metadata'):
             response['planner_metadata'] = dict(self.planner.last_metadata)
         if plan.backend != "abstain":

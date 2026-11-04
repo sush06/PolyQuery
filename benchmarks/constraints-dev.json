@@ -1,0 +1,640 @@
+{
+  "metadata": {
+    "split": "development",
+    "annotation_status": "author-written canonical examples; independent review pending",
+    "labels_built_from_extractor": false
+  },
+  "cases": [
+    {
+      "id": "fare-mean",
+      "source": "taxi",
+      "question": "Average fare amount",
+      "expected": {
+        "version": 1,
+        "source": "taxi",
+        "constraints": [
+          {
+            "kind": "scope",
+            "field": "trips",
+            "operator": "rows",
+            "value": null,
+            "predicate": null
+          },
+          {
+            "kind": "aggregation",
+            "field": "trips.fare_amount",
+            "operator": "mean",
+            "value": null,
+            "predicate": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "exclude-negative-includes-zero",
+      "source": "taxi",
+      "question": "Average fare excluding negative fares",
+      "expected": {
+        "version": 1,
+        "source": "taxi",
+        "constraints": [
+          {
+            "kind": "scope",
+            "field": "trips",
+            "operator": "rows",
+            "value": null,
+            "predicate": null
+          },
+          {
+            "kind": "aggregation",
+            "field": "trips.fare_amount",
+            "operator": "mean",
+            "value": null,
+            "predicate": null
+          },
+          {
+            "kind": "predicate",
+            "field": "where",
+            "operator": "where",
+            "value": null,
+            "predicate": {
+              "operator": "ge",
+              "field": "trips.fare_amount",
+              "value": {
+                "kind": "number",
+                "value": "0"
+              },
+              "children": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "exclude-zero",
+      "source": "taxi",
+      "question": "Average fare excluding zero fares",
+      "expected": {
+        "version": 1,
+        "source": "taxi",
+        "constraints": [
+          {
+            "kind": "scope",
+            "field": "trips",
+            "operator": "rows",
+            "value": null,
+            "predicate": null
+          },
+          {
+            "kind": "aggregation",
+            "field": "trips.fare_amount",
+            "operator": "mean",
+            "value": null,
+            "predicate": null
+          },
+          {
+            "kind": "predicate",
+            "field": "where",
+            "operator": "where",
+            "value": null,
+            "predicate": {
+              "operator": "ne",
+              "field": "trips.fare_amount",
+              "value": {
+                "kind": "number",
+                "value": "0"
+              },
+              "children": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "strict-fare-bound",
+      "source": "taxi",
+      "question": "Average fare amount below 5",
+      "expected": {
+        "version": 1,
+        "source": "taxi",
+        "constraints": [
+          {
+            "kind": "scope",
+            "field": "trips",
+            "operator": "rows",
+            "value": null,
+            "predicate": null
+          },
+          {
+            "kind": "aggregation",
+            "field": "trips.fare_amount",
+            "operator": "mean",
+            "value": null,
+            "predicate": null
+          },
+          {
+            "kind": "predicate",
+            "field": "where",
+            "operator": "where",
+            "value": null,
+            "predicate": {
+              "operator": "lt",
+              "field": "trips.fare_amount",
+              "value": {
+                "kind": "number",
+                "value": "5"
+              },
+              "children": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "negative-count",
+      "source": "taxi",
+      "question": "How many negative fares?",
+      "expected": {
+        "version": 1,
+        "source": "taxi",
+        "constraints": [
+          {
+            "kind": "scope",
+            "field": "trips",
+            "operator": "rows",
+            "value": null,
+            "predicate": null
+          },
+          {
+            "kind": "aggregation",
+            "field": "trips.*",
+            "operator": "count",
+            "value": null,
+            "predicate": null
+          },
+          {
+            "kind": "predicate",
+            "field": "where",
+            "operator": "where",
+            "value": null,
+            "predicate": {
+              "operator": "lt",
+              "field": "trips.fare_amount",
+              "value": {
+                "kind": "number",
+                "value": "0"
+              },
+              "children": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "strict-salary-bound",
+      "source": "synthetic",
+      "question": "Average salary above 100000",
+      "expected": {
+        "version": 1,
+        "source": "synthetic",
+        "constraints": [
+          {
+            "kind": "scope",
+            "field": "employees",
+            "operator": "rows",
+            "value": null,
+            "predicate": null
+          },
+          {
+            "kind": "aggregation",
+            "field": "employees.salary",
+            "operator": "mean",
+            "value": null,
+            "predicate": null
+          },
+          {
+            "kind": "predicate",
+            "field": "where",
+            "operator": "where",
+            "value": null,
+            "predicate": {
+              "operator": "gt",
+              "field": "employees.salary",
+              "value": {
+                "kind": "number",
+                "value": "100000"
+              },
+              "children": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "inclusive-salary-bound",
+      "source": "synthetic",
+      "question": "Average salary at least 100000",
+      "expected": {
+        "version": 1,
+        "source": "synthetic",
+        "constraints": [
+          {
+            "kind": "scope",
+            "field": "employees",
+            "operator": "rows",
+            "value": null,
+            "predicate": null
+          },
+          {
+            "kind": "aggregation",
+            "field": "employees.salary",
+            "operator": "mean",
+            "value": null,
+            "predicate": null
+          },
+          {
+            "kind": "predicate",
+            "field": "where",
+            "operator": "where",
+            "value": null,
+            "predicate": {
+              "operator": "ge",
+              "field": "employees.salary",
+              "value": {
+                "kind": "number",
+                "value": "100000"
+              },
+              "children": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "department-equality",
+      "source": "synthetic",
+      "question": "Average salary in Research",
+      "expected": {
+        "version": 1,
+        "source": "synthetic",
+        "constraints": [
+          {
+            "kind": "scope",
+            "field": "employees",
+            "operator": "rows",
+            "value": null,
+            "predicate": null
+          },
+          {
+            "kind": "aggregation",
+            "field": "employees.salary",
+            "operator": "mean",
+            "value": null,
+            "predicate": null
+          },
+          {
+            "kind": "predicate",
+            "field": "where",
+            "operator": "where",
+            "value": null,
+            "predicate": {
+              "operator": "eq",
+              "field": "employees.department",
+              "value": {
+                "kind": "string",
+                "value": "Research"
+              },
+              "children": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "department-exclusion",
+      "source": "synthetic",
+      "question": "Average salary excluding Sales",
+      "expected": {
+        "version": 1,
+        "source": "synthetic",
+        "constraints": [
+          {
+            "kind": "scope",
+            "field": "employees",
+            "operator": "rows",
+            "value": null,
+            "predicate": null
+          },
+          {
+            "kind": "aggregation",
+            "field": "employees.salary",
+            "operator": "mean",
+            "value": null,
+            "predicate": null
+          },
+          {
+            "kind": "predicate",
+            "field": "where",
+            "operator": "where",
+            "value": null,
+            "predicate": {
+              "operator": "ne",
+              "field": "employees.department",
+              "value": {
+                "kind": "string",
+                "value": "Sales"
+              },
+              "children": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "department-disjunction",
+      "source": "synthetic",
+      "question": "Average salary in Sales or Engineering",
+      "expected": {
+        "version": 1,
+        "source": "synthetic",
+        "constraints": [
+          {
+            "kind": "scope",
+            "field": "employees",
+            "operator": "rows",
+            "value": null,
+            "predicate": null
+          },
+          {
+            "kind": "aggregation",
+            "field": "employees.salary",
+            "operator": "mean",
+            "value": null,
+            "predicate": null
+          },
+          {
+            "kind": "predicate",
+            "field": "where",
+            "operator": "where",
+            "value": null,
+            "predicate": {
+              "operator": "or",
+              "field": null,
+              "value": null,
+              "children": [
+                {
+                  "operator": "eq",
+                  "field": "employees.department",
+                  "value": {
+                    "kind": "string",
+                    "value": "Engineering"
+                  },
+                  "children": []
+                },
+                {
+                  "operator": "eq",
+                  "field": "employees.department",
+                  "value": {
+                    "kind": "string",
+                    "value": "Sales"
+                  },
+                  "children": []
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "country-group",
+      "source": "chinook",
+      "question": "Total revenue by billing country",
+      "expected": {
+        "version": 1,
+        "source": "chinook",
+        "constraints": [
+          {
+            "kind": "scope",
+            "field": "Invoice",
+            "operator": "rows",
+            "value": null,
+            "predicate": null
+          },
+          {
+            "kind": "aggregation",
+            "field": "Invoice.Total",
+            "operator": "sum",
+            "value": null,
+            "predicate": null
+          },
+          {
+            "kind": "grouping",
+            "field": "Invoice.BillingCountry",
+            "operator": "key",
+            "value": null,
+            "predicate": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "genre-join-group",
+      "source": "chinook",
+      "question": "Track count by genre",
+      "expected": {
+        "version": 1,
+        "source": "chinook",
+        "constraints": [
+          {
+            "kind": "scope",
+            "field": "Track",
+            "operator": "rows",
+            "value": null,
+            "predicate": null
+          },
+          {
+            "kind": "aggregation",
+            "field": "Track.*",
+            "operator": "count",
+            "value": null,
+            "predicate": null
+          },
+          {
+            "kind": "grouping",
+            "field": "Genre.Name",
+            "operator": "key",
+            "value": null,
+            "predicate": null
+          },
+          {
+            "kind": "join",
+            "field": "Track.GenreId",
+            "operator": "inner",
+            "value": "Genre.GenreId",
+            "predicate": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "distinct-trips",
+      "source": "taxi",
+      "question": "Count distinct trips",
+      "expected": {
+        "version": 1,
+        "source": "taxi",
+        "constraints": [
+          {
+            "kind": "scope",
+            "field": "trips",
+            "operator": "rows",
+            "value": null,
+            "predicate": null
+          },
+          {
+            "kind": "aggregation",
+            "field": "trips.*",
+            "operator": "count",
+            "value": null,
+            "predicate": null
+          },
+          {
+            "kind": "distinct",
+            "field": "trips",
+            "operator": "enabled",
+            "value": true,
+            "predicate": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "ordered-limit",
+      "source": "taxi",
+      "question": "List trips ordered by fare_amount descending, limit 5",
+      "expected": {
+        "version": 1,
+        "source": "taxi",
+        "constraints": [
+          {
+            "kind": "scope",
+            "field": "trips",
+            "operator": "rows",
+            "value": null,
+            "predicate": null
+          },
+          {
+            "kind": "ordering",
+            "field": "trips.fare_amount",
+            "operator": "desc",
+            "value": null,
+            "predicate": null
+          },
+          {
+            "kind": "limit",
+            "field": "trips",
+            "operator": "max_rows",
+            "value": 5,
+            "predicate": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "numeric-disjunction",
+      "source": "synthetic",
+      "question": "Average salary above 100000 or experience below 4",
+      "expected": {
+        "version": 1,
+        "source": "synthetic",
+        "constraints": [
+          {
+            "kind": "scope",
+            "field": "employees",
+            "operator": "rows",
+            "value": null,
+            "predicate": null
+          },
+          {
+            "kind": "aggregation",
+            "field": "employees.salary",
+            "operator": "mean",
+            "value": null,
+            "predicate": null
+          },
+          {
+            "kind": "predicate",
+            "field": "where",
+            "operator": "where",
+            "value": null,
+            "predicate": {
+              "operator": "or",
+              "field": null,
+              "value": null,
+              "children": [
+                {
+                  "operator": "lt",
+                  "field": "employees.experience",
+                  "value": {
+                    "kind": "number",
+                    "value": "4"
+                  },
+                  "children": []
+                },
+                {
+                  "operator": "gt",
+                  "field": "employees.salary",
+                  "value": {
+                    "kind": "number",
+                    "value": "100000"
+                  },
+                  "children": []
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "ldbc-path",
+      "source": "ldbc",
+      "question": "Shortest path from 933 to 1129",
+      "expected": {
+        "version": 1,
+        "source": "ldbc",
+        "constraints": [
+          {
+            "kind": "scope",
+            "field": "person",
+            "operator": "rows",
+            "value": null,
+            "predicate": null
+          },
+          {
+            "kind": "traversal",
+            "field": "person",
+            "operator": "source",
+            "value": "933",
+            "predicate": null
+          },
+          {
+            "kind": "traversal",
+            "field": "person",
+            "operator": "target",
+            "value": "1129",
+            "predicate": null
+          },
+          {
+            "kind": "traversal",
+            "field": "person",
+            "operator": "strategy",
+            "value": "shortest_undirected",
+            "predicate": null
+          }
+        ]
+      }
+    }
+  ]
+}

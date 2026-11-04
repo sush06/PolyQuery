@@ -1,0 +1,9 @@
+{
+  "synthetic": {},
+  "chinook": {"data_path": "Chinook_Sqlite.sqlite"},
+  "taxi": {"data_path": "yellow_tripdata_2026-01.parquet"},
+  "ldbc": {
+    "people_path": "people_0_0.csv",
+    "edges_path": "person_knows_person_0_0.csv"
+  }
+}

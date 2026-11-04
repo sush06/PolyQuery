@@ -1,0 +1,325 @@
+{
+  "instructions": "Copy to a separate file before entering reviewer decisions. Do not mark agreement without inspecting every variant.",
+  "families": [
+    {
+      "family_id": "fare-exclude-negative",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "fare-exclude-zero",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "fare-exclude-positive",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "department-not-sales",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "not-both",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "not-either",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "salary-strict",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "salary-inclusive",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "fare-bounded-interval",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "path-hop-bound",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "and-around-or",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "or-around-and",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "numeric-and",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "numeric-or",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "not-inside-or",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "categorical-or",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "pickup-before",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "pickup-on-or-after",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "pickup-month-interval",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "invoice-before",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "relative-date-unanchored",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "country-group",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "country-filter",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "country-group-and-filter",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "invoice-row-filter-before-group",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "country-having",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "fare-descending",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "distance-ascending",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "fare-top-five",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "employee-two-key-order",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "employee-limit-only",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "ldbc-friends-ordered",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "ambiguous-money-field",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "ambiguous-timestamp-field",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "ambiguous-mean-or-median",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "ambiguous-employee-attribute",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "ambiguous-invoice-country",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "ambiguous-ldbc-endpoints",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "ambiguous-ldbc-name-identity",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    },
+    {
+      "family_id": "ambiguous-boolean-no-parentheses",
+      "reviewer": null,
+      "decision": "pending",
+      "disagreements": [],
+      "proposed_label_or_question_changes": null,
+      "adjudication": null
+    }
+  ]
+}

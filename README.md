@@ -2,6 +2,18 @@
 
 PolyQuery studies natural-language query routing across SQLite, graph traversal, and restricted Python statistical expressions.
 
+The [constraint-preservation guard](docs/constraint-preservation.md) checks known
+filters and modifiers before execution and records blocked plans. It is a
+conservative lexical check, not a semantic correctness guarantee.
+
+[Canonical constraints](docs/canonical-constraints.md) add typed predicates,
+plan-preservation validation, an offline extraction benchmark, and optional Jev
+constraint classification. Classification never overrides execution validation.
+
+The [expanded label review](docs/constraint-labeling.md) covers 160 draft questions
+in 40 families, with leakage-grouped split proposals and an independent-review
+packet. These are not yet approved held-out research labels.
+
 ```bash
 python -m pip install -e .
 polyquery query "What is the average salary in Engineering?"
@@ -113,6 +125,12 @@ flowchart TD
 Alternative planners implement the `Planner` protocol and return a `Plan`. Backends validate operations and parameters before execution. The default keyword planner runs locally; the optional LLM planner calls OpenAI for plan selection.
 
 ## Evaluation
+
+Use `compare-routers` for a paired keyword/LLM run over the expanded constraint
+labels, including answer correctness, proposed-plan constraint preservation,
+abstention, latency, and token-cost accounting. See [router comparison](docs/router-comparison.md)
+for local commands, scoring denominators, and draft-label limitations. Keep run
+reports under Git-ignored `logs/`.
 
 `benchmarks/demo.json` contains 31 development regression cases covering routes, answers, filters, ambiguity, and abstention. The evaluator reports route accuracy, joint route/answer accuracy, coverage, answered accuracy, abstention precision, a confusion matrix, and a fixed SQL route-label baseline. Numeric answers are compared with tolerance. `benchmarks/latest.json` stores a previous run.
 

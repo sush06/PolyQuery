@@ -1,0 +1,48 @@
+{
+  "covered_fields": {
+    "synthetic": {
+      "employees": [
+        "department",
+        "experience",
+        "name",
+        "salary"
+      ],
+      "sales": [
+        "amount",
+        "department"
+      ]
+    },
+    "taxi": {
+      "trips": [
+        "fare_amount",
+        "passenger_count",
+        "total_amount",
+        "tpep_dropoff_datetime",
+        "tpep_pickup_datetime",
+        "trip_distance"
+      ]
+    },
+    "chinook": {
+      "Invoice": [
+        "BillingCountry",
+        "InvoiceDate",
+        "Total"
+      ],
+      "Track": [
+        "GenreId"
+      ],
+      "Genre": [
+        "GenreId",
+        "Name"
+      ]
+    },
+    "ldbc": {
+      "person": [
+        "first_name",
+        "id",
+        "last_name"
+      ]
+    }
+  },
+  "note": "Authored annotation vocabulary, not an execution-capability declaration. Taxi timestamps and InvoiceDate are raw-file fields not supported by current filtered adapters."
+}

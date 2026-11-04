@@ -1,0 +1,97 @@
+{
+  "cases": 160,
+  "families": 40,
+  "leakage_groups": 26,
+  "issues": [],
+  "consistency_passed": true,
+  "witness_checks": 180,
+  "unique_witness_checks": 45,
+  "by_status": {
+    "canonical": 112,
+    "clarify": 36,
+    "representation_gap": 12
+  },
+  "by_source": {
+    "taxi": 52,
+    "synthetic": 64,
+    "ldbc": 16,
+    "chinook": 28
+  },
+  "by_phenomenon": {
+    "negation": 24,
+    "numeric_boundary": 16,
+    "boolean_scope": 24,
+    "dates": 20,
+    "grouping_vs_filtering": 20,
+    "ordering_limits": 24,
+    "ambiguous_field": 16,
+    "ambiguous_statistic": 4,
+    "ambiguous_identity": 8,
+    "ambiguous_scope": 4
+  },
+  "draft_split_counts": {
+    "validation": 32,
+    "train": 96,
+    "test": 32
+  },
+  "split_phenomenon_coverage": {
+    "train": {
+      "negation": 12,
+      "numeric_boundary": 8,
+      "boolean_scope": 24,
+      "dates": 16,
+      "ordering_limits": 16,
+      "ambiguous_field": 8,
+      "ambiguous_identity": 8,
+      "ambiguous_scope": 4
+    },
+    "validation": {
+      "negation": 12,
+      "numeric_boundary": 8,
+      "ordering_limits": 4,
+      "ambiguous_statistic": 4,
+      "ambiguous_field": 4
+    },
+    "test": {
+      "dates": 4,
+      "grouping_vs_filtering": 20,
+      "ordering_limits": 4,
+      "ambiguous_field": 4
+    }
+  },
+  "coverage_warnings": [
+    {
+      "split": "train",
+      "missing_phenomena": [
+        "ambiguous_statistic",
+        "grouping_vs_filtering"
+      ]
+    },
+    {
+      "split": "validation",
+      "missing_phenomena": [
+        "ambiguous_identity",
+        "ambiguous_scope",
+        "boolean_scope",
+        "dates",
+        "grouping_vs_filtering"
+      ]
+    },
+    {
+      "split": "test",
+      "missing_phenomena": [
+        "ambiguous_identity",
+        "ambiguous_scope",
+        "ambiguous_statistic",
+        "boolean_scope",
+        "negation",
+        "numeric_boundary"
+      ]
+    }
+  ],
+  "independently_approved_cases": 0,
+  "research_ready": false,
+  "note": "Structural, field, family, split and witness checks do not constitute independent semantic annotation review.",
+  "labels_sha256": "fbad78c93f61b612e1c66ba1149a738f5e81d4763efab3379e6ae49824926087",
+  "splits_sha256": "0b088d340531126c917ba17c6dc48124bf34ef6780ebba9e51667ba5ef398c7a"
+}

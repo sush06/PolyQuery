@@ -7,6 +7,13 @@ dist/
 build/
 .DS_Store
 
+# Runtime, server, and captured console logs.
+*.log
+*.log.*
+*.out
+*.err
+logs/
+
 # Downloaded research data; keep code and small authored fixtures in Git.
 benchmarks/*.csv
 benchmarks/*.sqlite

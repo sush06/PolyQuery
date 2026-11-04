@@ -96,6 +96,9 @@ class LLMPlanner:
         self.instructions = PROMPT + '\nCATALOG:\n' + json.dumps(description,sort_keys=True,separators=(',', ':'))
         self.prompt_sha256 = hashlib.sha256(self.instructions.encode()).hexdigest()
 
+    def plan_with_context(self, question, task_context):
+        return self.plan(question + '\nTask policies (JSON): ' + json.dumps(task_context, sort_keys=True))
+
     def plan(self, question):
         try:
             return self._plan(question)
