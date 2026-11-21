@@ -60,9 +60,11 @@ central valid values for even-sized input. Python interprets fixed AST expressio
 through an allowlist and Arrow kernels; it does not run arbitrary programs.
 
 LDBC SQL stores the same undirected, deduplicated projection as graph BFS.
-Frontier joins and visited tables run in SQLite; Python controls the iteration
-and reconstructs paths. This is a SQL execution strategy, not a single recursive
-SQL statement or a Neo4j adapter. Shortest-path ties may differ between strategies.
+SQLite reads each frontier in bounded, parameterized batches. Python holds the
+visited nodes and parent links in memory and reconstructs paths. The SQLite
+connection enables query-only mode and an authorizer after loading data. It
+denies SQL mutations, temporary schema changes, and database attachment.
+Shortest-path ties may differ between strategies.
 The scorer checks endpoints, actual graph edges, and the reference path length.
 Disconnected gold paths use null.
 

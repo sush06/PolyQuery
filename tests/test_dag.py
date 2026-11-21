@@ -1,4 +1,5 @@
 import sqlite3
+from contextlib import closing
 from unittest.mock import Mock
 
 import pytest
@@ -15,22 +16,48 @@ def engine():
         yield instance
 
 
-def test_cross_backend_dag_with_forward_references_and_fan_in(engine):
-    results = engine.execute_dag([
-        DAGNode("median", "code", "median", bindings={"department": InputBinding("rows", (0, "department"))},
-                depends_on=("path",)),
-        DAGNode("path", "graph", "shortest_path", bindings={
-            "source": InputBinding("rows", (0, "name")),
-            "target": InputBinding("reports", (1,)),
-        }),
-        DAGNode("reports", "graph", "descendants", {"source": "Alice"}),
-        DAGNode("rows", "sql", "list", {"department": "Engineering"}),
-    ])
-    assert list(results) == ["reports", "rows", "path", "median"]
-    assert results["path"]["value"] == ["Alice", "Carol"]
-    assert results["rows"]["bindings"] == ["Engineering"]
-    assert results["median"]["value"] == 110000
-    assert engine.query("Median salary in Engineering")["result"] == results["median"]
+@pytest.mark.integration
+@pytest.mark.parametrize("source_data", ["ldbc-compact", "ldbc-dataset"], indirect=True)
+def test_cross_backend_dag_with_forward_references_and_fan_in(source_data):
+    source, target = source_data.endpoints
+    peers = sorted(source_data.neighbor[source_data.center], key=int)
+    with Engine(**source_data.kwargs) as engine:
+        results = engine.execute_dag([
+            DAGNode("count", "sql", "count_people", depends_on=("path",)),
+            DAGNode("path", "graph", "shortest_path", bindings={
+                "source": InputBinding("sql_friends", (peers.index(source), "id")),
+                "target": InputBinding("graph_friends", (peers.index(target), "id")),
+            }),
+            DAGNode("sql_friends", "sql", "friends", {"source": source_data.center}),
+            DAGNode("graph_friends", "graph", "friends", {"source": source_data.center}),
+        ])
+    assert list(results) == ["sql_friends", "graph_friends", "path", "count"]
+    expected = [source_data.records[peer] for peer in peers]
+    assert results["sql_friends"]["value"] == results["graph_friends"]["value"] == expected
+    path = results["path"]["value"]
+    # The two selected friends share the center, so a shortest path uses
+    # one edge if they are adjacent and two otherwise. Ties are valid.
+    assert path[0] == source and path[-1] == target
+    assert len(path) == (2 if target in source_data.neighbor[source] else 3)
+    assert all(b in source_data.neighbor[a] for a, b in zip(path, path[1:]))
+    assert results["count"]["value"] == source_data.values["count_people"]
+
+
+@pytest.mark.integration
+@pytest.mark.parametrize(("source_data", "count", "statistic"), [
+    ("chinook-compact", "count_tracks", "median"), ("chinook-dataset", "count_customers", "median"),
+    ("taxi-compact", "count_trips", "median_fare"),
+], indirect=["source_data"])
+def test_tabular_dag_preserves_sql_and_statistics_results(source_data, count, statistic):
+    with Engine(**source_data.kwargs) as engine:
+        assert engine.execute_dag([]) == {}
+        results = engine.execute_dag([
+            DAGNode("statistic", "code", statistic, depends_on=("count",)),
+            DAGNode("count", "sql", count),
+        ])
+    assert list(results) == ["count", "statistic"]
+    assert results["count"]["value"] == source_data.values[count]
+    assert results["statistic"]["value"] == pytest.approx(source_data.values[statistic])
 
 
 ROWS = DAGNode("rows", "sql", "list")
@@ -145,27 +172,135 @@ def test_sqlite_lock_codes_are_retryable(engine, monkeypatch, code):
     assert sql.call_count == 2
 
 
-def test_read_only_and_natural_language_guards_remain_active(engine):
-    with pytest.raises(sqlite3.DatabaseError):
-        engine.backends["sql"].db.execute("DELETE FROM employees")
-    assert engine.query("Delete all employees")["status"] == "abstained"
-    assert engine.query("Count employees except Alice")["status"] == "abstained"
-    assert engine.execute_dag([]) == {}
-    assert engine.execute_dag([DAGNode("count", "sql", "count")])["count"]["value"] == 6
+@pytest.mark.security
+@pytest.mark.parametrize(("source_data", "table", "count", "question"), [
+    ("chinook-compact", "Invoice", "count_tracks", "How many tracks except Jazz?"),
+    ("taxi-compact", "trips", "count_trips", "How many trips except airport trips?"),
+], indirect=["source_data"])
+def test_read_only_and_natural_language_guards_remain_active(source_data, table, count, question):
+    with Engine(**source_data.kwargs) as engine:
+        assert engine.backends["sql"].db.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0] > 0
+        for statement in (f"DELETE FROM {table}", "PRAGMA query_only=OFF", "ATTACH DATABASE ':memory:' AS other"):
+            with pytest.raises(sqlite3.DatabaseError):
+                engine.backends["sql"].db.execute(statement)
+        assert engine.query(question)["status"] == "abstained"
+        assert engine.query(f"Delete all rows from {table}")["status"] == "abstained"
+        assert engine.execute_dag([DAGNode("count", "sql", count)])["count"]["value"] == source_data.values[count]
 
 
-def test_ldbc_sql_to_graph_binding_and_nullable_path(tmp_path):
-    people, edges = tmp_path / "people.csv", tmp_path / "knows.csv"
-    people.write_text("id|firstName|lastName\n1|A|One\n2|B|Two\n3|C|Three\n", encoding="utf-8")
-    edges.write_text("Person.id|Person.id|creationDate\n1|2|0\n", encoding="utf-8")
-    with Engine(source="ldbc", people_path=people, edges_path=edges) as engine:
+@pytest.mark.security
+@pytest.mark.parametrize("source_data", ["ldbc-compact"], indirect=True)
+def test_ldbc_public_plans_reject_arbitrary_sql_and_unknown_ids(source_data):
+    with Engine(**source_data.kwargs, planner_kind="dag") as engine:
+        count = DAGNode("count", "sql", "count_people")
+        assert engine.query("Count people; then delete all rows from people")["status"] == "abstained"
+        assert engine.query("How many people except person 21?")["status"] == "abstained"
+        for unsupported in (
+            DAGNode("write", "sql", "DELETE FROM people"),
+            DAGNode("attach", "sql", "ATTACH DATABASE ':memory:' AS other"),
+            DAGNode("cte", "sql", "WITH selected AS (SELECT id FROM people) DELETE FROM people"),
+            DAGNode("friends", "sql", "friends", {"source": "21' OR '1'='1"}),
+        ):
+            with pytest.raises(DAGValidationError):
+                engine.execute_dag([count, unsupported])
+        result = engine.execute_dag([count, DAGNode("friends", "sql", "friends", {"source": source_data.center})])
+        assert result["count"]["value"] == source_data.values["count_people"]
+        assert result["friends"]["value"] == [
+            source_data.records[person] for person in sorted(source_data.neighbor[source_data.center], key=int)
+        ]
+
+
+@pytest.mark.security
+@pytest.mark.parametrize("source_data", ["ldbc-compact"], indirect=True)
+@pytest.mark.parametrize("statement", [
+    "INSERT INTO people VALUES ('999')",
+    "UPDATE people SET id = '999' WHERE id = '21'",
+    "DELETE FROM people",
+    "CREATE TABLE scratch (id TEXT)",
+    "CREATE TEMP TABLE scratch (id TEXT)",
+    "DROP TABLE knows",
+    "WITH new_person(id) AS (VALUES ('999')) INSERT INTO people SELECT id FROM new_person",
+    "WITH selected AS (SELECT id FROM people) DELETE FROM people WHERE id IN (SELECT id FROM selected)",
+    "INSERT INTO people VALUES ('999') RETURNING id",
+    "PRAGMA query_only=OFF",
+    "PRAGMA writable_schema=ON",
+    "ATTACH DATABASE ':memory:' AS other",
+    "SELECT load_extension('unused')",
+])
+def test_ldbc_raw_sql_connection_denies_writes(source_data, statement):
+    with Engine(**source_data.kwargs) as engine:
+        db = engine.backends["sql"].db
+        with pytest.raises(sqlite3.DatabaseError, match="not authorized|authorization denied"):
+            db.execute(statement)
+        assert db.execute("PRAGMA query_only").fetchone() == (1,)
+        assert set(db.execute("SELECT id FROM people")) == {(person,) for person in source_data.records}
+        assert set(db.execute("SELECT source,target FROM knows")) == {
+            (person, peer) for person, peers in source_data.neighbor.items() for peer in peers
+        }
+
+
+@pytest.mark.security
+@pytest.mark.parametrize("source_data", ["ldbc-compact"], indirect=True)
+def test_ldbc_cannot_attach_or_export_databases(source_data, tmp_path):
+    attached, exported = tmp_path / "other.sqlite", tmp_path / "export.sqlite"
+    with closing(sqlite3.connect(attached)) as external, external:
+        external.execute("CREATE TABLE marker (id INTEGER)")
+        external.execute("INSERT INTO marker VALUES (1)")
+    original = attached.read_bytes()
+    with Engine(**source_data.kwargs) as engine:
+        db = engine.backends["sql"].db
+        with pytest.raises(sqlite3.DatabaseError, match="not authorized"):
+            db.execute("ATTACH DATABASE ? AS other", (str(attached),))
+        with pytest.raises(sqlite3.DatabaseError, match="not authorized|authorization denied"):
+            db.execute("VACUUM INTO ?", (str(exported),))
+        with pytest.raises(sqlite3.DatabaseError, match="not authorized"):
+            db.executescript("SELECT 1; DELETE FROM people;")
+        assert db.execute("SELECT COUNT(*) FROM people").fetchone() == (source_data.values["count_people"],)
+    assert attached.read_bytes() == original
+    assert not exported.exists()
+
+
+@pytest.mark.integration
+@pytest.mark.parametrize("source_data", ["ldbc-compact"], indirect=True)
+def test_ldbc_sql_paths_remain_read_only_across_frontier_batches(source_data, monkeypatch):
+    monkeypatch.setattr("polyquery.ldbc_sql._FRONTIER_BATCH_SIZE", 1)
+    source = source_data.center
+    target = next(person for person, peers in source_data.neighbor.items() if set(source_data.endpoints) == peers
+                  and person != source)
+    isolated = next(person for person, peers in source_data.neighbor.items() if not peers)
+    with Engine(**source_data.kwargs, policy="fixed-sql") as engine:
+        db = engine.backends["sql"].db
+        db.execute("BEGIN")
+        assert db.execute("""
+            WITH RECURSIVE numbers(n) AS (
+                VALUES(1) UNION ALL SELECT n+1 FROM numbers WHERE n<3
+            ) SELECT SUM(n) FROM numbers
+        """).fetchone() == (6,)
+        for end, expected in ((target, [source, source_data.endpoints[0], target]), (isolated, None),
+                              (source, [source]), (target, [source, source_data.endpoints[0], target])):
+            via_sql = engine.query(f"Shortest path from {source} to {end}")
+            assert via_sql["status"] == "ok"
+            assert via_sql["result"]["value"] == expected
+            via_dag = engine.execute_dag([DAGNode("path", "sql", "shortest_path", {"source": source, "target": end})])
+            assert via_dag["path"]["value"] == expected
+            assert via_dag["path"]["artifact"].startswith("SELECT ")
+        db.rollback()
+
+
+@pytest.mark.integration
+@pytest.mark.parametrize("source_data", ["ldbc-compact"], indirect=True)
+def test_nullable_path_cannot_feed_an_entity_binding(source_data):
+    isolated = next(person for person, peers in source_data.neighbor.items() if not peers)
+    with Engine(**source_data.kwargs) as engine:
         nodes = [
-            DAGNode("friends", "sql", "friends", {"source": "1"}),
-            DAGNode("path", "graph", "shortest_path", {"target": "3"},
+            DAGNode("friends", "sql", "friends", {"source": source_data.center}),
+            DAGNode("path", "graph", "shortest_path", {"target": isolated},
                     {"source": InputBinding("friends", (0, "id"))}),
         ]
         results = engine.execute_dag(nodes)
-        assert results["friends"]["value"] == [{"id": "2", "first_name": "B", "last_name": "Two"}]
+        assert results["friends"]["value"] == [
+            source_data.records[person] for person in sorted(source_data.neighbor[source_data.center], key=int)
+        ]
         assert results["path"]["value"] is None
         nodes.append(DAGNode("next", "graph", "friends", bindings={"source": InputBinding("path", (0,))}))
         with pytest.raises(DAGExecutionError) as error:

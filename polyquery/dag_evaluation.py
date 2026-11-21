@@ -56,6 +56,10 @@ def compare_dag_planners(cases, *, repeats=1, model_options=None):
                     "latency_ms": median(timings),
                     "status_counts": dict(Counter(run["status"] for run in outcomes)),
                     "failure_counts": dict(Counter(run["failure_kind"] for run in outcomes if run["status"] == "error")),
+                    "rejection_counts": dict(Counter(
+                        run["planner_metadata"]["rejection"] for run in outcomes
+                        if run["planner_metadata"].get("rejection")
+                    )),
                     "incorrect_answer_runs": sum(run["status"] == "ok" and not run["correct"] for run in outcomes),
                 }
                 if kind == "llm-dag":
@@ -65,6 +69,7 @@ def compare_dag_planners(cases, *, repeats=1, model_options=None):
             rows.append(row)
     multi_stage = [row for row in rows if row["group"] in ("multi_stage", "paraphrase")]
     ordinary = [row for row in rows if row["group"] == "single"]
+    capability_groups = sorted({row["capability"] for row in multi_stage if "capability" in row})
     return {
         "source": "synthetic", "repeats": repeats, "overall": _summarize(rows),
         "dataset_sha256": hashlib.sha256(json.dumps(cases, sort_keys=True).encode()).hexdigest(),
@@ -73,6 +78,10 @@ def compare_dag_planners(cases, *, repeats=1, model_options=None):
                    for group in sorted({row["group"] for row in rows})},
         "research_question": {
             "multi_stage_and_paraphrases": _summarize(multi_stage) if multi_stage else None,
+            "multi_stage_by_catalog_capability": {
+                capability: _summarize([row for row in multi_stage if row.get("capability") == capability])
+                for capability in capability_groups
+            },
             "single_stage_incorrect_answer_delta": _paired_interval(ordinary, _incorrect_answer) if ordinary else None,
             **({
                 "model_multi_stage_correctness_delta": _paired_interval(
@@ -127,6 +136,8 @@ def _summarize(rows):
             "execution_failures": sum("execution" in run["failure_counts"] for run in runs),
             "contract_failures": sum("contract" in run["failure_counts"] for run in runs),
             "planning_failures": sum("planning" in run["failure_counts"] for run in runs),
+            "constraint_rejections": sum("constraint_preservation" in run["rejection_counts"] for run in runs),
+            "plan_contract_rejections": sum("plan_contract" in run["rejection_counts"] for run in runs),
             "other_failures": sum("other" in run["failure_counts"] for run in runs),
             "unstable_cases": sum(not run["stable"] for run in runs),
             "median_latency_ms": median(timings),
@@ -140,6 +151,9 @@ def _summarize(rows):
     summary["paired_correctness_delta"] = _paired_interval(rows, lambda run: run["correct"])
     if "llm-dag" in summary:
         summary["model_paired_correctness_delta"] = _paired_interval(rows, lambda run: run["correct"], candidate="llm-dag")
+        summary["model_vs_grammar_correctness_delta"] = _paired_interval(
+            rows, lambda run: run["correct"], candidate="llm-dag", reference="dag"
+        )
     return summary
 
 
@@ -155,12 +169,12 @@ def _usage(records):
     return totals
 
 
-def _paired_interval(rows, score, *, candidate="dag", samples=5000, seed=20261120):
+def _paired_interval(rows, score, *, candidate="dag", reference="keyword", samples=5000, seed=20261120):
     """Resample whole intent families, retaining both outcomes for every question."""
     clusters = {}
     for row in rows:
         pair = row["planners"]
-        delta = int(score(pair[candidate])) - int(score(pair["keyword"]))
+        delta = int(score(pair[candidate])) - int(score(pair[reference]))
         key = ("family", row["family"]) if "family" in row else ("case", row["id"])
         clusters.setdefault(key, []).append(delta)
     family_totals = [(sum(deltas), len(deltas)) for deltas in clusters.values()]
@@ -170,7 +184,7 @@ def _paired_interval(rows, score, *, candidate="dag", samples=5000, seed=2026112
         sampled = rng.choices(family_totals, k=len(family_totals))
         draws.append(sum(total for total, _ in sampled) / sum(size for _, size in sampled))
     return {
-        f"{candidate.replace('-', '_')}_minus_keyword": sum(total for total, _ in family_totals) / len(rows),
+        f"{candidate.replace('-', '_')}_minus_{reference}": sum(total for total, _ in family_totals) / len(rows),
         "ci95": [percentile(draws, 0.025), percentile(draws, 0.975)],
         "method": "paired intent-family cluster percentile bootstrap",
         "families": len(family_totals), "samples": samples, "seed": seed,

@@ -5,17 +5,38 @@ from .backends import UnsupportedPlan
 from .planner import Plan
 
 
+_READ_ACTIONS = {sqlite3.SQLITE_SELECT, sqlite3.SQLITE_READ, sqlite3.SQLITE_RECURSIVE,
+                 sqlite3.SQLITE_TRANSACTION, sqlite3.SQLITE_SAVEPOINT}
+_FRONTIER_BATCH_SIZE = 512
+_FRONTIER_SQL = "SELECT source,target FROM knows WHERE source IN ({}) ORDER BY LENGTH(source),source"
+
+
+def _authorize_read(action, name, argument, database, trigger):
+    if action in _READ_ACTIONS:
+        return sqlite3.SQLITE_OK
+    if action == sqlite3.SQLITE_FUNCTION and argument.casefold() != "load_extension":
+        return sqlite3.SQLITE_OK
+    if action == sqlite3.SQLITE_PRAGMA and name.casefold() == "query_only" and argument is None:
+        return sqlite3.SQLITE_OK
+    return sqlite3.SQLITE_DENY
+
+
 class LDBCSQL:
     operations = {"count_people", "friends", "shortest_path"}
     def __init__(self, graph):
         self.graph = graph
         self.db = sqlite3.connect(":memory:")
-        self.db.execute("CREATE TABLE people(id TEXT PRIMARY KEY)")
-        self.db.execute("CREATE TABLE knows(source TEXT,target TEXT,PRIMARY KEY(source,target))")
-        self.db.executemany("INSERT INTO people VALUES (?)", ((node,) for node in graph.people))
-        self.db.executemany("INSERT INTO knows VALUES (?,?)", ((node, neighbor) for node, neighbors in graph.adjacency.items() for neighbor in neighbors))
-        self.db.executescript("CREATE TEMP TABLE visited(id TEXT PRIMARY KEY,parent TEXT,depth INTEGER); CREATE TEMP TABLE frontier(id TEXT PRIMARY KEY)")
-        self.db.commit()
+        try:
+            self.db.execute("CREATE TABLE people(id TEXT PRIMARY KEY)")
+            self.db.execute("CREATE TABLE knows(source TEXT,target TEXT,PRIMARY KEY(source,target))")
+            self.db.executemany("INSERT INTO people VALUES (?)", ((node,) for node in graph.people))
+            self.db.executemany("INSERT INTO knows VALUES (?,?)", ((node, neighbor) for node, neighbors in graph.adjacency.items() for neighbor in neighbors))
+            self.db.commit()
+            self.db.execute("PRAGMA query_only = ON")
+            self.db.set_authorizer(_authorize_read)
+        except Exception:
+            self.db.close()
+            raise
 
     def execute(self, plan):
         required = {"count_people": set(), "friends": {"source"}, "shortest_path": {"source", "target"}}
@@ -30,30 +51,33 @@ class LDBCSQL:
             sql = "SELECT target FROM knows WHERE source=? ORDER BY LENGTH(target),target"
             value = [self.graph.people[row[0]] for row in self.db.execute(sql, (plan.parameters["source"],))]
         else:
-            # SQL owns frontier joins and visited state. Python controls depth loops.
-            source, target = plan.parameters["source"], plan.parameters["target"]
-            self.db.execute("DELETE FROM visited")
-            self.db.execute("DELETE FROM frontier")
-            self.db.execute("INSERT INTO visited VALUES (?,NULL,0)", (source,))
-            self.db.execute("INSERT INTO frontier VALUES (?)", (source,))
-            depth = 0
-            sql = "INSERT INTO visited SELECT target,source,? FROM (SELECT k.target,k.source,ROW_NUMBER() OVER (PARTITION BY k.target ORDER BY LENGTH(k.source),k.source) AS pick FROM knows k JOIN frontier f ON k.source=f.id LEFT JOIN visited v ON v.id=k.target WHERE v.id IS NULL) WHERE pick=1"
-            while not self.db.execute("SELECT 1 FROM visited WHERE id=?", (target,)).fetchone():
-                depth += 1
-                cursor = self.db.execute(sql, (depth,))
-                if cursor.rowcount == 0:
-                    break
-                self.db.execute("DELETE FROM frontier")
-                self.db.execute("INSERT INTO frontier SELECT id FROM visited WHERE depth=?", (depth,))
-            value = None
-            if self.db.execute("SELECT 1 FROM visited WHERE id=?", (target,)).fetchone():
-                value, node = [], target
-                while node is not None:
-                    value.append(node)
-                    node = self.db.execute("SELECT parent FROM visited WHERE id=?", (node,)).fetchone()[0]
-                value.reverse()
+            sql, value = self._shortest_path(plan.parameters["source"], plan.parameters["target"])
         return {"artifact": sql, "value": value,
-                "implementation": "SQLite frontier joins and visited tables; Python loop control; shortest-path ties may differ from BFS"}
+                "implementation": "Read-only SQLite frontier lookups; Python traversal state; shortest-path ties may differ from BFS"}
+
+    def _shortest_path(self, source, target):
+        parents = {source: None}
+        frontier = [source]
+        sql = _FRONTIER_SQL.format("?")
+        while frontier and target not in parents:
+            # Match the old SQL tie-breaker even when the frontier spans batches.
+            frontier.sort(key=lambda identifier: (len(identifier), identifier))
+            next_frontier = []
+            for offset in range(0, len(frontier), _FRONTIER_BATCH_SIZE):
+                batch = frontier[offset:offset + _FRONTIER_BATCH_SIZE]
+                sql = _FRONTIER_SQL.format(",".join("?" for _ in batch))
+                for parent, neighbor in self.db.execute(sql, batch):
+                    if neighbor not in parents:
+                        parents[neighbor] = parent
+                        next_frontier.append(neighbor)
+            frontier = next_frontier
+        if target not in parents:
+            return sql, None
+        path, node = [], target
+        while node is not None:
+            path.append(node)
+            node = parents[node]
+        return sql, path[::-1]
 
     def close(self):
         self.db.close()

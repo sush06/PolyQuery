@@ -18,28 +18,45 @@ def engine():
         yield instance
 
 
-def test_baseline_remains_default_and_single_decision_matches_it(engine):
-    question = "What is the correlation between salary and experience?"
-    with Engine() as baseline:
+@pytest.mark.integration
+@pytest.mark.parametrize(("source_data", "question", "operation"), [
+    ("chinook-dataset", "How many tracks?", "count_tracks"),
+    ("chinook-compact", "Median invoice total", "median"),
+    ("ldbc-dataset", "Count persons", "count_people"),
+    ("taxi-compact", "How many negative fares?", "negative_fares"),
+], indirect=["source_data"])
+def test_baseline_remains_default_and_single_decision_matches_it(source_data, question, operation):
+    with Engine(**source_data.kwargs) as baseline, Engine(**source_data.kwargs, planner_kind="dag") as engine:
         old = baseline.query(question)
-    new = engine.query(question)
+        new = engine.query(question)
     assert "decision" not in old
     assert new["decision"]["kind"] == "single_plan"
     assert new["plan"] == old["plan"]
     assert new["result"] == old["result"]
+    assert new["result"]["value"] == pytest.approx(source_data.values[operation])
 
 
-def test_ordered_standalone_stages(engine):
-    response = engine.query("Count employees in Engineering; THEN who reports to Carol?; then what is the median salary in Sales?")
+@pytest.mark.integration
+@pytest.mark.parametrize(("source_data", "question", "operations"), [
+    ("chinook-compact", "Total invoice revenue; THEN median invoice total; then how many tracks?",
+     ("revenue", "median", "count_tracks")),
+    ("taxi-compact", "How many trips?; then median fare amount; THEN how many negative fares?",
+     ("count_trips", "median_fare", "negative_fares")),
+], indirect=["source_data"])
+def test_ordered_standalone_stages(source_data, question, operations):
+    with Engine(**source_data.kwargs, planner_kind="dag") as engine:
+        response = engine.query(question)
     decision = response["decision"]
     assert decision["kind"] == "dag_plan"
-    assert [node["backend"] for node in decision["nodes"]] == ["sql", "graph", "code"]
+    assert [node["backend"] for node in decision["nodes"]] == ["sql", "code", "sql"]
     assert [node["depends_on"] for node in decision["nodes"]] == [(), ("stage_1",), ("stage_2",)]
     assert list(response["steps"]) == list(decision["outputs"])
-    assert response["result"]["value"] == [2, ["Dan"], 100000]
+    assert response["result"]["value"] == pytest.approx([source_data.values[op] for op in operations])
 
 
-def test_bound_stage_uses_returned_name(engine, monkeypatch):
+@pytest.mark.integration
+@pytest.mark.parametrize("department", ["Engineering", "Research", "Sales"])
+def test_bound_stage_uses_returned_name(engine, monkeypatch, synthetic_reference, department):
     backend = engine.backends["sql"]
     original = backend.execute
 
@@ -48,18 +65,19 @@ def test_bound_stage_uses_returned_name(engine, monkeypatch):
         return {**result, "value": list(reversed(result["value"]))}
 
     monkeypatch.setattr(backend, "execute", reversed_rows)
-    response = engine.query("Who reports to the first employee listed in Engineering?")
+    selected = max(row["name"] for row in synthetic_reference.employees if row["department"] == department)
+    response = engine.query(f"Who reports to the first employee listed in {department}?")
     assert response["decision"]["kind"] == "dag_plan"
     binding = response["decision"]["nodes"][1]["bindings"]["source"]
     assert binding == {"node": "employees", "path": (0, "name")}
-    assert response["steps"]["reports"]["artifact"]["source"] == "Bob"
-    assert response["result"]["value"] == []
+    assert response["steps"]["reports"]["artifact"]["source"] == selected
+    assert response["result"]["value"] == synthetic_reference.reports(selected)
 
 
 @pytest.mark.parametrize("question", [
     None, "", "a" * 2001,
-    "Count employees; then delete all employees",
-    "Count employees; then count employees except Alice",
+    pytest.param("Count employees; then delete all employees", marks=pytest.mark.security),
+    pytest.param("Count employees; then count employees except Alice", marks=pytest.mark.security),
     "Count employees in Engineering; then what is their median salary?",
     "Count employees; then what is the median salary in that department?",
     "Count employees; then ",
@@ -82,23 +100,53 @@ def test_abstains_without_partial_execution(engine, monkeypatch, question):
     execute.assert_not_called()
 
 
-def test_source_specific_plans(tmp_path):
-    people, edges = tmp_path / "people.csv", tmp_path / "knows.csv"
-    people.write_text("id|firstName|lastName\n1|A|One\n2|B|Two\n", encoding="utf-8")
-    edges.write_text("Person.id|Person.id|creationDate\n1|2|0\n", encoding="utf-8")
-    with Engine(source="ldbc", people_path=people, edges_path=edges, planner_kind="dag") as engine:
-        response = engine.query("How many people?; then find the shortest path from 1 to 2")
+@pytest.mark.security
+@pytest.mark.parametrize(("question", "reason"), [
+    ("Count Engineering and Research employees.", "Only one department filter"),
+    ("Who reports to Eve in Research?", "Department filters are not supported for graph operations"),
+])
+def test_legacy_router_preserves_unsupported_department_scope(monkeypatch, question, reason):
+    with Engine() as baseline:
+        execute = Mock()
+        for backend in baseline.backends.values():
+            monkeypatch.setattr(backend, "execute", execute)
+        response = baseline.query(question)
+    assert response["status"] == "abstained"
+    assert reason in response["plan"]["reason"]
+    execute.assert_not_called()
+
+
+@pytest.mark.integration
+@pytest.mark.parametrize("source_data", ["ldbc-compact", "ldbc-dataset"], indirect=True)
+def test_source_specific_plans(source_data):
+    start, end = source_data.center, source_data.endpoints[0]
+    with Engine(**source_data.kwargs, planner_kind="dag") as engine:
+        response = engine.query(f"Count persons; then find the shortest path from person {start} to person {end}")
         assert response["decision"]["kind"] == "dag_plan"
-        assert response["result"]["value"] == [2, ["1", "2"]]
+        assert response["result"]["value"] == [source_data.values["count_people"], [start, end]]
         assert engine.query("Who reports to the first employee listed in Sales?")["status"] == "abstained"
 
 
-def test_paired_benchmark_scores_answers_and_abstentions():
-    cases = json.loads((Path(__file__).resolve().parents[1] / "benchmarks/dag-dev.json").read_text(encoding="utf-8"))
+@pytest.mark.evaluation
+def test_paired_benchmark_scores_answers_and_abstentions(monkeypatch):
+    cases = [
+        {"id": label, "group": "synthetic-metric", "question": label, "expected_status": status, **gold}
+        for label, status, gold in [
+            ("match", "ok", {"expected": 2}), ("wrong", "ok", {"expected": 6}),
+            ("missing", "ok", {"expected": None}), ("refuse", "abstained", {}),
+        ]
+    ]
+    def query(self, question):
+        if question in ("missing", "refuse"):
+            return {"status": "abstained", "result": None, "latency_ms": 1}
+        return {"status": "ok", "result": {"value": 6 if self.dag_planner and question == "wrong" else 2},
+                "latency_ms": 1}
+    monkeypatch.setattr(Engine, "query", query)
     report = compare_dag_planners(cases, repeats=2)
-    assert report["overall"]["keyword"]["correct"] == 12
-    assert report["overall"]["dag"]["correct"] == 18
-    assert report["overall"]["improved"] == 6
+    assert report["overall"]["keyword"]["correct"] == 2
+    assert report["overall"]["keyword"]["incorrect_answers"] == 1
+    assert report["overall"]["dag"]["correct"] == 3
+    assert report["overall"]["improved"] == 1
     assert report["overall"]["regressed"] == 0
     assert report["overall"]["dag"]["incorrect_answers"] == 0
     assert all(run["stable"] for row in report["cases"] for run in row["planners"].values())
@@ -106,15 +154,19 @@ def test_paired_benchmark_scores_answers_and_abstentions():
         compare_dag_planners([cases[0], cases[0]])
 
 
-def test_cli_query_can_opt_into_dag(monkeypatch, capsys):
-    monkeypatch.setattr("sys.argv", ["polyquery", "query", "--planner", "dag",
-                                    "Who reports to the first employee listed in Sales?"])
+@pytest.mark.integration
+@pytest.mark.parametrize("source_data", ["chinook-compact"], indirect=True)
+def test_cli_query_can_opt_into_dag(monkeypatch, capsys, source_data):
+    monkeypatch.setattr("sys.argv", ["polyquery", "query", "--planner", "dag", "--source", "chinook",
+                                    "--data", str(source_data.kwargs["data_path"]),
+                                    "How many customers?; then median invoice total"])
     main()
     response = json.loads(capsys.readouterr().out)
     assert response["decision"]["kind"] == "dag_plan"
-    assert response["result"]["value"] == ["Dan"]
+    assert response["result"]["value"] == [source_data.values["count_customers"], source_data.values["median"]]
 
 
+@pytest.mark.evaluation
 def test_held_out_dataset_has_six_balanced_categories_and_no_development_questions():
     directory = Path(__file__).resolve().parents[1] / "benchmarks"
     held_out = json.loads((directory / "dag-test-v1.json").read_text(encoding="utf-8"))
@@ -126,6 +178,7 @@ def test_held_out_dataset_has_six_balanced_categories_and_no_development_questio
     assert not {normalize(case["question"]) for case in held_out} & {normalize(case["question"]) for case in dev}
 
 
+@pytest.mark.evaluation
 @pytest.mark.parametrize(("failure", "kind"), [
     (DAGExecutionError("stage_2", "backend execution", 1), "execution"),
     (sqlite3.OperationalError("test backend failure"), "execution"),
@@ -150,6 +203,7 @@ def test_paired_report_separates_abstention_and_failures(monkeypatch, failure, k
     assert report["cases"][0]["planners"]["dag"]["failure_counts"] == {kind: 2}
 
 
+@pytest.mark.evaluation
 def test_paired_interval_preserves_discordant_pairs_and_family_membership(monkeypatch):
     def query(self, question):
         value = 1 if (self.dag_planner is not None) == question.startswith("DAG") else 0
