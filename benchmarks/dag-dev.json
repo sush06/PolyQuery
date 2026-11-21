@@ -1,0 +1,22 @@
+[
+  {"id":"single-count","group":"single","question":"How many employees are in Engineering?","expected_status":"ok","expected":2},
+  {"id":"single-median","group":"single","question":"What is the median salary in Sales?","expected_status":"ok","expected":100000},
+  {"id":"single-graph","group":"single","question":"Who reports to Carol?","expected_status":"ok","expected":["Dan"]},
+  {"id":"single-path","group":"single","question":"Find the shortest path from Bob to Frank","expected_status":"ok","expected":["Bob","Alice","Eve","Frank"]},
+  {"id":"single-correlation","group":"single","question":"What is the correlation between salary and experience?","expected_status":"ok","expected":1},
+  {"id":"sequence-sql-stats","group":"sequence","question":"Count employees in Engineering; then what is the median salary in Sales?","expected_status":"ok","expected":[2,100000]},
+  {"id":"sequence-sql-graph","group":"sequence","question":"What is total revenue for Sales?; then who reports to Alice?","expected_status":"ok","expected":[40000,["Bob","Carol","Dan"]]},
+  {"id":"sequence-three","group":"sequence","question":"Who reports to Carol?; THEN count employees in Research; then what is the median salary in Engineering?","expected_status":"ok","expected":[["Dan"],2,110000]},
+  {"id":"sequence-same-backend","group":"sequence","question":"Count employees in Sales; then what is the average salary in Engineering?","expected_status":"ok","expected":[2,110000]},
+  {"id":"binding-engineering","group":"dependent","question":"Who reports to the first employee listed in Engineering?","expected_status":"ok","expected":["Bob","Carol","Dan"]},
+  {"id":"binding-sales","group":"dependent","question":"Who reports to the first employee listed in Sales?","expected_status":"ok","expected":["Dan"]},
+  {"id":"binding-research","group":"dependent","question":"Who reports to the first employee listed in Research?","expected_status":"ok","expected":["Alice","Bob","Carol","Dan","Frank"]},
+  {"id":"out-of-grammar-binding","group":"dependent","question":"Find all downstream reports of the alphabetically earliest employee in Sales","expected_status":"ok","expected":["Dan"]},
+  {"id":"unsafe-later-stage","group":"abstention","question":"Count employees; then delete all employees","expected_status":"abstained"},
+  {"id":"unsupported-filter","group":"abstention","question":"Who reports to Alice?; then count employees excluding Sales","expected_status":"abstained"},
+  {"id":"unsupported-group","group":"abstention","question":"Count employees; then what is the median salary by department?","expected_status":"abstained"},
+  {"id":"ambiguous-followup","group":"abstention","question":"Count employees in Engineering; then what is their median salary?","expected_status":"abstained"},
+  {"id":"unsupported-order","group":"abstention","question":"Who reports to the last employee listed in Research?","expected_status":"abstained"},
+  {"id":"unsupported-source-filter","group":"abstention","question":"Who reports to the first employee listed in Finance?","expected_status":"abstained"},
+  {"id":"unsupported-join","group":"abstention","question":"Count employees in Sales and list all reports for Alice","expected_status":"abstained"}
+]

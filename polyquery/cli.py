@@ -15,19 +15,29 @@ def source_options(parser, default="synthetic"):
     parser.add_argument("--data", type=Path, help="Chinook SQLite or Taxi Parquet file")
 
 
-def planner_options(parser):
-    parser.add_argument('--planner',choices=('keyword','llm'),default='keyword')
+def planner_options(parser, *, allow_dag=False):
+    choices = ('keyword', 'llm', 'dag', 'llm-dag') if allow_dag else ('keyword', 'llm')
+    parser.add_argument('--planner', choices=choices, default='keyword')
     parser.add_argument('--llm-fallback', choices=('none', 'keyword'), default='none',
                         help='Use keyword planner on LLM failures; never overrides model abstention/refusal')
+    model_options(parser)
+
+
+def model_options(parser):
     parser.add_argument('--llm-timeout', type=float, default=30, help='Model request timeout in seconds')
     parser.add_argument('--llm-base-url', help='OpenAI-compatible endpoint, e.g. http://localhost:11434/v1')
     parser.add_argument('--llm-api', choices=('responses','chat'), default='responses')
-    parser.add_argument('--model',help='Explicit OpenAI or local model ID for --planner llm')
+    parser.add_argument('--model',help='Explicit OpenAI or local model ID for model-assisted planning')
 
 
 def main():
     parser = argparse.ArgumentParser(description="PolyQuery query routing and evaluation")
     sub = parser.add_subparsers(dest="command", required=True)
+    dag_comparison = sub.add_parser("compare-dag", help="Compare keyword and DAG answers on the synthetic fixture")
+    dag_comparison.add_argument("--dataset", type=Path, default=Path("benchmarks/dag-dev.json"))
+    dag_comparison.add_argument("--output", type=Path)
+    dag_comparison.add_argument("--repeats", type=int, default=1)
+    model_options(dag_comparison)
     paired=sub.add_parser('compare-routers',help='Paired keyword/LLM evaluation on draft canonical labels')
     paired.add_argument('--pool',type=Path,default=Path('benchmarks/constraint-labels-v2'))
     paired.add_argument('--sources',type=Path,default=Path('benchmarks/router-sources.json'))
@@ -50,7 +60,7 @@ def main():
     query = sub.add_parser("query")
     query.add_argument("question")
     source_options(query)
-    planner_options(query)
+    planner_options(query, allow_dag=True)
     query.add_argument("--policy", choices=("router", "fixed-sql", "fixed-code", "fixed-graph", "cost-aware"), default="router")
     query.add_argument("--cost-profile", type=Path)
     inspect = sub.add_parser("inspect-source")
@@ -74,6 +84,21 @@ def main():
         elif name == "compare":
             command.add_argument("--reverse-order", action="store_true")
     args = parser.parse_args()
+    if args.command == "compare-dag":
+        from .dag_evaluation import compare_dag_planners
+        try:
+            cases = json.loads(args.dataset.read_text(encoding="utf-8-sig"))
+            model_kwargs = (dict(model=args.model, llm_api=args.llm_api, llm_base_url=args.llm_base_url,
+                                 llm_timeout=args.llm_timeout) if args.model else None)
+            result = compare_dag_planners(cases, repeats=args.repeats, model_options=model_kwargs)
+            rendered = json.dumps(result, indent=2) + "\n"
+            if args.output:
+                args.output.parent.mkdir(parents=True, exist_ok=True)
+                args.output.write_text(rendered, encoding="utf-8")
+        except (OSError, ValueError) as error:
+            parser.error(str(error))
+        print(rendered if args.output is None else json.dumps(result["overall"], indent=2))
+        return
     if args.command=='compare-routers':
         from .router_comparison import compare_routers,load_sources
         if args.llm_fallback!='none':
@@ -122,8 +147,8 @@ def main():
             parser.error(str(error))
         print(json.dumps(result,indent=2))
         return
-    if getattr(args,'planner','keyword') == 'llm' and not args.model:
-        parser.error('--planner llm requires --model')
+    if getattr(args,'planner','keyword') in ('llm', 'llm-dag') and not args.model:
+        parser.error('Model-assisted planning requires --model')
     if args.source == "ldbc" and (args.people is None or args.knows is None):
         parser.error("LDBC requires --people and --knows")
     if args.source in ("chinook", "taxi") and args.data is None:

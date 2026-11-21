@@ -7,6 +7,20 @@ import re
 from dataclasses import asdict, dataclass
 
 
+_UNSAFE_REQUESTS = {
+    "write_or_instruction": re.compile(
+        r"\b(delete|drop|insert|update|alter|truncate|execute|overwrite|ignore instructions)\b", re.I),
+    "host_file_or_code_request": re.compile(
+        r"(?<![\w.])\.env\b|\b__import__\s*\(|\b(?:eval|exec|open)\s*\("
+        r"|\b(?:run|evaluate|execute)\s+(?:arbitrary\s+)?(?:python|shell|bash|powershell)\b",
+        re.I),
+}
+
+
+def unsafe_request_findings(question):
+    return tuple(label for label, pattern in _UNSAFE_REQUESTS.items() if pattern.search(question))
+
+
 @dataclass(frozen=True)
 class ConstraintCheck:
     allowed: bool
@@ -24,7 +38,7 @@ def check_constraints(question, plan, catalog):
     if not isinstance(question, str):
         return ConstraintCheck(False, ('Executable plan requires a text question.',))
     q = question.lower()
-    failures = []
+    failures = list(unsafe_request_findings(q))
     # The one supported correlation construction is not a range constraint.
     modifiers = re.sub(r'\bbetween salary and experience\b', '', q) if plan.operation == 'correlation' else q
     # Endpoints of a relationship path can be introduced with "between".
@@ -36,7 +50,6 @@ def check_constraints(question, plan, catalog):
         'temporal_filter': r'\b(before|after|since|until|during|yesterday|today|last month|last year)\b',
         'ordering_or_limit': r'\b(top|bottom|first|last|limit|sorted|ascending|descending|order by)\b',
         'unsupported_quantile_or_uniqueness': r'\b(percentile|distinct|unique)\b',
-        'write_or_instruction': r'\b(delete|drop|insert|update|alter|truncate|execute|overwrite|ignore instructions)\b',
         'conditional_clause': r'\b(where|having|only|whose|such that)\b',
     }
     for label, pattern in patterns.items():

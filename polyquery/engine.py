@@ -1,6 +1,9 @@
 import time
 
 from .backends import CodeBackend, GraphBackend, SQLBackend
+from .catalog import build_catalog, dag_catalog
+from .dag import DAGExecutor
+from .dag_planner import DAGPlanner, validate_question_plan
 from .planner import RulePlanner
 
 
@@ -9,8 +12,11 @@ class Engine:
         started = time.perf_counter()
         self.source = source
         self.policy = policy
-        if planner_kind not in ('keyword','llm') or (planner is not None and planner_kind != 'keyword'):
+        self.dag_planner = None
+        if planner_kind not in ('keyword','llm','dag','llm-dag') or (planner is not None and planner_kind != 'keyword'):
             raise ValueError('Invalid or conflicting planner configuration')
+        if planner_kind in ('dag', 'llm-dag') and policy != 'router':
+            raise ValueError('DAG planning requires policy=router')
         if planner_kind == 'llm' and policy not in ('router', 'cost-aware'):
             raise ValueError('LLM planning requires policy=router or cost-aware')
         if llm_fallback not in ("none", "keyword") or (llm_fallback != "none" and planner_kind != "llm"):
@@ -40,8 +46,18 @@ class Engine:
         if source == "synthetic" and policy != "router":
             self.close()
             raise ValueError(f"Fixed policies are not implemented for {source}")
-        from .catalog import build_catalog
         self.catalog = build_catalog(self)
+        self.dag_executor = DAGExecutor(dag_catalog(self.catalog), self.backends)
+        self.dag_planner = DAGPlanner(self.planner, self.catalog) if planner_kind == "dag" else None
+        if planner_kind == "llm-dag":
+            try:
+                from .llm_dag import LLMDAGPlanner
+                self.dag_planner = LLMDAGPlanner(self.catalog, self.dag_executor, self.planner, model,
+                                                client=llm_client, base_url=llm_base_url,
+                                                api_mode=llm_api, timeout=llm_timeout)
+            except Exception:
+                self.close()
+                raise
         if planner_kind == 'llm':
             try:
                 from .llm import LLMPlanner
@@ -72,6 +88,8 @@ class Engine:
 
     def query(self, question, *, task_context=None):
         started = time.perf_counter()
+        if self.dag_planner is not None:
+            return self._query_dag(question, started)
         # Keep policy metadata out of keyword matching and lexical guards. The
         # keyword planner has no policy-context parser; independent gold scoring
         # exposes that limitation instead of mutating its natural-language input.
@@ -79,16 +97,7 @@ class Engine:
             plan = self.planner.plan_with_context(question, task_context)
         else:
             plan = self.planner.plan(question)
-        self.catalog.validate_plan(plan)
-        from .constraints import check_constraints
-        constraint_check = check_constraints(question, plan, self.catalog)
-        from .constraint_planning import extract_constraints, implemented_constraints, validate_extracted
-        extracted = extract_constraints(question,self.catalog)
-        canonical_validation = {'extracted':extracted.to_dict(),'implemented':None,'preserved':None,'status':'not_executed'}
-        if plan.backend != 'abstain':
-            implemented = implemented_constraints(plan,self.source)
-            canonical_validation = {'extracted':extracted.to_dict(),'implemented':implemented.to_dict(),
-                                    **validate_extracted(extracted,implemented)}
+        constraint_check, canonical_validation = validate_question_plan(question, plan, self.catalog)
         blocked = not constraint_check.allowed or canonical_validation['preserved'] is False
         if blocked:
             from .planner import Plan
@@ -115,7 +124,37 @@ class Engine:
         response["latency_ms"] = (finished - started) * 1000
         return response
 
+    def _query_dag(self, question, started):
+        decision = self.dag_planner.decide(question)
+        planned = time.perf_counter()
+        response = {"question": question, "source": self.source, "decision": decision.to_dict(),
+                    "status": "abstained", "result": None}
+        if hasattr(self.dag_planner, "last_metadata"):
+            response["planner_metadata"] = dict(self.dag_planner.last_metadata)
+        if decision.plan is not None:
+            response["plan"] = decision.plan.to_dict()
+        if decision.kind == "dag_plan":
+            results = self.execute_dag(decision.nodes)
+            values = [results[node]["value"] for node in decision.outputs]
+            response.update(status="ok", steps=results, result={"value": values[0] if len(values) == 1 else values})
+        elif decision.kind == "single_plan":
+            plan = decision.plan
+            result = self.backends[plan.backend].execute(plan)
+            self.catalog.validate_result(plan, result)
+            response.update(status="ok", result=result)
+        finished = time.perf_counter()
+        response.update(planning_ms=(planned - started) * 1000,
+                        execution_ms=(finished - planned) * 1000,
+                        latency_ms=(finished - started) * 1000)
+        return response
+
+    def execute_dag(self, nodes):
+        """Execute structured read-only nodes against this engine's source."""
+        return self.dag_executor.execute(nodes)
+
     def close(self):
+        if hasattr(self.dag_planner, 'close'):
+            self.dag_planner.close()
         if hasattr(self.planner,'close'):
             self.planner.close()
         for backend in self.backends.values():

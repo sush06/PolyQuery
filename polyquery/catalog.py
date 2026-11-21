@@ -64,15 +64,23 @@ class Catalog:
                 if parameter.required:
                     raise UnsupportedPlan(f'Missing parameter: {name}')
                 continue
-            value = plan.parameters[name]
-            if value is None and parameter.nullable:
-                continue
-            if parameter.kind == 'null':
-                raise UnsupportedPlan(f'{name} must be null or omitted')
-            if type(value) is not str:
-                raise UnsupportedPlan(f'{name} must be a string')
-            if parameter.domain and value not in self.domains[parameter.domain]:
-                raise UnsupportedPlan(f'Unknown {parameter.domain}: {value}')
+            self.validate_parameter(name, parameter, plan.parameters[name])
+
+    def validate_parameter(self, name, parameter, value):
+        if value is None and parameter.nullable:
+            return
+        if parameter.kind == 'null':
+            raise UnsupportedPlan(f'{name} must be null or omitted')
+        if parameter.kind == 'entity_ids':
+            if (type(value) is not list or len(value) > len(self.domains[parameter.domain])
+                    or any(type(item) is not str or item not in self.domains[parameter.domain] for item in value)
+                    or len(set(value)) != len(value)):
+                raise UnsupportedPlan(f'{name} requires unique IDs from {parameter.domain}')
+            return
+        if type(value) is not str:
+            raise UnsupportedPlan(f'{name} must be a string')
+        if parameter.domain and value not in self.domains[parameter.domain]:
+            raise UnsupportedPlan(f'Unknown {parameter.domain}: {value}')
 
     def validate_result(self, plan, result):
         if not isinstance(result, dict) or 'value' not in result:
@@ -87,7 +95,7 @@ class Catalog:
             if kind == 'integer':
                 return type(v) is int and v >= 0
             if kind == 'number':
-                return type(v) in (int, float) and math.isfinite(v)
+                return type(v) is int or (type(v) is float and math.isfinite(v))
             return False
         valid = value is None and spec.nullable
         if value is not None:
@@ -191,3 +199,19 @@ def build_catalog(engine):
         spec = operations[name]
         operations[name] = OperationSpec(spec.backends, spec.result, spec.parameters, description)
     return Catalog(source, schema, operations, domains, adjacency=adjacency)
+
+
+def dag_catalog(catalog):
+    if catalog.source != "synthetic":
+        return catalog
+    operations = {
+        **catalog.operations,
+        "direct_reports": OperationSpec(
+            ("graph",), ResultSpec("entity_ids", entity="employee"),
+            {"source": ParameterSpec(domain="employee")}, "Direct reports, one directed edge only."),
+        "mean_salary_of_employees": OperationSpec(
+            ("code",), ResultSpec("number", nullable=True),
+            {"employees": ParameterSpec(kind="entity_ids", domain="employee")},
+            "Mean salary over exactly the supplied employee IDs. Bind to a report list."),
+    }
+    return Catalog(catalog.source, catalog.schema, operations, catalog.domains, catalog.costs, catalog.adjacency)

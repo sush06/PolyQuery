@@ -111,11 +111,17 @@ class LLMPlanner:
             self.last_metadata['fallback'] = 'keyword'
             return plan
 
-    def _plan(self, question):
+    def _reset_metadata(self):
         self.last_metadata = {'provider':self.provider,'api_mode':self.api_mode,'requested_model':self.model,'prompt_sha256':self.prompt_sha256,
                               'api_calls':0,'input_tokens':None,'output_tokens':None,'total_tokens':None,'usd':None}
+
+    def _plan(self, question):
+        self._reset_metadata()
         if not isinstance(question,str) or not question.strip() or len(question)>2000:
             return Plan('abstain','unsupported',reason='Provide a question of 1–2000 characters.')
+        return self._decode(self._request(question))
+
+    def _request(self, question):
         try:
             self.last_metadata['api_calls'] = 1
             if self.api_mode == 'chat':
@@ -140,7 +146,7 @@ class LLMPlanner:
                 choice = response.choices[0]
                 if getattr(choice.message, 'refusal', None) or choice.finish_reason == 'content_filter':
                     self.last_metadata['refused'] = True
-                    return Plan('abstain','unsupported',reason='Model refused the request.')
+                    return None
                 response = SimpleNamespace(status='completed' if choice.finish_reason == 'stop' else 'incomplete',
                                            output_text=choice.message.content, output=[])
             except (AttributeError, IndexError, TypeError):
@@ -151,9 +157,16 @@ class LLMPlanner:
             for part in getattr(item,'content',[]):
                 if getattr(part,'type',None) == 'refusal':
                     self.last_metadata['refused'] = True
-                    return Plan('abstain','unsupported',reason='Model refused the request.')
+                    return None
+        if not isinstance(getattr(response, 'output_text', None), str):
+            raise LLMPlanningError('Model output violated the response contract')
+        return response.output_text
+
+    def _decode(self, content):
+        if content is None:
+            return Plan('abstain','unsupported',reason='Model refused the request.')
         try:
-            payload = json.loads(response.output_text)
+            payload = json.loads(content)
             if not isinstance(payload, dict) or set(payload) != {'backend','operation','parameters','reason'} or not isinstance(payload['parameters'],list):
                 raise ValueError('Invalid response shape')
             parameters = {}

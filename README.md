@@ -21,6 +21,7 @@ polyquery query "Find the shortest path from Bob to Frank"
 polyquery query "What is the median salary?"
 polyquery evaluate --output benchmarks/latest.json
 python -m unittest discover -s tests -v
+python -m pytest -q
 ```
 
 Python 3.11+. The default synthetic source has no runtime dependencies and runs offline. Run commands from the repository root. Without installing, use `python -m polyquery.cli` instead of `polyquery`.
@@ -49,7 +50,7 @@ An optional catalog-aware LLM planner supports paraphrases with validated struct
 plans. Install `.[llm]`, set `OPENAI_API_KEY`, and use `--planner llm --model YOUR_MODEL_ID`.
 Add `--llm-fallback keyword` for explicit fallback on provider or output failures.
 See [setup, boundaries, and comparison commands](docs/llm-planner.md). Keyword routing
-remains the offline default; multi-stage planning is a future milestone. Local
+remains the offline default. Local
 OpenAI-compatible models use `--llm-api chat --llm-base-url http://localhost:11434/v1`
 and need no OpenAI SDK or API key. Add `--policy cost-aware --cost-profile PATH`
 to select an execution backend from measured costs after LLM intent planning.
@@ -78,6 +79,76 @@ Supported operations: employee count/list, mean salary, total revenue, relations
 The research question is whether routing improves correctness, latency, or cost over a capable fixed backend. Recursive SQL can answer graph questions, and SQL can compute statistics, so comparisons need equivalent operations on the same data.
 
 ## Architecture
+
+### Opt-in DAG planning
+
+```bash
+python -m polyquery.cli query --planner dag "Count employees in Engineering; then what is the median salary in Sales?"
+python -m polyquery.cli query --planner dag "Who reports to the first employee listed in Sales?"
+python -m polyquery.cli compare-dag --repeats 20 --output logs/dag-dev-report.json
+```
+
+Select `planner_kind="dag"` in Python or `--planner dag` for a CLI query.
+The response includes `decision.kind` with one of `single_plan`, `dag_plan`,
+or `abstain`. A single plan uses the usual backend result. A DAG response includes
+the backend envelopes under `steps` and the requested outputs under
+`result.value`. Multiple outputs are returned in the requested order.
+
+Separate two to five standalone questions with `; then`. Each stage passes the
+existing lexical and canonical guards before any stage executes. The synthetic
+source also supports the exact dependent pattern “Who reports to the first
+employee listed in [department]?” It binds the graph input to the first SQL
+row in name order and returns all downstream reports.
+
+The paired [development benchmark](benchmarks/dag-dev.json) scores expected
+answer values and abstentions against the unchanged keyword baseline.
+
+| Development cases | Keyword correct | DAG correct |
+| --- | ---: | ---: |
+| Single requests | 5/5 | 5/5 |
+| Standalone sequences | 0/4 | 3/4 |
+| Dependent requests | 0/4 | 3/4 |
+| Expected abstentions | 7/7 | 7/7 |
+| Total | 12/20 | 18/20 |
+
+The six gains came from newly answered multi-stage cases. Both planners missed
+a valid dependent paraphrase outside the supported pattern and a standalone
+sequence whose first clause was blocked by canonical validation in DAG mode.
+These hand-authored cases exercise the synthetic fixture and the supported
+grammar. The comparison measures development coverage. Generalization to
+unseen phrasing and sources remains unmeasured.
+
+The [held-out DAG evaluation](docs/dag-evaluation.md) compares the frozen
+planners on 120 additional synthetic questions with paired confidence intervals.
+The same harness can include Qwen3 4B with `--model`. Use `query --planner llm-dag`
+to request a model-proposed DAG.
+
+### Structured DAG execution
+
+Use `Engine.execute_dag` to compose read-only operations from the active source's
+catalog. Node declarations can appear in any order. A named `InputBinding` reads
+an upstream result's `value` and can select a list index or a field in a row.
+
+```python
+from polyquery import DAGNode, Engine, InputBinding
+
+with Engine() as engine:
+    results = engine.execute_dag([
+        DAGNode("reports", "graph", "descendants",
+                bindings={"source": InputBinding("employees", (0, "name"))}),
+        DAGNode("employees", "sql", "list", {"department": "Engineering"}),
+    ])
+    print(results["reports"]["value"])
+```
+
+Use `depends_on` for ordering alone. Results are keyed by node ID in execution
+order and contain the usual backend result envelopes. The executor validates the
+DAG before dispatch, then validates resolved parameters and each result. A node
+can opt into immediate retries with `retries=N`. Only explicit transient backend
+errors and SQLite busy or locked errors are retried. Execution stops at the
+first failure. `DAGExecutionError` records the node ID, failure stage, and attempt
+count. Natural-language queries continue to use `Engine.query` and its
+constraint-preservation checks.
 
 ### Selectable LDBC source
 

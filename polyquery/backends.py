@@ -63,10 +63,14 @@ class SQLBackend:
 class GraphBackend:
     def execute(self, plan):
         required = ("source", "target") if plan.operation == "shortest_path" else ("source",)
-        validate(plan, {"shortest_path", "descendants"}, required=required)
+        validate(plan, {"shortest_path", "descendants", "direct_reports"}, required=required)
         names = {r["name"] for r in EMPLOYEES}
         if any(v not in names for v in plan.parameters.values()):
             raise UnsupportedPlan("Unknown graph node")
+        if plan.operation == "direct_reports":
+            source = plan.parameters["source"]
+            return {"artifact": {"algorithm": "direct_neighbors", "directed": True, "source": source},
+                    "value": sorted(report for manager, report in REPORTS if manager == source)}
         adjacency = {name: set() for name in names}
         for manager, report in REPORTS:
             adjacency[manager].add(report)
@@ -110,6 +114,17 @@ class ExpressionInterpreter:
 
 class CodeBackend:
     def execute(self, plan):
+        if plan.operation == "mean_salary_of_employees":
+            validate(plan, {"mean_salary_of_employees"}, required=("employees",))
+            salaries = {row["name"]: row["salary"] for row in EMPLOYEES}
+            employees = plan.parameters["employees"]
+            if (type(employees) is not list or len(employees) > len(salaries)
+                    or any(type(name) is not str or name not in salaries for name in employees)
+                    or len(set(employees)) != len(employees)):
+                raise UnsupportedPlan("Expected unique employee IDs")
+            values = [salaries[name] for name in employees]
+            return {"artifact": "mean_salary_of_employees", "rows_used": len(values),
+                    "value": statistics.mean(values) if values else None}
         validate(plan, {"median", "stdev", "correlation"}, optional=("department",))
         if plan.operation == "correlation" and plan.parameters.get("department"):
             raise UnsupportedPlan("Filtered correlation is not supported")
