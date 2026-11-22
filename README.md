@@ -39,6 +39,17 @@ training data. It reports coverage and execution regret alongside accuracy.
 result shapes, entity identity, schemas, and capability/cost catalogs. Inspect
 them with `python -m polyquery.cli describe-source`.
 
+[Optional SQL Server support](docs/sqlserver.md) runs five Chinook aggregates
+through the existing SQL operation contracts.
+
+The [Chinook scale benchmark](docs/chinook-scale.md) verified 32 workload and
+selectivity combinations on SQLite and SQL Server from 1× to 1,000×. In the
+local, warm-connection run, SQLite was faster in all eight 1× cases. At
+1,000×, the broad five-table join had a query p50 of 8,531 ms on SQLite and
+467 ms on SQL Server. The broad high-cardinality aggregation remained
+inconclusive. The crossover warrants testing a routing policy against fixed
+backends on held-out workloads.
+
 An [optional LLM planner](docs/llm-planner.md) maps natural-language questions to
 catalog-validated plans. Enable it with `--planner llm --model MODEL_ID`; the
 keyword baseline stays the default. Live runs require the `.[llm]` extra and an
