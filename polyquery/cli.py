@@ -61,6 +61,7 @@ def main():
     query.add_argument("question")
     source_options(query)
     planner_options(query, allow_dag=True)
+    query.add_argument("--llm-repair", action="store_true")
     query.add_argument("--policy", choices=("router", "fixed-sql", "fixed-code", "fixed-graph", "cost-aware"), default="router")
     query.add_argument("--cost-profile", type=Path)
     inspect = sub.add_parser("inspect-source")
@@ -72,7 +73,7 @@ def main():
         command = sub.add_parser(name)
         source_options(command)
         if name != 'calibrate':
-            planner_options(command)
+            planner_options(command, allow_dag=name == "evaluate")
         command.add_argument("--dataset", type=Path, default=Path("benchmarks/demo.json"))
         command.add_argument("--output", type=Path)
         command.add_argument("--repeats", type=int, default=1)
@@ -80,10 +81,47 @@ def main():
         command.add_argument("--cost-profile", type=Path)
         command.add_argument("--oracle-repeats", type=int, default=0)
         if name == "evaluate":
+            command.set_defaults(planner=None, dataset=None)
             command.add_argument("--policy", choices=("router", "fixed-sql", "fixed-code", "fixed-graph", "cost-aware"), default="router")
+            command.add_argument("--suite", choices=("legacy", "v2"), default="legacy")
+            command.add_argument("--split", choices=("dev", "validation", "test", "all"), default="test")
+            command.add_argument("--sources", type=Path, default=Path("benchmarks/router-sources.json"))
+            command.add_argument("--v2-planner", choices=("keyword", "dag", "llm", "llm-dag"), action="append")
+            command.add_argument("--ollama", action="store_true", help="Enable local model planners in suite v2")
+            command.add_argument("--llm-repair", action="store_true", help="Allow one repair of a fixable model plan")
+            command.add_argument("--bootstrap-samples", type=int, default=5000)
         elif name == "compare":
             command.add_argument("--reverse-order", action="store_true")
     args = parser.parse_args()
+    if args.command == "evaluate" and args.suite == "v2":
+        from .evaluation_v2 import PLANNERS, evaluate_v2
+
+        try:
+            if args.policy != "router" or args.llm_fallback != "none":
+                raise ValueError("Suite v2 compares router policies with model fallback disabled")
+            if args.planner and args.v2_planner:
+                raise ValueError("Use --planner for one planner or --v2-planner for a selection")
+            if args.repeats != 1 or args.warmup or args.oracle_repeats or args.cost_profile:
+                raise ValueError("Suite v2 runs each question once and does not use cost profiles")
+            result = evaluate_v2(
+                args.dataset or Path("benchmarks/evaluation-v2.json"), args.sources, split=args.split,
+                planners=args.v2_planner or ([args.planner] if args.planner else PLANNERS),
+                ollama=args.ollama, model=args.model or "qwen3:4b-instruct",
+                base_url=args.llm_base_url or "http://127.0.0.1:11434/v1",
+                timeout=args.llm_timeout, bootstrap_samples=args.bootstrap_samples, llm_repair=args.llm_repair,
+            )
+            if args.output:
+                args.output.parent.mkdir(parents=True, exist_ok=True)
+                args.output.write_text(json.dumps(result, indent=2, allow_nan=False) + "\n", encoding="utf-8")
+            print(json.dumps(result if args.output is None else result["overall"], indent=2, allow_nan=False))
+        except (OSError, ValueError) as error:
+            parser.error(str(error))
+        return
+    if args.command == "evaluate":
+        args.dataset = args.dataset or Path("benchmarks/demo.json")
+        args.planner = args.planner or "keyword"
+        if args.planner in ("dag", "llm-dag"):
+            parser.error("DAG planners require --suite v2")
     if args.command == "compare-dag":
         from .dag_evaluation import compare_dag_planners
         try:
@@ -156,6 +194,8 @@ def main():
     if getattr(args, "llm_fallback", "none") != "none" and args.planner != "llm":
         parser.error("--llm-fallback requires --planner llm")
     llm_kwargs = dict(llm_base_url=getattr(args,'llm_base_url',None), llm_api=getattr(args,'llm_api','responses'), llm_timeout=getattr(args,'llm_timeout',30))
+    if getattr(args, "llm_repair", False):
+        llm_kwargs["llm_repair"] = True
     kwargs = {"source": args.source, "people_path": args.people, "edges_path": args.knows, "data_path": args.data}
     try:
         if args.command == "calibrate" and args.output and (args.output.parent / "profile-manifest.json").exists():

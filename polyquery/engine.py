@@ -8,7 +8,7 @@ from .planner import RulePlanner
 
 
 class Engine:
-    def __init__(self, planner=None, *, source="synthetic", people_path=None, edges_path=None, data_path=None, policy="router", cost_profile=None, planner_kind="keyword", model=None, llm_client=None, llm_fallback="none", llm_base_url=None, llm_api="responses", llm_timeout=30):
+    def __init__(self, planner=None, *, source="synthetic", people_path=None, edges_path=None, data_path=None, policy="router", cost_profile=None, planner_kind="keyword", model=None, llm_client=None, llm_fallback="none", llm_base_url=None, llm_api="responses", llm_timeout=30, llm_repair=False):
         started = time.perf_counter()
         self.source = source
         self.policy = policy
@@ -21,6 +21,8 @@ class Engine:
             raise ValueError('LLM planning requires policy=router or cost-aware')
         if llm_fallback not in ("none", "keyword") or (llm_fallback != "none" and planner_kind != "llm"):
             raise ValueError("LLM fallback requires planner_kind=llm and none or keyword")
+        if llm_repair and (planner_kind not in ("llm", "llm-dag") or llm_fallback != "none"):
+            raise ValueError("Model repair requires a model planner with fallback disabled")
         execution_policy = "router" if policy == "cost-aware" else policy
         if source == "synthetic":
             self.planner = planner or RulePlanner()
@@ -54,7 +56,7 @@ class Engine:
                 from .llm_dag import LLMDAGPlanner
                 self.dag_planner = LLMDAGPlanner(self.catalog, self.dag_executor, self.planner, model,
                                                 client=llm_client, base_url=llm_base_url,
-                                                api_mode=llm_api, timeout=llm_timeout)
+                                                api_mode=llm_api, timeout=llm_timeout, repair=llm_repair)
             except Exception:
                 self.close()
                 raise
@@ -63,7 +65,8 @@ class Engine:
                 from .llm import LLMPlanner
                 self.planner = LLMPlanner(self.catalog,model,client=llm_client,
                                           fallback=self.planner if llm_fallback == "keyword" else None,
-                                          base_url=llm_base_url, api_mode=llm_api, timeout=llm_timeout)
+                                          base_url=llm_base_url, api_mode=llm_api, timeout=llm_timeout,
+                                          baseline=self.planner, repair=llm_repair)
             except Exception:
                 self.close()
                 raise
@@ -112,6 +115,12 @@ class Engine:
             response['proposed_plan'] = proposed_plan
         if hasattr(self.planner,'last_metadata'):
             response['planner_metadata'] = dict(self.planner.last_metadata)
+            diagnostics = response['planner_metadata'].get("plan_diagnostics")
+            if blocked and diagnostics is not None:
+                graph_scope = any("endpoint" in finding or "person_ids" in finding for finding in constraint_check.findings)
+                category = "wrong_graph_scope" if graph_scope else "constraint_preservation"
+                diagnostics.setdefault("validation_error_category", category)
+                diagnostics["final_validation_error_category"] = category
         if plan.backend != "abstain":
             if plan.backend not in self.backends:
                 raise ValueError("Unknown backend")
