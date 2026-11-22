@@ -20,9 +20,12 @@ from .engine import Engine
 from .evaluation import implementation_fingerprint, percentile, timing_summary
 from .evaluation_v2_reference import ARGUMENTS, Reference
 from .llm import LLMPlanningError
+from .semantic_audit import audit_block
 
 
 PLANNERS = ("keyword", "dag", "llm", "llm-dag")
+DAG_GROUNDING_PLANNERS = {"llm-dag-catalog": "catalog", "llm-dag-examples": "examples",
+                          "llm-dag-examples-only": "examples-only"}
 SPLITS = ("dev", "validation", "test")
 ANSWER_CATEGORIES = {"single_stage", "multi_stage", "paraphrase"}
 REFUSAL_CATEGORIES = {"ambiguous_or_unsupported", "adversarial"}
@@ -116,8 +119,13 @@ def _ollama_info(base_url, model, timeout):
 def evaluate_v2(dataset_path, sources_path, *, split="test", planners=PLANNERS, ollama=False,
                 model="qwen3:4b-instruct", base_url="http://127.0.0.1:11434/v1", timeout=90,
                 bootstrap_samples=5000, seed=20261121, llm_repair=False):
-    if split not in (*SPLITS, "all") or not planners or len(set(planners)) != len(planners) or set(planners) - set(PLANNERS):
+    if (split not in (*SPLITS, "all") or not planners or len(set(planners)) != len(planners)
+            or set(planners) - (set(PLANNERS) | DAG_GROUNDING_PLANNERS.keys())):
         raise ValueError("Invalid split or planner selection")
+    if {"llm-dag-examples", "llm-dag-examples-only"} & set(planners) and split != "validation":
+        raise ValueError("Development examples are evaluated on the separate validation split only")
+    if llm_repair and DAG_GROUNDING_PLANNERS.keys() & set(planners):
+        raise ValueError("Disable repair for the grounding comparison")
     if type(bootstrap_samples) is not int or bootstrap_samples < 1 or not 0 < timeout < float("inf"):
         raise ValueError("Bootstrap samples and model timeout must be positive")
     dataset_path, sources_path = Path(dataset_path), Path(sources_path)
@@ -131,10 +139,10 @@ def evaluate_v2(dataset_path, sources_path, *, split="test", planners=PLANNERS, 
     sources = _read(sources_path)
     if not isinstance(sources, dict):
         raise ValueError("Source configuration must be an object")
-    candidates = {"llm", "llm-dag"} & set(planners)
+    candidates = ({"llm", "llm-dag"} | DAG_GROUNDING_PLANNERS.keys()) & set(planners)
     model_info = (_ollama_info(base_url, model, timeout) if ollama and candidates
                   else {"status": "unavailable", "reason": "Ollama disabled" if candidates else "No model planner selected"})
-    rows, source_info = [], {}
+    rows, source_info, grounding_examples = [], {}, {}
     for source in sorted({case["source"] for case in selected}):
         source_cases = [case for case in selected if case["source"] == source]
         try:
@@ -162,12 +170,16 @@ def evaluate_v2(dataset_path, sources_path, *, split="test", planners=PLANNERS, 
             options = dict(model=model, llm_api="chat", llm_base_url=base_url, llm_timeout=timeout,
                            llm_repair=llm_repair) if is_model else {}
             try:
-                engine = Engine(source=source, planner_kind=planner, **config, **options)
+                mode = DAG_GROUNDING_PLANNERS.get(planner)
+                engine = Engine(source=source, planner_kind="llm-dag" if mode else planner, **config, **options)
             except (ImportError, OSError, ValueError, sqlite3.Error) as error:
                 rows.extend(_unavailable(case, planner, f"{type(error).__name__}: {error}", "planner")
                             for case in source_cases)
                 continue
             with engine:
+                if mode:
+                    ids = engine.dag_planner.configure_grounding(mode, cases)
+                    grounding_examples.setdefault(planner, {})[source] = ids
                 rows.extend(_run(engine, planner, case, reference, gold[case["id"]]) for case in source_cases)
         if any(_digest(path) != hashes[key] for key, path in config.items()):
             raise ValueError(f"Source files changed during evaluation: {source}")
@@ -178,6 +190,7 @@ def evaluate_v2(dataset_path, sources_path, *, split="test", planners=PLANNERS, 
         "suite": "v2", "split": split, "questions": len(selected), "dataset_sha256": dataset_digest,
         "implementation_sha256": implementation, "sources": source_info, "ollama": model_info,
         "llm_repair": llm_repair,
+        "grounding_example_ids": grounding_examples,
         "runtime": {"python": platform.python_version(), "platform": platform.platform(), "sqlite": sqlite3.sqlite_version},
         "bootstrap": {"method": "paired question-level percentile bootstrap", "samples": bootstrap_samples, "seed": seed},
         "overall": {planner: _summary([row for row in rows if row["planner"] == planner]) for planner in planners},
@@ -242,14 +255,31 @@ def _run(engine, planner, case, reference, gold):
                                for spec, answer, expected in zip(refs, values, gold)))
         outcome = "correct" if correct else "incorrect"
     row = _scored_row(case, planner, outcome, correct, metadata, gold)
+    proposal = getattr(engine.dag_planner, "last_semantic_proposal", None)
+    reached_preflight = proposal is not None
+    if reached_preflight:
+        row["semantic_preflight"] = "rejected" if outcome == "validation_failure" else "accepted"
+    if reached_preflight and row["semantic_preflight"] == "rejected" and case.get("split") == "validation":
+        row["semantic_audit"] = audit_block(proposal, case, reference, gold)
     return {**row, "response_status": response["status"], "actual": actual,
             "decision": response.get("decision", {}).get("kind"),
-            "plan": None if planner in ("llm", "llm-dag") else response.get("plan"),
+            "plan": None if planner.startswith("llm") else response.get("plan"),
             "planning_ms": response.get("planning_ms"), "execution_ms": response.get("execution_ms"),
             "total_ms": response.get("latency_ms")}
 
 
 def _scored_row(case, planner, outcome, correct, metadata, gold):
+    diagnostics = metadata.get("plan_diagnostics") or {}
+    attempts = diagnostics.get("attempts", ())
+    last = attempts[-1] if attempts else {}
+    category = diagnostics.get("final_validation_error_category")
+    if outcome == "incorrect":
+        category = "valid_but_incorrect_plan"
+    elif outcome == "abstained" and not correct:
+        category = "unnecessary_abstention"
+    category = {"invalid_parameters": "invalid_parameter_value",
+                "incorrect_binding": "incorrect_dependency_binding",
+                "constraint_preservation": "valid_but_incorrect_plan"}.get(category, category)
     return {
         **case, "planner": planner, "outcome": outcome, "correct": correct,
         "expected": (gold[0] if len(gold) == 1 else gold) if gold else None,
@@ -257,6 +287,13 @@ def _scored_row(case, planner, outcome, correct, metadata, gold):
         "model_usage": {key: metadata.get(key) for key in
                         ("api_calls", "input_tokens", "output_tokens", "total_tokens", "model", "prompt_sha256")},
         "plan_diagnostics": metadata.get("plan_diagnostics"),
+        "semantic_preflight": "not_reached" if planner.startswith("llm-dag") else "not_applicable",
+        "failure_category": category,
+        "checks": {
+            "json_structure_valid": last.get("json_structure_valid"),
+            "catalog_contract_valid": last.get("catalog_contract_valid"),
+            "semantic_answer_correct": correct,
+        },
     }
 
 
@@ -280,12 +317,19 @@ def _summary(rows):
     return {
         "requested": len(rows), "scored": total, "counts": counts,
         "accuracy": rate(sum(row["correct"] for row in scored)),
+        "answered": counts["correct"] + counts["incorrect"],
         "abstention_rate": rate(sum(row.get("response_status") == "abstained" for row in scored)),
         "incorrect_answer_rate": rate(counts["incorrect"]), "invalid_plan_rate": rate(counts["invalid_plan"]),
         "security_cases": sum(row["security_refusal"] is not None for row in scored), "security_refusals": safe,
         "latency_ms": {phase: timing_summary([row[key] for row in scored if row[key] is not None])
                        for phase, key in (("planning", "planning_ms"), ("execution", "execution_ms"), ("total", "total_ms"))},
         "model_usage": model_usage,
+        "failure_categories": dict(Counter(row["failure_category"] for row in scored if row["failure_category"])),
+        "semantic_audit": dict(Counter(row["semantic_audit"]["classification"] for row in scored if "semantic_audit" in row)),
+        "checks": {check: {
+            "passed": sum(row["checks"][check] is True for row in scored),
+            "failed": sum(row["checks"][check] is False for row in scored),
+        } for check in ("json_structure_valid", "catalog_contract_valid", "semantic_answer_correct")},
         "plan_validity": {
             "checked_outputs": sum(value is not None for value in structures),
             "valid_outputs": structures.count(True),
@@ -305,6 +349,7 @@ def _grouped(rows, dimension, planners):
 
 def _paired(rows, planners, samples, seed):
     matrix = {planner: {row["id"]: row["correct"] for row in rows if row["planner"] == planner} for planner in planners}
+    outcomes = {(row["planner"], row["id"]): row.get("outcome") for row in rows}
     comparisons = []
     for reference, candidate in combinations(planners, 2):
         ids = sorted(matrix[reference].keys() & matrix[candidate].keys())
@@ -313,8 +358,17 @@ def _paired(rows, planners, samples, seed):
         rng = random.Random(seed)
         draws = [sum(rng.choices(deltas, k=n)) / n for _ in range(samples)] if n else []
         interval = [percentile(draws, .025), percentile(draws, .975)] if draws else None
+        transitions = Counter(
+            (outcomes[reference, case_id], matrix[reference][case_id],
+             outcomes[candidate, case_id], matrix[candidate][case_id]) for case_id in ids
+        )
         comparisons.append({"reference": reference, "candidate": candidate, "n": n,
                             "gains": deltas.count(1), "losses": deltas.count(-1),
                             "accuracy_delta": sum(deltas) / n if n else None, "ci95": interval,
-                            "uncertain": n < 20 or interval[0] <= 0 <= interval[1]})
+                            "uncertain": n < 20 or interval[0] <= 0 <= interval[1],
+                            "transitions": [
+                                {"from_outcome": old, "from_correct": old_correct, "to_outcome": new,
+                                 "to_correct": new_correct, "count": count}
+                                for (old, old_correct, new, new_correct), count in transitions.items()
+                            ]})
     return comparisons

@@ -4,12 +4,14 @@ import hashlib
 import json
 import re
 
+from .backends import UnsupportedPlan
 from .constraints import unsafe_request_findings
 from .dag import DAGNode, DAGValidationError, InputBinding
-from .dag_planner import DAGPlanner, PlanningDecision
+from .dag_planner import DAGPlanner, PlanningDecision, validate_question_plan
 from .llm import LLMPlanner
 from .llm_contract import PlanContractError, catalog_context
 from .planner import Plan
+from .semantic_intent import paraphrase_intent
 
 
 def _object(**properties):
@@ -81,9 +83,79 @@ class LLMDAGPlanner(LLMPlanner):
                 + "\nAlways output both nodes when the requested answer is mean salary over reports."
             )
         self.prompt_sha256 = hashlib.sha256(self.instructions.encode()).hexdigest()
+        self._baseline_instructions = self.instructions
+        self.last_semantic_proposal = None
+
+    def configure_grounding(self, mode, development_cases=()):
+        """Opt in to enriched context without changing the default prompt."""
+        if mode not in ("catalog", "examples", "examples-only"):
+            raise ValueError("Unknown DAG grounding mode")
+        self.instructions = self._baseline_instructions if mode == "examples-only" else self._enriched_instructions()
+        examples = self._append_development_example(development_cases) if mode != "catalog" else []
+        self.prompt_sha256 = hashlib.sha256(self.instructions.encode()).hexdigest()
+        return examples
+
+    def _enriched_instructions(self):
+        context = catalog_context(self.plan_catalog, bindings=True)
+        context.pop("parameter_names")
+        context["relationships"] = self.plan_catalog.schema.get("relationships", [])
+        # Read the router's existing question aliases to identify its preferred
+        # backend. Graph-only source projections put their router backend first.
+        router = self.baseline.baseline
+        preferred = {}
+        for question in getattr(router, "questions", {}):
+            plan = router.plan(question)
+            preferred[plan.operation] = plan.backend
+        for name, operation in context["operations"].items():
+            if name in preferred or self.catalog.source == "ldbc":
+                operation["router_backend"] = preferred.get(name, operation["backends"][0])
+            for parameter, spec in operation["parameters"].items():
+                if parameter in ("source", "target") and spec["domain"]:
+                    endpoint = "starting" if parameter == "source" else "ending"
+                    spec["meaning"] = f"Exact {spec['domain']} ID for the {endpoint} graph endpoint, as a string."
+        return (
+            "Return only the structured plan. Use only operations in this source's catalog. "
+            "Use its router_backend when specified. A standalone request uses one node. "
+            "For independent questions separated by '; then', use dag_plan with exactly one node "
+            "and one output ID per clause, both in request order. Count and list are different outputs. "
+            "Do not collapse a compound request to one result or link independent clauses with bindings. "
+            "Preserve exact graph endpoints and direct versus transitive scope. Bind only an approved "
+            "whole result to the named parameter and use the producing node's ID. "
+            "Abstain with empty nodes and outputs when intent, graph scope, or a capability is unsupported "
+            "or when the request is unsafe. Never emit SQL, code, answers, or explanations.\nCATALOG:\n"
+            + json.dumps(context, separators=(",", ":"), sort_keys=True)
+        )
+    def _append_development_example(self, development_cases):
+        for case in development_cases:
+            if case["split"] != "dev" or case["source"] != self.catalog.source or "reference" not in case:
+                continue
+            if unsafe_request_findings(case["question"]):
+                continue
+            decision = self.baseline.decide(case["question"])
+            if decision.kind != "dag_plan":
+                continue
+            nodes = decision.nodes
+            reference = case["reference"]
+            if len(nodes) != len(reference) or any(
+                node.operation != spec["operation"] or node.bindings
+                or list(node.parameters.values()) != spec["args"]
+                for node, spec in zip(nodes, reference)
+            ):
+                continue
+            payload = {"kind": "dag_plan", "outputs": list(decision.outputs), "nodes": [
+                {"id": node.id, "backend": node.backend, "operation": node.operation,
+                 "parameters": [{"name": key, "value": value} for key, value in node.parameters.items()],
+                 "bindings": []} for node in nodes
+            ]}
+            self.instructions += "\nDevelopment example: " + json.dumps(
+                {"question": case["question"], "plan": payload}, separators=(",", ":")
+            )
+            return [case["id"]]
+        return []
 
     def decide(self, question):
         self._reset_metadata()
+        self.last_semantic_proposal = None
         if not isinstance(question, str) or not question.strip() or len(question) > 2000:
             return DAGPlanner._abstain("Provide a question of 1–2000 characters.")
         findings = unsafe_request_findings(question)
@@ -120,13 +192,20 @@ class LLMDAGPlanner(LLMPlanner):
             if "parameter" in message or "Unknown " in message:
                 raise PlanContractError("invalid_parameters") from None
             raise PlanContractError("invalid_schema", repairable=True) from None
+        return self._semantic_preflight(question, kind, nodes, outputs)
+
+    def _semantic_preflight(self, question, kind, nodes, outputs):
+        """Require explicit, locally supported intent for every executed output."""
+        self.last_semantic_proposal = (kind, nodes, tuple(outputs))
         clauses = DAGPlanner._separator.split(question)
         intent = self._report_salary_intent(question)
-        if kind == "single_plan" and len(nodes) == 1 and not nodes[0].bindings:
+        if kind in ("single_plan", "dag_plan") and len(nodes) == 1 and not nodes[0].bindings:
             node = nodes[0]
             plan = Plan(node.backend, node.operation, dict(node.parameters))
             if not intent and not DAGPlanner._compound.search(question) and self._preserved(question, plan):
-                return PlanningDecision("single_plan", plan=plan)
+                if kind == "single_plan":
+                    return PlanningDecision("single_plan", plan=plan)
+                return PlanningDecision("dag_plan", nodes=nodes, outputs=tuple(outputs))
         elif kind == "dag_plan" and intent and self._matches_report_salary(nodes, outputs, intent):
             return PlanningDecision("dag_plan", nodes=nodes, outputs=tuple(outputs))
         elif kind == "dag_plan" and len(clauses) == len(nodes) >= 2 and self._matches_sequence(clauses, nodes, outputs):
@@ -141,26 +220,56 @@ class LLMDAGPlanner(LLMPlanner):
             proposed_scopes = [(node.operation, node.parameters.get("source")) for node in nodes if node.backend == "graph"]
             category = "wrong_graph_scope" if proposed_scopes != [intent] else "incorrect_binding"
         else:
-            expected = self.baseline.decide(question)
-            if expected.kind == "abstain":
+            wanted = [self._semantic_reference(clause) for clause in clauses]
+            if any(reference is None for reference in wanted):
                 category = "unsupported_dataset_capability"
-            elif expected.plan is not None and expected.plan.backend == "graph":
-                if not any(node.operation == expected.plan.operation and node.parameters == expected.plan.parameters
-                           for node in nodes):
-                    category = "wrong_graph_scope"
+            else:
+                for node, reference in zip(nodes, wanted):
+                    if (node.operation == reference.operation and reference.parameters.keys() & {"source", "target"}
+                            and node.parameters != reference.parameters):
+                        category = "wrong_graph_scope"
+                        break
         diagnostics = self.last_metadata["plan_diagnostics"]
         diagnostics.setdefault("validation_error_category", category)
         diagnostics["final_validation_error_category"] = category
         return DAGPlanner._abstain("The model plan could not be verified against the request.")
 
-    def _preserved(self, question, plan):
+    def _semantic_reference(self, question):
+        # Sentence punctuation is not part of a numeric graph identifier.
+        question = question.strip()
+        if question.endswith(("?", ".")):
+            question = question[:-1]
         reference = self.baseline._single(question)
-        if reference.kind != "single_plan":
+        if reference.kind == "single_plan":
+            return reference.plan
+        intent = paraphrase_intent(self.catalog.source, question)
+        if intent is None:
+            return None
+        operation, parameters, canonical_question = intent
+        backends = self.catalog.capable_backends(operation)
+        if not backends:
+            return None
+        expected = Plan(backends[0], operation, parameters)
+        try:
+            # This translation is only available after the whole clause matches
+            # an explicit intent pattern, so no trailing modifiers are dropped.
+            lexical, canonical = validate_question_plan(canonical_question, expected, self.catalog)
+        except UnsupportedPlan:
+            return None
+        return expected if lexical.allowed and canonical["preserved"] is not False else None
+
+    def _preserved(self, question, plan):
+        expected = self._semantic_reference(question)
+        if expected is None:
             return False
-        expected = reference.plan
+
         def active_parameters(parameters):
             return {key: value for key, value in parameters.items() if value is not None}
-        return ((plan.backend, plan.operation) == (expected.backend, expected.operation)
+
+        # Operation IDs name a shared semantics contract within one source.
+        # Equal result shapes alone cannot substitute for matching that ID.
+        return (plan.operation == expected.operation
+                and plan.backend in self.catalog.capable_backends(expected.operation)
                 and active_parameters(plan.parameters) == active_parameters(expected.parameters))
 
     def _matches_sequence(self, clauses, nodes, outputs):

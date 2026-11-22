@@ -143,6 +143,7 @@ class LLMPlanner:
                     diagnostics["repaired_plan" if attempt else "original_plan"] = plan_snapshot(payload, self.plan_catalog)
                 result = decode(payload)
                 current["valid_structure"] = True if payload is not None else None
+                current["json_structure_valid"] = current["catalog_contract_valid"] = current["valid_structure"]
                 if attempt and isinstance(result, Plan) and result.backend != "abstain":
                     intended = self.reference._single(question).plan
                     if result.operation != intended.operation or result.parameters != intended.parameters:
@@ -153,6 +154,8 @@ class LLMPlanner:
                 return result
             except PlanContractError as error:
                 current["valid_structure"] = False
+                current["json_structure_valid"] = error.stage != "json_structure"
+                current["catalog_contract_valid"] = False if error.stage == "catalog_contract" else None
                 current["validation_error_category"] = error.category
                 diagnostics["final_validation_error_category"] = error.category
                 diagnostics.setdefault("validation_error_category", error.category)

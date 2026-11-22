@@ -86,7 +86,9 @@ def main():
             command.add_argument("--suite", choices=("legacy", "v2"), default="legacy")
             command.add_argument("--split", choices=("dev", "validation", "test", "all"), default="test")
             command.add_argument("--sources", type=Path, default=Path("benchmarks/router-sources.json"))
-            command.add_argument("--v2-planner", choices=("keyword", "dag", "llm", "llm-dag"), action="append")
+            command.add_argument("--v2-planner", choices=("keyword", "dag", "llm", "llm-dag",
+                                                         "llm-dag-catalog", "llm-dag-examples",
+                                                         "llm-dag-examples-only"), action="append")
             command.add_argument("--ollama", action="store_true", help="Enable local model planners in suite v2")
             command.add_argument("--llm-repair", action="store_true", help="Allow one repair of a fixable model plan")
             command.add_argument("--bootstrap-samples", type=int, default=5000)

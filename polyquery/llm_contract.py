@@ -4,10 +4,11 @@ from dataclasses import asdict
 
 
 class PlanContractError(ValueError):
-    def __init__(self, category, *, repairable=False):
+    def __init__(self, category, *, repairable=False, stage=None):
         super().__init__(category)
         self.category = category
         self.repairable = repairable
+        self.stage = stage or ("json_structure" if category in ("malformed_json", "invalid_schema") else "catalog_contract")
 
 
 def catalog_context(catalog, *, bindings=False):
