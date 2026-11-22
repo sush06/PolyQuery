@@ -58,6 +58,27 @@ Summed end-to-end case medians yielded 6.14x speedup over fixed SQLite and
 both fixed backends beat the router by the same measure. SQLite remains
 the production default.
 
+### LDBC graph traversal benchmark
+
+The benchmark loads Person and Knows from the same LDBC CSVs into indexed
+SQL projections. Direct-neighbor queries use a join. Shortest paths use
+cycle-safe recursive CTEs on SQLite and SQL Server, with an additional
+SQL Server baseline that expands one hop at a time using a request-local
+visited set. SQL Server execution is opt-in. Planner and routing defaults
+remain unchanged.
+
+| Backend | Correct cases completed | Shortest paths completed |
+| --- | ---: | ---: |
+| In-memory BFS | 51/51 | 38/38 |
+| SQLite recursive CTE | 42/51 | 29/38 |
+| SQL Server recursive CTE | 40/51 | 27/38 |
+| SQL Server frontier | 45/51 | 32/38 |
+
+All completed answers matched an independent reference derived from the CSVs.
+The frontier recovered five paths that the SQL Server CTE could not complete.
+Warm BFS had lower median DAG latency in every matched case. This measures
+the traversal implementations on the tested graphs. [Setup and reproduction commands](docs/ldbc-sql-graph.md)
+
 An [optional LLM planner](docs/llm-planner.md) maps natural-language questions to
 catalog-validated plans. Enable it with `--planner llm --model MODEL_ID`; the
 keyword baseline stays the default. Live runs require the `.[llm]` extra and an

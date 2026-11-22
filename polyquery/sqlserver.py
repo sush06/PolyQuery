@@ -69,6 +69,10 @@ def _permissions(cursor, name, scope):
 def _assert_reader(cursor):
     # SQL Server permissions are the security boundary. The startup check
     # rejects principals with broader effective privileges on the projection.
+    assert_projection_reader(cursor, "polyquery", TABLES)
+
+
+def assert_projection_reader(cursor, schema, tables):
     server = _permissions(cursor, None, "SERVER")
     database = _permissions(cursor, None, "DATABASE")
     allowed_server = {"CONNECT SQL", "VIEW ANY DATABASE"}
@@ -76,10 +80,10 @@ def _assert_reader(cursor):
                         "VIEW ANY COLUMN MASTER KEY DEFINITION"}
     if server - allowed_server or database - allowed_database:
         raise SQLServerError("SQL Server requires a dedicated read-only principal")
-    if _permissions(cursor, "polyquery", "SCHEMA") - {"SELECT", "VIEW DEFINITION"}:
+    if _permissions(cursor, schema, "SCHEMA") - {"SELECT", "VIEW DEFINITION"}:
         raise SQLServerError("SQL Server projection schema permits more than read access")
-    for table in TABLES:
-        perms = _permissions(cursor, "polyquery." + table, "OBJECT")
+    for table in tables:
+        perms = _permissions(cursor, schema + "." + table, "OBJECT")
         if "SELECT" not in perms or perms - {"SELECT", "VIEW DEFINITION"}:
             raise SQLServerError("SQL Server projection tables require SELECT-only access")
 
