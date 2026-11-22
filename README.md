@@ -50,6 +50,14 @@ local, warm-connection run, SQLite was faster in all eight 1× cases. At
 inconclusive. The crossover warrants testing a routing policy against fixed
 backends on held-out workloads.
 
+The [held-out physical routing experiment](docs/physical-routing.md) found
+that SQLite won all six 1x cases and SQL Server won five of six at 1,000x.
+The opt-in router agreed with the measured oracle on 19 of 24 cases.
+Summed end-to-end case medians yielded 6.14x speedup over fixed SQLite and
+1.037x over fixed SQL Server in this local, warm-connection run. At 10x,
+both fixed backends beat the router by the same measure. SQLite remains
+the production default.
+
 An [optional LLM planner](docs/llm-planner.md) maps natural-language questions to
 catalog-validated plans. Enable it with `--planner llm --model MODEL_ID`; the
 keyword baseline stays the default. Live runs require the `.[llm]` extra and an

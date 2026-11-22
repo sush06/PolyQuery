@@ -8,11 +8,18 @@ from .planner import RulePlanner
 
 
 class Engine:
-    def __init__(self, planner=None, *, source="synthetic", people_path=None, edges_path=None, data_path=None, policy="router", cost_profile=None, planner_kind="keyword", model=None, llm_client=None, llm_fallback="none", llm_base_url=None, llm_api="responses", llm_timeout=30, llm_repair=False):
+    def __init__(self, planner=None, *, source="synthetic", people_path=None, edges_path=None, data_path=None, policy="router", cost_profile=None, planner_kind="keyword", model=None, llm_client=None, llm_fallback="none", llm_base_url=None, llm_api="responses", llm_timeout=30, llm_repair=False, sql_backend="sqlite", physical_sql_selector=None):
         started = time.perf_counter()
         self.source = source
         self.policy = policy
         self.dag_planner = None
+        if physical_sql_selector is not None and (source != "chinook" or sql_backend != "sqlite"
+                                                  or policy != "router" or not callable(physical_sql_selector)):
+            raise ValueError("Physical SQL selection requires Chinook and the standard logical routing policy")
+        if sql_backend not in ("sqlite", "sqlserver") or (sql_backend == "sqlserver" and source != "chinook"):
+            raise ValueError("SQL Server is available for the Chinook source only")
+        if sql_backend == "sqlserver" and policy == "cost-aware":
+            raise ValueError("SQL Server requires a policy without a SQLite-calibrated cost profile")
         if planner_kind not in ('keyword','llm','dag','llm-dag') or (planner is not None and planner_kind != 'keyword'):
             raise ValueError('Invalid or conflicting planner configuration')
         if planner_kind in ('dag', 'llm-dag') and policy != 'router':
@@ -43,12 +50,38 @@ class Engine:
                 raise ValueError(f"{source} requires data_path")
             self.planner = planner or TabularPlanner(source, execution_policy)
             self.backends, self.source_metadata = (chinook_backends if source == "chinook" else taxi_backends)(data_path)
+            if sql_backend == "sqlserver":
+                from .sqlserver import ChinookSQLServer, STATEMENTS
+
+                try:
+                    self.backends["sql"] = ChinookSQLServer(self.backends["sql"], data_path)
+                except Exception:
+                    self.close()
+                    raise
+                self.source_metadata["sql_backend"] = "sqlserver"
+                self.source_metadata["sqlserver_operations"] = sorted(STATEMENTS)
         else:
             raise ValueError(f"Unknown data source: {source}")
         if source == "synthetic" and policy != "router":
             self.close()
             raise ValueError(f"Fixed policies are not implemented for {source}")
         self.catalog = build_catalog(self)
+        if physical_sql_selector is not None:
+            from .physical_sql import PhysicalSQLRouter
+            from .sqlserver import ChinookSQLServer, STATEMENTS
+
+            local = self.backends["sql"]
+            try:
+                remote = ChinookSQLServer(local, data_path)
+                self.backends["sql"] = remote
+                contracts = {name: self.catalog.operations[name] for name in STATEMENTS}
+                self.backends["sql"] = PhysicalSQLRouter(
+                    self.catalog, {"sqlite": (remote.fixture_hash, contracts, local),
+                                   "sqlserver": (remote.fixture_hash, contracts, remote)},
+                    physical_sql_selector)
+            except Exception:
+                self.close()
+                raise
         self.dag_executor = DAGExecutor(dag_catalog(self.catalog), self.backends)
         self.dag_planner = DAGPlanner(self.planner, self.catalog) if planner_kind == "dag" else None
         if planner_kind == "llm-dag":

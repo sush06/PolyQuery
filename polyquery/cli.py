@@ -6,6 +6,7 @@ from functools import partial
 
 from .engine import Engine
 from .llm import LLMPlanningError
+from .sqlserver import SQLServerError
 
 
 def source_options(parser, default="synthetic"):
@@ -60,6 +61,7 @@ def main():
     query = sub.add_parser("query")
     query.add_argument("question")
     source_options(query)
+    query.add_argument("--sql-backend", choices=("sqlite", "sqlserver"), default="sqlite")
     planner_options(query, allow_dag=True)
     query.add_argument("--llm-repair", action="store_true")
     query.add_argument("--policy", choices=("router", "fixed-sql", "fixed-code", "fixed-graph", "cost-aware"), default="router")
@@ -199,6 +201,8 @@ def main():
     if getattr(args, "llm_repair", False):
         llm_kwargs["llm_repair"] = True
     kwargs = {"source": args.source, "people_path": args.people, "edges_path": args.knows, "data_path": args.data}
+    if args.command == "query":
+        kwargs["sql_backend"] = args.sql_backend
     try:
         if args.command == "calibrate" and args.output and (args.output.parent / "profile-manifest.json").exists():
             parser.error("This profile directory is frozen; calibrate into a new experiment directory")
@@ -245,7 +249,7 @@ def main():
         if getattr(args, "output", None):
             args.output.parent.mkdir(parents=True, exist_ok=True)
             args.output.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
-    except (OSError, ValueError, LLMPlanningError) as error:
+    except (OSError, ValueError, LLMPlanningError, SQLServerError) as error:
         parser.error(str(error))
     print(json.dumps(result, indent=2))
 

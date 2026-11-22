@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "development": {
+    "families": ["filtered", "grouped", "joined", "high_cardinality"],
+    "cutoffs": ["0-1%", "0-90%"]
+  },
+  "sealed_test": {
+    "families": ["active_customers", "basket_histogram", "track_coverage"],
+    "windows_percent": [[7, 21], [25, 87]],
+    "scales": [1, 10, 100, 1000]
+  }
+}
