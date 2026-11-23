@@ -1,0 +1,853 @@
+{
+  "original_sha256": "9cc81833981c07411ffe50226d1d424b3b6069dc4e5d864bb0b62919d254c12c",
+  "scales": {
+    "1": {
+      "rows": {
+        "country": 24,
+        "customer": 59,
+        "genre": 25,
+        "track": 3503,
+        "invoice": 412,
+        "line": 2240
+      },
+      "cases": [
+        {
+          "operation": "filtered",
+          "selectivity": "narrow",
+          "invoice_id_fraction": 0.009708737864077669,
+          "correct": {
+            "sqlite": true,
+            "sqlserver": true
+          },
+          "modes": {
+            "dag": {
+              "backends": {
+                "sqlite": {
+                  "samples_ms": [
+                    0.5385499989642994
+                  ]
+                },
+                "sqlserver": {
+                  "samples_ms": [
+                    0.9518499991827412
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "operation": "filtered",
+          "selectivity": "broad",
+          "invoice_id_fraction": 0.8980582524271845,
+          "correct": {
+            "sqlite": true,
+            "sqlserver": true
+          },
+          "modes": {
+            "dag": {
+              "backends": {
+                "sqlite": {
+                  "samples_ms": [
+                    0.680600000123377
+                  ]
+                },
+                "sqlserver": {
+                  "samples_ms": [
+                    1.1147000004712027
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "operation": "grouped",
+          "selectivity": "narrow",
+          "invoice_id_fraction": 0.009708737864077669,
+          "correct": {
+            "sqlite": true,
+            "sqlserver": true
+          },
+          "modes": {
+            "dag": {
+              "backends": {
+                "sqlite": {
+                  "samples_ms": [
+                    0.5087999998067971
+                  ]
+                },
+                "sqlserver": {
+                  "samples_ms": [
+                    1.1209500007680617
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "operation": "grouped",
+          "selectivity": "broad",
+          "invoice_id_fraction": 0.8980582524271845,
+          "correct": {
+            "sqlite": true,
+            "sqlserver": true
+          },
+          "modes": {
+            "dag": {
+              "backends": {
+                "sqlite": {
+                  "samples_ms": [
+                    1.1419999991630903
+                  ]
+                },
+                "sqlserver": {
+                  "samples_ms": [
+                    2.54534999930911
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "operation": "joined",
+          "selectivity": "narrow",
+          "invoice_id_fraction": 0.009708737864077669,
+          "correct": {
+            "sqlite": true,
+            "sqlserver": true
+          },
+          "modes": {
+            "dag": {
+              "backends": {
+                "sqlite": {
+                  "samples_ms": [
+                    0.6473500006904942
+                  ]
+                },
+                "sqlserver": {
+                  "samples_ms": [
+                    2.3877000003267312
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "operation": "joined",
+          "selectivity": "broad",
+          "invoice_id_fraction": 0.8980582524271845,
+          "correct": {
+            "sqlite": true,
+            "sqlserver": true
+          },
+          "modes": {
+            "dag": {
+              "backends": {
+                "sqlite": {
+                  "samples_ms": [
+                    6.167600000480888
+                  ]
+                },
+                "sqlserver": {
+                  "samples_ms": [
+                    20.175349999590253
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "operation": "high_cardinality",
+          "selectivity": "narrow",
+          "invoice_id_fraction": 0.009708737864077669,
+          "correct": {
+            "sqlite": true,
+            "sqlserver": true
+          },
+          "modes": {
+            "dag": {
+              "backends": {
+                "sqlite": {
+                  "samples_ms": [
+                    0.49049999961425783
+                  ]
+                },
+                "sqlserver": {
+                  "samples_ms": [
+                    0.9167999996861909
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "operation": "high_cardinality",
+          "selectivity": "broad",
+          "invoice_id_fraction": 0.8980582524271845,
+          "correct": {
+            "sqlite": true,
+            "sqlserver": true
+          },
+          "modes": {
+            "dag": {
+              "backends": {
+                "sqlite": {
+                  "samples_ms": [
+                    1.0588999994070036
+                  ]
+                },
+                "sqlserver": {
+                  "samples_ms": [
+                    2.186949999668286
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "10": {
+      "rows": {
+        "country": 24,
+        "customer": 590,
+        "genre": 250,
+        "track": 35030,
+        "invoice": 4120,
+        "line": 22400
+      },
+      "cases": [
+        {
+          "operation": "filtered",
+          "selectivity": "narrow",
+          "invoice_id_fraction": 0.009951456310679611,
+          "correct": {
+            "sqlite": true,
+            "sqlserver": true
+          },
+          "modes": {
+            "dag": {
+              "backends": {
+                "sqlite": {
+                  "samples_ms": [
+                    0.47700000050099334
+                  ]
+                },
+                "sqlserver": {
+                  "samples_ms": [
+                    0.8440999999947962
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "operation": "filtered",
+          "selectivity": "broad",
+          "invoice_id_fraction": 0.9,
+          "correct": {
+            "sqlite": true,
+            "sqlserver": true
+          },
+          "modes": {
+            "dag": {
+              "backends": {
+                "sqlite": {
+                  "samples_ms": [
+                    1.6497999995408463
+                  ]
+                },
+                "sqlserver": {
+                  "samples_ms": [
+                    1.5486499996768543
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "operation": "grouped",
+          "selectivity": "narrow",
+          "invoice_id_fraction": 0.009951456310679611,
+          "correct": {
+            "sqlite": true,
+            "sqlserver": true
+          },
+          "modes": {
+            "dag": {
+              "backends": {
+                "sqlite": {
+                  "samples_ms": [
+                    0.7171000006565009
+                  ]
+                },
+                "sqlserver": {
+                  "samples_ms": [
+                    1.2987000000066473
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "operation": "grouped",
+          "selectivity": "broad",
+          "invoice_id_fraction": 0.9,
+          "correct": {
+            "sqlite": true,
+            "sqlserver": true
+          },
+          "modes": {
+            "dag": {
+              "backends": {
+                "sqlite": {
+                  "samples_ms": [
+                    4.60184999883495
+                  ]
+                },
+                "sqlserver": {
+                  "samples_ms": [
+                    12.13869999992312
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "operation": "joined",
+          "selectivity": "narrow",
+          "invoice_id_fraction": 0.009951456310679611,
+          "correct": {
+            "sqlite": true,
+            "sqlserver": true
+          },
+          "modes": {
+            "dag": {
+              "backends": {
+                "sqlite": {
+                  "samples_ms": [
+                    1.2849999993704841
+                  ]
+                },
+                "sqlserver": {
+                  "samples_ms": [
+                    11.490600000797713
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "operation": "joined",
+          "selectivity": "broad",
+          "invoice_id_fraction": 0.9,
+          "correct": {
+            "sqlite": true,
+            "sqlserver": true
+          },
+          "modes": {
+            "dag": {
+              "backends": {
+                "sqlite": {
+                  "samples_ms": [
+                    64.6806499999002
+                  ]
+                },
+                "sqlserver": {
+                  "samples_ms": [
+                    164.8811499999283
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "operation": "high_cardinality",
+          "selectivity": "narrow",
+          "invoice_id_fraction": 0.009951456310679611,
+          "correct": {
+            "sqlite": true,
+            "sqlserver": true
+          },
+          "modes": {
+            "dag": {
+              "backends": {
+                "sqlite": {
+                  "samples_ms": [
+                    1.2976000007256516
+                  ]
+                },
+                "sqlserver": {
+                  "samples_ms": [
+                    1.0755500006780494
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "operation": "high_cardinality",
+          "selectivity": "broad",
+          "invoice_id_fraction": 0.9,
+          "correct": {
+            "sqlite": true,
+            "sqlserver": true
+          },
+          "modes": {
+            "dag": {
+              "backends": {
+                "sqlite": {
+                  "samples_ms": [
+                    5.727749999095977
+                  ]
+                },
+                "sqlserver": {
+                  "samples_ms": [
+                    6.59549999909359
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "100": {
+      "rows": {
+        "country": 24,
+        "customer": 5900,
+        "genre": 2500,
+        "track": 350300,
+        "invoice": 41200,
+        "line": 224000
+      },
+      "cases": [
+        {
+          "operation": "filtered",
+          "selectivity": "narrow",
+          "invoice_id_fraction": 0.01,
+          "correct": {
+            "sqlite": true,
+            "sqlserver": true
+          },
+          "modes": {
+            "dag": {
+              "backends": {
+                "sqlite": {
+                  "samples_ms": [
+                    0.4773500004375819
+                  ]
+                },
+                "sqlserver": {
+                  "samples_ms": [
+                    0.7851500004107947
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "operation": "filtered",
+          "selectivity": "broad",
+          "invoice_id_fraction": 0.9,
+          "correct": {
+            "sqlite": true,
+            "sqlserver": true
+          },
+          "modes": {
+            "dag": {
+              "backends": {
+                "sqlite": {
+                  "samples_ms": [
+                    7.4980999997933395
+                  ]
+                },
+                "sqlserver": {
+                  "samples_ms": [
+                    7.380099999863887
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "operation": "grouped",
+          "selectivity": "narrow",
+          "invoice_id_fraction": 0.01,
+          "correct": {
+            "sqlite": true,
+            "sqlserver": true
+          },
+          "modes": {
+            "dag": {
+              "backends": {
+                "sqlite": {
+                  "samples_ms": [
+                    0.9964000000763917
+                  ]
+                },
+                "sqlserver": {
+                  "samples_ms": [
+                    1.4998500009824056
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "operation": "grouped",
+          "selectivity": "broad",
+          "invoice_id_fraction": 0.9,
+          "correct": {
+            "sqlite": true,
+            "sqlserver": true
+          },
+          "modes": {
+            "dag": {
+              "backends": {
+                "sqlite": {
+                  "samples_ms": [
+                    46.289499999147665
+                  ]
+                },
+                "sqlserver": {
+                  "samples_ms": [
+                    98.72154999993654
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "operation": "joined",
+          "selectivity": "narrow",
+          "invoice_id_fraction": 0.01,
+          "correct": {
+            "sqlite": true,
+            "sqlserver": true
+          },
+          "modes": {
+            "dag": {
+              "backends": {
+                "sqlite": {
+                  "samples_ms": [
+                    8.04489999973157
+                  ]
+                },
+                "sqlserver": {
+                  "samples_ms": [
+                    53.69795000024169
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "operation": "joined",
+          "selectivity": "broad",
+          "invoice_id_fraction": 0.9,
+          "correct": {
+            "sqlite": true,
+            "sqlserver": true
+          },
+          "modes": {
+            "dag": {
+              "backends": {
+                "sqlite": {
+                  "samples_ms": [
+                    851.1499000005642
+                  ]
+                },
+                "sqlserver": {
+                  "samples_ms": [
+                    265.6610999993063
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "operation": "high_cardinality",
+          "selectivity": "narrow",
+          "invoice_id_fraction": 0.01,
+          "correct": {
+            "sqlite": true,
+            "sqlserver": true
+          },
+          "modes": {
+            "dag": {
+              "backends": {
+                "sqlite": {
+                  "samples_ms": [
+                    7.589799999550451
+                  ]
+                },
+                "sqlserver": {
+                  "samples_ms": [
+                    1.7079500003092107
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "operation": "high_cardinality",
+          "selectivity": "broad",
+          "invoice_id_fraction": 0.9,
+          "correct": {
+            "sqlite": true,
+            "sqlserver": true
+          },
+          "modes": {
+            "dag": {
+              "backends": {
+                "sqlite": {
+                  "samples_ms": [
+                    57.94105000040872
+                  ]
+                },
+                "sqlserver": {
+                  "samples_ms": [
+                    74.54279999910796
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "1000": {
+      "rows": {
+        "country": 24,
+        "customer": 59000,
+        "genre": 25000,
+        "track": 3503000,
+        "invoice": 412000,
+        "line": 2240000
+      },
+      "cases": [
+        {
+          "operation": "filtered",
+          "selectivity": "narrow",
+          "invoice_id_fraction": 0.01,
+          "correct": {
+            "sqlite": true,
+            "sqlserver": true
+          },
+          "modes": {
+            "dag": {
+              "backends": {
+                "sqlite": {
+                  "samples_ms": [
+                    1.180999999633059
+                  ]
+                },
+                "sqlserver": {
+                  "samples_ms": [
+                    1.4188499999363557
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "operation": "filtered",
+          "selectivity": "broad",
+          "invoice_id_fraction": 0.9,
+          "correct": {
+            "sqlite": true,
+            "sqlserver": true
+          },
+          "modes": {
+            "dag": {
+              "backends": {
+                "sqlite": {
+                  "samples_ms": [
+                    91.7276000000129
+                  ]
+                },
+                "sqlserver": {
+                  "samples_ms": [
+                    72.32000000021799
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "operation": "grouped",
+          "selectivity": "narrow",
+          "invoice_id_fraction": 0.01,
+          "correct": {
+            "sqlite": true,
+            "sqlserver": true
+          },
+          "modes": {
+            "dag": {
+              "backends": {
+                "sqlite": {
+                  "samples_ms": [
+                    5.638350000481296
+                  ]
+                },
+                "sqlserver": {
+                  "samples_ms": [
+                    5.520849999811617
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "operation": "grouped",
+          "selectivity": "broad",
+          "invoice_id_fraction": 0.9,
+          "correct": {
+            "sqlite": true,
+            "sqlserver": true
+          },
+          "modes": {
+            "dag": {
+              "backends": {
+                "sqlite": {
+                  "samples_ms": [
+                    649.3052499999976
+                  ]
+                },
+                "sqlserver": {
+                  "samples_ms": [
+                    497.62955000005604
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "operation": "joined",
+          "selectivity": "narrow",
+          "invoice_id_fraction": 0.01,
+          "correct": {
+            "sqlite": true,
+            "sqlserver": true
+          },
+          "modes": {
+            "dag": {
+              "backends": {
+                "sqlite": {
+                  "samples_ms": [
+                    63.264299999900686
+                  ]
+                },
+                "sqlserver": {
+                  "samples_ms": [
+                    116.1849499994787
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "operation": "joined",
+          "selectivity": "broad",
+          "invoice_id_fraction": 0.9,
+          "correct": {
+            "sqlite": true,
+            "sqlserver": true
+          },
+          "modes": {
+            "dag": {
+              "backends": {
+                "sqlite": {
+                  "samples_ms": [
+                    8486.458250000396
+                  ]
+                },
+                "sqlserver": {
+                  "samples_ms": [
+                    493.37124999965454
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "operation": "high_cardinality",
+          "selectivity": "narrow",
+          "invoice_id_fraction": 0.01,
+          "correct": {
+            "sqlite": true,
+            "sqlserver": true
+          },
+          "modes": {
+            "dag": {
+              "backends": {
+                "sqlite": {
+                  "samples_ms": [
+                    91.70514999914303
+                  ]
+                },
+                "sqlserver": {
+                  "samples_ms": [
+                    8.502349999616854
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "operation": "high_cardinality",
+          "selectivity": "broad",
+          "invoice_id_fraction": 0.9,
+          "correct": {
+            "sqlite": true,
+            "sqlserver": true
+          },
+          "modes": {
+            "dag": {
+              "backends": {
+                "sqlite": {
+                  "samples_ms": [
+                    742.8547500003333
+                  ]
+                },
+                "sqlserver": {
+                  "samples_ms": [
+                    731.104200000118
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

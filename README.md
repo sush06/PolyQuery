@@ -58,6 +58,12 @@ Summed end-to-end case medians yielded 6.14x speedup over fixed SQLite and
 both fixed backends beat the router by the same measure. SQLite remains
 the production default.
 
+The [M7.1 physical routing benchmark](docs/m7-physical-routing.md) tested
+new 25x and 250x Chinook workloads and reviewed LDBC DAGs. Learned and
+heuristic routing chose the same backends and completed all 60 warm and
+24 cold trials. Fixed SQL Server timed out on 14 trials. The learned
+policy added 0.15 ms per warm trial versus the heuristic on this sample.
+
 The [intelligent routing experiment](docs/intelligent-routing.md) feeds
 verified Qwen3 4B plans to a learned physical selector. On 12 held-out
 composition questions, no Qwen plan cleared verification, so the run

@@ -1,0 +1,4282 @@
+{
+  "manifest": {
+    "version": "m7.1-v1",
+    "warm_repetitions": 5,
+    "cold_repetitions": 2,
+    "seed": 762,
+    "failure_penalty_ms": 2500,
+    "relational": {
+      "development": {
+        "scales": [
+          10
+        ],
+        "families": [
+          "invoice_price_frequency"
+        ],
+        "windows": [
+          [
+            18,
+            47
+          ]
+        ]
+      },
+      "heldout": {
+        "scales": [
+          25,
+          250
+        ],
+        "families": [
+          "billed_country_reach",
+          "invoice_numeric_bands"
+        ],
+        "windows": [
+          [
+            3,
+            8
+          ],
+          [
+            16,
+            83
+          ]
+        ]
+      }
+    },
+    "graph": {
+      "development": {
+        "scales": [
+          512
+        ],
+        "families": [
+          "neighbor_count_and_route"
+        ]
+      },
+      "heldout": {
+        "scales": [
+          128,
+          1528
+        ],
+        "families": [
+          "same_start_two_routes",
+          "closed_and_open_routes"
+        ]
+      }
+    }
+  },
+  "manifest_sha256": "2a742e93d94ebe6d4128c200aefaccb66a19ab670e70b5d4539f301d1ac08c2b",
+  "profiles": {
+    "relational_sha256": "9cc81833981c07411ffe50226d1d424b3b6069dc4e5d864bb0b62919d254c12c",
+    "graph_sha256": "ee7bf38824aad3bec9277554641ec2805eaf3f699a37dafe76b7300632845d40"
+  },
+  "machine": "SushR",
+  "authentication": "Local Windows connection then restricted database-only SELECT reader WITH NO REVERT",
+  "summary": {
+    "development/cold": {
+      "cases": [
+        {
+          "case": {
+            "split": "development",
+            "source": "chinook_scale",
+            "family": "invoice_price_frequency",
+            "scale": 10,
+            "window": [
+              18,
+              47
+            ],
+            "features": {
+              "rows": 4120,
+              "joins": 0,
+              "groups": 100,
+              "selectivity": 0.29004854368932037
+            }
+          },
+          "oracle_backend": "sqlite",
+          "policies": {
+            "oracle": {
+              "backend": "sqlite",
+              "penalized_ms": 3.7941999980830587,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 3.7941999980830587,
+                "p50": 3.7941999980830587,
+                "p95": 4.049259995372267
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 1.632949999475386,
+                "p50": 1.632949999475386,
+                "p95": 1.7298349972406868
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_local": {
+              "backend": "sqlite",
+              "selection_ms": 0.003749999450519681,
+              "penalized_ms": 3.7979499975335784,
+              "regret_ms": 0.003749999450519681,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 3.7979499975335784,
+                "p50": 3.7979499975335784,
+                "p95": 4.053009994822787
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 1.632949999475386,
+                "p50": 1.632949999475386,
+                "p95": 1.7298349972406868
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_server": {
+              "backend": "sqlserver",
+              "selection_ms": 0.00344999716617167,
+              "penalized_ms": 30.999899994640145,
+              "regret_ms": 27.205699996557087,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 30.999899994640145,
+                "p50": 30.999899994640145,
+                "p95": 31.610324999928707
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 28.971350002393592,
+                "p50": 28.971350002393592,
+                "p95": 29.648375004035188
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "heuristic": {
+              "backend": "sqlite",
+              "selection_ms": 0.000700005330145359,
+              "penalized_ms": 3.794900003413204,
+              "regret_ms": 0.000700005330145359,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 3.794900003413204,
+                "p50": 3.794900003413204,
+                "p95": 4.049960000702413
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 1.632949999475386,
+                "p50": 1.632949999475386,
+                "p95": 1.7298349972406868
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "learned": {
+              "backend": "sqlite",
+              "selection_ms": 0.08540000271750614,
+              "penalized_ms": 3.879600000800565,
+              "regret_ms": 0.08540000271750614,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 3.879600000800565,
+                "p50": 3.879600000800565,
+                "p95": 4.134659998089774
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 1.632949999475386,
+                "p50": 1.632949999475386,
+                "p95": 1.7298349972406868
+              },
+              "timeouts": 0,
+              "failures": 0
+            }
+          }
+        },
+        {
+          "case": {
+            "split": "development",
+            "source": "ldbc",
+            "family": "neighbor_count_and_route",
+            "scale": 512,
+            "depths": [
+              3
+            ],
+            "start_degree": 89
+          },
+          "oracle_backend": "graph",
+          "policies": {
+            "oracle": {
+              "backend": "graph",
+              "penalized_ms": 75.87834999867482,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 75.87834999867482,
+                "p50": 75.87834999867482,
+                "p95": 75.9884650055028
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 74.93770000291988,
+                "p50": 74.93770000291988,
+                "p95": 75.05506000597961
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_local": {
+              "backend": "graph",
+              "selection_ms": 0.0021000014385208488,
+              "penalized_ms": 75.88045000011334,
+              "regret_ms": 0.0021000014385208488,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 75.88045000011334,
+                "p50": 75.88045000011334,
+                "p95": 75.99056500694132
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 74.93770000291988,
+                "p50": 74.93770000291988,
+                "p95": 75.05506000597961
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_server": {
+              "backend": "sqlserver_frontier",
+              "selection_ms": 0.000900006853044033,
+              "penalized_ms": 229.83540000132052,
+              "regret_ms": 153.9570500026457,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 229.83540000132052,
+                "p50": 229.83540000132052,
+                "p95": 232.67994000561885
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 113.53939999389695,
+                "p50": 113.53939999389695,
+                "p95": 116.77093999824137
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "heuristic": {
+              "backend": "graph",
+              "selection_ms": 0.000500003807246685,
+              "penalized_ms": 75.87885000248207,
+              "regret_ms": 0.000500003807246685,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 75.87885000248207,
+                "p50": 75.87885000248207,
+                "p95": 75.98896500931005
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 74.93770000291988,
+                "p50": 74.93770000291988,
+                "p95": 75.05506000597961
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "learned": {
+              "backend": "graph",
+              "selection_ms": 0.1894999950309284,
+              "penalized_ms": 76.06784999370575,
+              "regret_ms": 0.1894999950309284,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 76.06784999370575,
+                "p50": 76.06784999370575,
+                "p95": 76.17796500053373
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 74.93770000291988,
+                "p50": 74.93770000291988,
+                "p95": 75.05506000597961
+              },
+              "timeouts": 0,
+              "failures": 0
+            }
+          }
+        }
+      ],
+      "paired": {
+        "fixed_local": {
+          "mean_paired_delta_ms": 0.134524998429697,
+          "bootstrap_95_ms": [
+            0.08165000326698646,
+            0.18739999359240755
+          ],
+          "completion_rate_delta": 0.0,
+          "completion_bootstrap_95": [
+            0.0,
+            0.0
+          ]
+        },
+        "fixed_server": {
+          "mean_paired_delta_ms": -90.44392500072718,
+          "bootstrap_95_ms": [
+            -153.76755000761477,
+            -27.12029999383958
+          ],
+          "completion_rate_delta": 0.0,
+          "completion_bootstrap_95": [
+            0.0,
+            0.0
+          ]
+        },
+        "heuristic": {
+          "mean_paired_delta_ms": 0.13684999430552125,
+          "bootstrap_95_ms": [
+            0.08469999738736078,
+            0.18899999122368172
+          ],
+          "completion_rate_delta": 0.0,
+          "completion_bootstrap_95": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "policies": {
+        "oracle": {
+          "average_penalized_ms": 39.83627499837894,
+          "completed": 4,
+          "trials": 4,
+          "oracle_matches": 2,
+          "end_to_end_ms": {
+            "samples": 4,
+            "mean": 39.83627499837894,
+            "p50": 39.91679999307962,
+            "p95": 75.96399500398547
+          },
+          "setup_ms": {
+            "samples": 4,
+            "mean": 38.285325001197634,
+            "p50": 38.273949998256285,
+            "p95": 75.02898000529967
+          },
+          "median_regret_ms": 0.0,
+          "selection_ms": {
+            "samples": 4,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p95": 0.0
+          },
+          "timeouts": 0,
+          "failures": 0
+        },
+        "fixed_local": {
+          "average_penalized_ms": 39.83919999882346,
+          "completed": 4,
+          "trials": 4,
+          "oracle_matches": 2,
+          "end_to_end_ms": {
+            "samples": 4,
+            "mean": 39.83919999882346,
+            "p50": 39.920750001329,
+            "p95": 75.96651499843574
+          },
+          "setup_ms": {
+            "samples": 4,
+            "mean": 38.285325001197634,
+            "p50": 38.273949998256285,
+            "p95": 75.02898000529967
+          },
+          "median_regret_ms": 0.002925000444520265,
+          "selection_ms": {
+            "samples": 4,
+            "mean": 0.002925000444520265,
+            "p50": 0.0021000014385208488,
+            "p95": 0.005845003033755345
+          },
+          "timeouts": 0,
+          "failures": 0
+        },
+        "fixed_server": {
+          "average_penalized_ms": 130.41764999798033,
+          "completed": 4,
+          "trials": 4,
+          "oracle_matches": 0,
+          "end_to_end_ms": {
+            "samples": 4,
+            "mean": 130.41764999798033,
+            "p50": 129.17504999495577,
+            "p95": 232.0479600057297
+          },
+          "setup_ms": {
+            "samples": 4,
+            "mean": 71.25537499814527,
+            "p50": 69.8361999966437,
+            "p95": 116.05281999727595
+          },
+          "median_regret_ms": 90.5813749996014,
+          "selection_ms": {
+            "samples": 4,
+            "mean": 0.0021750020096078515,
+            "p50": 0.0009499999578110874,
+            "p95": 0.005350003630155696
+          },
+          "timeouts": 0,
+          "failures": 0
+        },
+        "heuristic": {
+          "average_penalized_ms": 39.836875002947636,
+          "completed": 4,
+          "trials": 4,
+          "oracle_matches": 2,
+          "end_to_end_ms": {
+            "samples": 4,
+            "mean": 39.836875002947636,
+            "p50": 39.91749999840977,
+            "p95": 75.96449500779272
+          },
+          "setup_ms": {
+            "samples": 4,
+            "mean": 38.285325001197634,
+            "p50": 38.273949998256285,
+            "p95": 75.02898000529967
+          },
+          "median_regret_ms": 0.000600004568696022,
+          "selection_ms": {
+            "samples": 4,
+            "mean": 0.000600004568696022,
+            "p50": 0.000500003807246685,
+            "p95": 0.0008400063961744306
+          },
+          "timeouts": 0,
+          "failures": 0
+        },
+        "learned": {
+          "average_penalized_ms": 39.97372499725316,
+          "completed": 4,
+          "trials": 4,
+          "oracle_matches": 2,
+          "end_to_end_ms": {
+            "samples": 4,
+            "mean": 39.97372499725316,
+            "p50": 40.054649994999636,
+            "p95": 76.16364499990596
+          },
+          "setup_ms": {
+            "samples": 4,
+            "mean": 38.285325001197634,
+            "p50": 38.273949998256285,
+            "p95": 75.02898000529967
+          },
+          "median_regret_ms": 0.13744999887421727,
+          "selection_ms": {
+            "samples": 4,
+            "mean": 0.13744999887421727,
+            "p50": 0.13785000192001462,
+            "p95": 0.19964999592048116
+          },
+          "timeouts": 0,
+          "failures": 0
+        }
+      },
+      "prediction_errors": {
+        "sql_log_ratio": {
+          "samples": 0,
+          "bias": null,
+          "mae": null
+        },
+        "graph_latency_ms": {
+          "samples": 0,
+          "bias": null,
+          "mae": null
+        },
+        "graph_timeout_risk": {
+          "samples": 0,
+          "brier": null,
+          "mean_predicted": null,
+          "observed": null
+        }
+      }
+    },
+    "development/warm": {
+      "cases": [
+        {
+          "case": {
+            "split": "development",
+            "source": "chinook_scale",
+            "family": "invoice_price_frequency",
+            "scale": 10,
+            "window": [
+              18,
+              47
+            ],
+            "features": {
+              "rows": 4120,
+              "joins": 0,
+              "groups": 100,
+              "selectivity": 0.29004854368932037
+            }
+          },
+          "oracle_backend": "sqlite",
+          "policies": {
+            "oracle": {
+              "backend": "sqlite",
+              "penalized_ms": 1.3771199999609962,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 1.3771199999609962,
+                "p50": 1.283799996599555,
+                "p95": 1.546360002248548
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_local": {
+              "backend": "sqlite",
+              "selection_ms": 0.001300001167692244,
+              "penalized_ms": 1.3784200011286885,
+              "regret_ms": 0.001300001167692244,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 1.3784200011286885,
+                "p50": 1.2850999977672473,
+                "p95": 1.5476600034162402
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_server": {
+              "backend": "sqlserver",
+              "selection_ms": 0.0010599993402138352,
+              "penalized_ms": 2.061380000668578,
+              "regret_ms": 0.6842600007075816,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 2.061380000668578,
+                "p50": 2.0153599994955584,
+                "p95": 2.228940001805313
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "heuristic": {
+              "backend": "sqlite",
+              "selection_ms": 0.000599995837546885,
+              "penalized_ms": 1.377719995798543,
+              "regret_ms": 0.000599995837546885,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 1.377719995798543,
+                "p50": 1.284399992437102,
+                "p95": 1.5469599980860949
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "learned": {
+              "backend": "sqlite",
+              "selection_ms": 0.08413999457843602,
+              "penalized_ms": 1.4612599945394322,
+              "regret_ms": 0.08413999457843602,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 1.4612599945394322,
+                "p50": 1.367939991177991,
+                "p95": 1.630499996826984
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            }
+          }
+        },
+        {
+          "case": {
+            "split": "development",
+            "source": "ldbc",
+            "family": "neighbor_count_and_route",
+            "scale": 512,
+            "depths": [
+              3
+            ],
+            "start_degree": 89
+          },
+          "oracle_backend": "graph",
+          "policies": {
+            "oracle": {
+              "backend": "graph",
+              "penalized_ms": 1.0179600008996204,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 1.0179600008996204,
+                "p50": 1.0553000029176474,
+                "p95": 1.0736199939856306
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_local": {
+              "backend": "graph",
+              "selection_ms": 0.0016000005416572094,
+              "penalized_ms": 1.0195600014412776,
+              "regret_ms": 0.0016000005416572094,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 1.0195600014412776,
+                "p50": 1.0569000034593046,
+                "p95": 1.0752199945272878
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_server": {
+              "backend": "sqlserver_frontier",
+              "selection_ms": 0.0007199909305199981,
+              "penalized_ms": 129.46687999065034,
+              "regret_ms": 128.44891998975072,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 129.46687999065034,
+                "p50": 115.31421999679878,
+                "p95": 175.0566799833905
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "heuristic": {
+              "backend": "graph",
+              "selection_ms": 0.0005800044164061546,
+              "penalized_ms": 1.0185400053160265,
+              "regret_ms": 0.0005800044164061546,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 1.0185400053160265,
+                "p50": 1.0558800073340535,
+                "p95": 1.0741999984020367
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "learned": {
+              "backend": "graph",
+              "selection_ms": 0.2138600015314296,
+              "penalized_ms": 1.23182000243105,
+              "regret_ms": 0.2138600015314296,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 1.23182000243105,
+                "p50": 1.269160004449077,
+                "p95": 1.2874799955170602
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            }
+          }
+        }
+      ],
+      "paired": {
+        "fixed_local": {
+          "mean_paired_delta_ms": 0.14754999720025808,
+          "bootstrap_95_ms": [
+            0.08283999341074377,
+            0.21226000098977238
+          ],
+          "completion_rate_delta": 0.0,
+          "completion_bootstrap_95": [
+            0.0,
+            0.0
+          ]
+        },
+        "fixed_server": {
+          "mean_paired_delta_ms": -64.41758999717422,
+          "bootstrap_95_ms": [
+            -128.2350599882193,
+            -0.6001200061291456
+          ],
+          "completion_rate_delta": 0.0,
+          "completion_bootstrap_95": [
+            0.0,
+            0.0
+          ]
+        },
+        "heuristic": {
+          "mean_paired_delta_ms": 0.14840999792795628,
+          "bootstrap_95_ms": [
+            0.08353999874088913,
+            0.21327999711502343
+          ],
+          "completion_rate_delta": 0.0,
+          "completion_bootstrap_95": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "policies": {
+        "oracle": {
+          "average_penalized_ms": 1.1975400004303083,
+          "completed": 10,
+          "trials": 10,
+          "oracle_matches": 2,
+          "end_to_end_ms": {
+            "samples": 10,
+            "mean": 1.1975400004303083,
+            "p50": 1.1719499962055124,
+            "p95": 1.529059997847071
+          },
+          "setup_ms": {
+            "samples": 10,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p95": 0.0
+          },
+          "median_regret_ms": 0.0,
+          "selection_ms": {
+            "samples": 10,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p95": 0.0
+          },
+          "timeouts": 0,
+          "failures": 0
+        },
+        "fixed_local": {
+          "average_penalized_ms": 1.198990001284983,
+          "completed": 10,
+          "trials": 10,
+          "oracle_matches": 2,
+          "end_to_end_ms": {
+            "samples": 10,
+            "mean": 1.198990001284983,
+            "p50": 1.1734499930753373,
+            "p95": 1.5307550027500838
+          },
+          "setup_ms": {
+            "samples": 10,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p95": 0.0
+          },
+          "median_regret_ms": 0.0014500008546747267,
+          "selection_ms": {
+            "samples": 10,
+            "mean": 0.0014500008546747267,
+            "p50": 0.0015499972505494952,
+            "p95": 0.0019200000679120417
+          },
+          "timeouts": 0,
+          "failures": 0
+        },
+        "fixed_server": {
+          "average_penalized_ms": 65.76412999565946,
+          "completed": 10,
+          "trials": 10,
+          "oracle_matches": 0,
+          "end_to_end_ms": {
+            "samples": 10,
+            "mean": 65.76412999565946,
+            "p50": 53.22754999360768,
+            "p95": 160.75952998435235
+          },
+          "setup_ms": {
+            "samples": 10,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p95": 0.0
+          },
+          "median_regret_ms": 64.56658999522915,
+          "selection_ms": {
+            "samples": 10,
+            "mean": 0.0008899951353669167,
+            "p50": 0.0007999915396794677,
+            "p95": 0.0013649958418682213
+          },
+          "timeouts": 0,
+          "failures": 0
+        },
+        "heuristic": {
+          "average_penalized_ms": 1.1981300005572848,
+          "completed": 10,
+          "trials": 10,
+          "oracle_matches": 2,
+          "end_to_end_ms": {
+            "samples": 10,
+            "mean": 1.1981300005572848,
+            "p50": 1.1726000011549331,
+            "p95": 1.529769988701446
+          },
+          "setup_ms": {
+            "samples": 10,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p95": 0.0
+          },
+          "median_regret_ms": 0.0005900001269765198,
+          "selection_ms": {
+            "samples": 10,
+            "mean": 0.0005900001269765198,
+            "p50": 0.0005499969120137393,
+            "p95": 0.0007549977453891187
+          },
+          "timeouts": 0,
+          "failures": 0
+        },
+        "learned": {
+          "average_penalized_ms": 1.346539998485241,
+          "completed": 10,
+          "trials": 10,
+          "oracle_matches": 2,
+          "end_to_end_ms": {
+            "samples": 10,
+            "mean": 1.346539998485241,
+            "p50": 1.327799996943213,
+            "p95": 1.6234799884841777
+          },
+          "setup_ms": {
+            "samples": 10,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p95": 0.0
+          },
+          "median_regret_ms": 0.1489999980549328,
+          "selection_ms": {
+            "samples": 10,
+            "mean": 0.1489999980549328,
+            "p50": 0.14674999692942947,
+            "p95": 0.23019999935058874
+          },
+          "timeouts": 0,
+          "failures": 0
+        }
+      },
+      "prediction_errors": {
+        "sql_log_ratio": {
+          "samples": 5,
+          "bias": 0.03126946985222806,
+          "mae": 0.040566320496133144
+        },
+        "graph_latency_ms": {
+          "samples": 20,
+          "bias": -24.069904997304548,
+          "mae": 24.092884997662622
+        },
+        "graph_timeout_risk": {
+          "samples": 20,
+          "brier": 0.0,
+          "mean_predicted": 0.0,
+          "observed": 0
+        }
+      }
+    },
+    "heldout/cold": {
+      "cases": [
+        {
+          "case": {
+            "split": "heldout",
+            "source": "chinook_scale",
+            "family": "billed_country_reach",
+            "scale": 25,
+            "window": [
+              3,
+              8
+            ],
+            "features": {
+              "rows": 56000,
+              "joins": 3,
+              "groups": 24,
+              "selectivity": 0.05
+            }
+          },
+          "oracle_backend": "sqlite",
+          "policies": {
+            "oracle": {
+              "backend": "sqlite",
+              "penalized_ms": 8.012149992282502,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 8.012149992282502,
+                "p50": 8.012149992282502,
+                "p95": 8.437444982700981
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 1.6111999939312227,
+                "p50": 1.6111999939312227,
+                "p95": 1.6197500000998843
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_local": {
+              "backend": "sqlite",
+              "selection_ms": 0.0037999998312443495,
+              "penalized_ms": 8.015949992113747,
+              "regret_ms": 0.0037999998312443495,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 8.015949992113747,
+                "p50": 8.015949992113747,
+                "p95": 8.441244982532226
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 1.6111999939312227,
+                "p50": 1.6111999939312227,
+                "p95": 1.6197500000998843
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_server": {
+              "backend": "sqlserver",
+              "selection_ms": 0.001400003384333104,
+              "penalized_ms": 59.913849996519275,
+              "regret_ms": 51.90170000423677,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 59.913849996519275,
+                "p50": 59.913849996519275,
+                "p95": 60.79265500229667
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 28.185799994389527,
+                "p50": 28.185799994389527,
+                "p95": 28.762609999103006
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "heuristic": {
+              "backend": "sqlite",
+              "selection_ms": 0.0013499957276508212,
+              "penalized_ms": 8.013499988010153,
+              "regret_ms": 0.0013499957276508212,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 8.013499988010153,
+                "p50": 8.013499988010153,
+                "p95": 8.438794978428632
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 1.6111999939312227,
+                "p50": 1.6111999939312227,
+                "p95": 1.6197500000998843
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "learned": {
+              "backend": "sqlite",
+              "selection_ms": 0.11324999650241807,
+              "penalized_ms": 8.12539998878492,
+              "regret_ms": 0.11324999650241807,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 8.12539998878492,
+                "p50": 8.12539998878492,
+                "p95": 8.5506949792034
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 1.6111999939312227,
+                "p50": 1.6111999939312227,
+                "p95": 1.6197500000998843
+              },
+              "timeouts": 0,
+              "failures": 0
+            }
+          }
+        },
+        {
+          "case": {
+            "split": "heldout",
+            "source": "chinook_scale",
+            "family": "billed_country_reach",
+            "scale": 25,
+            "window": [
+              16,
+              83
+            ],
+            "features": {
+              "rows": 56000,
+              "joins": 3,
+              "groups": 24,
+              "selectivity": 0.67
+            }
+          },
+          "oracle_backend": "sqlite",
+          "policies": {
+            "oracle": {
+              "backend": "sqlite",
+              "penalized_ms": 77.01049999741372,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 77.01049999741372,
+                "p50": 77.01049999741372,
+                "p95": 77.40487998817116
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 2.1606000009342097,
+                "p50": 2.1606000009342097,
+                "p95": 2.697359995363513
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_local": {
+              "backend": "sqlite",
+              "selection_ms": 0.0023000029614195228,
+              "penalized_ms": 77.01280000037514,
+              "regret_ms": 0.0023000029614195228,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 77.01280000037514,
+                "p50": 77.01280000037514,
+                "p95": 77.40717999113258
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 2.1606000009342097,
+                "p50": 2.1606000009342097,
+                "p95": 2.697359995363513
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_server": {
+              "backend": "sqlserver",
+              "selection_ms": 0.0012500022421590984,
+              "penalized_ms": 212.10385000449605,
+              "regret_ms": 135.09335000708234,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 212.10385000449605,
+                "p50": 212.10385000449605,
+                "p95": 229.84698999716784
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 30.423249998420943,
+                "p50": 30.423249998420943,
+                "p95": 30.450924993056105
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "heuristic": {
+              "backend": "sqlite",
+              "selection_ms": 0.0010500079952180386,
+              "penalized_ms": 77.01155000540894,
+              "regret_ms": 0.0010500079952180386,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 77.01155000540894,
+                "p50": 77.01155000540894,
+                "p95": 77.40592999616638
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 2.1606000009342097,
+                "p50": 2.1606000009342097,
+                "p95": 2.697359995363513
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "learned": {
+              "backend": "sqlite",
+              "selection_ms": 0.15345000429078937,
+              "penalized_ms": 77.1639500017045,
+              "regret_ms": 0.15345000429078937,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 77.1639500017045,
+                "p50": 77.1639500017045,
+                "p95": 77.55832999246195
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 2.1606000009342097,
+                "p50": 2.1606000009342097,
+                "p95": 2.697359995363513
+              },
+              "timeouts": 0,
+              "failures": 0
+            }
+          }
+        },
+        {
+          "case": {
+            "split": "heldout",
+            "source": "chinook_scale",
+            "family": "invoice_numeric_bands",
+            "scale": 25,
+            "window": [
+              3,
+              8
+            ],
+            "features": {
+              "rows": 10300,
+              "joins": 0,
+              "groups": 100,
+              "selectivity": 0.05
+            }
+          },
+          "oracle_backend": "sqlite",
+          "policies": {
+            "oracle": {
+              "backend": "sqlite",
+              "penalized_ms": 2.914299999247305,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 2.914299999247305,
+                "p50": 2.914299999247305,
+                "p95": 3.221379993192386
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 1.488249996327795,
+                "p50": 1.488249996327795,
+                "p95": 1.7099649950978346
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_local": {
+              "backend": "sqlite",
+              "selection_ms": 0.0013000026228837669,
+              "penalized_ms": 2.915600001870189,
+              "regret_ms": 0.0013000026228837669,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 2.915600001870189,
+                "p50": 2.915600001870189,
+                "p95": 3.2226799958152696
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 1.488249996327795,
+                "p50": 1.488249996327795,
+                "p95": 1.7099649950978346
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_server": {
+              "backend": "sqlserver",
+              "selection_ms": 0.000900006853044033,
+              "penalized_ms": 30.232750010327436,
+              "regret_ms": 27.31845001108013,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 30.232750010327436,
+                "p50": 30.232750010327436,
+                "p95": 30.23432500922354
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 28.585550004208926,
+                "p50": 28.585550004208926,
+                "p95": 28.747865002515027
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "heuristic": {
+              "backend": "sqlite",
+              "selection_ms": 0.0004500034265220165,
+              "penalized_ms": 2.914750002673827,
+              "regret_ms": 0.0004500034265220165,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 2.914750002673827,
+                "p50": 2.914750002673827,
+                "p95": 3.221829996618908
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 1.488249996327795,
+                "p50": 1.488249996327795,
+                "p95": 1.7099649950978346
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "learned": {
+              "backend": "sqlite",
+              "selection_ms": 0.07845000072848052,
+              "penalized_ms": 2.9927499999757856,
+              "regret_ms": 0.07845000072848052,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 2.9927499999757856,
+                "p50": 2.9927499999757856,
+                "p95": 3.2998299939208664
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 1.488249996327795,
+                "p50": 1.488249996327795,
+                "p95": 1.7099649950978346
+              },
+              "timeouts": 0,
+              "failures": 0
+            }
+          }
+        },
+        {
+          "case": {
+            "split": "heldout",
+            "source": "chinook_scale",
+            "family": "invoice_numeric_bands",
+            "scale": 25,
+            "window": [
+              16,
+              83
+            ],
+            "features": {
+              "rows": 10300,
+              "joins": 0,
+              "groups": 100,
+              "selectivity": 0.67
+            }
+          },
+          "oracle_backend": "sqlite",
+          "policies": {
+            "oracle": {
+              "backend": "sqlite",
+              "penalized_ms": 7.729300006758422,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 7.729300006758422,
+                "p50": 7.729300006758422,
+                "p95": 7.947820007393602
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 1.595850000740029,
+                "p50": 1.595850000740029,
+                "p95": 1.7040749997249804
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_local": {
+              "backend": "sqlite",
+              "selection_ms": 0.003150002157781273,
+              "penalized_ms": 7.732450008916203,
+              "regret_ms": 0.003150002157781273,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 7.732450008916203,
+                "p50": 7.732450008916203,
+                "p95": 7.9509700095513836
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 1.595850000740029,
+                "p50": 1.595850000740029,
+                "p95": 1.7040749997249804
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_server": {
+              "backend": "sqlserver",
+              "selection_ms": 0.0012999953469261527,
+              "penalized_ms": 35.669399992912076,
+              "regret_ms": 27.940099986153655,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 35.669399992912076,
+                "p50": 35.669399992912076,
+                "p95": 36.12344999273773
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 28.953599998203572,
+                "p50": 28.953599998203572,
+                "p95": 29.375789997720858
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "heuristic": {
+              "backend": "sqlite",
+              "selection_ms": 0.0008500064723193645,
+              "penalized_ms": 7.730150013230741,
+              "regret_ms": 0.0008500064723193645,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 7.730150013230741,
+                "p50": 7.730150013230741,
+                "p95": 7.948670013865922
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 1.595850000740029,
+                "p50": 1.595850000740029,
+                "p95": 1.7040749997249804
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "learned": {
+              "backend": "sqlite",
+              "selection_ms": 0.11580000136746094,
+              "penalized_ms": 7.845100008125883,
+              "regret_ms": 0.11580000136746094,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 7.845100008125883,
+                "p50": 7.845100008125883,
+                "p95": 8.063620008761063
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 1.595850000740029,
+                "p50": 1.595850000740029,
+                "p95": 1.7040749997249804
+              },
+              "timeouts": 0,
+              "failures": 0
+            }
+          }
+        },
+        {
+          "case": {
+            "split": "heldout",
+            "source": "chinook_scale",
+            "family": "billed_country_reach",
+            "scale": 250,
+            "window": [
+              3,
+              8
+            ],
+            "features": {
+              "rows": 560000,
+              "joins": 3,
+              "groups": 24,
+              "selectivity": 0.05
+            }
+          },
+          "oracle_backend": "sqlite",
+          "policies": {
+            "oracle": {
+              "backend": "sqlite",
+              "penalized_ms": 60.22359999769833,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 60.22359999769833,
+                "p50": 60.22359999769833,
+                "p95": 62.37289000564488
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 1.6756499971961603,
+                "p50": 1.6756499971961603,
+                "p95": 1.7053050003596582
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_local": {
+              "backend": "sqlite",
+              "selection_ms": 0.0022500025806948543,
+              "penalized_ms": 60.225850000279024,
+              "regret_ms": 0.0022500025806948543,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 60.225850000279024,
+                "p50": 60.225850000279024,
+                "p95": 62.37514000822557
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 1.6756499971961603,
+                "p50": 1.6756499971961603,
+                "p95": 1.7053050003596582
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_server": {
+              "backend": "sqlserver",
+              "selection_ms": 0.001100008375942707,
+              "penalized_ms": 77.57805000437656,
+              "regret_ms": 17.354450006678235,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 77.57805000437656,
+                "p50": 77.57805000437656,
+                "p95": 87.00082500363351
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 32.23750000324799,
+                "p50": 32.23750000324799,
+                "p95": 34.67866000064532
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "heuristic": {
+              "backend": "sqlite",
+              "selection_ms": 0.0007500057108700275,
+              "penalized_ms": 60.2243500034092,
+              "regret_ms": 0.0007500057108700275,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 60.2243500034092,
+                "p50": 60.2243500034092,
+                "p95": 62.37364001135575
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 1.6756499971961603,
+                "p50": 1.6756499971961603,
+                "p95": 1.7053050003596582
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "learned": {
+              "backend": "sqlite",
+              "selection_ms": 0.10265000310027972,
+              "penalized_ms": 60.32625000079861,
+              "regret_ms": 0.10265000310027972,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 60.32625000079861,
+                "p50": 60.32625000079861,
+                "p95": 62.475540008745156
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 1.6756499971961603,
+                "p50": 1.6756499971961603,
+                "p95": 1.7053050003596582
+              },
+              "timeouts": 0,
+              "failures": 0
+            }
+          }
+        },
+        {
+          "case": {
+            "split": "heldout",
+            "source": "chinook_scale",
+            "family": "billed_country_reach",
+            "scale": 250,
+            "window": [
+              16,
+              83
+            ],
+            "features": {
+              "rows": 560000,
+              "joins": 3,
+              "groups": 24,
+              "selectivity": 0.67
+            }
+          },
+          "oracle_backend": "sqlserver",
+          "policies": {
+            "oracle": {
+              "backend": "sqlserver",
+              "penalized_ms": 127.59149999328656,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 127.59149999328656,
+                "p50": 127.59149999328656,
+                "p95": 141.5203499906056
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 30.233399993448984,
+                "p50": 30.233399993448984,
+                "p95": 32.288999988668365
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_local": {
+              "backend": "sqlite",
+              "selection_ms": 0.0021000014385208488,
+              "penalized_ms": 882.1019499955582,
+              "regret_ms": 754.5104500022717,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 882.1019499955582,
+                "p50": 882.1019499955582,
+                "p95": 884.6040849857673
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 1.7430500010959804,
+                "p50": 1.7430500010959804,
+                "p95": 1.8283249955857173
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_server": {
+              "backend": "sqlserver",
+              "selection_ms": 0.002849999873433262,
+              "penalized_ms": 127.59434999316,
+              "regret_ms": 0.002849999873433262,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 127.59434999316,
+                "p50": 127.59434999316,
+                "p95": 141.52319999047904
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 30.233399993448984,
+                "p50": 30.233399993448984,
+                "p95": 32.288999988668365
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "heuristic": {
+              "backend": "sqlserver",
+              "selection_ms": 0.0015499972505494952,
+              "penalized_ms": 127.59304999053711,
+              "regret_ms": 0.0015499972505494952,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 127.59304999053711,
+                "p50": 127.59304999053711,
+                "p95": 141.52189998785616
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 30.233399993448984,
+                "p50": 30.233399993448984,
+                "p95": 32.288999988668365
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "learned": {
+              "backend": "sqlserver",
+              "selection_ms": 0.1169500028481707,
+              "penalized_ms": 127.70844999613473,
+              "regret_ms": 0.1169500028481707,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 127.70844999613473,
+                "p50": 127.70844999613473,
+                "p95": 141.63729999345378
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 30.233399993448984,
+                "p50": 30.233399993448984,
+                "p95": 32.288999988668365
+              },
+              "timeouts": 0,
+              "failures": 0
+            }
+          }
+        },
+        {
+          "case": {
+            "split": "heldout",
+            "source": "chinook_scale",
+            "family": "invoice_numeric_bands",
+            "scale": 250,
+            "window": [
+              3,
+              8
+            ],
+            "features": {
+              "rows": 103000,
+              "joins": 0,
+              "groups": 100,
+              "selectivity": 0.05
+            }
+          },
+          "oracle_backend": "sqlite",
+          "policies": {
+            "oracle": {
+              "backend": "sqlite",
+              "penalized_ms": 6.143849997897632,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 6.143849997897632,
+                "p50": 6.143849997897632,
+                "p95": 6.152895001287106
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 1.6373999969800934,
+                "p50": 1.6373999969800934,
+                "p95": 1.6454099924885668
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_local": {
+              "backend": "sqlite",
+              "selection_ms": 0.0017999991541728377,
+              "penalized_ms": 6.145649997051805,
+              "regret_ms": 0.0017999991541728377,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 6.145649997051805,
+                "p50": 6.145649997051805,
+                "p95": 6.154695000441279
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 1.6373999969800934,
+                "p50": 1.6373999969800934,
+                "p95": 1.6454099924885668
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_server": {
+              "backend": "sqlserver",
+              "selection_ms": 0.0010000003385357559,
+              "penalized_ms": 35.935799991420936,
+              "regret_ms": 29.791949993523303,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 35.935799991420936,
+                "p50": 35.935799991420936,
+                "p95": 36.048029994708486
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 32.34079999674577,
+                "p50": 32.34079999674577,
+                "p95": 32.73499999922933
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "heuristic": {
+              "backend": "sqlite",
+              "selection_ms": 0.0005500041879713535,
+              "penalized_ms": 6.144400002085604,
+              "regret_ms": 0.0005500041879713535,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 6.144400002085604,
+                "p50": 6.144400002085604,
+                "p95": 6.153445005475078
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 1.6373999969800934,
+                "p50": 1.6373999969800934,
+                "p95": 1.6454099924885668
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "learned": {
+              "backend": "sqlite",
+              "selection_ms": 0.1016000023810193,
+              "penalized_ms": 6.245450000278652,
+              "regret_ms": 0.1016000023810193,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 6.245450000278652,
+                "p50": 6.245450000278652,
+                "p95": 6.254495003668126
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 1.6373999969800934,
+                "p50": 1.6373999969800934,
+                "p95": 1.6454099924885668
+              },
+              "timeouts": 0,
+              "failures": 0
+            }
+          }
+        },
+        {
+          "case": {
+            "split": "heldout",
+            "source": "chinook_scale",
+            "family": "invoice_numeric_bands",
+            "scale": 250,
+            "window": [
+              16,
+              83
+            ],
+            "features": {
+              "rows": 103000,
+              "joins": 0,
+              "groups": 100,
+              "selectivity": 0.67
+            }
+          },
+          "oracle_backend": "sqlite",
+          "policies": {
+            "oracle": {
+              "backend": "sqlite",
+              "penalized_ms": 56.392399994365405,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 56.392399994365405,
+                "p50": 56.392399994365405,
+                "p95": 56.40337999284384
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 1.92014999629464,
+                "p50": 1.92014999629464,
+                "p95": 2.2282649981207214
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_local": {
+              "backend": "sqlite",
+              "selection_ms": 0.002049993781838566,
+              "penalized_ms": 56.394449988147244,
+              "regret_ms": 0.002049993781838566,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 56.394449988147244,
+                "p50": 56.394449988147244,
+                "p95": 56.40542998662568
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 1.92014999629464,
+                "p50": 1.92014999629464,
+                "p95": 2.2282649981207214
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_server": {
+              "backend": "sqlserver",
+              "selection_ms": 0.0011500087566673756,
+              "penalized_ms": 57.924550004827324,
+              "regret_ms": 1.532150010461919,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 57.924550004827324,
+                "p50": 57.924550004827324,
+                "p95": 60.992470007477095
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 29.624449998664204,
+                "p50": 29.624449998664204,
+                "p95": 30.327845004649134
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "heuristic": {
+              "backend": "sqlite",
+              "selection_ms": 0.000600004568696022,
+              "penalized_ms": 56.3929999989341,
+              "regret_ms": 0.000600004568696022,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 56.3929999989341,
+                "p50": 56.3929999989341,
+                "p95": 56.403979997412534
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 1.92014999629464,
+                "p50": 1.92014999629464,
+                "p95": 2.2282649981207214
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "learned": {
+              "backend": "sqlite",
+              "selection_ms": 0.0986500017461367,
+              "penalized_ms": 56.49104999611154,
+              "regret_ms": 0.0986500017461367,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 56.49104999611154,
+                "p50": 56.49104999611154,
+                "p95": 56.502029994589975
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 1.92014999629464,
+                "p50": 1.92014999629464,
+                "p95": 2.2282649981207214
+              },
+              "timeouts": 0,
+              "failures": 0
+            }
+          }
+        },
+        {
+          "case": {
+            "split": "heldout",
+            "source": "ldbc",
+            "family": "same_start_two_routes",
+            "scale": 128,
+            "depths": [
+              1,
+              6
+            ],
+            "start_degree": 10
+          },
+          "oracle_backend": "graph",
+          "policies": {
+            "oracle": {
+              "backend": "graph",
+              "penalized_ms": 81.38370000233408,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 81.38370000233408,
+                "p50": 81.38370000233408,
+                "p95": 84.7668000147678
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 80.96664999902714,
+                "p50": 80.96664999902714,
+                "p95": 84.35366500198143
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_local": {
+              "backend": "graph",
+              "selection_ms": 0.0020500010577961802,
+              "penalized_ms": 81.38575000339188,
+              "regret_ms": 0.0020500010577961802,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 81.38575000339188,
+                "p50": 81.38575000339188,
+                "p95": 84.76885001582559
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 80.96664999902714,
+                "p50": 80.96664999902714,
+                "p95": 84.35366500198143
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_server": {
+              "backend": "sqlserver_frontier",
+              "selection_ms": 0.0008500064723193645,
+              "penalized_ms": 141.1622500163503,
+              "regret_ms": 59.77855001401622,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 141.1622500163503,
+                "p50": 141.1622500163503,
+                "p95": 158.00359001150355
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 112.46750000282191,
+                "p50": 112.46750000282191,
+                "p95": 125.61317000217969
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "heuristic": {
+              "backend": "graph",
+              "selection_ms": 0.0006500049494206905,
+              "penalized_ms": 81.3843500072835,
+              "regret_ms": 0.0006500049494206905,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 81.3843500072835,
+                "p50": 81.3843500072835,
+                "p95": 84.76745001971722
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 80.96664999902714,
+                "p50": 80.96664999902714,
+                "p95": 84.35366500198143
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "learned": {
+              "backend": "graph",
+              "selection_ms": 0.33665000228211284,
+              "penalized_ms": 81.7203500046162,
+              "regret_ms": 0.33665000228211284,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 81.7203500046162,
+                "p50": 81.7203500046162,
+                "p95": 85.10345001704991
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 80.96664999902714,
+                "p50": 80.96664999902714,
+                "p95": 84.35366500198143
+              },
+              "timeouts": 0,
+              "failures": 0
+            }
+          }
+        },
+        {
+          "case": {
+            "split": "heldout",
+            "source": "ldbc",
+            "family": "closed_and_open_routes",
+            "scale": 128,
+            "depths": [
+              null,
+              1
+            ],
+            "start_degree": 10
+          },
+          "oracle_backend": "graph",
+          "policies": {
+            "oracle": {
+              "backend": "graph",
+              "penalized_ms": 75.98570000118343,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 75.98570000118343,
+                "p50": 75.98570000118343,
+                "p95": 77.22509000232094
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 75.57724999787752,
+                "p50": 75.57724999787752,
+                "p95": 76.81227499851957
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_local": {
+              "backend": "graph",
+              "selection_ms": 0.0021000014385208488,
+              "penalized_ms": 75.98780000262195,
+              "regret_ms": 0.0021000014385208488,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 75.98780000262195,
+                "p50": 75.98780000262195,
+                "p95": 77.22719000375946
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 75.57724999787752,
+                "p50": 75.57724999787752,
+                "p95": 76.81227499851957
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_server": {
+              "backend": "sqlserver_frontier",
+              "selection_ms": 0.0011000010999850929,
+              "penalized_ms": 120.11405000521336,
+              "regret_ms": 44.128350004029926,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 120.11405000521336,
+                "p50": 120.11405000521336,
+                "p95": 125.57610500734881
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 96.32520000741351,
+                "p50": 96.32520000741351,
+                "p95": 98.81568000710104
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "heuristic": {
+              "backend": "graph",
+              "selection_ms": 0.0005999972927384079,
+              "penalized_ms": 75.98629999847617,
+              "regret_ms": 0.0005999972927384079,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 75.98629999847617,
+                "p50": 75.98629999847617,
+                "p95": 77.22568999961368
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 75.57724999787752,
+                "p50": 75.57724999787752,
+                "p95": 76.81227499851957
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "learned": {
+              "backend": "graph",
+              "selection_ms": 0.23054999473970383,
+              "penalized_ms": 76.21624999592314,
+              "regret_ms": 0.23054999473970383,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 76.21624999592314,
+                "p50": 76.21624999592314,
+                "p95": 77.45563999706064
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 75.57724999787752,
+                "p50": 75.57724999787752,
+                "p95": 76.81227499851957
+              },
+              "timeouts": 0,
+              "failures": 0
+            }
+          }
+        },
+        {
+          "case": {
+            "split": "heldout",
+            "source": "ldbc",
+            "family": "same_start_two_routes",
+            "scale": 1528,
+            "depths": [
+              1,
+              3
+            ],
+            "start_degree": 340
+          },
+          "oracle_backend": "graph",
+          "policies": {
+            "oracle": {
+              "backend": "graph",
+              "penalized_ms": 87.71554999839282,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 87.71554999839282,
+                "p50": 87.71554999839282,
+                "p95": 90.66066499581211
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 74.87445000151638,
+                "p50": 74.87445000151638,
+                "p95": 77.93962500290945
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_local": {
+              "backend": "graph",
+              "selection_ms": 0.0024500041035935283,
+              "penalized_ms": 87.71800000249641,
+              "regret_ms": 0.0024500041035935283,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 87.71800000249641,
+                "p50": 87.71800000249641,
+                "p95": 90.6631149999157
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 74.87445000151638,
+                "p50": 74.87445000151638,
+                "p95": 77.93962500290945
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_server": {
+              "backend": "sqlserver_frontier",
+              "selection_ms": 0.0011500014807097614,
+              "penalized_ms": 2716.4400999972713,
+              "regret_ms": 2628.7245499988785,
+              "completed": 0,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 2253.0388999948627,
+                "p50": 2253.0388999948627,
+                "p95": 2264.7015049908077
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 216.4389499957906,
+                "p50": 216.4389499957906,
+                "p95": 225.6423049941077
+              },
+              "timeouts": 2,
+              "failures": 0
+            },
+            "heuristic": {
+              "backend": "graph",
+              "selection_ms": 0.000800006091594696,
+              "penalized_ms": 87.71635000448441,
+              "regret_ms": 0.000800006091594696,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 87.71635000448441,
+                "p50": 87.71635000448441,
+                "p95": 90.66146500190371
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 74.87445000151638,
+                "p50": 74.87445000151638,
+                "p95": 77.93962500290945
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "learned": {
+              "backend": "graph",
+              "selection_ms": 0.22575000184588134,
+              "penalized_ms": 87.9413000002387,
+              "regret_ms": 0.22575000184588134,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 87.9413000002387,
+                "p50": 87.9413000002387,
+                "p95": 90.886414997658
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 74.87445000151638,
+                "p50": 74.87445000151638,
+                "p95": 77.93962500290945
+              },
+              "timeouts": 0,
+              "failures": 0
+            }
+          }
+        },
+        {
+          "case": {
+            "split": "heldout",
+            "source": "ldbc",
+            "family": "closed_and_open_routes",
+            "scale": 1528,
+            "depths": [
+              null,
+              1
+            ],
+            "start_degree": 340
+          },
+          "oracle_backend": "graph",
+          "policies": {
+            "oracle": {
+              "backend": "graph",
+              "penalized_ms": 97.59290001238696,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 97.59290001238696,
+                "p50": 97.59290001238696,
+                "p95": 104.39006001106463
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 77.73885000642622,
+                "p50": 77.73885000642622,
+                "p95": 84.39691500025219
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_local": {
+              "backend": "graph",
+              "selection_ms": 0.0017499987734481692,
+              "penalized_ms": 97.59465001116041,
+              "regret_ms": 0.0017499987734481692,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 97.59465001116041,
+                "p50": 97.59465001116041,
+                "p95": 104.39181000983808
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 77.73885000642622,
+                "p50": 77.73885000642622,
+                "p95": 84.39691500025219
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_server": {
+              "backend": "sqlserver_frontier",
+              "selection_ms": 0.0010000003385357559,
+              "penalized_ms": 2884.5272999969893,
+              "regret_ms": 2786.9343999846024,
+              "completed": 0,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 2389.3606499987072,
+                "p50": 2389.3606499987072,
+                "p95": 2462.972775004164
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 384.5262999966508,
+                "p50": 384.5262999966508,
+                "p95": 454.36791999964043
+              },
+              "timeouts": 2,
+              "failures": 0
+            },
+            "heuristic": {
+              "backend": "graph",
+              "selection_ms": 0.0005999972927384079,
+              "penalized_ms": 97.5935000096797,
+              "regret_ms": 0.0005999972927384079,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 97.5935000096797,
+                "p50": 97.5935000096797,
+                "p95": 104.39066000835737
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 77.73885000642622,
+                "p50": 77.73885000642622,
+                "p95": 84.39691500025219
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "learned": {
+              "backend": "graph",
+              "selection_ms": 0.21654999727616087,
+              "penalized_ms": 97.80945000966312,
+              "regret_ms": 0.21654999727616087,
+              "completed": 2,
+              "end_to_end_ms": {
+                "samples": 2,
+                "mean": 97.80945000966312,
+                "p50": 97.80945000966312,
+                "p95": 104.6066100083408
+              },
+              "setup_ms": {
+                "samples": 2,
+                "mean": 77.73885000642622,
+                "p50": 77.73885000642622,
+                "p95": 84.39691500025219
+              },
+              "timeouts": 0,
+              "failures": 0
+            }
+          }
+        }
+      ],
+      "paired": {
+        "fixed_local": {
+          "mean_paired_delta_ms": -62.720429166802205,
+          "bootstrap_95_ms": [
+            -188.4936347900748,
+            0.19389427138776225
+          ],
+          "completion_rate_delta": 0.0,
+          "completion_bootstrap_95": [
+            0.0,
+            0.0
+          ]
+        },
+        "fixed_server": {
+          "mean_paired_delta_ms": -484.0508791676257,
+          "bootstrap_95_ms": [
+            -1158.8417662445104,
+            -30.467630628527342
+          ],
+          "completion_rate_delta": 0.16666666666666666,
+          "completion_bootstrap_95": [
+            0.0,
+            0.4166666666666667
+          ]
+        },
+        "heuristic": {
+          "mean_paired_delta_ms": 0.1567083315118604,
+          "bootstrap_95_ms": [
+            0.11860353952215519,
+            0.20270666450414854
+          ],
+          "completion_rate_delta": 0.0,
+          "completion_bootstrap_95": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "policies": {
+        "oracle": {
+          "average_penalized_ms": 57.39128749943726,
+          "completed": 24,
+          "trials": 24,
+          "oracle_matches": 12,
+          "end_to_end_ms": {
+            "samples": 24,
+            "mean": 57.39128749943726,
+            "p50": 68.61015000322368,
+            "p95": 111.06954499846323
+          },
+          "setup_ms": {
+            "samples": 24,
+            "mean": 29.2899749983917,
+            "p50": 1.9985499966423959,
+            "p95": 83.76253000242285
+          },
+          "median_regret_ms": 0.0,
+          "selection_ms": {
+            "samples": 24,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p95": 0.0
+          },
+          "timeouts": 0,
+          "failures": 0
+        },
+        "fixed_local": {
+          "average_penalized_ms": 120.26924166699852,
+          "completed": 24,
+          "trials": 24,
+          "oracle_matches": 11,
+          "end_to_end_ms": {
+            "samples": 24,
+            "mean": 120.26924166699852,
+            "p50": 68.61175000085495,
+            "p95": 763.1952000039729
+          },
+          "setup_ms": {
+            "samples": 24,
+            "mean": 26.915779165695614,
+            "p50": 1.7253499972866848,
+            "p95": 83.76253000242285
+          },
+          "median_regret_ms": 0.0021750020096078515,
+          "selection_ms": {
+            "samples": 24,
+            "mean": 0.0022583341584928953,
+            "p50": 0.0018999999156221747,
+            "p95": 0.004290005745133382
+          },
+          "timeouts": 0,
+          "failures": 0
+        },
+        "fixed_server": {
+          "average_penalized_ms": 541.599691667822,
+          "completed": 20,
+          "trials": 24,
+          "oracle_matches": 1,
+          "end_to_end_ms": {
+            "samples": 24,
+            "mean": 461.7190375010978,
+            "p50": 100.08359999483218,
+            "p95": 2301.333574997261
+          },
+          "setup_ms": {
+            "samples": 24,
+            "mean": 87.52852499916723,
+            "p50": 31.178399993223138,
+            "p95": 294.88555999341753
+          },
+          "median_regret_ms": 36.960149998776615,
+          "selection_ms": {
+            "samples": 24,
+            "mean": 0.001254169546882622,
+            "p50": 0.001100008375942707,
+            "p95": 0.001784999039955437
+          },
+          "timeouts": 4,
+          "failures": 0
+        },
+        "heuristic": {
+          "average_penalized_ms": 57.392104168684455,
+          "completed": 24,
+          "trials": 24,
+          "oracle_matches": 12,
+          "end_to_end_ms": {
+            "samples": 24,
+            "mean": 57.392104168684455,
+            "p50": 68.61090000893455,
+            "p95": 111.07150498646659
+          },
+          "setup_ms": {
+            "samples": 24,
+            "mean": 29.2899749983917,
+            "p50": 1.9985499966423959,
+            "p95": 83.76253000242285
+          },
+          "median_regret_ms": 0.000700005330145359,
+          "selection_ms": {
+            "samples": 24,
+            "mean": 0.0008166692471907785,
+            "p50": 0.0006499976734630764,
+            "p95": 0.0018799895769916457
+          },
+          "timeouts": 0,
+          "failures": 0
+        },
+        "learned": {
+          "average_penalized_ms": 57.54881250019631,
+          "completed": 24,
+          "trials": 24,
+          "oracle_matches": 12,
+          "end_to_end_ms": {
+            "samples": 24,
+            "mean": 57.54881250019631,
+            "p50": 68.77214999985881,
+            "p95": 111.20972999633521
+          },
+          "setup_ms": {
+            "samples": 24,
+            "mean": 29.2899749983917,
+            "p50": 1.9985499966423959,
+            "p95": 83.76253000242285
+          },
+          "median_regret_ms": 0.11637500210781582,
+          "selection_ms": {
+            "samples": 24,
+            "mean": 0.15752500075905118,
+            "p50": 0.11800000356743112,
+            "p95": 0.25453000926063396
+          },
+          "timeouts": 0,
+          "failures": 0
+        }
+      },
+      "prediction_errors": {
+        "sql_log_ratio": {
+          "samples": 0,
+          "bias": null,
+          "mae": null
+        },
+        "graph_latency_ms": {
+          "samples": 0,
+          "bias": null,
+          "mae": null
+        },
+        "graph_timeout_risk": {
+          "samples": 0,
+          "brier": null,
+          "mean_predicted": null,
+          "observed": null
+        }
+      }
+    },
+    "heldout/warm": {
+      "cases": [
+        {
+          "case": {
+            "split": "heldout",
+            "source": "chinook_scale",
+            "family": "billed_country_reach",
+            "scale": 25,
+            "window": [
+              3,
+              8
+            ],
+            "features": {
+              "rows": 56000,
+              "joins": 3,
+              "groups": 24,
+              "selectivity": 0.05
+            }
+          },
+          "oracle_backend": "sqlite",
+          "policies": {
+            "oracle": {
+              "backend": "sqlite",
+              "penalized_ms": 5.436460004420951,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 5.436460004420951,
+                "p50": 5.35150000359863,
+                "p95": 5.83750000805594
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_local": {
+              "backend": "sqlite",
+              "selection_ms": 0.001680001150816679,
+              "penalized_ms": 5.438140005571768,
+              "regret_ms": 0.001680001150816679,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 5.438140005571768,
+                "p50": 5.353180004749447,
+                "p95": 5.839180009206757
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_server": {
+              "backend": "sqlserver",
+              "selection_ms": 0.0009399984264746308,
+              "penalized_ms": 31.72997999645304,
+              "regret_ms": 26.29351999203209,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 31.72997999645304,
+                "p50": 31.21623999613803,
+                "p95": 33.671099989442155
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "heuristic": {
+              "backend": "sqlite",
+              "selection_ms": 0.0006399990525096655,
+              "penalized_ms": 5.437100003473461,
+              "regret_ms": 0.0006399990525096655,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 5.437100003473461,
+                "p50": 5.35214000265114,
+                "p95": 5.83814000710845
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "learned": {
+              "backend": "sqlite",
+              "selection_ms": 0.0987599982181564,
+              "penalized_ms": 5.535220002639107,
+              "regret_ms": 0.0987599982181564,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 5.535220002639107,
+                "p50": 5.450260001816787,
+                "p95": 5.936260006274097
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            }
+          }
+        },
+        {
+          "case": {
+            "split": "heldout",
+            "source": "chinook_scale",
+            "family": "billed_country_reach",
+            "scale": 25,
+            "window": [
+              16,
+              83
+            ],
+            "features": {
+              "rows": 56000,
+              "joins": 3,
+              "groups": 24,
+              "selectivity": 0.67
+            }
+          },
+          "oracle_backend": "sqlite",
+          "policies": {
+            "oracle": {
+              "backend": "sqlite",
+              "penalized_ms": 69.73943999910261,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 69.73943999910261,
+                "p50": 67.83569999970496,
+                "p95": 76.65147999650799
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_local": {
+              "backend": "sqlite",
+              "selection_ms": 0.0016800040611997247,
+              "penalized_ms": 69.74112000316381,
+              "regret_ms": 0.0016800040611997247,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 69.74112000316381,
+                "p50": 67.83738000376616,
+                "p95": 76.65316000056919
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_server": {
+              "backend": "sqlserver",
+              "selection_ms": 0.0010800024028867483,
+              "penalized_ms": 194.44034000043757,
+              "regret_ms": 124.70090000133496,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 194.44034000043757,
+                "p50": 193.78528000670485,
+                "p95": 200.7652600063011
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "heuristic": {
+              "backend": "sqlite",
+              "selection_ms": 0.0009799987310543656,
+              "penalized_ms": 69.74041999783367,
+              "regret_ms": 0.0009799987310543656,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 69.74041999783367,
+                "p50": 67.83667999843601,
+                "p95": 76.65245999523904
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "learned": {
+              "backend": "sqlite",
+              "selection_ms": 0.1262200006749481,
+              "penalized_ms": 69.86565999977756,
+              "regret_ms": 0.1262200006749481,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 69.86565999977756,
+                "p50": 67.9619200003799,
+                "p95": 76.77769999718294
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            }
+          }
+        },
+        {
+          "case": {
+            "split": "heldout",
+            "source": "chinook_scale",
+            "family": "invoice_numeric_bands",
+            "scale": 25,
+            "window": [
+              3,
+              8
+            ],
+            "features": {
+              "rows": 10300,
+              "joins": 0,
+              "groups": 100,
+              "selectivity": 0.05
+            }
+          },
+          "oracle_backend": "sqlite",
+          "policies": {
+            "oracle": {
+              "backend": "sqlite",
+              "penalized_ms": 0.9093400003621355,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 0.9093400003621355,
+                "p50": 0.8794000023044646,
+                "p95": 1.0920200031250715
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_local": {
+              "backend": "sqlite",
+              "selection_ms": 0.0011799944331869483,
+              "penalized_ms": 0.9105199947953224,
+              "regret_ms": 0.0011799944331869483,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 0.9105199947953224,
+                "p50": 0.8805799967376515,
+                "p95": 1.0931999975582585
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_server": {
+              "backend": "sqlserver",
+              "selection_ms": 0.0008399947546422482,
+              "penalized_ms": 1.3553199940361083,
+              "regret_ms": 0.4459799936739728,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 1.3553199940361083,
+                "p50": 1.3790399971185252,
+                "p95": 1.4682199922390282
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "heuristic": {
+              "backend": "sqlite",
+              "selection_ms": 0.00044000043999403715,
+              "penalized_ms": 0.9097800008021295,
+              "regret_ms": 0.00044000043999403715,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 0.9097800008021295,
+                "p50": 0.8798400027444586,
+                "p95": 1.0924600035650656
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "learned": {
+              "backend": "sqlite",
+              "selection_ms": 0.0724999961676076,
+              "penalized_ms": 0.9818399965297431,
+              "regret_ms": 0.0724999961676076,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 0.9818399965297431,
+                "p50": 0.9518999984720722,
+                "p95": 1.1645199992926791
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            }
+          }
+        },
+        {
+          "case": {
+            "split": "heldout",
+            "source": "chinook_scale",
+            "family": "invoice_numeric_bands",
+            "scale": 25,
+            "window": [
+              16,
+              83
+            ],
+            "features": {
+              "rows": 10300,
+              "joins": 0,
+              "groups": 100,
+              "selectivity": 0.67
+            }
+          },
+          "oracle_backend": "sqlite",
+          "policies": {
+            "oracle": {
+              "backend": "sqlite",
+              "penalized_ms": 5.336740001803264,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 5.336740001803264,
+                "p50": 5.270599998766556,
+                "p95": 6.034399999771267
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_local": {
+              "backend": "sqlite",
+              "selection_ms": 0.0016000063624233007,
+              "penalized_ms": 5.338340008165687,
+              "regret_ms": 0.0016000063624233007,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 5.338340008165687,
+                "p50": 5.27220000512898,
+                "p95": 6.0360000061336905
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_server": {
+              "backend": "sqlserver",
+              "selection_ms": 0.0009799987310543656,
+              "penalized_ms": 6.807040004059672,
+              "regret_ms": 1.4703000022564083,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 6.807040004059672,
+                "p50": 6.643380009336397,
+                "p95": 7.2609800059581175
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "heuristic": {
+              "backend": "sqlite",
+              "selection_ms": 0.0006999995093792677,
+              "penalized_ms": 5.337440001312643,
+              "regret_ms": 0.0006999995093792677,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 5.337440001312643,
+                "p50": 5.271299998275936,
+                "p95": 6.035099999280646
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "learned": {
+              "backend": "sqlite",
+              "selection_ms": 0.1080800051568076,
+              "penalized_ms": 5.444820006960072,
+              "regret_ms": 0.1080800051568076,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 5.444820006960072,
+                "p50": 5.378680003923364,
+                "p95": 6.142480004928075
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            }
+          }
+        },
+        {
+          "case": {
+            "split": "heldout",
+            "source": "chinook_scale",
+            "family": "billed_country_reach",
+            "scale": 250,
+            "window": [
+              3,
+              8
+            ],
+            "features": {
+              "rows": 560000,
+              "joins": 3,
+              "groups": 24,
+              "selectivity": 0.05
+            }
+          },
+          "oracle_backend": "sqlserver",
+          "policies": {
+            "oracle": {
+              "backend": "sqlserver",
+              "penalized_ms": 40.16800000099465,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 40.16800000099465,
+                "p50": 38.95929999998771,
+                "p95": 46.03775999858044
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_local": {
+              "backend": "sqlite",
+              "selection_ms": 0.0016600039089098573,
+              "penalized_ms": 54.069360002176836,
+              "regret_ms": 13.901360001182184,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 54.069360002176836,
+                "p50": 54.5801600033883,
+                "p95": 55.679100000998005
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_server": {
+              "backend": "sqlserver",
+              "selection_ms": 0.0008400005754083395,
+              "penalized_ms": 40.16884000157006,
+              "regret_ms": 0.0008400005754083395,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 40.16884000157006,
+                "p50": 38.960140000563115,
+                "p95": 46.03859999915585
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "heuristic": {
+              "backend": "sqlite",
+              "selection_ms": 0.0007000024197623134,
+              "penalized_ms": 54.06840000068769,
+              "regret_ms": 13.900399999693036,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 54.06840000068769,
+                "p50": 54.57920000189915,
+                "p95": 55.67813999950886
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "learned": {
+              "backend": "sqlite",
+              "selection_ms": 0.09850000205915421,
+              "penalized_ms": 54.16620000032708,
+              "regret_ms": 13.998199999332428,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 54.16620000032708,
+                "p50": 54.677000001538545,
+                "p95": 55.77593999914825
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            }
+          }
+        },
+        {
+          "case": {
+            "split": "heldout",
+            "source": "chinook_scale",
+            "family": "billed_country_reach",
+            "scale": 250,
+            "window": [
+              16,
+              83
+            ],
+            "features": {
+              "rows": 560000,
+              "joins": 3,
+              "groups": 24,
+              "selectivity": 0.67
+            }
+          },
+          "oracle_backend": "sqlserver",
+          "policies": {
+            "oracle": {
+              "backend": "sqlserver",
+              "penalized_ms": 103.91153999953531,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 103.91153999953531,
+                "p50": 107.7930000028573,
+                "p95": 110.13791999721434
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_local": {
+              "backend": "sqlite",
+              "selection_ms": 0.0016799982404336333,
+              "penalized_ms": 883.1653999950504,
+              "regret_ms": 779.2538599955151,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 883.1653999950504,
+                "p50": 879.4534799904795,
+                "p95": 904.4437799951993
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_server": {
+              "backend": "sqlserver",
+              "selection_ms": 0.000999998883344233,
+              "penalized_ms": 103.91253999841865,
+              "regret_ms": 0.000999998883344233,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 103.91253999841865,
+                "p50": 107.79400000174064,
+                "p95": 110.13891999609768
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "heuristic": {
+              "backend": "sqlserver",
+              "selection_ms": 0.0009000010322779417,
+              "penalized_ms": 103.91244000056759,
+              "regret_ms": 0.0009000010322779417,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 103.91244000056759,
+                "p50": 107.79390000388958,
+                "p95": 110.13881999824662
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "learned": {
+              "backend": "sqlserver",
+              "selection_ms": 0.103420001687482,
+              "penalized_ms": 104.01496000122279,
+              "regret_ms": 0.103420001687482,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 104.01496000122279,
+                "p50": 107.89642000454478,
+                "p95": 110.24133999890182
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            }
+          }
+        },
+        {
+          "case": {
+            "split": "heldout",
+            "source": "chinook_scale",
+            "family": "invoice_numeric_bands",
+            "scale": 250,
+            "window": [
+              3,
+              8
+            ],
+            "features": {
+              "rows": 103000,
+              "joins": 0,
+              "groups": 100,
+              "selectivity": 0.05
+            }
+          },
+          "oracle_backend": "sqlserver",
+          "policies": {
+            "oracle": {
+              "backend": "sqlserver",
+              "penalized_ms": 3.6252600024454296,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 3.6252600024454296,
+                "p50": 3.6014000070281327,
+                "p95": 4.03251999814529
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_local": {
+              "backend": "sqlite",
+              "selection_ms": 0.0014799967175349593,
+              "penalized_ms": 4.695439993520267,
+              "regret_ms": 1.0701799910748377,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 4.695439993520267,
+                "p50": 3.9375799911795184,
+                "p95": 6.219159995089285
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_server": {
+              "backend": "sqlserver",
+              "selection_ms": 0.0009199953638017178,
+              "penalized_ms": 3.6261799978092313,
+              "regret_ms": 0.0009199953638017178,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 3.6261799978092313,
+                "p50": 3.6023200023919344,
+                "p95": 4.033439993509091
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "heuristic": {
+              "backend": "sqlite",
+              "selection_ms": 0.0006199989002197981,
+              "penalized_ms": 4.694579995702952,
+              "regret_ms": 1.0693199932575226,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 4.694579995702952,
+                "p50": 3.9367199933622032,
+                "p95": 6.21829999727197
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "learned": {
+              "backend": "sqlite",
+              "selection_ms": 0.09518000297248363,
+              "penalized_ms": 4.789139999775216,
+              "regret_ms": 1.1638799973297864,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 4.789139999775216,
+                "p50": 4.031279997434467,
+                "p95": 6.312860001344234
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            }
+          }
+        },
+        {
+          "case": {
+            "split": "heldout",
+            "source": "chinook_scale",
+            "family": "invoice_numeric_bands",
+            "scale": 250,
+            "window": [
+              16,
+              83
+            ],
+            "features": {
+              "rows": 103000,
+              "joins": 0,
+              "groups": 100,
+              "selectivity": 0.67
+            }
+          },
+          "oracle_backend": "sqlserver",
+          "policies": {
+            "oracle": {
+              "backend": "sqlserver",
+              "penalized_ms": 26.203979999991134,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 26.203979999991134,
+                "p50": 25.92970000114292,
+                "p95": 26.93795999221038
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_local": {
+              "backend": "sqlite",
+              "selection_ms": 0.0018399994587525725,
+              "penalized_ms": 51.08388000226114,
+              "regret_ms": 24.879900002270006,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 51.08388000226114,
+                "p50": 51.05873998836614,
+                "p95": 51.65306001144927
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_server": {
+              "backend": "sqlserver",
+              "selection_ms": 0.00088000379037112,
+              "penalized_ms": 26.204860003781505,
+              "regret_ms": 0.00088000379037112,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 26.204860003781505,
+                "p50": 25.93058000493329,
+                "p95": 26.938839996000752
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "heuristic": {
+              "backend": "sqlite",
+              "selection_ms": 0.0005199981387704611,
+              "penalized_ms": 51.08256000094116,
+              "regret_ms": 24.878580000950024,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 51.08256000094116,
+                "p50": 51.05741998704616,
+                "p95": 51.65174001012929
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "learned": {
+              "backend": "sqlite",
+              "selection_ms": 0.10351999953854829,
+              "penalized_ms": 51.185560002340935,
+              "regret_ms": 24.9815800023498,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 51.185560002340935,
+                "p50": 51.16041998844594,
+                "p95": 51.754740011529066
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            }
+          }
+        },
+        {
+          "case": {
+            "split": "heldout",
+            "source": "ldbc",
+            "family": "same_start_two_routes",
+            "scale": 128,
+            "depths": [
+              1,
+              6
+            ],
+            "start_degree": 10
+          },
+          "oracle_backend": "graph",
+          "policies": {
+            "oracle": {
+              "backend": "graph",
+              "penalized_ms": 0.50924000388477,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 0.50924000388477,
+                "p50": 0.5411000020103529,
+                "p95": 0.5525200045667589
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_local": {
+              "backend": "graph",
+              "selection_ms": 0.0019399973098188639,
+              "penalized_ms": 0.5111800011945888,
+              "regret_ms": 0.0019399973098188639,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 0.5111800011945888,
+                "p50": 0.5430399993201718,
+                "p95": 0.5544600018765777
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_server": {
+              "backend": "sqlserver_frontier",
+              "selection_ms": 0.0009399984264746308,
+              "penalized_ms": 21.51797999686096,
+              "regret_ms": 21.00873999297619,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 21.51797999686096,
+                "p50": 21.442539992858656,
+                "p95": 22.661479999078438
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "heuristic": {
+              "backend": "graph",
+              "selection_ms": 0.0008000031812116504,
+              "penalized_ms": 0.5100400070659816,
+              "regret_ms": 0.0008000031812116504,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 0.5100400070659816,
+                "p50": 0.5419000051915646,
+                "p95": 0.5533200077479705
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "learned": {
+              "backend": "graph",
+              "selection_ms": 0.24037999974098057,
+              "penalized_ms": 0.7496200036257505,
+              "regret_ms": 0.24037999974098057,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 0.7496200036257505,
+                "p50": 0.7814800017513335,
+                "p95": 0.7929000043077394
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            }
+          }
+        },
+        {
+          "case": {
+            "split": "heldout",
+            "source": "ldbc",
+            "family": "closed_and_open_routes",
+            "scale": 128,
+            "depths": [
+              null,
+              1
+            ],
+            "start_degree": 10
+          },
+          "oracle_backend": "graph",
+          "policies": {
+            "oracle": {
+              "backend": "graph",
+              "penalized_ms": 0.47442000068258494,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 0.47442000068258494,
+                "p50": 0.44069999421481043,
+                "p95": 0.5444600014016032
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_local": {
+              "backend": "graph",
+              "selection_ms": 0.001500002690590918,
+              "penalized_ms": 0.47592000337317586,
+              "regret_ms": 0.001500002690590918,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 0.47592000337317586,
+                "p50": 0.44219999690540135,
+                "p95": 0.5459600040921941
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_server": {
+              "backend": "sqlserver_frontier",
+              "selection_ms": 0.0010999967344105244,
+              "penalized_ms": 20.934379994287156,
+              "regret_ms": 20.45995999360457,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 20.934379994287156,
+                "p50": 20.877499994821846,
+                "p95": 21.728279994567856
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "heuristic": {
+              "backend": "graph",
+              "selection_ms": 0.0007399969035759568,
+              "penalized_ms": 0.4751599975861609,
+              "regret_ms": 0.0007399969035759568,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 0.4751599975861609,
+                "p50": 0.4414399911183864,
+                "p95": 0.5451999983051792
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "learned": {
+              "backend": "graph",
+              "selection_ms": 0.22332000080496073,
+              "penalized_ms": 0.6977400014875457,
+              "regret_ms": 0.22332000080496073,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 0.6977400014875457,
+                "p50": 0.6640199950197712,
+                "p95": 0.767780002206564
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            }
+          }
+        },
+        {
+          "case": {
+            "split": "heldout",
+            "source": "ldbc",
+            "family": "same_start_two_routes",
+            "scale": 1528,
+            "depths": [
+              1,
+              3
+            ],
+            "start_degree": 340
+          },
+          "oracle_backend": "graph",
+          "policies": {
+            "oracle": {
+              "backend": "graph",
+              "penalized_ms": 13.666939994436689,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 13.666939994436689,
+                "p50": 13.586899993242696,
+                "p95": 15.352639989578165
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_local": {
+              "backend": "graph",
+              "selection_ms": 0.0022800028091296554,
+              "penalized_ms": 13.669219997245818,
+              "regret_ms": 0.0022800028091296554,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 13.669219997245818,
+                "p50": 13.589179996051826,
+                "p95": 15.354919992387295
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_server": {
+              "backend": "sqlserver_frontier",
+              "selection_ms": 0.0012799951946362853,
+              "penalized_ms": 2500.0012799951946,
+              "regret_ms": 2486.334340000758,
+              "completed": 0,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 2034.9560399889015,
+                "p50": 2033.8468799833208,
+                "p95": 2040.9934799885377
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 5,
+              "failures": 0
+            },
+            "heuristic": {
+              "backend": "graph",
+              "selection_ms": 0.000780003028921783,
+              "penalized_ms": 13.66771999746561,
+              "regret_ms": 0.000780003028921783,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 13.66771999746561,
+                "p50": 13.587679996271618,
+                "p95": 15.353419992607087
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "learned": {
+              "backend": "graph",
+              "selection_ms": 0.280320001184009,
+              "penalized_ms": 13.947259995620698,
+              "regret_ms": 0.280320001184009,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 13.947259995620698,
+                "p50": 13.867219994426705,
+                "p95": 15.632959990762174
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            }
+          }
+        },
+        {
+          "case": {
+            "split": "heldout",
+            "source": "ldbc",
+            "family": "closed_and_open_routes",
+            "scale": 1528,
+            "depths": [
+              null,
+              1
+            ],
+            "start_degree": 340
+          },
+          "oracle_backend": "graph",
+          "policies": {
+            "oracle": {
+              "backend": "graph",
+              "penalized_ms": 20.983080004225485,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 20.983080004225485,
+                "p50": 19.42510000662878,
+                "p95": 28.13872000842821
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_local": {
+              "backend": "graph",
+              "selection_ms": 0.0024200009647756815,
+              "penalized_ms": 20.98550000519026,
+              "regret_ms": 0.0024200009647756815,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 20.98550000519026,
+                "p50": 19.427520007593557,
+                "p95": 28.141140009392984
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "fixed_server": {
+              "backend": "sqlserver_frontier",
+              "selection_ms": 0.001400001929141581,
+              "penalized_ms": 2500.001400001929,
+              "regret_ms": 2479.0183199977037,
+              "completed": 0,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 2011.678500007838,
+                "p50": 2014.2099000135204,
+                "p95": 2018.155420004041
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 5,
+              "failures": 0
+            },
+            "heuristic": {
+              "backend": "graph",
+              "selection_ms": 0.0008999952115118504,
+              "penalized_ms": 20.983979999436997,
+              "regret_ms": 0.0008999952115118504,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 20.983979999436997,
+                "p50": 19.426000001840293,
+                "p95": 28.13962000363972
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            },
+            "learned": {
+              "backend": "graph",
+              "selection_ms": 0.26825999666471034,
+              "penalized_ms": 21.251340000890195,
+              "regret_ms": 0.26825999666471034,
+              "completed": 5,
+              "end_to_end_ms": {
+                "samples": 5,
+                "mean": 21.251340000890195,
+                "p50": 19.693360003293492,
+                "p95": 28.40698000509292
+              },
+              "setup_ms": {
+                "samples": 5,
+                "mean": 0.0,
+                "p50": 0.0,
+                "p95": 0.0
+              },
+              "timeouts": 0,
+              "failures": 0
+            }
+          }
+        }
+      ],
+      "paired": {
+        "fixed_local": {
+          "mean_paired_delta_ms": -64.78788833337603,
+          "bootstrap_95_ms": [
+            -194.6859237080207,
+            0.18688854125988044
+          ],
+          "completion_rate_delta": 0.0,
+          "completion_bootstrap_95": [
+            0.0,
+            0.0
+          ]
+        },
+        "fixed_server": {
+          "mean_paired_delta_ms": -426.50589833113673,
+          "bootstrap_95_ms": [
+            -1043.2421565829159,
+            -4.971066580164921
+          ],
+          "completion_rate_delta": 0.16666666666666666,
+          "completion_bootstrap_95": [
+            0.0,
+            0.4166666666666667
+          ]
+        },
+        "heuristic": {
+          "mean_paired_delta_ms": 0.15081166736005494,
+          "bootstrap_95_ms": [
+            0.11141608456455288,
+            0.1943499597109621
+          ],
+          "completion_rate_delta": 0.0,
+          "completion_bootstrap_95": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "policies": {
+        "oracle": {
+          "average_penalized_ms": 24.247036667657085,
+          "completed": 60,
+          "trials": 60,
+          "oracle_matches": 12,
+          "end_to_end_ms": {
+            "samples": 60,
+            "mean": 24.247036667657085,
+            "p50": 9.259600003133528,
+            "p95": 105.1347100001294
+          },
+          "setup_ms": {
+            "samples": 60,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p95": 0.0
+          },
+          "median_regret_ms": 0.0,
+          "selection_ms": {
+            "samples": 60,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p95": 0.0
+          },
+          "timeouts": 0,
+          "failures": 0
+        },
+        "fixed_local": {
+          "average_penalized_ms": 92.50700166764243,
+          "completed": 60,
+          "trials": 60,
+          "oracle_matches": 8,
+          "end_to_end_ms": {
+            "samples": 60,
+            "mean": 92.50700166764243,
+            "p50": 9.404050004377495,
+            "p95": 874.5850399966002
+          },
+          "setup_ms": {
+            "samples": 60,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p95": 0.0
+          },
+          "median_regret_ms": 0.0021100000594742596,
+          "selection_ms": {
+            "samples": 60,
+            "mean": 0.001745000675631066,
+            "p50": 0.001600004907231778,
+            "p95": 0.0026000052457675338
+          },
+          "timeouts": 0,
+          "failures": 0
+        },
+        "fixed_server": {
+          "average_penalized_ms": 454.22501166540314,
+          "completed": 50,
+          "trials": 60,
+          "oracle_matches": 4,
+          "end_to_end_ms": {
+            "samples": 60,
+            "mean": 374.7776666653711,
+            "p50": 28.727749988320284,
+            "p95": 2033.148569988407
+          },
+          "setup_ms": {
+            "samples": 60,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p95": 0.0
+          },
+          "median_regret_ms": 10.96512999793049,
+          "selection_ms": {
+            "samples": 60,
+            "mean": 0.0010166654343872021,
+            "p50": 0.0009499999578110874,
+            "p95": 0.0015999976312741637
+          },
+          "timeouts": 10,
+          "failures": 0
+        },
+        "heuristic": {
+          "average_penalized_ms": 27.568301666906336,
+          "completed": 60,
+          "trials": 60,
+          "oracle_matches": 9,
+          "end_to_end_ms": {
+            "samples": 60,
+            "mean": 27.568301666906336,
+            "p50": 9.402600007888395,
+            "p95": 105.1354200048081
+          },
+          "setup_ms": {
+            "samples": 60,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p95": 0.0
+          },
+          "median_regret_ms": 0.0008499991963617504,
+          "selection_ms": {
+            "samples": 60,
+            "mean": 0.0007266663790990909,
+            "p50": 0.000700005330145359,
+            "p95": 0.0011999945854768157
+          },
+          "timeouts": 0,
+          "failures": 0
+        },
+        "learned": {
+          "average_penalized_ms": 27.719113334266392,
+          "completed": 60,
+          "trials": 60,
+          "oracle_matches": 9,
+          "end_to_end_ms": {
+            "samples": 60,
+            "mean": 27.719113334266392,
+            "p50": 9.577450007782318,
+            "p95": 105.22693500024614
+          },
+          "setup_ms": {
+            "samples": 60,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p95": 0.0
+          },
+          "median_regret_ms": 0.23185000027297065,
+          "selection_ms": {
+            "samples": 60,
+            "mean": 0.15153833373915404,
+            "p50": 0.10640000982675701,
+            "p95": 0.26474998885532824
+          },
+          "timeouts": 0,
+          "failures": 0
+        }
+      },
+      "prediction_errors": {
+        "sql_log_ratio": {
+          "samples": 40,
+          "bias": 0.2597173872913556,
+          "mae": 0.771374154460862
+        },
+        "graph_latency_ms": {
+          "samples": 65,
+          "bias": -1.4914738434107186,
+          "mae": 4.087923077503756
+        },
+        "graph_timeout_risk": {
+          "samples": 75,
+          "brier": 0.13333333333333333,
+          "mean_predicted": 0.0,
+          "observed": 0.13333333333333333
+        }
+      }
+    }
+  }
+}

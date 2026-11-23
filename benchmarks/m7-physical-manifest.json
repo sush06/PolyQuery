@@ -1,0 +1,15 @@
+{
+ "version": "m7.1-v1",
+ "warm_repetitions": 5,
+ "cold_repetitions": 2,
+ "seed": 762,
+ "failure_penalty_ms": 2500,
+ "relational": {
+   "development": {"scales": [10], "families": ["invoice_price_frequency"], "windows": [[18, 47]]},
+   "heldout": {"scales": [25, 250], "families": ["billed_country_reach", "invoice_numeric_bands"], "windows": [[3, 8], [16, 83]]}
+ },
+ "graph": {
+   "development": {"scales": [512], "families": ["neighbor_count_and_route"]},
+   "heldout": {"scales": [128, 1528], "families": ["same_start_two_routes", "closed_and_open_routes"]}
+ }
+}
