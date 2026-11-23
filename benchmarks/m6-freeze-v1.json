@@ -1,0 +1,1302 @@
+{
+  "git_commit": "c5a83f61bc4123ef07834830457a54bf13e5d4b6",
+  "model": {
+    "name": "qwen3:4b-instruct",
+    "model": "qwen3:4b-instruct",
+    "modified_at": "2026-10-13T00:19:01.3373308-04:00",
+    "size": 2497293803,
+    "digest": "0edcdef34593eac1aa2be9c7d06c432dcf81945adca5eca2f27662c18f168ba0",
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "qwen3",
+      "families": [
+        "qwen3"
+      ],
+      "parameter_size": "4.0B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 262144,
+      "embedding_length": 2560,
+      "runner": "ggml"
+    },
+    "capabilities": [
+      "tools",
+      "thinking",
+      "completion"
+    ]
+  },
+  "ollama": {
+    "version": "0.40.17"
+  },
+  "manifest_sha256": "85633872fdb59a4d2e3817ac96e720f4e3d54cbf3c5657a917b31af51c93b8c3",
+  "gold_sha256": "9bbaa97150e430d045548c7d7bfa6df990064f41d8235d996e53558fb89af4b6",
+  "selector_profile_sha256": "ee7bf38824aad3bec9277554641ec2805eaf3f699a37dafe76b7300632845d40",
+  "sources": {
+    "chinook": {
+      "fixture_sha256": {
+        "data_path": "7651ba378ac2fcd0dfc3c66fb101f7a7eed3ba39a612ec642b96e20702061f15"
+      },
+      "prompt_sha256": "c478298ca2d3a37ecacc778275af1d342101abddbc99a2a5a38f4a03466d721b",
+      "schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "single_plan",
+              "dag_plan",
+              "abstain"
+            ]
+          },
+          "nodes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "backend": {
+                  "type": "string",
+                  "enum": [
+                    "abstain",
+                    "code",
+                    "sql"
+                  ]
+                },
+                "operation": {
+                  "type": "string",
+                  "enum": [
+                    "count_customers",
+                    "count_invoices",
+                    "count_tracks",
+                    "mean",
+                    "median",
+                    "revenue",
+                    "revenue_by_country",
+                    "tracks_by_genre"
+                  ]
+                },
+                "parameters": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "enum": [
+                          "unused"
+                        ]
+                      },
+                      "value": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "value"
+                    ]
+                  }
+                },
+                "bindings": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "node": {
+                        "type": "string"
+                      },
+                      "path": {
+                        "type": "array",
+                        "items": {
+                          "anyOf": [
+                            {
+                              "type": "integer"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "node",
+                      "path"
+                    ]
+                  }
+                },
+                "depends_on": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "id",
+                "backend",
+                "operation",
+                "parameters",
+                "bindings",
+                "depends_on"
+              ]
+            }
+          },
+          "outputs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "kind",
+          "nodes",
+          "outputs"
+        ]
+      },
+      "catalog": {
+        "catalog_version": 1,
+        "source": "chinook",
+        "schema": {
+          "Album": {
+            "fields": [
+              {
+                "cid": 0,
+                "name": "AlbumId",
+                "type": "INTEGER",
+                "notnull": 1,
+                "dflt_value": null,
+                "pk": 1
+              },
+              {
+                "cid": 1,
+                "name": "Title",
+                "type": "NVARCHAR(160)",
+                "notnull": 1,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 2,
+                "name": "ArtistId",
+                "type": "INTEGER",
+                "notnull": 1,
+                "dflt_value": null,
+                "pk": 0
+              }
+            ],
+            "foreign_keys": [
+              {
+                "id": 0,
+                "seq": 0,
+                "table": "Artist",
+                "from": "ArtistId",
+                "to": "ArtistId",
+                "on_update": "NO ACTION",
+                "on_delete": "NO ACTION",
+                "match": "NONE"
+              }
+            ],
+            "in_execution_projection": false
+          },
+          "Artist": {
+            "fields": [
+              {
+                "cid": 0,
+                "name": "ArtistId",
+                "type": "INTEGER",
+                "notnull": 1,
+                "dflt_value": null,
+                "pk": 1
+              },
+              {
+                "cid": 1,
+                "name": "Name",
+                "type": "NVARCHAR(120)",
+                "notnull": 0,
+                "dflt_value": null,
+                "pk": 0
+              }
+            ],
+            "foreign_keys": [],
+            "in_execution_projection": false
+          },
+          "Customer": {
+            "fields": [
+              {
+                "cid": 0,
+                "name": "CustomerId",
+                "type": "INTEGER",
+                "notnull": 1,
+                "dflt_value": null,
+                "pk": 1
+              },
+              {
+                "cid": 1,
+                "name": "FirstName",
+                "type": "NVARCHAR(40)",
+                "notnull": 1,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 2,
+                "name": "LastName",
+                "type": "NVARCHAR(20)",
+                "notnull": 1,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 3,
+                "name": "Company",
+                "type": "NVARCHAR(80)",
+                "notnull": 0,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 4,
+                "name": "Address",
+                "type": "NVARCHAR(70)",
+                "notnull": 0,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 5,
+                "name": "City",
+                "type": "NVARCHAR(40)",
+                "notnull": 0,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 6,
+                "name": "State",
+                "type": "NVARCHAR(40)",
+                "notnull": 0,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 7,
+                "name": "Country",
+                "type": "NVARCHAR(40)",
+                "notnull": 0,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 8,
+                "name": "PostalCode",
+                "type": "NVARCHAR(10)",
+                "notnull": 0,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 9,
+                "name": "Phone",
+                "type": "NVARCHAR(24)",
+                "notnull": 0,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 10,
+                "name": "Fax",
+                "type": "NVARCHAR(24)",
+                "notnull": 0,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 11,
+                "name": "Email",
+                "type": "NVARCHAR(60)",
+                "notnull": 1,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 12,
+                "name": "SupportRepId",
+                "type": "INTEGER",
+                "notnull": 0,
+                "dflt_value": null,
+                "pk": 0
+              }
+            ],
+            "foreign_keys": [
+              {
+                "id": 0,
+                "seq": 0,
+                "table": "Employee",
+                "from": "SupportRepId",
+                "to": "EmployeeId",
+                "on_update": "NO ACTION",
+                "on_delete": "NO ACTION",
+                "match": "NONE"
+              }
+            ],
+            "in_execution_projection": true
+          },
+          "Employee": {
+            "fields": [
+              {
+                "cid": 0,
+                "name": "EmployeeId",
+                "type": "INTEGER",
+                "notnull": 1,
+                "dflt_value": null,
+                "pk": 1
+              },
+              {
+                "cid": 1,
+                "name": "LastName",
+                "type": "NVARCHAR(20)",
+                "notnull": 1,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 2,
+                "name": "FirstName",
+                "type": "NVARCHAR(20)",
+                "notnull": 1,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 3,
+                "name": "Title",
+                "type": "NVARCHAR(30)",
+                "notnull": 0,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 4,
+                "name": "ReportsTo",
+                "type": "INTEGER",
+                "notnull": 0,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 5,
+                "name": "BirthDate",
+                "type": "DATETIME",
+                "notnull": 0,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 6,
+                "name": "HireDate",
+                "type": "DATETIME",
+                "notnull": 0,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 7,
+                "name": "Address",
+                "type": "NVARCHAR(70)",
+                "notnull": 0,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 8,
+                "name": "City",
+                "type": "NVARCHAR(40)",
+                "notnull": 0,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 9,
+                "name": "State",
+                "type": "NVARCHAR(40)",
+                "notnull": 0,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 10,
+                "name": "Country",
+                "type": "NVARCHAR(40)",
+                "notnull": 0,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 11,
+                "name": "PostalCode",
+                "type": "NVARCHAR(10)",
+                "notnull": 0,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 12,
+                "name": "Phone",
+                "type": "NVARCHAR(24)",
+                "notnull": 0,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 13,
+                "name": "Fax",
+                "type": "NVARCHAR(24)",
+                "notnull": 0,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 14,
+                "name": "Email",
+                "type": "NVARCHAR(60)",
+                "notnull": 0,
+                "dflt_value": null,
+                "pk": 0
+              }
+            ],
+            "foreign_keys": [
+              {
+                "id": 0,
+                "seq": 0,
+                "table": "Employee",
+                "from": "ReportsTo",
+                "to": "EmployeeId",
+                "on_update": "NO ACTION",
+                "on_delete": "NO ACTION",
+                "match": "NONE"
+              }
+            ],
+            "in_execution_projection": false
+          },
+          "Genre": {
+            "fields": [
+              {
+                "cid": 0,
+                "name": "GenreId",
+                "type": "INTEGER",
+                "notnull": 1,
+                "dflt_value": null,
+                "pk": 1
+              },
+              {
+                "cid": 1,
+                "name": "Name",
+                "type": "NVARCHAR(120)",
+                "notnull": 0,
+                "dflt_value": null,
+                "pk": 0
+              }
+            ],
+            "foreign_keys": [],
+            "in_execution_projection": true
+          },
+          "Invoice": {
+            "fields": [
+              {
+                "cid": 0,
+                "name": "InvoiceId",
+                "type": "INTEGER",
+                "notnull": 1,
+                "dflt_value": null,
+                "pk": 1
+              },
+              {
+                "cid": 1,
+                "name": "CustomerId",
+                "type": "INTEGER",
+                "notnull": 1,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 2,
+                "name": "InvoiceDate",
+                "type": "DATETIME",
+                "notnull": 1,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 3,
+                "name": "BillingAddress",
+                "type": "NVARCHAR(70)",
+                "notnull": 0,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 4,
+                "name": "BillingCity",
+                "type": "NVARCHAR(40)",
+                "notnull": 0,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 5,
+                "name": "BillingState",
+                "type": "NVARCHAR(40)",
+                "notnull": 0,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 6,
+                "name": "BillingCountry",
+                "type": "NVARCHAR(40)",
+                "notnull": 0,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 7,
+                "name": "BillingPostalCode",
+                "type": "NVARCHAR(10)",
+                "notnull": 0,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 8,
+                "name": "Total",
+                "type": "NUMERIC(10,2)",
+                "notnull": 1,
+                "dflt_value": null,
+                "pk": 0
+              }
+            ],
+            "foreign_keys": [
+              {
+                "id": 0,
+                "seq": 0,
+                "table": "Customer",
+                "from": "CustomerId",
+                "to": "CustomerId",
+                "on_update": "NO ACTION",
+                "on_delete": "NO ACTION",
+                "match": "NONE"
+              }
+            ],
+            "in_execution_projection": true
+          },
+          "InvoiceLine": {
+            "fields": [
+              {
+                "cid": 0,
+                "name": "InvoiceLineId",
+                "type": "INTEGER",
+                "notnull": 1,
+                "dflt_value": null,
+                "pk": 1
+              },
+              {
+                "cid": 1,
+                "name": "InvoiceId",
+                "type": "INTEGER",
+                "notnull": 1,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 2,
+                "name": "TrackId",
+                "type": "INTEGER",
+                "notnull": 1,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 3,
+                "name": "UnitPrice",
+                "type": "NUMERIC(10,2)",
+                "notnull": 1,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 4,
+                "name": "Quantity",
+                "type": "INTEGER",
+                "notnull": 1,
+                "dflt_value": null,
+                "pk": 0
+              }
+            ],
+            "foreign_keys": [
+              {
+                "id": 0,
+                "seq": 0,
+                "table": "Track",
+                "from": "TrackId",
+                "to": "TrackId",
+                "on_update": "NO ACTION",
+                "on_delete": "NO ACTION",
+                "match": "NONE"
+              },
+              {
+                "id": 1,
+                "seq": 0,
+                "table": "Invoice",
+                "from": "InvoiceId",
+                "to": "InvoiceId",
+                "on_update": "NO ACTION",
+                "on_delete": "NO ACTION",
+                "match": "NONE"
+              }
+            ],
+            "in_execution_projection": false
+          },
+          "MediaType": {
+            "fields": [
+              {
+                "cid": 0,
+                "name": "MediaTypeId",
+                "type": "INTEGER",
+                "notnull": 1,
+                "dflt_value": null,
+                "pk": 1
+              },
+              {
+                "cid": 1,
+                "name": "Name",
+                "type": "NVARCHAR(120)",
+                "notnull": 0,
+                "dflt_value": null,
+                "pk": 0
+              }
+            ],
+            "foreign_keys": [],
+            "in_execution_projection": false
+          },
+          "Playlist": {
+            "fields": [
+              {
+                "cid": 0,
+                "name": "PlaylistId",
+                "type": "INTEGER",
+                "notnull": 1,
+                "dflt_value": null,
+                "pk": 1
+              },
+              {
+                "cid": 1,
+                "name": "Name",
+                "type": "NVARCHAR(120)",
+                "notnull": 0,
+                "dflt_value": null,
+                "pk": 0
+              }
+            ],
+            "foreign_keys": [],
+            "in_execution_projection": false
+          },
+          "PlaylistTrack": {
+            "fields": [
+              {
+                "cid": 0,
+                "name": "PlaylistId",
+                "type": "INTEGER",
+                "notnull": 1,
+                "dflt_value": null,
+                "pk": 1
+              },
+              {
+                "cid": 1,
+                "name": "TrackId",
+                "type": "INTEGER",
+                "notnull": 1,
+                "dflt_value": null,
+                "pk": 2
+              }
+            ],
+            "foreign_keys": [
+              {
+                "id": 0,
+                "seq": 0,
+                "table": "Track",
+                "from": "TrackId",
+                "to": "TrackId",
+                "on_update": "NO ACTION",
+                "on_delete": "NO ACTION",
+                "match": "NONE"
+              },
+              {
+                "id": 1,
+                "seq": 0,
+                "table": "Playlist",
+                "from": "PlaylistId",
+                "to": "PlaylistId",
+                "on_update": "NO ACTION",
+                "on_delete": "NO ACTION",
+                "match": "NONE"
+              }
+            ],
+            "in_execution_projection": false
+          },
+          "Track": {
+            "fields": [
+              {
+                "cid": 0,
+                "name": "TrackId",
+                "type": "INTEGER",
+                "notnull": 1,
+                "dflt_value": null,
+                "pk": 1
+              },
+              {
+                "cid": 1,
+                "name": "Name",
+                "type": "NVARCHAR(200)",
+                "notnull": 1,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 2,
+                "name": "AlbumId",
+                "type": "INTEGER",
+                "notnull": 0,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 3,
+                "name": "MediaTypeId",
+                "type": "INTEGER",
+                "notnull": 1,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 4,
+                "name": "GenreId",
+                "type": "INTEGER",
+                "notnull": 0,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 5,
+                "name": "Composer",
+                "type": "NVARCHAR(220)",
+                "notnull": 0,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 6,
+                "name": "Milliseconds",
+                "type": "INTEGER",
+                "notnull": 1,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 7,
+                "name": "Bytes",
+                "type": "INTEGER",
+                "notnull": 0,
+                "dflt_value": null,
+                "pk": 0
+              },
+              {
+                "cid": 8,
+                "name": "UnitPrice",
+                "type": "NUMERIC(10,2)",
+                "notnull": 1,
+                "dflt_value": null,
+                "pk": 0
+              }
+            ],
+            "foreign_keys": [
+              {
+                "id": 0,
+                "seq": 0,
+                "table": "MediaType",
+                "from": "MediaTypeId",
+                "to": "MediaTypeId",
+                "on_update": "NO ACTION",
+                "on_delete": "NO ACTION",
+                "match": "NONE"
+              },
+              {
+                "id": 1,
+                "seq": 0,
+                "table": "Genre",
+                "from": "GenreId",
+                "to": "GenreId",
+                "on_update": "NO ACTION",
+                "on_delete": "NO ACTION",
+                "match": "NONE"
+              },
+              {
+                "id": 2,
+                "seq": 0,
+                "table": "Album",
+                "from": "AlbumId",
+                "to": "AlbumId",
+                "on_update": "NO ACTION",
+                "on_delete": "NO ACTION",
+                "match": "NONE"
+              }
+            ],
+            "in_execution_projection": true
+          }
+        },
+        "operations": {
+          "count_tracks": {
+            "backends": [
+              "sql",
+              "code"
+            ],
+            "result": {
+              "kind": "integer",
+              "nullable": false,
+              "fields": {},
+              "entity": null,
+              "semantics": "Nonnegative row/node count."
+            },
+            "parameters": {},
+            "description": "Count Track rows."
+          },
+          "count_customers": {
+            "backends": [
+              "sql",
+              "code"
+            ],
+            "result": {
+              "kind": "integer",
+              "nullable": false,
+              "fields": {},
+              "entity": null,
+              "semantics": "Nonnegative row/node count."
+            },
+            "parameters": {},
+            "description": "Count Customer rows."
+          },
+          "count_invoices": {
+            "backends": [
+              "sql",
+              "code"
+            ],
+            "result": {
+              "kind": "integer",
+              "nullable": false,
+              "fields": {},
+              "entity": null,
+              "semantics": "Nonnegative row/node count."
+            },
+            "parameters": {},
+            "description": "Count Invoice rows."
+          },
+          "revenue": {
+            "backends": [
+              "sql",
+              "code"
+            ],
+            "result": {
+              "kind": "number",
+              "nullable": true,
+              "fields": {},
+              "entity": null,
+              "semantics": "Null when no valid numeric observations; aggregate nulls ignored."
+            },
+            "parameters": {},
+            "description": "Sum Invoice.Total."
+          },
+          "mean": {
+            "backends": [
+              "sql",
+              "code"
+            ],
+            "result": {
+              "kind": "number",
+              "nullable": true,
+              "fields": {},
+              "entity": null,
+              "semantics": "Null when no valid numeric observations; aggregate nulls ignored."
+            },
+            "parameters": {},
+            "description": "Mean Invoice.Total."
+          },
+          "median": {
+            "backends": [
+              "sql",
+              "code"
+            ],
+            "result": {
+              "kind": "number",
+              "nullable": true,
+              "fields": {},
+              "entity": null,
+              "semantics": "Null when no valid numeric observations; aggregate nulls ignored."
+            },
+            "parameters": {},
+            "description": "Median Invoice.Total."
+          },
+          "revenue_by_country": {
+            "backends": [
+              "sql",
+              "code"
+            ],
+            "result": {
+              "kind": "rows",
+              "nullable": false,
+              "fields": {
+                "country": "string?",
+                "revenue": "number?"
+              },
+              "entity": null,
+              "semantics": "Billing-country groups; country order"
+            },
+            "parameters": {},
+            "description": "Sum Invoice.Total grouped by Invoice.BillingCountry; country order."
+          },
+          "tracks_by_genre": {
+            "backends": [
+              "sql",
+              "code"
+            ],
+            "result": {
+              "kind": "rows",
+              "nullable": false,
+              "fields": {
+                "genre": "string",
+                "tracks": "integer"
+              },
+              "entity": null,
+              "semantics": "Inner join on GenreId; genre-name order"
+            },
+            "parameters": {},
+            "description": "Count tracks joined to Genre by GenreId, grouped by genre; genre-name order."
+          }
+        },
+        "cost_catalog": {
+          "status": "unmeasured",
+          "units": "milliseconds",
+          "monetary_cost": null
+        },
+        "identity_rule": "Entity identity is scoped by source and entity; IDs never imply cross-source equivalence."
+      }
+    },
+    "ldbc": {
+      "fixture_sha256": {
+        "people_path": "3ce1587334c86f6ca741de8cdeacfd79c4edd2aa62817cccb1b329fa5b066346",
+        "edges_path": "2c5d7c023d637bf87f5fb809acc9f468dda38a99f030837c20a21e851604d24c"
+      },
+      "prompt_sha256": "466b35e3c10d4ea1c38e8229cb8eecd26e9f53a79f44167ce6efbbc70885b863",
+      "schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "single_plan",
+              "dag_plan",
+              "abstain"
+            ]
+          },
+          "nodes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "backend": {
+                  "type": "string",
+                  "enum": [
+                    "abstain",
+                    "graph",
+                    "sql"
+                  ]
+                },
+                "operation": {
+                  "type": "string",
+                  "enum": [
+                    "count_people",
+                    "friends",
+                    "shortest_path"
+                  ]
+                },
+                "parameters": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "enum": [
+                          "source",
+                          "target"
+                        ]
+                      },
+                      "value": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "value"
+                    ]
+                  }
+                },
+                "bindings": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "node": {
+                        "type": "string"
+                      },
+                      "path": {
+                        "type": "array",
+                        "items": {
+                          "anyOf": [
+                            {
+                              "type": "integer"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "node",
+                      "path"
+                    ]
+                  }
+                },
+                "depends_on": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "id",
+                "backend",
+                "operation",
+                "parameters",
+                "bindings",
+                "depends_on"
+              ]
+            }
+          },
+          "outputs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "kind",
+          "nodes",
+          "outputs"
+        ]
+      },
+      "catalog": {
+        "catalog_version": 1,
+        "source": "ldbc",
+        "schema": {
+          "entities": {
+            "person": {
+              "key": [
+                "id"
+              ],
+              "key_type": "string",
+              "fields": {
+                "id": "string",
+                "first_name": "string",
+                "last_name": "string"
+              }
+            }
+          },
+          "relationships": [
+            {
+              "name": "knows",
+              "source": "person",
+              "target": "person",
+              "directed": false,
+              "duplicates": "collapsed"
+            }
+          ],
+          "excluded_fields": [
+            "birthday",
+            "creationDate",
+            "gender",
+            "locationIP",
+            "browserUsed"
+          ]
+        },
+        "operations": {
+          "count_people": {
+            "backends": [
+              "graph",
+              "sql"
+            ],
+            "result": {
+              "kind": "integer",
+              "nullable": false,
+              "fields": {},
+              "entity": null,
+              "semantics": "Nonnegative row/node count."
+            },
+            "parameters": {},
+            "description": "Count all loaded people."
+          },
+          "friends": {
+            "backends": [
+              "graph",
+              "sql"
+            ],
+            "result": {
+              "kind": "rows",
+              "nullable": false,
+              "fields": {
+                "id": "string",
+                "first_name": "string",
+                "last_name": "string"
+              },
+              "entity": "person",
+              "semantics": "Unique direct friends; numeric ID order"
+            },
+            "parameters": {
+              "source": {
+                "kind": "string",
+                "required": true,
+                "nullable": false,
+                "domain": "person"
+              }
+            },
+            "description": "List unique direct undirected friends of source."
+          },
+          "shortest_path": {
+            "backends": [
+              "graph",
+              "sql"
+            ],
+            "result": {
+              "kind": "path",
+              "nullable": true,
+              "fields": {},
+              "entity": "person",
+              "semantics": "Undirected shortest path; null if disconnected; ties may differ"
+            },
+            "parameters": {
+              "source": {
+                "kind": "string",
+                "required": true,
+                "nullable": false,
+                "domain": "person"
+              },
+              "target": {
+                "kind": "string",
+                "required": true,
+                "nullable": false,
+                "domain": "person"
+              }
+            },
+            "description": ""
+          }
+        },
+        "cost_catalog": {
+          "status": "unmeasured",
+          "units": "milliseconds",
+          "monetary_cost": null
+        },
+        "identity_rule": "Entity identity is scoped by source and entity; IDs never imply cross-source equivalence."
+      }
+    }
+  },
+  "verifier_sha256": {
+    "polyquery\\backends.py": "7124067e97788f9c8ec9e1f6ccb5776205afe433470512a7142aff86c52ee087",
+    "polyquery\\canonical.py": "8f7e15a2b24624c1dff11281201cc314355163a23d7a5256d6b65f336082c22f",
+    "polyquery\\catalog.py": "53fc3e587be97cb1d013be2fc63cf4a9cf25dc3fa8a6c5e1ff98114c82c04724",
+    "polyquery\\cli.py": "abcd7e174bd7c3ec479753cd59f14116fd884057d0cf7f38c742793dc2e7f0e5",
+    "polyquery\\composition_evaluation.py": "acc13034ba4bade732787c1ce9cfff5bf0651fd4c44f1974a6dbfe66ea8c70ce",
+    "polyquery\\constraints.py": "cfc1119b9a886c70c5107cba9fbe157890aa402bf2958bb8fedd8c3ad12e92dc",
+    "polyquery\\constraint_evaluation.py": "3b9a895be2a2ed672bb5dede1688fdd68dc40e857388230d1077348d212b3c96",
+    "polyquery\\constraint_planning.py": "94841435edd8379ce3228c03893239fa40294b37c42662e08bcef54af79ad283",
+    "polyquery\\costs.py": "c15df6c333148717f99725999d67323a85b3dbfa006b946beeec796f491d1290",
+    "polyquery\\dag.py": "35693c7f4f8564f6c7957082e08cc7b4f652f3ddacca613604bd8d7a0e03d221",
+    "polyquery\\dag_evaluation.py": "7ec5bbcfaff470da9fa7e3133e6b07e47eaeee508032ae060082685cf7be576c",
+    "polyquery\\dag_planner.py": "0259c9b6748071ee697964ebd35c0731439c7a986ef97caa215a4025fe1625b4",
+    "polyquery\\data.py": "0a279945a555f5f2730ba88122ad81d6124588d1573fa808d74d8e83c8d1a293",
+    "polyquery\\engine.py": "5e74521e08caa4b055764802b3425eba859b288f9230e57aeb052ac8f620c647",
+    "polyquery\\evaluation.py": "1ad2da9bbc259641cb910ba1bb1e0657862831eb6f42ff46deee493bbcfe3d7f",
+    "polyquery\\evaluation_v2.py": "3ad5ff343c6418fe2d90835408bc82b0291301b1f06f863b898162c9b811c7bf",
+    "polyquery\\evaluation_v2_reference.py": "3580aa07dc00c853db1380882a5f27326fe1ce7503e9f5f6045cd52399850d63",
+    "polyquery\\intelligent_router.py": "fa20722b6bcc70e79adcdd280a47a414d9be68691debed6796482452ff90808a",
+    "polyquery\\jev.py": "93a1e6ce8da6fd1427018cef1bceac372127abfbfafe47ad83640a9fb57a8d12",
+    "polyquery\\label_answers.py": "9432956ac7649d0cce30793a66ac4b6d0e13cb5ae877a5ca78d14b5b84096c01",
+    "polyquery\\label_oracle.py": "b7f5afb8f6404cc8c3b039af9611d551044bfff754284afcd8b155262f6c6ccc",
+    "polyquery\\label_review.py": "9367a61645f0ca01685c97ac27ca6b180fdd2c98a3ef9d569bda437aa35daae2",
+    "polyquery\\ldbc.py": "020f6d6c0ae113ddd83535bc95516d3fa3785fc8a097aa7f61a655d10144ffff",
+    "polyquery\\ldbc_sql.py": "b4ed9bd7369d8875e18cfbccf09b870865d1d4a6e2d3c359eefc261a9e2d0e02",
+    "polyquery\\ldbc_sql_frontier.py": "7e0e3aadfb928e9077b3c826593a49e0c385c29dbad789e1708476c4333f0989",
+    "polyquery\\ldbc_sql_graph.py": "8e1b9314ff6490cab3a8ad2a09b1f5598a400f40181104e58683248947a33bf4",
+    "polyquery\\llm.py": "fc9851e59b6c4f2e2514771a32b2c030d7a5b10263753c02d8c998eaaa373431",
+    "polyquery\\llm_contract.py": "a1a0e12e45e9b0b7ae387fb656a03a18864b3bdc3b60ea5ea5959de956e12a43",
+    "polyquery\\llm_dag.py": "13c99ef37b1961ce77d2fe74572c6c8acaf569d9a68ccb5b73e0cd715a6c365d",
+    "polyquery\\physical_sql.py": "0b01fbe7d7eefd7cfff5c4616ea8498a2cc5e803e1ea2340b817f49154930267",
+    "polyquery\\planner.py": "7fa7826b963f0b4b7b9ebd82bb5fcf5b1bc8e819e60f54f0f8e5351528f39ffc",
+    "polyquery\\router_comparison.py": "12cbe885dd6cfb8e5df5b3208a6fb4a4ca8d5c3dede5688f5e8eca253c4da37c",
+    "polyquery\\semantic_audit.py": "ac43541e1b90b09778c3eba3af7ffb1d19080faee62a553bc5e85a6dbde88e50",
+    "polyquery\\semantic_intent.py": "2935fd082222f30cc8ca9d622cf3d8aba64cdf424013a5d44803ba1107462709",
+    "polyquery\\semantic_ir.py": "7271ff25e2c9930339b75fa077d756bb19b002b53c982270db0d9eb069c326eb",
+    "polyquery\\sqlserver.py": "feece5ef59de6f87a46c7516d244f6e88d6b19866a14acaf9fc6f0d47729ecb5",
+    "polyquery\\tabular.py": "c3b9dcd495f1082cabd512ec3456034a2c9cffe54b06fad1c0fc9425d80366b5",
+    "polyquery\\typed_intent.py": "69797c89f677f09d3656cde05c4f887b009484ef225db56bb58952174147924e",
+    "polyquery\\__init__.py": "96ec0505b83fefb9b95cb2cf4999023e6cdab2242b70c567aee21e5a050adbc4"
+  },
+  "settings": {
+    "native_schema": true,
+    "seed": 43,
+    "temperature": 0,
+    "thinking": false,
+    "max_output_tokens": 1200,
+    "timeout_seconds": 120,
+    "repair": false
+  }
+}

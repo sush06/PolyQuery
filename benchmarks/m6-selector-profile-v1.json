@@ -1,0 +1,1532 @@
+{
+  "version": 1,
+  "rows": [
+    {
+      "source": "chinook",
+      "operation": "count_tracks",
+      "backend": "sqlite",
+      "features": {
+        "rows": 3503,
+        "edges": 0,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": null,
+        "degree": 0,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 0.342149999596586,
+      "timed_out": false
+    },
+    {
+      "source": "chinook",
+      "operation": "count_customers",
+      "backend": "sqlite",
+      "features": {
+        "rows": 59,
+        "edges": 0,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": null,
+        "degree": 0,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 0.31355000101029873,
+      "timed_out": false
+    },
+    {
+      "source": "chinook",
+      "operation": "count_invoices",
+      "backend": "sqlite",
+      "features": {
+        "rows": 412,
+        "edges": 0,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": null,
+        "degree": 0,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 0.3182499995091348,
+      "timed_out": false
+    },
+    {
+      "source": "chinook",
+      "operation": "revenue",
+      "backend": "sqlite",
+      "features": {
+        "rows": 412,
+        "edges": 0,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": null,
+        "degree": 0,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 0.3937999999834574,
+      "timed_out": false
+    },
+    {
+      "source": "chinook",
+      "operation": "mean",
+      "backend": "sqlite",
+      "features": {
+        "rows": 412,
+        "edges": 0,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": null,
+        "degree": 0,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 0.3957500002798042,
+      "timed_out": false
+    },
+    {
+      "source": "chinook",
+      "operation": "count_tracks",
+      "backend": "sqlserver",
+      "features": {
+        "rows": 3503,
+        "edges": 0,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": null,
+        "degree": 0,
+        "indexed": false,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 1.079599999684433,
+      "timed_out": false
+    },
+    {
+      "source": "chinook",
+      "operation": "count_customers",
+      "backend": "sqlserver",
+      "features": {
+        "rows": 59,
+        "edges": 0,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": null,
+        "degree": 0,
+        "indexed": false,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 0.5135999999765772,
+      "timed_out": false
+    },
+    {
+      "source": "chinook",
+      "operation": "count_invoices",
+      "backend": "sqlserver",
+      "features": {
+        "rows": 412,
+        "edges": 0,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": null,
+        "degree": 0,
+        "indexed": false,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 0.5358999997042702,
+      "timed_out": false
+    },
+    {
+      "source": "chinook",
+      "operation": "revenue",
+      "backend": "sqlserver",
+      "features": {
+        "rows": 412,
+        "edges": 0,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": null,
+        "degree": 0,
+        "indexed": false,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 0.6445999997595209,
+      "timed_out": false
+    },
+    {
+      "source": "chinook",
+      "operation": "mean",
+      "backend": "sqlserver",
+      "features": {
+        "rows": 412,
+        "edges": 0,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": null,
+        "degree": 0,
+        "indexed": false,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 0.6939999993846868,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "friends",
+      "backend": "graph",
+      "features": {
+        "rows": 128,
+        "edges": 282,
+        "selectivity": 0.0078125,
+        "joins": 0,
+        "hop_estimate": 1,
+        "degree": 1,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 0.08009999874047935,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "friends",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 128,
+        "edges": 282,
+        "selectivity": 0.0078125,
+        "joins": 1,
+        "hop_estimate": 1,
+        "degree": 1,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 0.625400003627874,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "friends",
+      "backend": "graph",
+      "features": {
+        "rows": 128,
+        "edges": 282,
+        "selectivity": 0.078125,
+        "joins": 0,
+        "hop_estimate": 1,
+        "degree": 10,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 0.11480000102892518,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "friends",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 128,
+        "edges": 282,
+        "selectivity": 0.078125,
+        "joins": 1,
+        "hop_estimate": 1,
+        "degree": 10,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 0.7111000013537705,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "friends",
+      "backend": "graph",
+      "features": {
+        "rows": 128,
+        "edges": 282,
+        "selectivity": 0.0,
+        "joins": 0,
+        "hop_estimate": 1,
+        "degree": 0,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 0.07280000136233866,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "friends",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 128,
+        "edges": 282,
+        "selectivity": 0.0,
+        "joins": 1,
+        "hop_estimate": 1,
+        "degree": 0,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 0.4954999967594631,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "graph",
+      "features": {
+        "rows": 128,
+        "edges": 282,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": 0,
+        "degree": 1,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 0.10910000128205866,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 128,
+        "edges": 282,
+        "selectivity": null,
+        "joins": 1,
+        "hop_estimate": 0,
+        "degree": 1,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 6.980500002100598,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "graph",
+      "features": {
+        "rows": 128,
+        "edges": 282,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": null,
+        "degree": 1,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 0.0973999995039776,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 128,
+        "edges": 282,
+        "selectivity": null,
+        "joins": 1,
+        "hop_estimate": null,
+        "degree": 1,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 7.262099999934435,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "graph",
+      "features": {
+        "rows": 128,
+        "edges": 282,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": null,
+        "degree": 1,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 0.1005000012810342,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 128,
+        "edges": 282,
+        "selectivity": null,
+        "joins": 1,
+        "hop_estimate": null,
+        "degree": 1,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 8.335999998962507,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "graph",
+      "features": {
+        "rows": 128,
+        "edges": 282,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": null,
+        "degree": 1,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 0.15659999917261302,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 128,
+        "edges": 282,
+        "selectivity": null,
+        "joins": 1,
+        "hop_estimate": null,
+        "degree": 1,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 10.882200003834441,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "graph",
+      "features": {
+        "rows": 128,
+        "edges": 282,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": null,
+        "degree": 1,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 0.3652000013971701,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 128,
+        "edges": 282,
+        "selectivity": null,
+        "joins": 1,
+        "hop_estimate": null,
+        "degree": 1,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 13.579300000856165,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "graph",
+      "features": {
+        "rows": 128,
+        "edges": 282,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": null,
+        "degree": 1,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 0.3532999980961904,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 128,
+        "edges": 282,
+        "selectivity": null,
+        "joins": 1,
+        "hop_estimate": null,
+        "degree": 1,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 12.3851000025752,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "graph",
+      "features": {
+        "rows": 128,
+        "edges": 282,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": 0,
+        "degree": 10,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 0.0813999940874055,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 128,
+        "edges": 282,
+        "selectivity": null,
+        "joins": 1,
+        "hop_estimate": 0,
+        "degree": 10,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 5.0572999971336685,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "graph",
+      "features": {
+        "rows": 128,
+        "edges": 282,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": null,
+        "degree": 10,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 0.09360000694869086,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 128,
+        "edges": 282,
+        "selectivity": null,
+        "joins": 1,
+        "hop_estimate": null,
+        "degree": 10,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 6.008000003930647,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "graph",
+      "features": {
+        "rows": 128,
+        "edges": 282,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": null,
+        "degree": 10,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 0.10990000009769574,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 128,
+        "edges": 282,
+        "selectivity": null,
+        "joins": 1,
+        "hop_estimate": null,
+        "degree": 10,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 10.707599998568185,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "graph",
+      "features": {
+        "rows": 128,
+        "edges": 282,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": null,
+        "degree": 10,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 0.2808999997796491,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 128,
+        "edges": 282,
+        "selectivity": null,
+        "joins": 1,
+        "hop_estimate": null,
+        "degree": 10,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 11.92330000048969,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "graph",
+      "features": {
+        "rows": 128,
+        "edges": 282,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": null,
+        "degree": 10,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 0.4044999950565398,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 128,
+        "edges": 282,
+        "selectivity": null,
+        "joins": 1,
+        "hop_estimate": null,
+        "degree": 10,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 13.577500001701992,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "graph",
+      "features": {
+        "rows": 128,
+        "edges": 282,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": null,
+        "degree": 10,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 0.3538000019034371,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 128,
+        "edges": 282,
+        "selectivity": null,
+        "joins": 1,
+        "hop_estimate": null,
+        "degree": 10,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 12.081000000762288,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "friends",
+      "backend": "graph",
+      "features": {
+        "rows": 512,
+        "edges": 3542,
+        "selectivity": 0.001953125,
+        "joins": 0,
+        "hop_estimate": 1,
+        "degree": 1,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 0.0957000011112541,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "friends",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 512,
+        "edges": 3542,
+        "selectivity": 0.001953125,
+        "joins": 1,
+        "hop_estimate": 1,
+        "degree": 1,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 0.6897000057506375,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "friends",
+      "backend": "graph",
+      "features": {
+        "rows": 512,
+        "edges": 3542,
+        "selectivity": 0.173828125,
+        "joins": 0,
+        "hop_estimate": 1,
+        "degree": 89,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 0.4929999995511025,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "friends",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 512,
+        "edges": 3542,
+        "selectivity": 0.173828125,
+        "joins": 1,
+        "hop_estimate": 1,
+        "degree": 89,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 2.0559000040520914,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "friends",
+      "backend": "graph",
+      "features": {
+        "rows": 512,
+        "edges": 3542,
+        "selectivity": 0.0,
+        "joins": 0,
+        "hop_estimate": 1,
+        "degree": 0,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 0.07810000533936545,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "friends",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 512,
+        "edges": 3542,
+        "selectivity": 0.0,
+        "joins": 1,
+        "hop_estimate": 1,
+        "degree": 0,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 0.6681999948341399,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "graph",
+      "features": {
+        "rows": 512,
+        "edges": 3542,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": 0,
+        "degree": 1,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 0.10550000297371298,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 512,
+        "edges": 3542,
+        "selectivity": null,
+        "joins": 1,
+        "hop_estimate": 0,
+        "degree": 1,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 7.763199995679315,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "graph",
+      "features": {
+        "rows": 512,
+        "edges": 3542,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": null,
+        "degree": 1,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 0.10789999942062423,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 512,
+        "edges": 3542,
+        "selectivity": null,
+        "joins": 1,
+        "hop_estimate": null,
+        "degree": 1,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 7.5849999993806705,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "graph",
+      "features": {
+        "rows": 512,
+        "edges": 3542,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": null,
+        "degree": 1,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 0.16490000416524708,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 512,
+        "edges": 3542,
+        "selectivity": null,
+        "joins": 1,
+        "hop_estimate": null,
+        "degree": 1,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 8.578000000852626,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "graph",
+      "features": {
+        "rows": 512,
+        "edges": 3542,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": null,
+        "degree": 1,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 0.9613000001991168,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 512,
+        "edges": 3542,
+        "selectivity": null,
+        "joins": 1,
+        "hop_estimate": null,
+        "degree": 1,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 99.11339999962365,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "graph",
+      "features": {
+        "rows": 512,
+        "edges": 3542,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": null,
+        "degree": 1,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 2.241800000774674,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 512,
+        "edges": 3542,
+        "selectivity": null,
+        "joins": 1,
+        "hop_estimate": null,
+        "degree": 1,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 102.38050000043586,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "graph",
+      "features": {
+        "rows": 512,
+        "edges": 3542,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": 0,
+        "degree": 89,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 0.08600000001024455,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 512,
+        "edges": 3542,
+        "selectivity": null,
+        "joins": 1,
+        "hop_estimate": 0,
+        "degree": 89,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 5.512000003363937,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "graph",
+      "features": {
+        "rows": 512,
+        "edges": 3542,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": null,
+        "degree": 89,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 0.1883000004454516,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 512,
+        "edges": 3542,
+        "selectivity": null,
+        "joins": 1,
+        "hop_estimate": null,
+        "degree": 89,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 9.323000005679205,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "graph",
+      "features": {
+        "rows": 512,
+        "edges": 3542,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": null,
+        "degree": 89,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 0.5998000051476993,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 512,
+        "edges": 3542,
+        "selectivity": null,
+        "joins": 1,
+        "hop_estimate": null,
+        "degree": 89,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 32.79750000365311,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "graph",
+      "features": {
+        "rows": 512,
+        "edges": 3542,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": null,
+        "degree": 89,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 1.0640000036801212,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 512,
+        "edges": 3542,
+        "selectivity": null,
+        "joins": 1,
+        "hop_estimate": null,
+        "degree": 89,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 97.12430000217864,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "graph",
+      "features": {
+        "rows": 512,
+        "edges": 3542,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": null,
+        "degree": 89,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 2.2481999985757284,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 512,
+        "edges": 3542,
+        "selectivity": null,
+        "joins": 1,
+        "hop_estimate": null,
+        "degree": 89,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 106.23239999404177,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "count_people",
+      "backend": "graph",
+      "features": {
+        "rows": 1528,
+        "edges": 28146,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": null,
+        "degree": 0,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 0.05539999983739108,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "count_people",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 1528,
+        "edges": 28146,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": null,
+        "degree": 0,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 0.45229999523144215,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "friends",
+      "backend": "graph",
+      "features": {
+        "rows": 1528,
+        "edges": 28146,
+        "selectivity": 0.0,
+        "joins": 0,
+        "hop_estimate": 1,
+        "degree": 0,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 0.07300000288523734,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "friends",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 1528,
+        "edges": 28146,
+        "selectivity": 0.0,
+        "joins": 1,
+        "hop_estimate": 1,
+        "degree": 0,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 0.4939999998896383,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "friends",
+      "backend": "graph",
+      "features": {
+        "rows": 1528,
+        "edges": 28146,
+        "selectivity": 0.001963350785340314,
+        "joins": 0,
+        "hop_estimate": 1,
+        "degree": 3,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 0.09100000170292333,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "friends",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 1528,
+        "edges": 28146,
+        "selectivity": 0.001963350785340314,
+        "joins": 1,
+        "hop_estimate": 1,
+        "degree": 3,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 0.5709000033675693,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "friends",
+      "backend": "graph",
+      "features": {
+        "rows": 1528,
+        "edges": 28146,
+        "selectivity": 0.22251308900523561,
+        "joins": 0,
+        "hop_estimate": 1,
+        "degree": 340,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 1.5247000046656467,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "friends",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 1528,
+        "edges": 28146,
+        "selectivity": 0.22251308900523561,
+        "joins": 1,
+        "hop_estimate": 1,
+        "degree": 340,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 4.5010999965597875,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "graph",
+      "features": {
+        "rows": 1528,
+        "edges": 28146,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": null,
+        "degree": 0,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 0.06929999653948471,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 1528,
+        "edges": 28146,
+        "selectivity": null,
+        "joins": 1,
+        "hop_estimate": null,
+        "degree": 0,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 5.080700000689831,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "graph",
+      "features": {
+        "rows": 1528,
+        "edges": 28146,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": null,
+        "degree": 3,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 15.754799998831004,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 1528,
+        "edges": 28146,
+        "selectivity": null,
+        "joins": 1,
+        "hop_estimate": null,
+        "degree": 3,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": null,
+      "timed_out": true
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "graph",
+      "features": {
+        "rows": 1528,
+        "edges": 28146,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": null,
+        "degree": 0,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 0.07959999493323267,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 1528,
+        "edges": 28146,
+        "selectivity": null,
+        "joins": 1,
+        "hop_estimate": null,
+        "degree": 0,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 5.075300003227312,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "graph",
+      "features": {
+        "rows": 1528,
+        "edges": 28146,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": null,
+        "degree": 14,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 1.1089000036008656,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 1528,
+        "edges": 28146,
+        "selectivity": null,
+        "joins": 1,
+        "hop_estimate": null,
+        "degree": 14,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 1673.5769000006258,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "graph",
+      "features": {
+        "rows": 1528,
+        "edges": 28146,
+        "selectivity": null,
+        "joins": 0,
+        "hop_estimate": 0,
+        "degree": 0,
+        "indexed": false,
+        "resident": true,
+        "connected": true
+      },
+      "latency_ms": 0.08069999603321776,
+      "timed_out": false
+    },
+    {
+      "source": "ldbc",
+      "operation": "shortest_path",
+      "backend": "sqlserver_frontier",
+      "features": {
+        "rows": 1528,
+        "edges": 28146,
+        "selectivity": null,
+        "joins": 1,
+        "hop_estimate": 0,
+        "degree": 0,
+        "indexed": true,
+        "resident": false,
+        "connected": true
+      },
+      "latency_ms": 5.9123999963048846,
+      "timed_out": false
+    }
+  ],
+  "chinook_sha256": "7651ba378ac2fcd0dfc3c66fb101f7a7eed3ba39a612ec642b96e20702061f15",
+  "chinook_rows": {
+    "Track": 3503,
+    "Customer": 59,
+    "Invoice": 412
+  },
+  "ldbc_source_hashes": {
+    "people": "3ce1587334c86f6ca741de8cdeacfd79c4edd2aa62817cccb1b329fa5b066346",
+    "edges": "2c5d7c023d637bf87f5fb809acc9f468dda38a99f030837c20a21e851604d24c"
+  },
+  "development_sha256": [
+    "6e61335e9cc6d55f5f35d651dd5e29c415c23d3b5d2149fb8d6406ee52205361",
+    "8d340836b126d40591a28939c02485409988a305b4d5dc3ba01888a96bb1d424"
+  ],
+  "timeout_penalty_ms": 2000
+}

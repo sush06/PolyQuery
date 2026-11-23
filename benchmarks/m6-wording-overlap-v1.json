@@ -1,0 +1,49 @@
+{
+  "m6-dev-01": {
+    "question": "How many tracks?",
+    "previous_files": [
+      "chinook-benchmark-dev.json",
+      "chinook-train.json",
+      "evaluation-v2.json"
+    ]
+  },
+  "m6-dev-02": {
+    "question": "Average invoice total",
+    "previous_files": [
+      "chinook-benchmark-dev.json",
+      "chinook-train.json"
+    ]
+  },
+  "m6-dev-03": {
+    "question": "Revenue by billing country",
+    "previous_files": [
+      "chinook-benchmark-dev.json",
+      "chinook-test.json"
+    ]
+  },
+  "m6-fin-01": {
+    "question": "How many customers?",
+    "previous_files": [
+      "chinook-benchmark-dev.json",
+      "chinook-validation.json",
+      "evaluation-v2.json"
+    ]
+  },
+  "m6-fin-02": {
+    "question": "Median invoice total",
+    "previous_files": [
+      "chinook-benchmark-dev.json",
+      "chinook-validation.json",
+      "evaluation-v2.json"
+    ]
+  },
+  "m6-fin-03": {
+    "question": "Track count by genre",
+    "previous_files": [
+      "chinook-benchmark-dev.json",
+      "chinook-test.json",
+      "constraints-dev-report.json",
+      "constraints-dev.json"
+    ]
+  }
+}
