@@ -1,0 +1,374 @@
+{
+  "model": {
+    "status": "available",
+    "model": "qwen3:4b-instruct",
+    "digest": "0edcdef34593eac1aa2be9c7d06c432dcf81945adca5eca2f27662c18f168ba0",
+    "version": "0.40.17",
+    "endpoint": "http://127.0.0.1:11434/v1"
+  },
+  "heldout_manifest_sha256": "fa9598d2a1f9f100a024be48534a3158062a8453cf9ec1fd87de9b3e8d0a76b0",
+  "development_manifest_sha256": "bf344f567a64ebb3328fed7e8c186f066c63b0d04d108811ea04d02d8b706a5a",
+  "development": {
+    "legacy": {
+      "cases": 5,
+      "model_calls": 4,
+      "structurally_valid": 3,
+      "catalog_valid": 1,
+      "accepted": 0,
+      "correct_answers": 0,
+      "correct_refusals": 1,
+      "tokens": 3002,
+      "latency_ms": {
+        "samples": 5,
+        "mean": 25217.83784000436,
+        "p50": 29302.988099996583,
+        "p95": 35941.854120005155
+      }
+    },
+    "typed": {
+      "cases": 5,
+      "model_calls": 4,
+      "structurally_valid": 4,
+      "catalog_valid": 1,
+      "accepted": 1,
+      "correct_answers": 1,
+      "correct_refusals": 1,
+      "tokens": 3840,
+      "latency_ms": {
+        "samples": 5,
+        "mean": 32343.36684000009,
+        "p50": 37642.07549999992,
+        "p95": 49929.87939999584
+      }
+    },
+    "ir": {
+      "cases": 5,
+      "model_calls": 4,
+      "structurally_valid": 2,
+      "catalog_valid": 0,
+      "accepted": 0,
+      "correct_answers": 0,
+      "correct_refusals": 1,
+      "tokens": 2168,
+      "latency_ms": {
+        "samples": 5,
+        "mean": 21131.823720001557,
+        "p50": 28147.016700000677,
+        "p95": 31021.541240003717
+      }
+    }
+  },
+  "development_transitions": {
+    "ir-dev-03": {
+      "legacy": {
+        "outcome": "semantic_failure",
+        "failure": "unsupported_dataset_capability",
+        "compiled": false,
+        "plan_match": false
+      },
+      "typed": {
+        "outcome": "correct",
+        "failure": null,
+        "compiled": false,
+        "plan_match": true
+      },
+      "ir": {
+        "outcome": "semantic_failure",
+        "failure": "invalid_schema",
+        "compiled": false,
+        "plan_match": false
+      }
+    },
+    "ir-dev-01": {
+      "legacy": {
+        "outcome": "semantic_failure",
+        "failure": "invalid_schema",
+        "compiled": false,
+        "plan_match": false
+      },
+      "typed": {
+        "outcome": "semantic_failure",
+        "failure": "invalid_parameters",
+        "compiled": false,
+        "plan_match": false
+      },
+      "ir": {
+        "outcome": "semantic_failure",
+        "failure": "incorrect_binding",
+        "compiled": false,
+        "plan_match": false
+      }
+    },
+    "ir-dev-02": {
+      "ir": {
+        "outcome": "semantic_failure",
+        "failure": "incorrect_binding",
+        "compiled": false,
+        "plan_match": false
+      },
+      "typed": {
+        "outcome": "semantic_failure",
+        "failure": "incorrect_binding",
+        "compiled": false,
+        "plan_match": false
+      },
+      "legacy": {
+        "outcome": "semantic_failure",
+        "failure": "incorrect_binding",
+        "compiled": false,
+        "plan_match": false
+      }
+    },
+    "ir-dev-04": {
+      "legacy": {
+        "outcome": "semantic_failure",
+        "failure": "incorrect_binding",
+        "compiled": false,
+        "plan_match": false
+      },
+      "typed": {
+        "outcome": "semantic_failure",
+        "failure": "incorrect_binding",
+        "compiled": false,
+        "plan_match": false
+      },
+      "ir": {
+        "outcome": "semantic_failure",
+        "failure": "invalid_schema",
+        "compiled": false,
+        "plan_match": false
+      }
+    },
+    "ir-dev-05": {
+      "ir": {
+        "outcome": "abstained",
+        "failure": "security_refusal",
+        "compiled": false,
+        "plan_match": true
+      },
+      "typed": {
+        "outcome": "abstained",
+        "failure": "security_refusal",
+        "compiled": false,
+        "plan_match": true
+      },
+      "legacy": {
+        "outcome": "abstained",
+        "failure": "security_refusal",
+        "compiled": false,
+        "plan_match": true
+      }
+    }
+  },
+  "development_failure_taxonomy": {
+    "legacy": {
+      "unsupported_dataset_capability": 1,
+      "invalid_schema": 1,
+      "incorrect_binding": 2,
+      "security_refusal": 1
+    },
+    "typed": {
+      "invalid_parameters": 1,
+      "incorrect_binding": 2,
+      "security_refusal": 1
+    },
+    "ir": {
+      "invalid_schema": 2,
+      "incorrect_binding": 2,
+      "security_refusal": 1
+    }
+  },
+  "direct_typed_heldout": {
+    "summary": {
+      "qwen_fixed": {
+        "n": 12,
+        "outcomes": {
+          "semantic_failure": 10,
+          "abstained": 2
+        },
+        "accuracy": 0.16666666666666666,
+        "answer_accuracy": null,
+        "coverage": 0.0,
+        "correct_refusals": 2,
+        "semantic_matches": 2,
+        "p50_ms": 37601.6192499992,
+        "p95_ms": 1996255.3639599918,
+        "execution_p50_ms": null,
+        "execution_p95_ms": null,
+        "median_selection_ms": null,
+        "tokens": 12526,
+        "usd": null
+      },
+      "qwen_learned": {
+        "n": 12,
+        "outcomes": {
+          "semantic_failure": 10,
+          "abstained": 2
+        },
+        "accuracy": 0.16666666666666666,
+        "answer_accuracy": null,
+        "coverage": 0.0,
+        "correct_refusals": 2,
+        "semantic_matches": 2,
+        "p50_ms": 37601.62169999967,
+        "p95_ms": 1996255.3668749987,
+        "execution_p50_ms": null,
+        "execution_p95_ms": null,
+        "median_selection_ms": null,
+        "tokens": 12526,
+        "usd": null
+      },
+      "qwen_oracle": {
+        "n": 12,
+        "outcomes": {
+          "semantic_failure": 10,
+          "abstained": 2
+        },
+        "accuracy": 0.16666666666666666,
+        "answer_accuracy": null,
+        "coverage": 0.0,
+        "correct_refusals": 2,
+        "semantic_matches": 2,
+        "p50_ms": 37601.618900000176,
+        "p95_ms": 1996255.363979992,
+        "execution_p50_ms": null,
+        "execution_p95_ms": null,
+        "median_selection_ms": null,
+        "tokens": 12526,
+        "usd": null
+      }
+    },
+    "accepted": 0,
+    "correct_answers": 0,
+    "shared_model_calls": 10,
+    "verification_diagnostics": {
+      "constraint_preservation": 1,
+      "security_refusal": 2,
+      "incorrect_binding": 5,
+      "invalid_parameters": 1,
+      "invalid_schema": 1,
+      "unsupported_dataset_capability": 2
+    },
+    "reference_plan_control": {
+      "comparable_choices": 10,
+      "correct_choices": 10,
+      "routing_accuracy": 1.0,
+      "median_regret_ms": 0.0,
+      "regret_samples_ms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "routing": {
+      "comparable_choices": 0,
+      "correct_choices": 0,
+      "routing_accuracy": null,
+      "median_regret_ms": null,
+      "regret_samples_ms": []
+    },
+    "possible_false_positive_literals_match": null
+  },
+  "semantic_ir_heldout": {
+    "summary": {
+      "qwen_fixed": {
+        "n": 12,
+        "outcomes": {
+          "semantic_failure": 7,
+          "abstained": 5
+        },
+        "accuracy": 0.3333333333333333,
+        "answer_accuracy": null,
+        "coverage": 0.0,
+        "correct_refusals": 4,
+        "semantic_matches": 4,
+        "p50_ms": 15478.81679999773,
+        "p95_ms": 44856.83492000426,
+        "execution_p50_ms": null,
+        "execution_p95_ms": null,
+        "median_selection_ms": null,
+        "tokens": 6478,
+        "usd": null
+      },
+      "qwen_learned": {
+        "n": 12,
+        "outcomes": {
+          "semantic_failure": 7,
+          "abstained": 5
+        },
+        "accuracy": 0.3333333333333333,
+        "answer_accuracy": null,
+        "coverage": 0.0,
+        "correct_refusals": 4,
+        "semantic_matches": 4,
+        "p50_ms": 15478.819049996673,
+        "p95_ms": 44856.8389449978,
+        "execution_p50_ms": null,
+        "execution_p95_ms": null,
+        "median_selection_ms": null,
+        "tokens": 6478,
+        "usd": null
+      },
+      "qwen_oracle": {
+        "n": 12,
+        "outcomes": {
+          "semantic_failure": 7,
+          "abstained": 5
+        },
+        "accuracy": 0.3333333333333333,
+        "answer_accuracy": null,
+        "coverage": 0.0,
+        "correct_refusals": 4,
+        "semantic_matches": 4,
+        "p50_ms": 15478.815899998153,
+        "p95_ms": 44856.83471999946,
+        "execution_p50_ms": null,
+        "execution_p95_ms": null,
+        "median_selection_ms": null,
+        "tokens": 6478,
+        "usd": null
+      }
+    },
+    "accepted": 0,
+    "correct_answers": 0,
+    "shared_model_calls": 10,
+    "verification_diagnostics": {
+      "invalid_schema": 5,
+      "security_refusal": 2,
+      "incorrect_binding": 2
+    },
+    "reference_plan_control": {
+      "comparable_choices": 10,
+      "correct_choices": 10,
+      "routing_accuracy": 1.0,
+      "median_regret_ms": 0.0,
+      "regret_samples_ms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "routing": {
+      "comparable_choices": 0,
+      "correct_choices": 0,
+      "routing_accuracy": null,
+      "median_regret_ms": null,
+      "regret_samples_ms": []
+    },
+    "possible_false_positive_literals_match": null
+  }
+}

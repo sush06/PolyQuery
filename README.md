@@ -58,6 +58,13 @@ Summed end-to-end case medians yielded 6.14x speedup over fixed SQLite and
 both fixed backends beat the router by the same measure. SQLite remains
 the production default.
 
+The [intelligent routing experiment](docs/intelligent-routing.md) feeds
+verified Qwen3 4B plans to a learned physical selector. On 12 held-out
+composition questions, no Qwen plan cleared verification, so the run
+established no end-to-end routing gain. With reviewed reference plans,
+the selector matched the measured oracle on 10 of 10 comparable backend
+choices. [Measured results](benchmarks/intelligent-routing-summary.json)
+
 ### LDBC graph traversal benchmark
 
 The benchmark loads Person and Knows from the same LDBC CSVs into indexed

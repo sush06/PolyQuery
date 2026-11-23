@@ -1,0 +1,25 @@
+{
+  "manifests": {
+    "validation": "52c3a0bb7914a438b415ce1b251a411a40d6c029aeb13ed90e3d260fac79ec39",
+    "test": "ea5f8a69ce85bb149dce7dbc8f6ff27550848b70068d8bb244c4af0504d7e4d9"
+  },
+  "sources": {
+    "chinook": {
+      "data_path": "7651ba378ac2fcd0dfc3c66fb101f7a7eed3ba39a612ec642b96e20702061f15"
+    },
+    "ldbc": {
+      "people_path": "3ce1587334c86f6ca741de8cdeacfd79c4edd2aa62817cccb1b329fa5b066346",
+      "edges_path": "2c5d7c023d637bf87f5fb809acc9f468dda38a99f030837c20a21e851604d24c"
+    },
+    "synthetic": {
+      "data": "5b05c25ae8f329e126935a3c2e5dc1972619501a2f4c1851832fa75846aa31af"
+    },
+    "taxi": {
+      "data_path": "8b3933fe6f0d7b6d8826613c0dd724edc680ff7c49e2bd4c7635c05102728637"
+    }
+  },
+  "counts": {
+    "validation": 12,
+    "test": 12
+  }
+}

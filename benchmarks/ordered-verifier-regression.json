@@ -1,0 +1,34 @@
+{
+  "question": "Put two figures on my checklist: the average amount charged per invoice, followed by the size of the entire customer register.",
+  "plan": {
+    "kind": "dag_plan",
+    "nodes": [
+      {
+        "id": "node_1",
+        "backend": "sql",
+        "operation": "mean",
+        "parameters": [],
+        "bindings": [],
+        "depends_on": []
+      },
+      {
+        "id": "node_2",
+        "backend": "sql",
+        "operation": "count_customers",
+        "parameters": [],
+        "bindings": [],
+        "depends_on": [
+          "node_1"
+        ]
+      }
+    ],
+    "outputs": [
+      "node_1",
+      "node_2"
+    ]
+  },
+  "gold": [
+    5.651941747572825,
+    59
+  ]
+}

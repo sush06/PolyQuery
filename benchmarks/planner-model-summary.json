@@ -1,0 +1,339 @@
+{
+  "models": {
+    "qwen3:4b-instruct": {
+      "name": "qwen3:4b-instruct",
+      "model": "qwen3:4b-instruct",
+      "modified_at": "2026-10-13T00:19:01.3373308-04:00",
+      "size": 2497293803,
+      "digest": "0edcdef34593eac1aa2be9c7d06c432dcf81945adca5eca2f27662c18f168ba0",
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "qwen3",
+        "families": [
+          "qwen3"
+        ],
+        "parameter_size": "4.0B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 262144,
+        "embedding_length": 2560,
+        "runner": "ggml"
+      },
+      "capabilities": [
+        "tools",
+        "thinking",
+        "completion"
+      ]
+    },
+    "qwen3:8b": {
+      "name": "qwen3:8b",
+      "model": "qwen3:8b",
+      "modified_at": "2026-11-22T22:01:44.9258529-05:00",
+      "size": 5225388164,
+      "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "qwen3",
+        "families": [
+          "qwen3"
+        ],
+        "parameter_size": "8.2B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 40960,
+        "embedding_length": 4096,
+        "runner": "ggml"
+      },
+      "capabilities": [
+        "completion",
+        "tools",
+        "thinking"
+      ]
+    }
+  },
+  "ollama": {
+    "version": "0.40.17"
+  },
+  "hardware": {
+    "machine": "SushR",
+    "platform": "Windows-10-10.0.26300-SP0",
+    "logical_cpus": 16,
+    "processor": "AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD"
+  },
+  "settings": {
+    "seed": 43,
+    "temperature": 0,
+    "max_output_tokens": 1200,
+    "reasoning": false,
+    "timeout_seconds": 120,
+    "repair": false
+  },
+  "manifest_sha256": {
+    "development": "f83210f3a6e186c1ec34b89036407959e27938fc3b0e12fecca4b034fb5f1b60",
+    "final": "099d54ee4e04912c03da82adcc9a4b850230f6ff6c388acbc97e32184112533f"
+  },
+  "unavailable": [],
+  "development": [
+    {
+      "model": "qwen3:4b-instruct",
+      "native": false,
+      "summary": {
+        "questions": 4,
+        "correct_answers": 1,
+        "correct_refusals": 1,
+        "accepted": 1,
+        "coverage": 0.25,
+        "schema_valid": 3,
+        "catalog_valid": 2,
+        "binding_valid": 2,
+        "failure_categories": {
+          "constraint_preservation": 1,
+          "invalid_schema": 1,
+          "security_refusal": 1
+        },
+        "model_calls": 3,
+        "input_tokens": 2167,
+        "output_tokens": 339,
+        "latency_ms": {
+          "samples": 4,
+          "mean": 21203.612949997478,
+          "p50": 20344.855399998778,
+          "p95": 40704.3955849971
+        },
+        "request_latency_ms": {
+          "samples": 3,
+          "mean": 28266.171233335626,
+          "p50": 21322.607499998412,
+          "p95": 41831.061039998895
+        }
+      }
+    },
+    {
+      "model": "qwen3:8b",
+      "native": false,
+      "summary": {
+        "questions": 4,
+        "correct_answers": 0,
+        "correct_refusals": 1,
+        "accepted": 0,
+        "coverage": 0.0,
+        "schema_valid": 3,
+        "catalog_valid": 2,
+        "binding_valid": 2,
+        "failure_categories": {
+          "constraint_preservation": 2,
+          "invalid_schema": 1,
+          "security_refusal": 1
+        },
+        "model_calls": 3,
+        "input_tokens": 2191,
+        "output_tokens": 542,
+        "latency_ms": {
+          "samples": 4,
+          "mean": 50780.97802499542,
+          "p50": 57581.27209998929,
+          "p95": 85031.6592250092
+        },
+        "request_latency_ms": {
+          "samples": 3,
+          "mean": 67699.79030000104,
+          "p50": 68417.98830000334,
+          "p95": 85996.50308999844
+        }
+      }
+    },
+    {
+      "model": "qwen3:4b-instruct",
+      "native": true,
+      "summary": {
+        "questions": 4,
+        "correct_answers": 1,
+        "correct_refusals": 1,
+        "accepted": 1,
+        "coverage": 0.25,
+        "schema_valid": 3,
+        "catalog_valid": 2,
+        "binding_valid": 2,
+        "failure_categories": {
+          "constraint_preservation": 1,
+          "invalid_schema": 1,
+          "security_refusal": 1
+        },
+        "model_calls": 3,
+        "input_tokens": 2167,
+        "output_tokens": 435,
+        "latency_ms": {
+          "samples": 4,
+          "mean": 52010.856600001716,
+          "p50": 18382.853950002755,
+          "p95": 148470.98525998948
+        },
+        "request_latency_ms": {
+          "samples": 3,
+          "mean": 69346.58339999926,
+          "p50": 19230.680399996345,
+          "p95": 156072.66261000477
+        }
+      }
+    }
+  ],
+  "development_transitions": {
+    "mod-dev-01": {
+      "qwen3:4b-instruct/compatible": {
+        "outcome": "correct",
+        "schema_valid": true,
+        "catalog_valid": true,
+        "binding_valid": true,
+        "semantically_accepted": true,
+        "failure_category": null
+      },
+      "qwen3:8b/compatible": {
+        "outcome": "semantic_failure",
+        "schema_valid": true,
+        "catalog_valid": true,
+        "binding_valid": true,
+        "semantically_accepted": false,
+        "failure_category": "constraint_preservation"
+      },
+      "qwen3:4b-instruct/native": {
+        "outcome": "correct",
+        "schema_valid": true,
+        "catalog_valid": true,
+        "binding_valid": true,
+        "semantically_accepted": true,
+        "failure_category": null
+      }
+    },
+    "mod-dev-03": {
+      "qwen3:4b-instruct/compatible": {
+        "outcome": "semantic_failure",
+        "schema_valid": true,
+        "catalog_valid": true,
+        "binding_valid": true,
+        "semantically_accepted": false,
+        "failure_category": "constraint_preservation"
+      },
+      "qwen3:8b/compatible": {
+        "outcome": "semantic_failure",
+        "schema_valid": true,
+        "catalog_valid": null,
+        "binding_valid": null,
+        "semantically_accepted": false,
+        "failure_category": "invalid_schema"
+      },
+      "qwen3:4b-instruct/native": {
+        "outcome": "semantic_failure",
+        "schema_valid": true,
+        "catalog_valid": true,
+        "binding_valid": true,
+        "semantically_accepted": false,
+        "failure_category": "constraint_preservation"
+      }
+    },
+    "mod-dev-02": {
+      "qwen3:4b-instruct/compatible": {
+        "outcome": "semantic_failure",
+        "schema_valid": true,
+        "catalog_valid": null,
+        "binding_valid": null,
+        "semantically_accepted": false,
+        "failure_category": "invalid_schema"
+      },
+      "qwen3:8b/compatible": {
+        "outcome": "semantic_failure",
+        "schema_valid": true,
+        "catalog_valid": true,
+        "binding_valid": true,
+        "semantically_accepted": false,
+        "failure_category": "constraint_preservation"
+      },
+      "qwen3:4b-instruct/native": {
+        "outcome": "semantic_failure",
+        "schema_valid": true,
+        "catalog_valid": null,
+        "binding_valid": null,
+        "semantically_accepted": false,
+        "failure_category": "invalid_schema"
+      }
+    },
+    "mod-dev-04": {
+      "qwen3:4b-instruct/compatible": {
+        "outcome": "abstained",
+        "schema_valid": null,
+        "catalog_valid": null,
+        "binding_valid": null,
+        "semantically_accepted": false,
+        "failure_category": "security_refusal"
+      },
+      "qwen3:8b/compatible": {
+        "outcome": "abstained",
+        "schema_valid": null,
+        "catalog_valid": null,
+        "binding_valid": null,
+        "semantically_accepted": false,
+        "failure_category": "security_refusal"
+      },
+      "qwen3:4b-instruct/native": {
+        "outcome": "abstained",
+        "schema_valid": null,
+        "catalog_valid": null,
+        "binding_valid": null,
+        "semantically_accepted": false,
+        "failure_category": "security_refusal"
+      }
+    }
+  },
+  "ordered_verifier_replay": {
+    "case": "test-01",
+    "provider_calls": 0,
+    "scope": "Replayed ordered operations and canonical dependency from the redacted trace.",
+    "recorded_wording": {
+      "kind": "abstain",
+      "reason": "constraint_preservation"
+    },
+    "canonical_control_wording": {
+      "kind": "dag_plan",
+      "reason": null,
+      "matches_independent_gold": true
+    }
+  },
+  "frozen": {
+    "model": "qwen3:4b-instruct",
+    "native": true,
+    "implementation_sha256": {
+      "benchmarks/planner_model_benchmark.py": "a5acb09b3b71b09e84eb07129b15a6c81899ae85507caad3a1e6e14d789e455b",
+      "polyquery/llm_dag.py": "31ad1c3c68d32a07e34e97590ec4af2520473a90f9ab992bd35cc60f31e1269b",
+      "polyquery/typed_intent.py": "0cdab4ddeff5cd38e5a7854d535c2c121695422986acbdfc83bc5c680ac13992"
+    }
+  },
+  "final": {
+    "questions": 4,
+    "correct_answers": 1,
+    "correct_refusals": 1,
+    "accepted": 1,
+    "coverage": 0.25,
+    "schema_valid": 3,
+    "catalog_valid": 2,
+    "binding_valid": 2,
+    "failure_categories": {
+      "unsupported_dataset_capability": 1,
+      "incorrect_binding": 1,
+      "security_refusal": 1
+    },
+    "model_calls": 3,
+    "input_tokens": 2153,
+    "output_tokens": 400,
+    "latency_ms": {
+      "samples": 4,
+      "mean": 14726.319200006401,
+      "p50": 15105.675000006158,
+      "p95": 27970.064580006874
+    },
+    "request_latency_ms": {
+      "samples": 3,
+      "mean": 19633.28370000333,
+      "p50": 23866.083300003083,
+      "p95": 28210.33083000075
+    }
+  }
+}

@@ -215,7 +215,7 @@ def _unavailable(case, planner, reason, scope):
             "security_refusal": None, "model_usage": {}}
 
 
-def _run(engine, planner, case, reference, gold):
+def _run(engine, planner, case, reference, gold, *, audit_semantics=True):
     began = time.perf_counter()
     try:
         response = engine.query(case["question"])
@@ -259,7 +259,7 @@ def _run(engine, planner, case, reference, gold):
     reached_preflight = proposal is not None
     if reached_preflight:
         row["semantic_preflight"] = "rejected" if outcome == "validation_failure" else "accepted"
-    if reached_preflight and row["semantic_preflight"] == "rejected" and case.get("split") == "validation":
+    if audit_semantics and reached_preflight and row["semantic_preflight"] == "rejected" and case.get("split") == "validation":
         row["semantic_audit"] = audit_block(proposal, case, reference, gold)
     return {**row, "response_status": response["status"], "actual": actual,
             "decision": response.get("decision", {}).get("kind"),

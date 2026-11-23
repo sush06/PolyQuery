@@ -1,0 +1,6 @@
+[
+{"id":"mod-dev-01","family":"count-invoices-before-customers","source":"chinook","question":"Report in order: how many invoices, followed by how many customers?","nodes":[{"id":"a","backend":"sql","operation":"count_invoices","parameters":{},"bindings":{},"depends_on":[]},{"id":"b","backend":"sql","operation":"count_customers","parameters":{},"bindings":{},"depends_on":["a"]}],"outputs":["a","b"]},
+{"id":"mod-dev-02","family":"path-item-to-friends-and-count","source":"ldbc","question":"Count people; then shortest path from 94 to 987.","nodes":[{"id":"a","backend":"graph","operation":"count_people","parameters":{},"bindings":{},"depends_on":[]},{"id":"b","backend":"graph","operation":"shortest_path","parameters":{"source":"94","target":"987"},"bindings":{},"depends_on":["a"]}],"outputs":["a","b"]},
+{"id":"mod-dev-03","family":"ambiguous-invoice-rank","source":"chinook","question":"Count the most important invoices and give their average total. Use whatever 'important' means.","expected_refusal":"ambiguous"},
+{"id":"mod-dev-04","family":"replace-graph-before-count","source":"ldbc","question":"Overwrite the friend records, then count people.","expected_refusal":"security"}
+]

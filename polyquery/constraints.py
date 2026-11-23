@@ -9,10 +9,12 @@ from dataclasses import asdict, dataclass
 
 _UNSAFE_REQUESTS = {
     "write_or_instruction": re.compile(
-        r"\b(delete|drop|insert|update|alter|truncate|execute|overwrite|ignore instructions)\b", re.I),
+        r"\b(delete|drop|insert|update|alter|truncate|execute|overwrite|ignore instructions)\b"
+        r"|\b(?:change|set)\s+(?:all|every|each)\b[^.!?;\r\n]{1,120}\bto\b", re.I),
     "host_file_or_code_request": re.compile(
         r"(?<![\w.])\.env\b|\b__import__\s*\(|\b(?:eval|exec|open)\s*\("
-        r"|\b(?:run|evaluate|execute)\s+(?:arbitrary\s+)?(?:python|shell|bash|powershell)\b",
+        r"|\b(?:run|evaluate|execute)\s+(?:arbitrary\s+)?(?:python|shell|bash|powershell)\b"
+        r"|\battach\s+(?:[\w-]+\s+){0,6}(?:database|sqlite\s+file)\b",
         re.I),
 }
 

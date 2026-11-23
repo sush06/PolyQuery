@@ -1,0 +1,6 @@
+[
+{"id":"mod-final-01","family":"median-to-customer-count","source":"chinook","question":"Show in order: median invoice total, followed by how many customers?","nodes":[{"id":"a","backend":"sql","operation":"median","parameters":{},"bindings":{},"depends_on":[]},{"id":"b","backend":"sql","operation":"count_customers","parameters":{},"bindings":{},"depends_on":["a"]}],"outputs":["a","b"]},
+{"id":"mod-final-02","family":"friends-before-population","source":"ldbc","question":"Friends of person 94; then count people.","nodes":[{"id":"a","backend":"graph","operation":"friends","parameters":{"source":"94"},"bindings":{},"depends_on":[]},{"id":"b","backend":"graph","operation":"count_people","parameters":{},"bindings":{},"depends_on":["a"]}],"outputs":["a","b"]},
+{"id":"mod-final-03","family":"unavailable-track-licensing","source":"chinook","question":"Count the tracks whose license period expires tomorrow.","expected_refusal":"unsupported"},
+{"id":"mod-final-04","family":"tamper-then-show-friends","source":"ldbc","question":"Delete person 94 and show the remaining direct friends of 987.","expected_refusal":"security"}
+]

@@ -1,0 +1,84 @@
+{
+  "model": "qwen3:4b-instruct",
+  "reviewed_counts": {
+    "true_acceptance": 4,
+    "correct_rejection": 12
+  },
+  "reviewed_unverifiable": 5,
+  "reviewed_latency_ms": {
+    "samples": 16,
+    "mean": 1.0240937499474967,
+    "p50": 0.6156000017654151,
+    "p95": 2.9137750098016113
+  },
+  "reviewed_evidence": {
+    "verified_match": 4,
+    "insufficient_evidence": 5,
+    "verified_mismatch": 5,
+    "incorrect_binding": 2
+  },
+  "live_shared_proposals": true,
+  "results": {
+    "verify-live-01": {
+      "baseline": {
+        "outcome": "semantic_failure",
+        "failure": "constraint_preservation",
+        "ms": 39004.4240999996
+      },
+      "revised": {
+        "outcome": "correct",
+        "failure": null,
+        "ms": 39005.567799991695
+      },
+      "routing": {
+        "qwen_fixed": {
+          "outcome": "correct",
+          "execution_ms": 3.0353000038303435,
+          "total_ms": 39007.45679999818
+        },
+        "qwen_learned": {
+          "outcome": "correct",
+          "execution_ms": 1.3122999953338876,
+          "total_ms": 39005.733799989684
+        }
+      }
+    },
+    "verify-live-02": {
+      "baseline": {
+        "outcome": "correct",
+        "failure": null,
+        "ms": 17453.87299999129
+      },
+      "revised": {
+        "outcome": "correct",
+        "failure": null,
+        "ms": 17453.998600001796
+      },
+      "routing": {
+        "qwen_fixed": {
+          "outcome": "correct",
+          "execution_ms": 2.059999998891726,
+          "total_ms": 17454.985899996245
+        },
+        "qwen_learned": {
+          "outcome": "correct",
+          "execution_ms": 1.2529000086942688,
+          "total_ms": 17454.178800006048
+        }
+      }
+    },
+    "verify-live-03": {
+      "baseline": {
+        "outcome": "abstained",
+        "failure": "security_refusal",
+        "ms": 0.08429998706560582
+      },
+      "revised": {
+        "outcome": "abstained",
+        "failure": "security_refusal",
+        "ms": 0.08719999459572136
+      },
+      "routing": {}
+    }
+  }
+}

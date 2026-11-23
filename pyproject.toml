@@ -13,6 +13,7 @@ dependencies = []
 taxi = ["pyarrow>=14"]
 llm = ["openai>=1.68"]
 sqlserver = ["pyodbc>=5"]
+planner-benchmark = ["jsonschema>=4"]
 
 [project.scripts]
 polyquery = "polyquery.cli:main"

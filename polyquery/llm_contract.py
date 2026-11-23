@@ -47,6 +47,7 @@ def plan_snapshot(payload, catalog):
     backends = {"abstain"} | {backend for spec in catalog.operations.values() for backend in spec.backends}
     operations = {"unsupported"} | catalog.operations.keys()
     names = {name for spec in catalog.operations.values() for name in spec.parameters}
+    fields = {field for spec in catalog.operations.values() for field in spec.result.fields}
 
     def visible(value, allowed):
         return value if type(value) is str and value in allowed else "<redacted>"
@@ -61,7 +62,10 @@ def plan_snapshot(payload, catalog):
             return {"shape": type(values).__name__}
         return [{"name": visible(item.get("name"), names),
                  **({"node": ids.get(item["node"], "<redacted>")}
-                    if key == "bindings" and type(item.get("node")) is str else {"value": "<redacted>"})}
+                    if key == "bindings" and type(item.get("node")) is str else {"value": "<redacted>"}),
+                 **({"path": [part if type(part) is int and 0 <= part <= 100 else visible(part, fields)
+                              for part in item["path"][:2]]}
+                    if key == "bindings" and isinstance(item.get("path"), list) else {})}
                 if isinstance(item, dict) else {"shape": type(item).__name__} for item in values[:8]]
 
     def summarized(node):
@@ -70,6 +74,9 @@ def plan_snapshot(payload, catalog):
         return {"backend": visible(node.get("backend"), backends),
                 "operation": visible(node.get("operation"), operations),
                 "parameters": entries(node, "parameters"),
+                **({"depends_on": [ids.get(value, "<redacted>") if type(value) is str else "<redacted>"
+                                   for value in node["depends_on"][:5]]}
+                   if isinstance(node.get("depends_on"), list) else {}),
                 **({"bindings": entries(node, "bindings")} if "bindings" in node else {})}
 
     if isinstance(nodes, list):
