@@ -1,0 +1,904 @@
+{
+  "sequential-dev-01": {
+    "specs": [
+      {
+        "operation": "friends",
+        "args": [
+          "10995116278353"
+        ]
+      }
+    ],
+    "values": [
+      [
+        {
+          "id": "238",
+          "first_name": "Burak",
+          "last_name": "Koksal"
+        },
+        {
+          "id": "344",
+          "first_name": "Leonid",
+          "last_name": "Makarova"
+        },
+        {
+          "id": "378",
+          "first_name": "Wilhelm",
+          "last_name": "Muller"
+        },
+        {
+          "id": "619",
+          "first_name": "Hans",
+          "last_name": "Richter"
+        },
+        {
+          "id": "941",
+          "first_name": "Aryo",
+          "last_name": "Tobing"
+        },
+        {
+          "id": "974",
+          "first_name": "Heinz",
+          "last_name": "Frank"
+        },
+        {
+          "id": "1564",
+          "first_name": "Emperor of Brazil",
+          "last_name": "Silva"
+        },
+        {
+          "id": "2199023255981",
+          "first_name": "Eugenia",
+          "last_name": "Efimkin"
+        },
+        {
+          "id": "2199023256181",
+          "first_name": "John",
+          "last_name": "Rao"
+        },
+        {
+          "id": "2199023256552",
+          "first_name": "Ion",
+          "last_name": "David"
+        },
+        {
+          "id": "4398046511667",
+          "first_name": "John",
+          "last_name": "Chopra"
+        },
+        {
+          "id": "4398046512662",
+          "first_name": "Rene",
+          "last_name": "Buysse"
+        },
+        {
+          "id": "4398046512766",
+          "first_name": "Alexander",
+          "last_name": "Kuzmina"
+        },
+        {
+          "id": "6597069766733",
+          "first_name": "Karl",
+          "last_name": "Fischer"
+        },
+        {
+          "id": "6597069767300",
+          "first_name": "Jose",
+          "last_name": "Salvador"
+        },
+        {
+          "id": "6597069768004",
+          "first_name": "Eduardo",
+          "last_name": "Rodriguez"
+        },
+        {
+          "id": "8796093022412",
+          "first_name": "Hermann",
+          "last_name": "Schmidt"
+        },
+        {
+          "id": "8796093022423",
+          "first_name": "Ganesh",
+          "last_name": "Bombo"
+        },
+        {
+          "id": "10995116277820",
+          "first_name": "Paul",
+          "last_name": "Becker"
+        },
+        {
+          "id": "10995116277995",
+          "first_name": "Aburizal",
+          "last_name": "Budjana"
+        },
+        {
+          "id": "10995116278292",
+          "first_name": "Paul",
+          "last_name": "Becker"
+        },
+        {
+          "id": "10995116278912",
+          "first_name": "Mischa",
+          "last_name": "Ivanov"
+        },
+        {
+          "id": "10995116279118",
+          "first_name": "Hermann",
+          "last_name": "Becker"
+        },
+        {
+          "id": "13194139533500",
+          "first_name": "Otto",
+          "last_name": "Becker"
+        },
+        {
+          "id": "13194139533574",
+          "first_name": "Benhalima",
+          "last_name": "Ferrer"
+        },
+        {
+          "id": "13194139534420",
+          "first_name": "Aleksandr",
+          "last_name": "Linchuk"
+        },
+        {
+          "id": "13194139534485",
+          "first_name": "Alexei",
+          "last_name": "Popov"
+        },
+        {
+          "id": "15393162788965",
+          "first_name": "Hans",
+          "last_name": "Becker"
+        },
+        {
+          "id": "15393162789604",
+          "first_name": "Cornelis",
+          "last_name": "Balawan"
+        },
+        {
+          "id": "15393162789696",
+          "first_name": "Richard",
+          "last_name": "Jones"
+        },
+        {
+          "id": "15393162790014",
+          "first_name": "Carlos",
+          "last_name": "Gonzalez"
+        },
+        {
+          "id": "15393162790398",
+          "first_name": "Kieu Cong",
+          "last_name": "Do"
+        },
+        {
+          "id": "17592186044532",
+          "first_name": "John",
+          "last_name": "Khan"
+        },
+        {
+          "id": "17592186045047",
+          "first_name": "Hans",
+          "last_name": "Berg"
+        },
+        {
+          "id": "17592186045238",
+          "first_name": "Mihai",
+          "last_name": "David"
+        },
+        {
+          "id": "17592186045280",
+          "first_name": "Vladimir",
+          "last_name": "Foxx"
+        },
+        {
+          "id": "17592186045803",
+          "first_name": "Radu",
+          "last_name": "Antonescu"
+        },
+        {
+          "id": "17592186045896",
+          "first_name": "Wilhelm",
+          "last_name": "Engel"
+        },
+        {
+          "id": "19791209300199",
+          "first_name": "Amjad Islam",
+          "last_name": "Ahsan"
+        },
+        {
+          "id": "19791209300359",
+          "first_name": "Fritz",
+          "last_name": "Schulz"
+        },
+        {
+          "id": "19791209300402",
+          "first_name": "Zeki",
+          "last_name": "Arikan"
+        },
+        {
+          "id": "19791209300631",
+          "first_name": "Naresh",
+          "last_name": "Singh"
+        },
+        {
+          "id": "19791209301023",
+          "first_name": "Anson",
+          "last_name": "Wang"
+        },
+        {
+          "id": "21990232555617",
+          "first_name": "Naresh",
+          "last_name": "Singh"
+        },
+        {
+          "id": "21990232555650",
+          "first_name": "Miguel",
+          "last_name": "Rodriguez"
+        },
+        {
+          "id": "21990232556463",
+          "first_name": "Victor",
+          "last_name": "Antonescu"
+        },
+        {
+          "id": "21990232556837",
+          "first_name": "Bing",
+          "last_name": "Li"
+        },
+        {
+          "id": "21990232556947",
+          "first_name": "Ah-Joong",
+          "last_name": "Lee"
+        },
+        {
+          "id": "24189255811663",
+          "first_name": "Chris",
+          "last_name": "Hall"
+        },
+        {
+          "id": "24189255811876",
+          "first_name": "Paul",
+          "last_name": "Anderson"
+        },
+        {
+          "id": "24189255812045",
+          "first_name": "Alexei",
+          "last_name": "Goma"
+        },
+        {
+          "id": "24189255812419",
+          "first_name": "Ahmad Rafiq",
+          "last_name": "Irama"
+        },
+        {
+          "id": "24189255812607",
+          "first_name": "Takeshi",
+          "last_name": "Yamamoto"
+        },
+        {
+          "id": "26388279066885",
+          "first_name": "Andrei",
+          "last_name": "Kahnovich"
+        },
+        {
+          "id": "26388279067871",
+          "first_name": "Chen",
+          "last_name": "Zhang"
+        },
+        {
+          "id": "26388279068220",
+          "first_name": "Jun",
+          "last_name": "Wang"
+        },
+        {
+          "id": "26388279068296",
+          "first_name": "Ivan",
+          "last_name": "Georgiev"
+        },
+        {
+          "id": "28587302322817",
+          "first_name": "Marek",
+          "last_name": "Kaczmarek"
+        },
+        {
+          "id": "28587302322870",
+          "first_name": "Andrei",
+          "last_name": "Condariuc"
+        },
+        {
+          "id": "28587302323141",
+          "first_name": "Carlos",
+          "last_name": "Fernandez"
+        },
+        {
+          "id": "28587302323296",
+          "first_name": "Agustiar",
+          "last_name": "Balawan"
+        },
+        {
+          "id": "28587302323430",
+          "first_name": "J\u00e1nos",
+          "last_name": "M\u00e9sz\u00e1ros"
+        },
+        {
+          "id": "28587302323655",
+          "first_name": "Ludwig",
+          "last_name": "Fuchs"
+        },
+        {
+          "id": "28587302323722",
+          "first_name": "Joao",
+          "last_name": "Oliveira"
+        },
+        {
+          "id": "30786325577812",
+          "first_name": "Anatoly",
+          "last_name": "Shevchenko"
+        },
+        {
+          "id": "30786325578676",
+          "first_name": "Jana",
+          "last_name": "Kerndlova"
+        },
+        {
+          "id": "30786325578737",
+          "first_name": "Juan",
+          "last_name": "Cruz"
+        },
+        {
+          "id": "30786325579109",
+          "first_name": "Abdessalam",
+          "last_name": "Ali"
+        },
+        {
+          "id": "32985348833505",
+          "first_name": "Wojciech",
+          "last_name": "Kowalski"
+        },
+        {
+          "id": "32985348833533",
+          "first_name": "Fritz",
+          "last_name": "Muller"
+        },
+        {
+          "id": "32985348833890",
+          "first_name": "Avraham",
+          "last_name": "Ben-Tzur"
+        },
+        {
+          "id": "32985348834019",
+          "first_name": "Abdul Hameed",
+          "last_name": "Malik"
+        },
+        {
+          "id": "32985348834375",
+          "first_name": "Alfred",
+          "last_name": "Hoffmann"
+        },
+        {
+          "id": "32985348834961",
+          "first_name": "Carlos",
+          "last_name": "Parra"
+        }
+      ]
+    ]
+  },
+  "sequential-dev-02": {
+    "specs": [
+      {
+        "operation": "friends",
+        "args": [
+          "344"
+        ]
+      }
+    ],
+    "values": [
+      [
+        {
+          "id": "2199023255688",
+          "first_name": "Alexander",
+          "last_name": "Basov"
+        },
+        {
+          "id": "2199023255798",
+          "first_name": "Brian",
+          "last_name": "Wilson"
+        },
+        {
+          "id": "2199023256031",
+          "first_name": "Rodrigo",
+          "last_name": "Balmaceda"
+        },
+        {
+          "id": "2199023256524",
+          "first_name": "Lev",
+          "last_name": "Kuzmina"
+        },
+        {
+          "id": "2199023257239",
+          "first_name": "Mikhail",
+          "last_name": "Basov"
+        },
+        {
+          "id": "4398046511904",
+          "first_name": "Alexander",
+          "last_name": "Popov"
+        },
+        {
+          "id": "4398046512201",
+          "first_name": "Jorge",
+          "last_name": "Arango"
+        },
+        {
+          "id": "4398046512764",
+          "first_name": "Hassan",
+          "last_name": "Forouhar"
+        },
+        {
+          "id": "8796093022574",
+          "first_name": "Abdul-Malik",
+          "last_name": "Binalshibh"
+        },
+        {
+          "id": "10995116278353",
+          "first_name": "Otto",
+          "last_name": "Muller"
+        },
+        {
+          "id": "13194139533493",
+          "first_name": "Zdenek",
+          "last_name": "Herzigov\u00e1"
+        },
+        {
+          "id": "15393162789093",
+          "first_name": "Rafael",
+          "last_name": "Fern\u00e1ndez"
+        },
+        {
+          "id": "17592186045551",
+          "first_name": "Muhammad",
+          "last_name": "Ahmed"
+        },
+        {
+          "id": "17592186046110",
+          "first_name": "Carlos",
+          "last_name": "Fernandez"
+        },
+        {
+          "id": "19791209300507",
+          "first_name": "Chaim Azriel",
+          "last_name": "Epstein"
+        },
+        {
+          "id": "19791209300828",
+          "first_name": "A.",
+          "last_name": "Singh"
+        },
+        {
+          "id": "19791209301592",
+          "first_name": "Michal",
+          "last_name": "Kaminski"
+        },
+        {
+          "id": "24189255811116",
+          "first_name": "Alexei",
+          "last_name": "Kahnovich"
+        },
+        {
+          "id": "24189255811566",
+          "first_name": "The",
+          "last_name": "Kunda"
+        },
+        {
+          "id": "24189255811663",
+          "first_name": "Chris",
+          "last_name": "Hall"
+        },
+        {
+          "id": "24189255812268",
+          "first_name": "Aden",
+          "last_name": "Glosca"
+        },
+        {
+          "id": "24189255812580",
+          "first_name": "Jorge",
+          "last_name": "Escobar"
+        },
+        {
+          "id": "24189255812639",
+          "first_name": "Alyaksey",
+          "last_name": "Akhiezer"
+        },
+        {
+          "id": "26388279067426",
+          "first_name": "Mikhail",
+          "last_name": "Popov"
+        },
+        {
+          "id": "26388279067534",
+          "first_name": "Emperor of Brazil",
+          "last_name": "Dom Pedro II"
+        },
+        {
+          "id": "26388279068150",
+          "first_name": "Vladimir",
+          "last_name": "Kofler"
+        },
+        {
+          "id": "26388279068275",
+          "first_name": "Jean",
+          "last_name": "Berty"
+        },
+        {
+          "id": "28587302323268",
+          "first_name": "C. S.",
+          "last_name": "Sharma"
+        },
+        {
+          "id": "30786325578932",
+          "first_name": "Alexander",
+          "last_name": "Hleb"
+        },
+        {
+          "id": "32985348834375",
+          "first_name": "Alfred",
+          "last_name": "Hoffmann"
+        }
+      ]
+    ]
+  },
+  "sequential-dev-03": {
+    "specs": [
+      {
+        "operation": "friends",
+        "args": [
+          "668"
+        ]
+      }
+    ],
+    "values": [
+      [
+        {
+          "id": "318",
+          "first_name": "Claude",
+          "last_name": "Radafison"
+        },
+        {
+          "id": "2199023256347",
+          "first_name": "William",
+          "last_name": "Sharma"
+        },
+        {
+          "id": "2199023256668",
+          "first_name": "Rodrigo",
+          "last_name": "Costa"
+        },
+        {
+          "id": "6597069767242",
+          "first_name": "Salim Ahmed",
+          "last_name": "Binalshibh"
+        },
+        {
+          "id": "8796093022467",
+          "first_name": "Muhammad",
+          "last_name": "Amjad"
+        },
+        {
+          "id": "8796093023143",
+          "first_name": "Chipo",
+          "last_name": "Chung"
+        },
+        {
+          "id": "13194139534853",
+          "first_name": "Babar",
+          "last_name": "Malik"
+        },
+        {
+          "id": "17592186045408",
+          "first_name": "Ayesha",
+          "last_name": "Iqbal"
+        },
+        {
+          "id": "19791209300507",
+          "first_name": "Chaim Azriel",
+          "last_name": "Epstein"
+        },
+        {
+          "id": "19791209301102",
+          "first_name": "Sam",
+          "last_name": "Wang"
+        },
+        {
+          "id": "24189255811381",
+          "first_name": "Mahinda",
+          "last_name": "De Silva"
+        },
+        {
+          "id": "28587302322548",
+          "first_name": "Grigore",
+          "last_name": "Bologan"
+        },
+        {
+          "id": "28587302323441",
+          "first_name": "Aleksandr",
+          "last_name": "Aubakirov"
+        },
+        {
+          "id": "30786325578258",
+          "first_name": "Angel",
+          "last_name": "Melaku"
+        },
+        {
+          "id": "30786325578932",
+          "first_name": "Alexander",
+          "last_name": "Hleb"
+        },
+        {
+          "id": "32985348834483",
+          "first_name": "Michel",
+          "last_name": "Breton"
+        },
+        {
+          "id": "32985348834873",
+          "first_name": "Nicolas",
+          "last_name": "Arnaud"
+        }
+      ]
+    ]
+  },
+  "sequential-dev-04": {
+    "specs": [
+      {
+        "operation": "friends",
+        "args": [
+          "2199023257135"
+        ]
+      }
+    ],
+    "values": [
+      [
+        {
+          "id": "1222",
+          "first_name": "Ali",
+          "last_name": "Brar"
+        },
+        {
+          "id": "1564",
+          "first_name": "Emperor of Brazil",
+          "last_name": "Silva"
+        },
+        {
+          "id": "2199023256277",
+          "first_name": "Allister",
+          "last_name": "Miller"
+        },
+        {
+          "id": "2199023256405",
+          "first_name": "Rahul",
+          "last_name": "Khan"
+        },
+        {
+          "id": "2199023257063",
+          "first_name": "Mathieu",
+          "last_name": "Bemba"
+        },
+        {
+          "id": "6597069767149",
+          "first_name": "Bangguo",
+          "last_name": "Hu"
+        },
+        {
+          "id": "6597069767708",
+          "first_name": "Abdou",
+          "last_name": "Dia"
+        },
+        {
+          "id": "6597069767836",
+          "first_name": "Joao",
+          "last_name": "Morais"
+        },
+        {
+          "id": "10995116278980",
+          "first_name": "Paulo",
+          "last_name": "Costa"
+        },
+        {
+          "id": "10995116279125",
+          "first_name": "Geremi Sorele Njitap",
+          "last_name": "Ako"
+        },
+        {
+          "id": "10995116279390",
+          "first_name": "Arjun",
+          "last_name": "Rao"
+        },
+        {
+          "id": "13194139533344",
+          "first_name": "Miguel",
+          "last_name": "Gonzalez"
+        },
+        {
+          "id": "13194139534853",
+          "first_name": "Babar",
+          "last_name": "Malik"
+        },
+        {
+          "id": "13194139534982",
+          "first_name": "Rafael",
+          "last_name": "Alves"
+        },
+        {
+          "id": "15393162788906",
+          "first_name": "Ali",
+          "last_name": "Achiou"
+        },
+        {
+          "id": "15393162789655",
+          "first_name": "Bona Pinder Yayumayalolo",
+          "last_name": "Collinet"
+        },
+        {
+          "id": "17592186044862",
+          "first_name": "Alex Obanda",
+          "last_name": "Ngoche"
+        },
+        {
+          "id": "17592186045078",
+          "first_name": "Asher",
+          "last_name": "Bahaina"
+        },
+        {
+          "id": "17592186045512",
+          "first_name": "Takeshi",
+          "last_name": "Inoue"
+        },
+        {
+          "id": "19791209300474",
+          "first_name": "Jacques Van Mau",
+          "last_name": "Ha"
+        },
+        {
+          "id": "21990232556220",
+          "first_name": "Lukwesa",
+          "last_name": "Dogg"
+        },
+        {
+          "id": "24189255811381",
+          "first_name": "Mahinda",
+          "last_name": "De Silva"
+        },
+        {
+          "id": "24189255811663",
+          "first_name": "Chris",
+          "last_name": "Hall"
+        },
+        {
+          "id": "24189255811746",
+          "first_name": "Louisa",
+          "last_name": "Adhia"
+        },
+        {
+          "id": "24189255811778",
+          "first_name": "Karan",
+          "last_name": "Reddy"
+        },
+        {
+          "id": "24189255812295",
+          "first_name": "Francisco",
+          "last_name": "Sanchez"
+        },
+        {
+          "id": "24189255812574",
+          "first_name": "Lorenzo",
+          "last_name": "Sotto"
+        },
+        {
+          "id": "26388279067574",
+          "first_name": "Jan",
+          "last_name": "Carr"
+        },
+        {
+          "id": "26388279067805",
+          "first_name": "Chi",
+          "last_name": "Li"
+        },
+        {
+          "id": "28587302323035",
+          "first_name": "Aditya",
+          "last_name": "Khan"
+        },
+        {
+          "id": "28587302323175",
+          "first_name": "Aisso",
+          "last_name": "Gerima"
+        },
+        {
+          "id": "30786325577877",
+          "first_name": "Gary",
+          "last_name": "Hill"
+        },
+        {
+          "id": "30786325578144",
+          "first_name": "Alexandre",
+          "last_name": "Patras"
+        },
+        {
+          "id": "30786325578194",
+          "first_name": "Shweta",
+          "last_name": "Kapoor"
+        },
+        {
+          "id": "30786325578676",
+          "first_name": "Jana",
+          "last_name": "Kerndlova"
+        },
+        {
+          "id": "30786325578932",
+          "first_name": "Alexander",
+          "last_name": "Hleb"
+        },
+        {
+          "id": "32985348833670",
+          "first_name": "Alfred",
+          "last_name": "Berg"
+        },
+        {
+          "id": "32985348834937",
+          "first_name": "Juan",
+          "last_name": "Perez"
+        }
+      ]
+    ]
+  },
+  "sequential-dev-05": {
+    "specs": [
+      {
+        "operation": "shortest_path",
+        "args": [
+          "6597069768236",
+          "19791209301252"
+        ]
+      }
+    ],
+    "values": [
+      [
+        "6597069768236",
+        "19791209301252"
+      ]
+    ]
+  },
+  "sequential-dev-06": {
+    "specs": [
+      {
+        "operation": "shortest_path",
+        "args": [
+          "4398046512764",
+          "2199023256300"
+        ]
+      }
+    ],
+    "values": [
+      [
+        "4398046512764",
+        "2199023256530",
+        "2199023256300"
+      ]
+    ]
+  },
+  "sequential-dev-07": {
+    "specs": [],
+    "values": []
+  },
+  "sequential-dev-08": {
+    "specs": [],
+    "values": []
+  },
+  "sequential-dev-09": {
+    "specs": [],
+    "values": []
+  },
+  "sequential-dev-10": {
+    "specs": [],
+    "values": []
+  }
+}

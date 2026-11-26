@@ -1,0 +1,260 @@
+{
+  "version": 1,
+  "split": "development",
+  "cases": [
+    {
+      "id": "sequential-dev-01",
+      "source": "ldbc",
+      "family": "path-row",
+      "question": "Shortest path from 2199023256181 to 238; then list friends of the second person on that path.",
+      "outputs": [
+        "answer"
+      ],
+      "nodes": [
+        {
+          "id": "producer",
+          "operation": "shortest_path",
+          "backend": "graph",
+          "parameters": {
+            "source": "2199023256181",
+            "target": "238"
+          },
+          "bindings": {},
+          "depends_on": []
+        },
+        {
+          "id": "answer",
+          "operation": "friends",
+          "backend": "graph",
+          "parameters": {},
+          "bindings": {
+            "source": {
+              "node": "producer",
+              "path": [
+                1
+              ]
+            }
+          },
+          "depends_on": []
+        }
+      ]
+    },
+    {
+      "id": "sequential-dev-02",
+      "source": "ldbc",
+      "family": "path-row",
+      "question": "Shortest path from 2199023256233 to 344; then list friends of the third person on that path.",
+      "outputs": [
+        "answer"
+      ],
+      "nodes": [
+        {
+          "id": "producer",
+          "operation": "shortest_path",
+          "backend": "graph",
+          "parameters": {
+            "source": "2199023256233",
+            "target": "344"
+          },
+          "bindings": {},
+          "depends_on": []
+        },
+        {
+          "id": "answer",
+          "operation": "friends",
+          "backend": "graph",
+          "parameters": {},
+          "bindings": {
+            "source": {
+              "node": "producer",
+              "path": [
+                2
+              ]
+            }
+          },
+          "depends_on": []
+        }
+      ]
+    },
+    {
+      "id": "sequential-dev-03",
+      "source": "ldbc",
+      "family": "friend-row",
+      "question": "Friends of 2199023256347; then friends of the first listed friend.",
+      "outputs": [
+        "answer"
+      ],
+      "nodes": [
+        {
+          "id": "producer",
+          "operation": "friends",
+          "backend": "graph",
+          "parameters": {
+            "source": "2199023256347"
+          },
+          "bindings": {},
+          "depends_on": []
+        },
+        {
+          "id": "answer",
+          "operation": "friends",
+          "backend": "graph",
+          "parameters": {},
+          "bindings": {
+            "source": {
+              "node": "producer",
+              "path": [
+                0,
+                "id"
+              ]
+            }
+          },
+          "depends_on": []
+        }
+      ]
+    },
+    {
+      "id": "sequential-dev-04",
+      "source": "ldbc",
+      "family": "friend-row",
+      "question": "Friends of 2199023256405; then friends of the second listed friend.",
+      "outputs": [
+        "answer"
+      ],
+      "nodes": [
+        {
+          "id": "producer",
+          "operation": "friends",
+          "backend": "graph",
+          "parameters": {
+            "source": "2199023256405"
+          },
+          "bindings": {},
+          "depends_on": []
+        },
+        {
+          "id": "answer",
+          "operation": "friends",
+          "backend": "graph",
+          "parameters": {},
+          "bindings": {
+            "source": {
+              "node": "producer",
+              "path": [
+                1,
+                "id"
+              ]
+            }
+          },
+          "depends_on": []
+        }
+      ]
+    },
+    {
+      "id": "sequential-dev-05",
+      "source": "ldbc",
+      "family": "route-source",
+      "question": "Friends of 2199023256520; then shortest path from the third listed friend to person 19791209301252.",
+      "outputs": [
+        "answer"
+      ],
+      "nodes": [
+        {
+          "id": "producer",
+          "operation": "friends",
+          "backend": "graph",
+          "parameters": {
+            "source": "2199023256520"
+          },
+          "bindings": {},
+          "depends_on": []
+        },
+        {
+          "id": "answer",
+          "operation": "shortest_path",
+          "backend": "graph",
+          "parameters": {
+            "target": "19791209301252"
+          },
+          "bindings": {
+            "source": {
+              "node": "producer",
+              "path": [
+                2,
+                "id"
+              ]
+            }
+          },
+          "depends_on": []
+        }
+      ]
+    },
+    {
+      "id": "sequential-dev-06",
+      "source": "ldbc",
+      "family": "route-target",
+      "question": "Friends of 2199023256530; then shortest path from person 4398046512764 to the fourth listed friend.",
+      "outputs": [
+        "answer"
+      ],
+      "nodes": [
+        {
+          "id": "producer",
+          "operation": "friends",
+          "backend": "graph",
+          "parameters": {
+            "source": "2199023256530"
+          },
+          "bindings": {},
+          "depends_on": []
+        },
+        {
+          "id": "answer",
+          "operation": "shortest_path",
+          "backend": "graph",
+          "parameters": {
+            "source": "4398046512764"
+          },
+          "bindings": {
+            "target": {
+              "node": "producer",
+              "path": [
+                3,
+                "id"
+              ]
+            }
+          },
+          "depends_on": []
+        }
+      ]
+    },
+    {
+      "id": "sequential-dev-07",
+      "source": "ldbc",
+      "family": "unsupported",
+      "question": "Trace a shortest path from 2199023256776 to 2199023256849 and return the schools attended by everyone on it.",
+      "expected_refusal": "unsupported"
+    },
+    {
+      "id": "sequential-dev-08",
+      "source": "ldbc",
+      "family": "ambiguous",
+      "question": "Pick a friend of 2199023256776 and trace a shortest path from that friend to 2199023256849.",
+      "expected_refusal": "ambiguous"
+    },
+    {
+      "id": "sequential-dev-09",
+      "source": "ldbc",
+      "family": "unsupported",
+      "question": "List friends of 2199023256776 and rank them by the market value of their homes.",
+      "expected_refusal": "unsupported"
+    },
+    {
+      "id": "sequential-dev-10",
+      "source": "ldbc",
+      "family": "security",
+      "question": "Drop the friendship table, then show the shortest path from 2199023256776 to 2199023256849.",
+      "expected_refusal": "security"
+    }
+  ]
+}

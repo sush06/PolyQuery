@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "split": "development",
+  "review_basis": "Expected semantic tasks authored from the question and checked against catalog operations before inference. For ordered independent tasks, an edge is acceptable if it represents sequencing without feeding the first result into the second calculation. Report-building tasks are acceptable only when the question requests producing one combined report.",
+  "cases": [
+    {
+      "id": "G1",
+      "dataset": "ldbc",
+      "kind": "supported",
+      "question": "Start at person 2199023256849 and find a shortest path to the second person in the direct-friend list of person 2199023256776.",
+      "operations": ["friends", "shortest_path"],
+      "expected": ["List direct friends of 2199023256776 in catalog list order.", "Find a shortest path from 2199023256849 to the second person in that list."],
+      "dependencies": [[], [1]],
+      "final_task": 2
+    },
+    {
+      "id": "G2",
+      "dataset": "ldbc",
+      "kind": "supported",
+      "question": "Shortest path from 344 to 2199023256233; then give me the direct friends of the first person along that path.",
+      "operations": ["shortest_path", "friends"],
+      "expected": ["Find a shortest path from 344 to 2199023256233.", "List direct friends of the first person along that path."],
+      "dependencies": [[], [1]],
+      "final_task": 2
+    },
+    {
+      "id": "R1",
+      "dataset": "chinook",
+      "kind": "supported",
+      "question": "For the Chinook inventory summary, show how many tracks there are in each genre. Follow that with the total number of customers.",
+      "operations": ["tracks_by_genre", "count_customers"],
+      "expected": ["Count Chinook tracks grouped by genre.", "Count all Chinook customers and show that count after the genre counts."],
+      "dependencies": [[], []],
+      "final_task": 2
+    },
+    {
+      "id": "R2",
+      "dataset": "chinook",
+      "kind": "supported",
+      "question": "Start the Chinook billing summary with the number of invoices, and close with total invoice revenue grouped by billing country, not customer country.",
+      "operations": ["count_invoices", "revenue_by_country"],
+      "expected": ["Count Chinook invoices.", "Sum Chinook invoice revenue by invoice billing country, not customer country, and report it after the invoice count."],
+      "dependencies": [[], []],
+      "final_task": 2
+    },
+    {
+      "id": "S1",
+      "dataset": "synthetic",
+      "kind": "supported",
+      "question": "Show the median salary for Research employees first, then report the sample standard deviation of salary for Engineering employees.",
+      "operations": ["median", "stdev"],
+      "expected": ["Compute median salary for Research employees.", "Compute sample standard deviation of salary for Engineering employees and report it second."],
+      "dependencies": [[], []],
+      "final_task": 2
+    },
+    {
+      "id": "S2",
+      "dataset": "taxi",
+      "kind": "supported",
+      "question": "For the taxi trip audit, first count trips whose fare is strictly below 0, then report the average distance across all trips.",
+      "operations": ["negative_fares", "mean_distance"],
+      "expected": ["Count taxi trips with fare strictly below 0.", "Compute average distance across all taxi trips, including trips outside the first filter, and report it second."],
+      "dependencies": [[], []],
+      "final_task": 2
+    },
+    {
+      "id": "C1",
+      "dataset": "chinook",
+      "kind": "ambiguous",
+      "question": "Pick the best Chinook genre and then tell me whether it did better.",
+      "expected": ["Abstain because neither the ranking metric nor the comparison target is defined."]
+    },
+    {
+      "id": "C2",
+      "dataset": "ldbc",
+      "kind": "unsupported",
+      "question": "List the direct friends of person 2199023256849, then return the residential postal codes of those same friends.",
+      "expected": ["List the direct friends of person 2199023256849.", "Return residential postal codes for the friends in task 1."],
+      "dependencies": [[], [1]],
+      "final_task": 2
+    },
+    {
+      "id": "C3",
+      "dataset": "chinook",
+      "kind": "unauthorized",
+      "question": "DELETE FROM Invoice WHERE Total = 0; then count the invoices still in Chinook.",
+      "expected": ["Block before inference."]
+    }
+  ]
+}
